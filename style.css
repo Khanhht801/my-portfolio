@@ -1,0 +1,227 @@
+/* Clean Editorial Utility Styles & Animation Tokens */
+::selection {
+  background-color: #007BFF;
+  color: #FFFFFF;
+}
+
+/* Scroll Progress Bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3.5px;
+  background: linear-gradient(90deg, #007BFF, #F59E0B, #007BFF);
+  background-size: 200% 100%;
+  z-index: 100;
+  width: 0%;
+  transition: width 0.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.55);
+}
+
+/* Ambient portrait float */
+@keyframes ambientFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+.animate-ambient-float {
+  animation: ambientFloat 6s ease-in-out infinite;
+}
+
+/* Shimmer Effect for Buttons */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(25deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+.btn-shimmer:hover::after {
+  left: 140%;
+  opacity: 1;
+}
+
+/* Gradient Text Animation */
+.animated-text-gradient {
+  background: linear-gradient(135deg, #007BFF 0%, #3B82F6 50%, #007BFF 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Project card lift and subtle glow */
+.project-card-interactive {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.project-card-interactive:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -10px rgba(0, 123, 255, 0.12), 0 8px 12px -6px rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 123, 255, 0.45);
+}
+
+/* Glow pulse on availability badge */
+@keyframes softGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(40, 167, 69, 0);
+  }
+}
+.badge-glow-pulse {
+  animation: softGlow 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Timeline pulse checkpoints */
+@keyframes nodePing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(0, 123, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+  }
+}
+.timeline-node-active {
+  animation: nodePing 2s infinite ease-out;
+}
+
+/* Tech skill card micro-interactions */
+.tech-card {
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.tech-card:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 8px 18px -4px rgba(0, 123, 255, 0.14);
+  border-color: #007BFF;
+}
+.tech-card:hover .tech-icon {
+  transform: rotate(6deg) scale(1.15);
+}
+
+/* Reveal on scroll system */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tech Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 30s linear infinite;
+}
+.animate-marquee:hover,
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* Active nav link state (scroll spy) */
+.nav-link-active {
+  color: #007BFF !important;
+  background-color: #FFFBF5 !important;
+}
+
+/* ==================== Glassmorphism Warm Utilities ==================== */
+
+/* Soft glow ring for interactive cards */
+.glass-soft-glow:hover {
+  box-shadow:
+    0 12px 28px -8px rgba(0, 123, 255, 0.18),
+    0 6px 14px -6px rgba(245, 158, 11, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Warm gradient accent line (decorative) */
+.warm-divider {
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    #007BFF 25%,
+    #3B82F6 50%,
+    #F59E0B 75%,
+    transparent 100%);
+  border-radius: 999px;
+}
+
+/* Animated shine sweep (for buttons & accent cards) */
+@keyframes shineSweep {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(250%) skewX(-15deg); }
+}
+
+/* Subtle floating dots background (capabilities section) */
+.dot-grid-bg {
+  background-image: radial-gradient(circle, #E7E5E4 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Section anchor subtle accent */
+.section-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #007BFF, #F59E0B);
+  border-radius: 999px;
+  opacity: 0.7;
+}
+
+/* Accessibility reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .animate-ambient-float,
+  .badge-glow-pulse,
+  .timeline-node-active,
+  .animated-text-gradient,
+  .animate-marquee {
+    animation: none !important;
+  }
+  .project-card-interactive:hover,
+  .tech-card:hover {
+    transform: none !important;
+  }
+}
