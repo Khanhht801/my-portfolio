@@ -107,19 +107,6 @@
   animation: nodePing 2s infinite ease-out;
 }
 
-/* Tech skill card micro-interactions */
-.tech-card {
-  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.tech-card:hover {
-  transform: translateY(-3px) scale(1.01);
-  box-shadow: 0 8px 18px -4px rgba(0, 123, 255, 0.14);
-  border-color: #007BFF;
-}
-.tech-card:hover .tech-icon {
-  transform: rotate(6deg) scale(1.15);
-}
-
 /* Reveal on scroll system */
 .reveal-on-scroll {
   opacity: 0;
@@ -132,78 +119,10 @@
   transform: translateY(0);
 }
 
-/* Tech Marquee Animation */
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-@keyframes marquee-reverse {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
-}
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-.animate-marquee-reverse {
-  animation: marquee-reverse 30s linear infinite;
-}
-.animate-marquee:hover,
-.animate-marquee-reverse:hover {
-  animation-play-state: paused;
-}
-
 /* Active nav link state (scroll spy) */
 .nav-link-active {
   color: #007BFF !important;
   background-color: #FFFBF5 !important;
-}
-
-/* ==================== Glassmorphism Warm Utilities ==================== */
-
-/* Soft glow ring for interactive cards */
-.glass-soft-glow:hover {
-  box-shadow:
-    0 12px 28px -8px rgba(0, 123, 255, 0.18),
-    0 6px 14px -6px rgba(245, 158, 11, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-/* Warm gradient accent line (decorative) */
-.warm-divider {
-  height: 2px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    #007BFF 25%,
-    #3B82F6 50%,
-    #F59E0B 75%,
-    transparent 100%);
-  border-radius: 999px;
-}
-
-/* Animated shine sweep (for buttons & accent cards) */
-@keyframes shineSweep {
-  0% { transform: translateX(-100%) skewX(-15deg); }
-  100% { transform: translateX(250%) skewX(-15deg); }
-}
-
-/* Subtle floating dots background (capabilities section) */
-.dot-grid-bg {
-  background-image: radial-gradient(circle, #E7E5E4 1px, transparent 1px);
-  background-size: 22px 22px;
-}
-
-/* Section anchor subtle accent */
-.section-accent::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #007BFF, #F59E0B);
-  border-radius: 999px;
-  opacity: 0.7;
 }
 
 /* Accessibility reduced motion */
@@ -216,12 +135,10 @@
   .animate-ambient-float,
   .badge-glow-pulse,
   .timeline-node-active,
-  .animated-text-gradient,
-  .animate-marquee {
+  .animated-text-gradient {
     animation: none !important;
   }
-  .project-card-interactive:hover,
-  .tech-card:hover {
+  .project-card-interactive:hover {
     transform: none !important;
   }
 }
