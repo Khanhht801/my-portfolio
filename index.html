@@ -1,614 +1,858 @@
-<!DOCTYPE html><html class="scroll-smooth" lang="vi" style=""><head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Hoàng Thanh Khánh — Lập trình viên Fullstack & Kỹ sư phần mềm</title>
-    <!-- Favicon (Circle) -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512.png">
-    <style>h1, h2, h3, h4, .font-display { font-family: 'Hanken Grotesk', 'Inter', sans-serif !important; }</style>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Google Fonts: Hanken Grotesk, JetBrains Mono, Be Vietnam Pro -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-          theme: {
-            extend: {
-              colors: {
-                warm: {
-                  bg: '#FFFBF5',
-                  surface: '#FFF8F0',
-                  white: '#FFFFFF',
-                  border: '#E7E5E4',
-                  'border-subtle': '#F5F0EB',
-                  muted: '#78716C',
-                  body: '#44403C',
-                  dark: '#292524',
-                },
-                brand: {
-                  blue: '#007BFF',
-                  'blue-hover': '#0056CC',
-                  'blue-light': '#DBEAFE',
-                  amber: '#F59E0B',
-                  'amber-light': '#FEF3C7',
-                  coral: '#F97316',
-                  success: '#10B981',
-                  danger: '#EF4444',
-                  info: '#38BDF8',
-                }
-              },
-              fontFamily: {
-                sans: ['"Be Vietnam Pro"', '"Hanken Grotesk"', 'sans-serif'],
-                display: ['"Hanken Grotesk"', 'sans-serif'],
-                mono: ['"JetBrains Mono"', 'monospace'],
-              },
-              maxWidth: {
-                'site': '1280px',
-              },
-              borderRadius: {
-                sm: '4px',
-                md: '8px',
-                lg: '12px',
-              }
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="vi" style="">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Hoàng Thanh Khánh — Lập trình viên Fullstack & Kỹ sư phần mềm</title>
+  <!-- Favicon (Circle) -->
+  <link rel="icon" type="image/x-icon" href="image/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="image/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="image/favicon-64.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="image/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="image/android-chrome-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="image/android-chrome-512.png">
+  <style>
+    h1,
+    h2,
+    h3,
+    h4,
+    .font-display {
+      font-family: 'Hanken Grotesk', 'Inter', sans-serif !important;
+    }
+  </style>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Google Fonts: Hanken Grotesk, JetBrains Mono, Be Vietnam Pro -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            warm: {
+              bg: '#FFFBF5',
+              surface: '#FFF8F0',
+              white: '#FFFFFF',
+              border: '#E7E5E4',
+              'border-subtle': '#F5F0EB',
+              muted: '#78716C',
+              body: '#44403C',
+              dark: '#292524',
+            },
+            brand: {
+              blue: '#007BFF',
+              'blue-hover': '#0056CC',
+              'blue-light': '#DBEAFE',
+              amber: '#F59E0B',
+              'amber-light': '#FEF3C7',
+              coral: '#F97316',
+              success: '#10B981',
+              danger: '#EF4444',
+              info: '#38BDF8',
             }
+          },
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', '"Hanken Grotesk"', 'sans-serif'],
+            display: ['"Hanken Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          maxWidth: {
+            'site': '1280px',
+          },
+          borderRadius: {
+            sm: '4px',
+            md: '8px',
+            lg: '12px',
           }
         }
-      </script>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-    </head>
-    <body class="bg-[#FFFBF5] text-[#292524] font-sans antialiased selection:bg-[#007BFF] selection:text-white relative">
-    <!-- Scroll Progress Bar -->
-    <div aria-hidden="true" id="scroll-progress" style="width: 0%;"></div>
-    <!-- ==================== 1. NAVBAR ==================== -->
-    <header class="sticky top-0 z-50 bg-[#FFFBF5]/80 backdrop-blur-xl border-b border-[#E7E5E4]/60 transition-all duration-200 shadow-sm" id="main-header">
+      }
+    }
+  </script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-[#FFFBF5] text-[#292524] font-sans antialiased selection:bg-[#007BFF] selection:text-white relative">
+  <!-- Scroll Progress Bar -->
+  <div aria-hidden="true" id="scroll-progress" style="width: 0%;"></div>
+  <!-- ==================== 1. NAVBAR ==================== -->
+  <header
+    class="sticky top-0 z-50 bg-[#FFFBF5]/80 backdrop-blur-xl border-b border-[#E7E5E4]/60 transition-all duration-200 shadow-sm"
+    id="main-header">
     <div class="max-w-site mx-auto px-4 sm:px-6 h-16 sm:h-18 flex items-center justify-end relative gap-4">
-    <!-- Left: Brand / Logo -->
-    <a aria-label="Khanhht - Trang chủ" class="absolute left-4 sm:left-6 flex items-center gap-2 group z-10" href="#hero">
-      <img src="logo.jpg" alt="Khanhht Logo" class="w-9 h-9 rounded-full object-cover border-2 border-[#007BFF] group-hover:scale-110 transition-transform shadow-sm">
-      <span class="font-display font-bold tracking-tight text-[#292524] group-hover:text-[#007BFF] transition-colors">Khanhht</span>
-    </a>
-    <!-- Center: Floating Pill Navigation Bar -->
-    <nav aria-label="Main Navigation" class="hidden lg:flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-white/70 backdrop-blur-md border border-[#E7E5E4]/50 shadow-sm text-base font-medium text-[#78716C] absolute left-1/2 -translate-x-1/2">
-    <a class="px-4 py-2 rounded-xl hover:text-[#007BFF] hover:bg-[#DBEAFE]/60 transition-all duration-150 text-base font-medium" href="#work">DỰ ÁN</a>
-    <a class="px-4 py-2 rounded-xl hover:text-[#007BFF] hover:bg-[#DBEAFE]/60 transition-all duration-150 text-base font-medium" href="#about">GIỚI THIỆU</a>
-    <a class="px-4 py-2 rounded-xl hover:text-[#007BFF] hover:bg-[#DBEAFE]/60 transition-all duration-150 text-base font-medium" href="#experience">KINH NGHIỆM</a>
-    <a class="px-4 py-2 rounded-xl hover:text-[#007BFF] hover:bg-[#DBEAFE]/60 transition-all duration-150 text-base font-medium" href="#capabilities">KỸ NĂNG</a>
-    <a class="px-4 py-2 rounded-xl hover:text-[#007BFF] hover:bg-[#DBEAFE]/60 transition-all duration-150 text-base font-medium" href="#contact">LIÊN HỆ</a>
-    </nav>
-    <!-- Right: Actions -->
-    <div class="flex items-center gap-2.5 sm:gap-3 z-10">
-    <a aria-label="GitHub Profile" class="hidden md:inline-flex items-center justify-center w-9 h-9 rounded-xl border border-[#E7E5E4] bg-white/70 backdrop-blur-sm text-[#292524] hover:text-[#007BFF] hover:border-[#007BFF] transition-all hover:scale-105 shadow-sm" href="https://github.com/Khanhht801" rel="noopener noreferrer" target="_blank">
-    <svg class="w-4 h-4 fill-currentColor transition-transform" viewBox="0 0 24 24">
-    <path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
-    </svg>
-    </a>
-    <a class="btn-shimmer inline-flex items-center gap-2 text-sm font-mono font-semibold px-4 py-2 rounded-xl bg-[#007BFF] text-white hover:bg-[#0056CC] shadow-sm hover:shadow transition-all focus:ring-2 focus:ring-[#007BFF] group" href="cv.pdf" download>
-    <span class="">TẢI CV</span>
-    <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-    </svg>
-    </a>
-    <button aria-label="Toggle navigation menu" class="p-1.5 text-[#292524] hover:text-[#007BFF] focus:outline-none lg:hidden border border-[#E7E5E4] rounded-xl bg-white/70 backdrop-blur-sm" id="mobile-toggle" type="button">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-    </svg>
-    </button>
-    </div>
+      <!-- Left: Brand / Logo -->
+      <a aria-label="Khanhht - Trang chủ" class="absolute left-4 sm:left-6 flex items-center gap-2 group z-10"
+        href="#hero">
+        <img src="image/logo.jpg" alt="Khanhht Logo"
+          class="w-9 h-9 rounded-full object-cover border-2 border-[#007BFF] group-hover:scale-110 transition-transform shadow-sm">
+        <span
+          class="font-display font-bold tracking-tight text-[#292524] group-hover:text-[#007BFF] transition-colors">Khanhht</span>
+      </a>
+      <!-- Center: Center Navigation Bar (no wrapper) -->
+      <nav aria-label="Main Navigation"
+        class="hidden lg:flex items-center gap-2 text-base font-medium text-[#292524] absolute left-1/2 -translate-x-1/2 normal-case">
+        <a class="px-4 py-2 rounded-xl hover:text-[#007BFF] hover:bg-[#DBEAFE]/60 transition-all duration-150 text-base font-medium"
+          href="#work">Dự án</a>
+        <a class="px-4 py-2 rounded-xl hover:text-[#007BFF] hover:bg-[#DBEAFE]/60 transition-all duration-150 text-base font-medium"
+          href="#about">Giới thiệu</a>
+        <a class="px-4 py-2 rounded-xl hover:text-[#007BFF] hover:bg-[#DBEAFE]/60 transition-all duration-150 text-base font-medium"
+          href="#experience">Kinh nghiệm</a>
+        <a class="px-4 py-2 rounded-xl hover:text-[#007BFF] hover:bg-[#DBEAFE]/60 transition-all duration-150 text-base font-medium"
+          href="#capabilities">Kỹ năng</a>
+        <a class="px-4 py-2 rounded-xl hover:text-[#007BFF] hover:bg-[#DBEAFE]/60 transition-all duration-150 text-base font-medium"
+          href="#contact">Liên hệ</a>
+      </nav>
+      <!-- Right: Actions -->
+      <div class="flex items-center gap-2.5 sm:gap-3 z-10">
+        <a aria-label="GitHub Profile"
+          class="hidden md:inline-flex items-center justify-center w-9 h-9 rounded-xl border border-[#E7E5E4] bg-white/70 backdrop-blur-sm text-[#292524] hover:text-[#007BFF] hover:border-[#007BFF] transition-all hover:scale-105 shadow-sm"
+          href="https://github.com/Khanhht801" rel="noopener noreferrer" target="_blank">
+          <svg class="w-4 h-4 fill-currentColor transition-transform" viewBox="0 0 24 24">
+            <path clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              fill-rule="evenodd"></path>
+          </svg>
+        </a>
+        <a class="btn-shimmer inline-flex items-center gap-2 text-sm font-mono font-semibold px-4 py-2 rounded-xl bg-[#007BFF] text-white hover:bg-[#0056CC] shadow-sm hover:shadow transition-all focus:ring-2 focus:ring-[#007BFF] group"
+          href="cv.pdf" download>
+          <span class="">TẢI CV</span>
+          <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </a>
+        <button aria-label="Toggle navigation menu"
+          class="p-1.5 text-[#292524] hover:text-[#007BFF] focus:outline-none lg:hidden border border-[#E7E5E4] rounded-xl bg-white/70 backdrop-blur-sm"
+          id="mobile-toggle" type="button">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </button>
+      </div>
     </div>
     <!-- Mobile Dropdown Navigation -->
-    <div class="hidden lg:hidden bg-white/90 backdrop-blur-xl border-b border-[#E7E5E4] px-6 py-4 transition-all shadow-sm rounded-b-2xl" id="mobile-menu">
-    <div class="flex flex-col space-y-3 font-medium text-sm">
-    <a class="py-1 text-[#292524] hover:text-[#007BFF]" href="#work">DỰ ÁN</a>
-    <a class="py-1 text-[#292524] hover:text-[#007BFF]" href="#about">GIỚI THIỆU</a>
-    <a class="py-1 text-[#292524] hover:text-[#007BFF]" href="#experience">KINH NGHIỆM</a>
-    <a class="py-1 text-[#292524] hover:text-[#007BFF]" href="#capabilities">KỸ NĂNG</a>
-    <a class="py-1 text-[#292524] hover:text-[#007BFF]" href="#contact">LIÊN HỆ</a>
-    <div class="pt-2 border-t border-[#E7E5E4] flex items-center justify-end">
-    <a class="inline-flex items-center gap-2 text-sm font-mono font-semibold px-4 py-2 rounded-xl bg-[#007BFF] text-white hover:bg-[#0056CC] shadow-sm transition-all focus:ring-2 focus:ring-[#007BFF]" href="cv.pdf" download>
+    <div
+      class="hidden lg:hidden bg-white/90 backdrop-blur-xl border-b border-[#E7E5E4] px-6 py-4 transition-all shadow-sm rounded-b-2xl"
+      id="mobile-menu">
+      <div class="flex flex-col space-y-3 font-medium text-sm normal-case">
+        <a class="py-1 text-[#292524] hover:text-[#007BFF]" href="#work">Dự án</a>
+        <a class="py-1 text-[#292524] hover:text-[#007BFF]" href="#about">Giới thiệu</a>
+        <a class="py-1 text-[#292524] hover:text-[#007BFF]" href="#experience">Kinh nghiệm</a>
+        <a class="py-1 text-[#292524] hover:text-[#007BFF]" href="#capabilities">Kỹ năng</a>
+        <a class="py-1 text-[#292524] hover:text-[#007BFF]" href="#contact">Liên hệ</a>
+        <div class="pt-2 border-t border-[#E7E5E4] flex items-center justify-end">
+          <a class="inline-flex items-center gap-2 text-sm font-mono font-semibold px-4 py-2 rounded-xl bg-[#007BFF] text-white hover:bg-[#0056CC] shadow-sm transition-all focus:ring-2 focus:ring-[#007BFF]"
+            href="cv.pdf" download>
             Tải CV / Hồ sơ ↗
           </a>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    </header>
-    <main>
+  </header>
+  <main>
     <!-- ==================== 2. HERO SECTION ==================== -->
     <section class="relative overflow-hidden border-b border-[#E7E5E4] pb-12 pt-8" id="hero">
-    <!-- Decorative warm gradient orbs -->
-    <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#F59E0B]/15 via-[#F97316]/10 to-transparent -translate-y-1/2 translate-x-1/3 pointer-events-none blur-3xl" aria-hidden="true"></div>
-    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-[#007BFF]/10 via-[#93C5FD]/8 to-transparent translate-y-1/2 -translate-x-1/4 pointer-events-none blur-3xl" aria-hidden="true"></div>
-    <div class="absolute top-1/2 left-1/3 w-[200px] h-[200px] rounded-full bg-gradient-to-br from-[#F59E0B]/8 to-transparent pointer-events-none blur-2xl" aria-hidden="true"></div>
+      <!-- Decorative warm gradient orbs -->
+      <div
+        class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#F59E0B]/15 via-[#F97316]/10 to-transparent -translate-y-1/2 translate-x-1/3 pointer-events-none blur-3xl"
+        aria-hidden="true"></div>
+      <div
+        class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-[#007BFF]/10 via-[#93C5FD]/8 to-transparent translate-y-1/2 -translate-x-1/4 pointer-events-none blur-3xl"
+        aria-hidden="true"></div>
+      <div
+        class="absolute top-1/2 left-1/3 w-[200px] h-[200px] rounded-full bg-gradient-to-br from-[#F59E0B]/8 to-transparent pointer-events-none blur-2xl"
+        aria-hidden="true"></div>
 
-    <div class="max-w-site mx-auto px-6 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-    <!-- Left Column (7 cols): Editorial Headline & Copy -->
-    <div class="lg:col-span-7 flex flex-col items-start reveal-on-scroll is-visible">
-    <!-- Category & Availability Meta Bar -->
-    <div class="flex flex-wrap items-center gap-3 mb-6">
-    <span class="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider font-semibold px-2.5 py-1 bg-white/80 backdrop-blur-sm border border-[#E7E5E4] text-[#292524] rounded-xl shadow-xs">
-    <span class="w-1.5 h-1.5 rounded-full bg-[#007BFF] animate-pulse"></span>
-      LẬP TRÌNH VIÊN FULLSTACK · VIỆT NAM
-    </span>
-    <div class="badge-glow-pulse inline-flex items-center gap-2 px-2.5 py-1 bg-[#10B981]/10 border border-[#10B981]/30 rounded-xl text-[#10B981] font-mono text-xs font-semibold">
-    <span class="relative flex h-2 w-2">
-    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
-    <span class="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
-    </span>
-      Sẵn sàng nhận việc thực tập / junior
-    </div>
-    </div>
-    <!-- Headline -->
-    <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-[56px] leading-[1.14] tracking-tight text-[#292524] mb-6">
-      Hoàng Thanh Khánh <span class="block animated-text-gradient mt-1">Fullstack Dev</span>
-    </h1>
-    <!-- Supporting copy -->
-    <p class="text-lg md:text-xl text-[#44403C] font-normal leading-relaxed mb-8 max-w-2xl">Sinh viên năm 3 Chuyên ngành Tin học ứng dụng, có định hướng phát triển Fullstack. Có kiến thức nền tảng về lập trình và phát triển website, đồng thời có kinh nghiệm thực tế trong quản lý và cập nhật nội dung website. Luôn chủ động học hỏi, thực hành và trau dồi kỹ năng để phát triển các sản phẩm web hoàn chỉnh.</p>
-    <!-- CTA Buttons -->
-    <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
-    <a class="btn-shimmer group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#007BFF] text-white font-medium text-base hover:bg-[#0056CC] active:bg-[#0056CC] shadow-md hover:shadow-lg transition-all focus:ring-2 focus:ring-offset-2 focus:ring-[#007BFF]" href="#work">
-    <span class="">Xem dự án tiêu biểu</span>
-    <svg class="w-4 h-4 transition-transform group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-    </svg>
-    </a>
-    <a class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/80 backdrop-blur-sm border border-[#E7E5E4] text-[#292524] font-medium text-base hover:bg-white hover:border-[#007BFF] hover:text-[#007BFF] transition-all shadow-sm hover:shadow-md focus:ring-2 focus:ring-[#292524]" href="cv.pdf" download>
-    <span class="">Tải hồ sơ (CV)</span>
-    <svg class="w-4 h-4 text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-    </svg>
-    </a>
-    </div>
-    <!-- Fast Specs Strip -->
-    <div class="pt-6 border-t border-[#E7E5E4] w-full grid grid-cols-3 gap-4 text-xs font-sans">
-    <div class="hover:translate-x-1 transition-transform">
-    <span class="block text-[#78716C] uppercase tracking-wider mb-1 font-mono">FRONTEND</span>
-    <span class="font-semibold text-[#292524]">HTML · CSS · JavaScript</span>
-    </div>
-    <div class="hover:translate-x-1 transition-transform">
-    <span class="block text-[#78716C] uppercase tracking-wider mb-1 font-mono">BACKEND</span>
-    <span class="font-semibold text-[#292524]">PHP · Python · SQL</span>
-    </div>
-    <div class="hover:translate-x-1 transition-transform">
-    <span class="block text-[#78716C] uppercase tracking-wider mb-1 font-mono">ĐỊNH HƯỚNG</span>
-    <span class="font-semibold text-[#007BFF]">Fullstack Development</span>
-    </div>
-    </div>
-    </div>
-    <!-- Right Column (5 cols): Glassmorphism Portrait -->
-    <div class="lg:col-span-5 reveal-on-scroll is-visible">
-    <div class="relative mx-auto flex justify-center items-end">
-    <div class="animate-ambient-float relative w-full flex justify-center">
-    <!-- Glassmorphism frame -->
-    <div class="absolute -inset-4 bg-gradient-to-t from-[#007BFF]/20 via-[#F59E0B]/10 to-transparent blur-2xl rounded-3xl pointer-events-none -z-10"></div>
-    <div class="relative rounded-3xl overflow-hidden border border-[#E7E5E4]/60 bg-white/60 backdrop-blur-xl shadow-xl">
-    <!-- Warm gradient top bar -->
-    <img alt="Hoàng Thanh Khánh - Lập Trình Viên Fullstack" class="w-full max-w-md lg:max-w-none max-h-[560px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02]" loading="lazy" src="chandung.jpg" onerror="this.onerror=null;this.src='logo.jpg';this.classList.add('bg-[#DBEAFE]','p-8');">
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+      <div class="max-w-site mx-auto px-6 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <!-- Left Column (7 cols): Editorial Headline & Copy -->
+          <div class="lg:col-span-7 flex flex-col items-start reveal-on-scroll is-visible">
+            <!-- Category & Availability Meta Bar -->
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+              <span
+                class="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider font-semibold px-2.5 py-1 bg-white/80 backdrop-blur-sm border border-[#E7E5E4] text-[#292524] rounded-xl shadow-xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#007BFF] animate-pulse"></span>
+                LẬP TRÌNH VIÊN FULLSTACK · VIỆT NAM
+              </span>
+              <div
+                class="badge-glow-pulse inline-flex items-center gap-2 px-2.5 py-1 bg-[#10B981]/10 border border-[#10B981]/30 rounded-xl text-[#10B981] font-mono text-xs font-semibold">
+                <span class="relative flex h-2 w-2">
+                  <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
+                </span>
+                Sẵn sàng nhận việc thực tập / junior
+              </div>
+            </div>
+            <!-- Headline -->
+            <h1
+              class="font-display font-black text-4xl sm:text-5xl lg:text-[56px] leading-[1.14] tracking-tight text-[#292524] mb-6">
+              Hoàng Thanh Khánh <span class="block animated-text-gradient mt-1">Fullstack Dev</span>
+            </h1>
+            <!-- Supporting copy -->
+            <p class="text-justify text-lg md:text-xl text-[#44403C] font-normal leading-relaxed mb-8 max-w-2xl">Sinh viên năm 3
+              Chuyên ngành Tin học ứng dụng, có định hướng phát triển Fullstack. Có kiến thức nền tảng về lập trình và
+              phát triển website, đồng thời có kinh nghiệm thực tế trong quản lý và cập nhật nội dung website. Luôn chủ
+              động học hỏi, thực hành và trau dồi kỹ năng để phát triển các sản phẩm web hoàn chỉnh.</p>
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
+              <a class="btn-shimmer group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#007BFF] text-white font-medium text-base hover:bg-[#0056CC] active:bg-[#0056CC] shadow-md hover:shadow-lg transition-all focus:ring-2 focus:ring-offset-2 focus:ring-[#007BFF]"
+                href="#work">
+                <span class="">Xem dự án tiêu biểu</span>
+                <svg class="w-4 h-4 transition-transform group-hover:translate-y-1" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5"></path>
+                </svg>
+              </a>
+              <a class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/80 backdrop-blur-sm border border-[#E7E5E4] text-[#292524] font-medium text-base hover:bg-white hover:border-[#007BFF] hover:text-[#007BFF] transition-all shadow-sm hover:shadow-md focus:ring-2 focus:ring-[#292524]"
+                href="cv.pdf" download>
+                <span class="">Tải hồ sơ (CV)</span>
+                <svg
+                  class="w-4 h-4 text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:-translate-y-0.5"
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+              </a>
+            </div>
+            <!-- Fast Specs Strip -->
+            <div class="pt-6 border-t border-[#E7E5E4] w-full grid grid-cols-3 gap-4 text-xs font-sans">
+              <div class="hover:translate-x-1 transition-transform">
+                <span class="block text-[#78716C] uppercase tracking-wider mb-1 font-mono">FRONTEND</span>
+                <span class="font-semibold text-[#292524]">HTML · CSS · JavaScript</span>
+              </div>
+              <div class="hover:translate-x-1 transition-transform">
+                <span class="block text-[#78716C] uppercase tracking-wider mb-1 font-mono">BACKEND</span>
+                <span class="font-semibold text-[#292524]">PHP · Python · SQL</span>
+              </div>
+              <div class="hover:translate-x-1 transition-transform">
+                <span class="block text-[#78716C] uppercase tracking-wider mb-1 font-mono">ĐỊNH HƯỚNG</span>
+                <span class="font-semibold text-[#007BFF]">Fullstack Development</span>
+              </div>
+            </div>
+          </div>
+          <!-- Right Column (5 cols): Glassmorphism Portrait -->
+          <div class="lg:col-span-5 reveal-on-scroll is-visible">
+            <div class="relative mx-auto flex justify-center items-end">
+              <div class="animate-ambient-float relative w-full flex justify-center">
+                <!-- Glassmorphism frame -->
+                <div
+                  class="absolute -inset-4 bg-gradient-to-t from-[#007BFF]/20 via-[#F59E0B]/10 to-transparent blur-2xl rounded-3xl pointer-events-none -z-10">
+                </div>
+                <div
+                  class="relative rounded-3xl overflow-hidden border border-[#E7E5E4]/60 bg-white/60 backdrop-blur-xl shadow-xl">
+                  <!-- Warm gradient top bar -->
+                  <img alt="Hoàng Thanh Khánh - Lập Trình Viên Fullstack"
+                    class="w-full max-w-md lg:max-w-none max-h-[560px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02]"
+                    loading="lazy" src="image/chandung.jpg"
+                    onerror="this.onerror=null;this.src='image/chandung.jpg';this.classList.add('bg-[#DBEAFE]','p-8');">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- ==================== 3. SELECTED WORK ==================== -->
     <section class="border-b border-[#E7E5E4] bg-white py-12" id="work">
-    <div class="max-w-site mx-auto px-6">
-    <!-- Section Header -->
-    <div class="flex flex-col items-center text-center justify-center pb-6 border-b border-[#292524] gap-4 mb-10 reveal-on-scroll is-visible">
-    <div class="flex flex-col items-center">
-    <div class="font-mono text-xs uppercase tracking-widest text-[#007BFF] font-semibold mb-2 flex items-center justify-center gap-2">
-    <span class="w-2 h-0.5 bg-[#007BFF] rounded-full"></span>
-          DỰ ÁN THỰC CHIẾN
-          <span class="w-2 h-0.5 bg-[#007BFF] rounded-full"></span>
-    </div>
-    <h2 class="font-display font-black text-3xl sm:text-4xl text-[#292524] tracking-tight">DỰ ÁN HỌC TẬP <span class="text-[#007BFF]">&</span> SẢN PHẨM CÁ NHÂN</h2>
-    </div>
-    </div>
-    <!-- Project List -->
-    <div class="space-y-14">
-    <!-- PROJECT 01: Large screenshot left, project info right -->
-    <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center reveal-on-scroll is-visible">
-    <div class="lg:col-span-7">
-    <div class="project-card-interactive group relative rounded-2xl overflow-hidden border border-[#E7E5E4] bg-white shadow-md">
-    <div class="bg-[#FFFBF5] px-4 py-2.5 border-b border-[#E7E5E4] flex items-center justify-between">
-    <div class="flex items-center gap-1.5">
-    <span class="w-2.5 h-2.5 rounded-full bg-[#FCA5A5] group-hover:bg-[#EF4444]/70 transition-colors"></span>
-    <span class="w-2.5 h-2.5 rounded-full bg-[#FCD34D] group-hover:bg-[#F59E0B]/70 transition-colors"></span>
-    <span class="w-2.5 h-2.5 rounded-full bg-[#6EE7B7] group-hover:bg-[#10B981]/70 transition-colors"></span>
-    </div>
-    <span class="font-mono text-[11px] text-[#78716C]">lsc.qlsv.edu.vn</span>
-    <span class="font-mono text-[11px] text-[#10B981] font-semibold flex items-center gap-1">
-    <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping"></span>
-      ● Production
-    </span>
-    </div>
-    <div class="overflow-hidden">
-    <img alt="Hệ thống Quản lý sinh viên" class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500 ease-out" loading="lazy" src="QLVS.png" onerror="this.onerror=null;this.src='logo.jpg';this.classList.add('object-contain','bg-[#DBEAFE]','p-12');">
-    </div>
-    </div>
-    </div>
-    <div class="lg:col-span-5 flex flex-col items-start">
-    <div class="font-mono text-xs text-[#007BFF] font-bold tracking-widest mb-2 flex items-center gap-2">
-    <span class="text-[#F59E0B] font-black">01</span> // SẢN PHẨM HỌC TẬP
-    </div>
-    <h3 class="font-display font-black text-2xl sm:text-3xl text-[#292524] tracking-tight mb-3">
-      Hệ thống Quản lý sinh viên
-    </h3>
-    <p class="text-[#44403C] text-base leading-relaxed mb-6">
-      Hệ thống hỗ trợ quản lý lớp học và thông tin sinh viên trong phạm vi Khoa, cung cấp tài khoản riêng cho người dùng và tích hợp tính năng trao đổi trực tuyến giữa sinh viên và giảng viên.
-    </p>
-    <div class="flex flex-wrap gap-2 mb-6 font-mono text-xs">
-    <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">HTML</span>
-    <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">CSS</span>
-    <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">JavaScript</span>
-    <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Python</span>
-    </div>
-    <a class="group inline-flex items-center gap-2 font-display font-bold text-sm text-[#007BFF] hover:text-[#0056CC] focus:outline-none" href="#horizon-project">
-    <span class="group-hover:underline">Xem dự án</span>
-    <span class="font-mono transition-transform duration-200 group-hover:translate-x-1.5">→</span>
-    </a>
-    </div>
-    </article>
-    <!-- PROJECT 02: Information left, interface preview right -->
-    <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center reveal-on-scroll is-visible">
-    <div class="lg:col-span-5 order-2 lg:order-1 flex flex-col items-start">
-    <div class="font-mono text-xs text-[#007BFF] font-bold tracking-widest mb-2 flex items-center gap-2">
-    <span class="text-[#F59E0B] font-black">02</span> // LOGISTICS & VẬN TẢI
-    </div>
-    <h3 class="font-display font-black text-2xl sm:text-3xl text-[#292524] tracking-tight mb-3">
-      Hệ Thống Giám Sát Vận Tải & Chuỗi Cung Ứng
-    </h3>
-    <p class="text-[#44403C] text-base leading-relaxed mb-6">
-      Giải pháp điều phối chuỗi cung ứng thời gian thực với bản đồ định tuyến trực quan, hỗ trợ theo dõi lộ trình vận chuyển quốc tế với độ trễ phản hồi dưới 1 giây.
-    </p>
-    <div class="flex flex-wrap gap-2 mb-6 font-mono text-xs">
-    <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Next.js 14</span>
-    <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">WebSockets</span>
-    <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">PostgreSQL</span>
-    <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Mapbox GL</span>
-    </div>
-    <a class="group inline-flex items-center gap-2 font-display font-bold text-sm text-[#007BFF] hover:text-[#0056CC] focus:outline-none" href="#nexus-project">
-    <span class="group-hover:underline">Xem dự án</span>
-    <span class="font-mono transition-transform duration-200 group-hover:translate-x-1.5">→</span>
-    </a>
-    </div>
-    <div class="lg:col-span-7 order-1 lg:order-2">
-    <div class="project-card-interactive group relative rounded-2xl overflow-hidden border border-[#E7E5E4] bg-white shadow-md">
-    <div class="bg-[#FFFBF5] px-4 py-2.5 border-b border-[#E7E5E4] flex items-center justify-between">
-    <div class="flex items-center gap-1.5">
-    <span class="w-2.5 h-2.5 rounded-full bg-[#FCA5A5] group-hover:bg-[#EF4444]/70 transition-colors"></span>
-    <span class="w-2.5 h-2.5 rounded-full bg-[#FCD34D] group-hover:bg-[#F59E0B]/70 transition-colors"></span>
-    <span class="w-2.5 h-2.5 rounded-full bg-[#6EE7B7] group-hover:bg-[#10B981]/70 transition-colors"></span>
-    </div>
-    <span class="font-mono text-[11px] text-[#78716C]">logistics.nexus-fleet.internal</span>
-    <span class="font-mono text-[11px] text-[#10B981] font-semibold flex items-center gap-1">
-    <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping"></span>
-      ● Live Stream
-    </span>
-    </div>
-    <div class="overflow-hidden">
-    <img alt="Hệ Thống Giám Sát Vận Tải & Chuỗi Cung Ứng" class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500 ease-out" loading="lazy" src="vd2.jpg" onerror="this.onerror=null;this.src='logo.jpg';this.classList.add('object-contain','bg-[#DBEAFE]','p-12');">
-    </div>
-    </div>
-    </div>
-    </article>
-    <!-- PROJECT 03: Large screenshot left, project info right -->
-    <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center reveal-on-scroll is-visible">
-    <div class="lg:col-span-7">
-    <div class="project-card-interactive group relative rounded-2xl overflow-hidden border border-[#E7E5E4] bg-white shadow-md">
-    <div class="bg-[#FFFBF5] px-4 py-2.5 border-b border-[#E7E5E4] flex items-center justify-between">
-    <div class="flex items-center gap-1.5">
-    <span class="w-2.5 h-2.5 rounded-full bg-[#FCA5A5] group-hover:bg-[#EF4444]/70 transition-colors"></span>
-    <span class="w-2.5 h-2.5 rounded-full bg-[#FCD34D] group-hover:bg-[#F59E0B]/70 transition-colors"></span>
-    <span class="w-2.5 h-2.5 rounded-full bg-[#6EE7B7] group-hover:bg-[#10B981]/70 transition-colors"></span>
-    </div>
-    <span class="font-mono text-[11px] text-[#78716C]">analytics.omnilytics.store</span>
-    <span class="font-mono text-[11px] text-[#10B981] font-semibold flex items-center gap-1">
-    <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping"></span>
-      ● Cloud Node
-    </span>
-    </div>
-    <div class="overflow-hidden">
-    <img alt="Nền Tảng Thương Mại Điện Tử Phân Tán" class="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out" loading="lazy" src="vd2.jpg" onerror="this.onerror=null;this.src='logo.jpg';this.classList.add('object-contain','bg-[#DBEAFE]','p-12');">
-    </div>
-    </div>
-    </div>
-    <div class="lg:col-span-5 flex flex-col items-start">
-    <div class="font-mono text-xs text-[#007BFF] font-bold tracking-widest mb-2 flex items-center gap-2">
-    <span class="text-[#F59E0B] font-black">03</span> // E-COMMERCE & ANALYTICS
-    </div>
-    <h3 class="font-display font-black text-2xl sm:text-3xl text-[#292524] tracking-tight mb-3">
-      Nền Tảng Thương Mại Điện Tử Phân Tán
-    </h3>
-    <p class="text-[#44403C] text-base leading-relaxed mb-6">
-      Hệ thống xử lý lưu lượng đơn hàng cao cho sự kiện flash-sale, phân tích số liệu thời gian thực và quản trị kho hàng đa kênh với kiến trúc dịch vụ vi mô linh hoạt.
-    </p>
-    <div class="flex flex-wrap gap-2 mb-6 font-mono text-xs">
-    <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">React</span>
-    <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">TypeScript</span>
-    <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Fastify</span>
-    <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Redis Cache</span>
-    </div>
-    <a class="group inline-flex items-center gap-2 font-display font-bold text-sm text-[#007BFF] hover:text-[#0056CC] focus:outline-none" href="#ecommerce-project">
-    <span class="group-hover:underline">Xem dự án</span>
-    <span class="font-mono transition-transform duration-200 group-hover:translate-x-1.5">→</span>
-    </a>
-    </div>
-    </article>
-    </div>
-    </div>
+      <div class="max-w-site mx-auto px-6">
+        <!-- Section Header -->
+        <div
+          class="flex flex-col items-center text-center justify-center pb-6 border-b border-[#292524] gap-4 mb-10 reveal-on-scroll is-visible">
+          <div class="flex flex-col items-center">
+            <div
+              class="font-mono text-xs uppercase tracking-widest text-[#292524] font-semibold mb-2 flex items-center justify-center gap-2">
+              <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
+              DỰ ÁN THỰC CHIẾN
+              <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
+            </div>
+            <h2 class="font-display font-black text-3xl sm:text-4xl text-[#007BFF] tracking-tight">DỰ ÁN HỌC TẬP <span
+                class="text-[#292524]">&</span> SẢN PHẨM CÁ NHÂN</h2>
+          </div>
+        </div>
+        <!-- Project List -->
+        <div class="space-y-14">
+          <!-- PROJECT 01: Large screenshot left, project info right -->
+          <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center reveal-on-scroll is-visible">
+            <div class="lg:col-span-7">
+              <div
+                class="project-card-interactive group relative rounded-2xl overflow-hidden border border-[#E7E5E4] bg-white shadow-md">
+                <div class="bg-[#FFFBF5] px-4 py-2.5 border-b border-[#E7E5E4] flex items-center justify-between">
+                  <div class="flex items-center gap-1.5">
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-[#FCA5A5] group-hover:bg-[#EF4444]/70 transition-colors"></span>
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-[#FCD34D] group-hover:bg-[#F59E0B]/70 transition-colors"></span>
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-[#6EE7B7] group-hover:bg-[#10B981]/70 transition-colors"></span>
+                  </div>
+                  <span class="font-mono text-[11px] text-[#78716C]">lsc.qlsv.edu.vn</span>
+                  <span class="font-mono text-[11px] text-[#10B981] font-semibold flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping"></span>
+                    ● Production
+                  </span>
+                </div>
+                <div class="overflow-hidden aspect-16-9">
+                  <img alt="Hệ thống Quản lý sinh viên"
+                    class="object-cover object-top group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+                    loading="lazy" src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/2024_1_25_638418165452180038_it-project-manager-1-1.jpg"
+                    onerror="this.onerror=null;this.src='image/logo.jpg';this.classList.add('object-contain','bg-[#DBEAFE]','p-12');">
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-5 flex flex-col items-start">
+              <div class="font-mono text-xs text-[#007BFF] font-bold tracking-widest mb-2 flex items-center gap-2">
+                <span class="text-[#F59E0B] font-black">01</span> // SẢN PHẨM HỌC TẬP
+              </div>
+              <h3 class="font-display font-black text-2xl sm:text-3xl text-[#292524] tracking-tight mb-3">
+                Hệ thống Quản lý sinh viên
+              </h3>
+              <p class="text-justify text-[#44403C] text-base leading-relaxed mb-6">
+                Hệ thống hỗ trợ quản lý lớp học và thông tin sinh viên trong phạm vi Khoa, cung cấp tài khoản riêng cho
+                người dùng và tích hợp tính năng trao đổi trực tuyến giữa sinh viên và giảng viên.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6 font-mono text-xs">
+                <span
+                  class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">HTML</span>
+                <span
+                  class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">CSS</span>
+                <span
+                  class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">JavaScript</span>
+                <span
+                  class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Python</span>
+              </div>
+              <a class="group inline-flex items-center gap-2 font-display font-bold text-sm text-[#007BFF] hover:text-[#0056CC] focus:outline-none"
+                href="#horizon-project">
+                <span class="group-hover:underline">Xem dự án</span>
+                <span class="font-mono transition-transform duration-200 group-hover:translate-x-1.5">→</span>
+              </a>
+            </div>
+          </article>
+          <!-- PROJECT 02: Information left, interface preview right -->
+          <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center reveal-on-scroll is-visible">
+            <div class="lg:col-span-5 order-2 lg:order-1 flex flex-col items-start">
+              <div class="font-mono text-xs text-[#007BFF] font-bold tracking-widest mb-2 flex items-center gap-2">
+                <span class="text-[#F59E0B] font-black">02</span> // LOGISTICS & VẬN TẢI
+              </div>
+              <h3 class="font-display font-black text-2xl sm:text-3xl text-[#292524] tracking-tight mb-3">
+                Hệ Thống Giám Sát Vận Tải & Chuỗi Cung Ứng
+              </h3>
+              <p class="text-justify text-[#44403C] text-base leading-relaxed mb-6">
+                Giải pháp điều phối chuỗi cung ứng thời gian thực với bản đồ định tuyến trực quan, hỗ trợ theo dõi lộ
+                trình vận chuyển quốc tế với độ trễ phản hồi dưới 1 giây.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6 font-mono text-xs">
+                <span
+                  class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Next.js
+                  14</span>
+                <span
+                  class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">WebSockets</span>
+                <span
+                  class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">PostgreSQL</span>
+                <span
+                  class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Mapbox
+                  GL</span>
+              </div>
+              <a class="group inline-flex items-center gap-2 font-display font-bold text-sm text-[#007BFF] hover:text-[#0056CC] focus:outline-none"
+                href="#nexus-project">
+                <span class="group-hover:underline">Xem dự án</span>
+                <span class="font-mono transition-transform duration-200 group-hover:translate-x-1.5">→</span>
+              </a>
+            </div>
+            <div class="lg:col-span-7 order-1 lg:order-2">
+              <div
+                class="project-card-interactive group relative rounded-2xl overflow-hidden border border-[#E7E5E4] bg-white shadow-md">
+                <div class="bg-[#FFFBF5] px-4 py-2.5 border-b border-[#E7E5E4] flex items-center justify-between">
+                  <div class="flex items-center gap-1.5">
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-[#FCA5A5] group-hover:bg-[#EF4444]/70 transition-colors"></span>
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-[#FCD34D] group-hover:bg-[#F59E0B]/70 transition-colors"></span>
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-[#6EE7B7] group-hover:bg-[#10B981]/70 transition-colors"></span>
+                  </div>
+                  <span class="font-mono text-[11px] text-[#78716C]">logistics.nexus-fleet.internal</span>
+                  <span class="font-mono text-[11px] text-[#10B981] font-semibold flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping"></span>
+                    ● Live Stream
+                  </span>
+                </div>
+                <div class="overflow-hidden">
+                  <img alt="Hệ Thống Giám Sát Vận Tải & Chuỗi Cung Ứng"
+                    class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+                    loading="lazy" src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/2024_1_25_638418165452180038_it-project-manager-1-1.jpg"
+                    onerror="this.onerror=null;this.src='image/logo.jpg';this.classList.add('object-contain','bg-[#DBEAFE]','p-12');">
+                </div>
+              </div>
+            </div>
+          </article>
+          <!-- PROJECT 03: Large screenshot left, project info right -->
+          <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center reveal-on-scroll is-visible">
+            <div class="lg:col-span-7">
+              <div
+                class="project-card-interactive group relative rounded-2xl overflow-hidden border border-[#E7E5E4] bg-white shadow-md">
+                <div class="bg-[#FFFBF5] px-4 py-2.5 border-b border-[#E7E5E4] flex items-center justify-between">
+                  <div class="flex items-center gap-1.5">
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-[#FCA5A5] group-hover:bg-[#EF4444]/70 transition-colors"></span>
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-[#FCD34D] group-hover:bg-[#F59E0B]/70 transition-colors"></span>
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-[#6EE7B7] group-hover:bg-[#10B981]/70 transition-colors"></span>
+                  </div>
+                  <span class="font-mono text-[11px] text-[#78716C]">analytics.omnilytics.store</span>
+                  <span class="font-mono text-[11px] text-[#10B981] font-semibold flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping"></span>
+                    ● Cloud Node
+                  </span>
+                </div>
+                <div class="overflow-hidden">
+                  <img alt="Nền Tảng Thương Mại Điện Tử Phân Tán"
+                    class="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+                    loading="lazy" src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/2024_1_25_638418165452180038_it-project-manager-1-1.jpg"
+                    onerror="this.onerror=null;this.src='image/logo.jpg';this.classList.add('object-contain','bg-[#DBEAFE]','p-12');">
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-5 flex flex-col items-start">
+              <div class="font-mono text-xs text-[#007BFF] font-bold tracking-widest mb-2 flex items-center gap-2">
+                <span class="text-[#F59E0B] font-black">03</span> // E-COMMERCE & ANALYTICS
+              </div>
+              <h3 class="font-display font-black text-2xl sm:text-3xl text-[#292524] tracking-tight mb-3">
+                Nền Tảng Thương Mại Điện Tử Phân Tán
+              </h3>
+              <p class="text-justify text-[#44403C] text-base leading-relaxed mb-6">
+                Hệ thống xử lý lưu lượng đơn hàng cao cho sự kiện flash-sale, phân tích số liệu thời gian thực và quản
+                trị kho hàng đa kênh với kiến trúc dịch vụ vi mô linh hoạt.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6 font-mono text-xs">
+                <span
+                  class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">React</span>
+                <span
+                  class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">TypeScript</span>
+                <span
+                  class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Fastify</span>
+                <span
+                  class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Redis
+                  Cache</span>
+              </div>
+              <a class="group inline-flex items-center gap-2 font-display font-bold text-sm text-[#007BFF] hover:text-[#0056CC] focus:outline-none"
+                href="#ecommerce-project">
+                <span class="group-hover:underline">Xem dự án</span>
+                <span class="font-mono transition-transform duration-200 group-hover:translate-x-1.5">→</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
     <!-- ==================== 4. ABOUT SECTION ==================== -->
     <section class="border-b border-[#E7E5E4] bg-white py-12 relative overflow-hidden" id="about">
-    <div class="absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-[#F59E0B]/10 to-transparent blur-3xl pointer-events-none" aria-hidden="true"></div>
-    <div class="max-w-site mx-auto px-6 relative z-10">
-    <div class="flex flex-col items-center text-center justify-center pb-6 border-b border-[#292524] gap-2 mb-10 reveal-on-scroll is-visible">
-    <div class="font-mono text-xs uppercase tracking-widest text-[#007BFF] font-semibold flex items-center justify-center gap-2">
-    <span class="w-2 h-0.5 bg-[#007BFF] rounded-full"></span>— ABOUT / 02 —<span class="w-2 h-0.5 bg-[#007BFF] rounded-full"></span>
-    </div>
-    <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-[40px] text-[#292524] tracking-tight">GIỚI THIỆU </h2>
-    </div>
-    <!-- Minimalist Split Statement & Pure Visual Focus -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mx-auto">
-    <!-- Portrait Column -->
-    <div class="lg:col-span-5 reveal-on-scroll flex justify-center lg:justify-start is-visible"><div class="relative w-full max-w-md mx-auto lg:max-w-none group"><div class="relative overflow-hidden rounded-2xl border border-[#E7E5E4]/60 bg-white/70 backdrop-blur-md shadow-lg"><img alt="Hoàng Thanh Khánh - Chân Dung Kỹ Sư Phần Mềm" loading="lazy" class="w-full h-auto max-h-[540px] object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03] block" src="2.jpg" onerror="this.onerror=null;this.src='logo.jpg';this.classList.add('bg-[#DBEAFE]','p-12','object-contain');"></div></div></div>
-    <!-- Pure Statement Column -->
-    <div class="lg:col-span-7 flex flex-col justify-center reveal-on-scroll text-left is-visible">
-    <blockquote class="font-display font-black text-3xl sm:text-4xl lg:text-[42px] leading-[1.22] tracking-tight text-[#292524] space-y-1.5 mb-5">
-    <span class="block hover:translate-x-1 transition-transform">Học điều mới</span>
-    <span class="block animated-text-gradient">Làm điều tốt</span>
-    <span class="block text-[#292524] hover:translate-x-1 transition-transform">Tạo điều khác biệt</span>
-    </blockquote>
-    <div class="font-mono text-xs sm:text-sm text-[#007BFF] font-semibold tracking-wider uppercase mb-6 flex items-center gap-2">
-    <span class="w-3 h-0.5 bg-[#007BFF] rounded-full"></span>
-      HOÀNG THANH KHÁNH · FULLSTACK DEV
-    </div>
-    <div class="space-y-3.5 text-base text-[#44403C] leading-relaxed mb-8">
-    <p class="">Tôi thích tìm hiểu cách một sản phẩm được hình thành từ những ý tưởng ban đầu đến khi trở thành một giao diện có thể sử dụng thực tế. Trong quá trình học và thực hiện dự án, tôi đặc biệt quan tâm đến cách tổ chức giao diện, trải nghiệm người dùng và cách hệ thống hoạt động phía sau.</p>
-    <p class="">Bên cạnh đó, tôi cũng có kinh nghiệm trực tiếp quản lý và cập nhật website, xây dựng nội dung trên các kênh online. Những trải nghiệm này giúp tôi hiểu hơn về việc tạo ra một sản phẩm không chỉ hoạt động tốt, mà còn cần rõ ràng, dễ sử dụng và phù hợp với người dùng.</p>
-    </div>
-    <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-[#E7E5E4]">
-    <a class="btn-shimmer group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#007BFF] text-white font-mono text-xs font-semibold hover:bg-[#0056CC] shadow-md hover:shadow-lg transition-all focus:ring-2 focus:ring-[#007BFF]" href="cv.pdf" download>
-    <span class="">XEM HỒ SƠ (CV)</span>
-    <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-    </svg>
-    </a>
-    <a class="group inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/80 backdrop-blur-sm border border-[#E7E5E4] text-[#292524] font-mono text-xs font-semibold hover:bg-white hover:border-[#007BFF] hover:text-[#007BFF] transition-all shadow-sm" href="#contact">
-    <span class="">LIÊN HỆ TRỰC TIẾP</span>
-    <span class="text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:translate-x-1">→</span>
-    </a>
-    </div>
-    </div>
-    </div>
-    </div>
+      <div
+        class="absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-[#F59E0B]/10 to-transparent blur-3xl pointer-events-none"
+        aria-hidden="true"></div>
+      <div class="max-w-site mx-auto px-6 relative z-10">
+        <div
+          class="flex flex-col items-center text-center justify-center pb-6 border-b border-[#292524] gap-2 mb-10 reveal-on-scroll is-visible">
+          <div
+            class="font-mono text-xs uppercase tracking-widest text-[#292524] font-semibold flex items-center justify-center gap-2">
+            <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>— ABOUT / 02 —<span
+              class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
+          </div>
+          <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-[40px] text-[#007BFF] tracking-tight">GIỚI
+            THIỆU </h2>
+        </div>
+        <!-- Minimalist Split Statement & Pure Visual Focus -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mx-auto">
+          <!-- Portrait Column -->
+          <div class="lg:col-span-5 reveal-on-scroll flex justify-center lg:justify-start is-visible">
+            <div class="relative w-full max-w-md mx-auto lg:max-w-none group">
+              <div
+                class="relative overflow-hidden rounded-2xl border border-[#E7E5E4]/60 bg-white/70 backdrop-blur-md shadow-lg">
+                <img alt="Hoàng Thanh Khánh - Chân Dung Kỹ Sư Phần Mềm" loading="lazy"
+                  class="w-full h-auto max-h-[540px] object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03] block"
+                  src="image/2.jpg"
+                  onerror="this.onerror=null;this.src='image/logo.jpg';this.classList.add('bg-[#DBEAFE]','p-12','object-contain');">
+              </div>
+            </div>
+          </div>
+          <!-- Pure Statement Column -->
+          <div class="lg:col-span-7 flex flex-col justify-center reveal-on-scroll text-left is-visible">
+            <blockquote
+              class="font-display font-black text-3xl sm:text-4xl lg:text-[42px] leading-[1.22] tracking-tight text-[#292524] space-y-1.5 mb-5">
+              <span class="block hover:translate-x-1 transition-transform">Học điều mới</span>
+              <span class="block animated-text-gradient">Làm điều tốt</span>
+              <span class="block text-[#292524] hover:translate-x-1 transition-transform">Tạo điều khác biệt</span>
+            </blockquote>
+            <div
+              class="font-mono text-xs sm:text-sm text-[#007BFF] font-semibold tracking-wider uppercase mb-6 flex items-center gap-2">
+              <span class="w-3 h-0.5 bg-[#007BFF] rounded-full"></span>
+              HOÀNG THANH KHÁNH · FULLSTACK DEV
+            </div>
+            <div class="space-y-3.5 text-base text-[#44403C] leading-relaxed mb-8">
+              <p class="text-justify">Tôi thích tìm hiểu cách một sản phẩm được hình thành từ những ý tưởng ban đầu đến khi trở
+                thành một giao diện có thể sử dụng thực tế. Trong quá trình học và thực hiện dự án, tôi đặc biệt quan
+                tâm đến cách tổ chức giao diện, trải nghiệm người dùng và cách hệ thống hoạt động phía sau.</p>
+              <p class="text-justify">Bên cạnh đó, tôi cũng có kinh nghiệm trực tiếp quản lý và cập nhật website, xây dựng nội dung
+                trên các kênh online. Những trải nghiệm này giúp tôi hiểu hơn về việc tạo ra một sản phẩm không chỉ hoạt
+                động tốt, mà còn cần rõ ràng, dễ sử dụng và phù hợp với người dùng.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-[#E7E5E4]">
+              <a class="btn-shimmer group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#007BFF] text-white font-mono text-xs font-semibold hover:bg-[#0056CC] shadow-md hover:shadow-lg transition-all focus:ring-2 focus:ring-[#007BFF]"
+                href="cv.pdf" download>
+                <span class="">XEM HỒ SƠ (CV)</span>
+                <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-y-0.5" fill="none"
+                  stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+              </a>
+              <a class="group inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/80 backdrop-blur-sm border border-[#E7E5E4] text-[#292524] font-mono text-xs font-semibold hover:bg-white hover:border-[#007BFF] hover:text-[#007BFF] transition-all shadow-sm"
+                href="#contact">
+                <span class="">LIÊN HỆ TRỰC TIẾP</span>
+                <span
+                  class="text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:translate-x-1">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- ==================== 5. EXPERIENCE SECTION ==================== -->
     <section class="border-b border-[#E7E5E4] bg-[#FFF8F0] py-12 relative overflow-hidden" id="experience">
-    <div class="absolute -top-32 -left-32 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#007BFF]/8 to-transparent blur-3xl pointer-events-none" aria-hidden="true"></div>
-    <div class="max-w-site mx-auto px-6 relative z-10">
-    <!-- Header -->
-    <div class="flex flex-col items-center text-center justify-center pb-6 border-b border-[#292524] gap-2 mb-10 reveal-on-scroll is-visible">
-    <div class="font-mono text-xs uppercase tracking-widest text-[#007BFF] font-semibold mb-1 flex items-center justify-center gap-2">
-    <span class="w-2 h-0.5 bg-[#007BFF] rounded-full"></span>
-          LỘ TRÌNH PHÁT TRIỂN
-          <span class="w-2 h-0.5 bg-[#007BFF] rounded-full"></span>
-    </div>
-    <h2 class="font-display font-black text-3xl sm:text-4xl text-[#292524] tracking-tight">KINH NGHIỆM <span class="text-[#007BFF]">&</span> CỘT MỐC HỌC THUẬT</h2>
-    <span class="text-xs font-mono text-[#78716C] mt-1">2024 — HIỆN TẠI</span>
-    </div>
-    <!-- Vertical Timeline Container -->
-    <div class="relative max-w-4xl mx-auto">
-    <!-- Vertical Connecting Line with subtle gradient -->
-    <div class="absolute left-4 sm:left-6 md:left-1/2 top-3 bottom-8 w-[2px] bg-gradient-to-b from-[#007BFF] via-[#F59E0B] to-[#F59E0B]/30 -translate-x-1/2"></div>
-    <div class="space-y-12 sm:space-y-16">
-    <!-- ================= TIMELINE ITEM 1 (2025 — 2026 / Hiện tại) ================= -->
-    <div class="relative flex flex-col md:flex-row items-start group reveal-on-scroll is-visible">
-    <!-- Left column on desktop (Time Meta / Role Overview) -->
-    <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 md:pr-12 md:text-right flex flex-col md:items-end mb-3 md:mb-0">
-    <div class="badge-glow-pulse inline-flex items-center gap-2 px-3 py-1 bg-[#10B981]/10 border border-[#10B981]/30 rounded-full text-[#10B981] font-mono text-xs font-semibold mb-2 shadow-sm">
-    <span class="relative flex h-2 w-2">
-    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
-    <span class="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
-    </span>
-    T8/2025 - Hiện tại · KINH NGHIỆM LÀM VIỆC
-    </div>
-    <h3 class="font-display font-bold text-xl sm:text-2xl text-[#292524] tracking-tight group-hover:text-[#007BFF] transition-colors">
-      Nhân viên Văn phòng & Quản lý Website
-    </h3>
-    <span class="font-mono text-xs sm:text-sm text-[#007BFF] font-medium mt-0.5">
-      Công ty TNHH MTV Xứ Lạng Education
-    </span>
-    </div>
-    <!-- Center Timeline Node / Checkpoint with pulsing ring -->
-    <div class="timeline-node-active absolute left-4 sm:left-6 md:left-1/2 -translate-x-1/2 top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[#007BFF] flex items-center justify-center shadow-sm z-10 group-hover:scale-125 transition-transform duration-200">
-    <span class="w-2.5 h-2.5 rounded-full bg-[#007BFF]"></span>
-    </div>
-    <!-- Right column on desktop (Technical Card Content) -->
-    <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-12">
-    <div class="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#007BFF] transition-all duration-300">
-    <p class="text-sm sm:text-base text-[#44403C] leading-relaxed mb-3">
-      Trực tiếp quản lý và cập nhật nội dung website, đồng thời phụ trách đăng tải nội dung trên Fanpage và các kênh online. Hỗ trợ công việc văn phòng, tư vấn thông tin khóa học và phối hợp vận hành các hoạt động của công ty.
-    </p>
-    <div class="p-3 rounded-xl bg-[#FFFBF5] border border-[#E7E5E4] mb-4">
-    <div class="flex items-start gap-2 text-xs text-[#292524] leading-relaxed font-mono">
-    <span class="text-[#007BFF] font-bold">▹</span>
-    <span class="">Cập nhật nội dung, hình ảnh và thông tin khóa học trên website; xây dựng và đăng tải nội dung trên các kênh online.
-    </div>
-    </div>
-    <!-- Tech stack badges -->
-    <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Website</span>
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Fanpage</span>
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Zalo OA</span>
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Google map</span>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- ================= TIMELINE ITEM 2 (2024 — 2025) ================= -->
-    <div class="relative flex flex-col md:flex-row items-start group reveal-on-scroll is-visible">
-    <!-- Left column on desktop (Technical Card Content) -->
-    <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 md:pr-12 order-2 md:order-1 mt-3 md:mt-0">
-    <div class="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#007BFF] transition-all duration-300">
-    <p class="text-sm sm:text-base text-[#44403C] leading-relaxed mb-3">
-      Xây dựng website quản lý sinh viên nhằm hỗ trợ quản lý thông tin sinh viên một cách trực quan, thuận tiện và có hệ thống.
-    </p>
-    <div class="p-3 rounded-xl bg-[#FFFBF5] border border-[#E7E5E4] mb-4">
-    <div class="flex items-start gap-2 text-xs text-[#292524] leading-relaxed font-mono">
-    <span class="text-[#007BFF] font-bold">▹</span>
-    <span class="">Thiết kế giao diện, xây dựng các chức năng quản lý và thực hiện kết nối, xử lý dữ liệu theo yêu cầu của bài toán.</span>
-    </div>
-    </div>
-    <!-- Tech stack badges -->
-    <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">HTML</span>
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">CSS</span>
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">JavaScript</span>
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Python</span>
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">MySQL</span>
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">PHP</span>
-    </div>
-    </div>
-    </div>
-    <!-- Center Timeline Node / Checkpoint -->
-    <div class="absolute left-4 sm:left-6 md:left-1/2 -translate-x-1/2 top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[#F59E0B] flex items-center justify-center shadow-sm z-10 group-hover:scale-125 group-hover:border-[#007BFF] transition-all duration-200">
-    <span class="w-2.5 h-2.5 rounded-full bg-[#F59E0B] group-hover:bg-[#007BFF] transition-colors"></span>
-    </div>
-    <!-- Right column on desktop (Time Meta / Role Overview) -->
-    <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-12 order-1 md:order-2 flex flex-col items-start">
-    <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-full text-[#292524] font-mono text-xs font-semibold mb-2 shadow-sm">
-    <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
-      2026 · DỰ ÁN
-    </div>
-    <h3 class="font-display font-bold text-xl sm:text-2xl text-[#292524] tracking-tight group-hover:text-[#007BFF] transition-colors">
-      Quản lý sinh viên
-    </h3>
-    <span class="font-mono text-xs sm:text-sm text-[#44403C] font-medium mt-0.5">
-      Khoa Điện & Công nghệ thông tin (Trường Cao đẳng Lạng Sơn)
-    </span>
-    </div>
-    </div>
-    <!-- ================= TIMELINE ITEM 3 (2022 — 2026) ================= -->
-    <div class="relative flex flex-col md:flex-row items-start group reveal-on-scroll is-visible">
-    <!-- Left column on desktop (Time Meta / Role Overview) -->
-    <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 md:pr-12 md:text-right flex flex-col md:items-end mb-3 md:mb-0">
-    <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-full text-[#292524] font-mono text-xs font-semibold mb-2 shadow-sm">
-    <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
-      2024 — 2027 · BẰNG CẤP
-    </div>
-    <h3 class="font-display font-bold text-xl sm:text-2xl text-[#292524] tracking-tight group-hover:text-[#007BFF] transition-colors">
-      Kỹ sư thực hành Tin Học ứng dụng
-    </h3>
-    <span class="font-mono text-xs sm:text-sm text-[#44403C] font-medium mt-0.5">
-      Trường Cao đẳng Lạng Sơn
-    </span>
-    </div>
-    <!-- Center Timeline Node / Checkpoint -->
-    <div class="absolute left-4 sm:left-6 md:left-1/2 -translate-x-1/2 top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[#F59E0B] flex items-center justify-center shadow-sm z-10 group-hover:scale-125 group-hover:border-[#007BFF] transition-all duration-200">
-    <span class="w-2.5 h-2.5 rounded-full bg-[#F59E0B] group-hover:bg-[#007BFF] transition-colors"></span>
-    </div>
-    <!-- Right column on desktop (Technical Card Content) -->
-    <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-12">
-    <div class="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#007BFF] transition-all duration-300">
-    <p class="text-sm sm:text-base text-[#44403C] leading-relaxed mb-3">
-      Tốt nghiệp loại Giỏi (GPA 3.8/4.0). Các môn học cốt lõi: Cấu trúc máy tính và hệ điều hành, Hệ quản trị cơ sở dữ liệu, Cấu trúc dữ liệu & Giải thuật, Phân tích thiết kế hệ thống, Mạng máy tính, Thiết kế website.
-    </p>
-    <div class="p-3 rounded-xl bg-[#FFFBF5] border border-[#E7E5E4] mb-4">
-    <div class="flex items-start gap-2 text-xs text-[#292524] leading-relaxed font-mono">
-    <span class="text-[#F59E0B] font-bold">★</span>
-    <span class="">Đạt <strong class="text-[#292524]">Học bổng Khuyến khích Học tập Xuất sắc</strong> 3 học kỳ liên tiếp nhờ thành tích học tập và nghiên cứu nổi trội.</span>
-    </div>
-    </div>
-    <!-- Tech stack badges -->
-    <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Data Structures</span>
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Algorithms</span>
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">SQL Server</span>
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">System Design</span>
-    <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Git</span>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+      <div
+        class="absolute -top-32 -left-32 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#007BFF]/8 to-transparent blur-3xl pointer-events-none"
+        aria-hidden="true"></div>
+      <div class="max-w-site mx-auto px-6 relative z-10">
+        <!-- Header -->
+        <div
+          class="flex flex-col items-center text-center justify-center pb-6 border-b border-[#292524] gap-2 mb-10 reveal-on-scroll is-visible">
+          <div
+            class="font-mono text-xs uppercase tracking-widest text-[#292524] font-semibold mb-1 flex items-center justify-center gap-2">
+            <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
+            LỘ TRÌNH PHÁT TRIỂN
+            <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
+          </div>
+          <h2 class="font-display font-black text-3xl sm:text-4xl text-[#007BFF] tracking-tight">KINH NGHIỆM <span
+              class="text-[#292524]">&</span> CỘT MỐC HỌC THUẬT</h2>
+          <span class="text-xs font-mono text-[#78716C] mt-1">2024 — HIỆN TẠI</span>
+        </div>
+        <!-- Vertical Timeline Container -->
+        <div class="relative max-w-4xl mx-auto">
+          <!-- Vertical Connecting Line with subtle gradient -->
+          <div
+            class="absolute left-4 sm:left-6 md:left-1/2 top-3 bottom-8 w-[2px] bg-gradient-to-b from-[#007BFF] via-[#F59E0B] to-[#F59E0B]/30 -translate-x-1/2">
+          </div>
+          <div class="space-y-12 sm:space-y-16">
+            <!-- ================= TIMELINE ITEM 1 (2025 — 2026 / Hiện tại) ================= -->
+            <div class="relative flex flex-col md:flex-row items-start group reveal-on-scroll is-visible">
+              <!-- Left column on desktop (Time Meta / Role Overview) -->
+              <div
+                class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 md:pr-12 md:text-right flex flex-col md:items-end mb-3 md:mb-0">
+                <div
+                  class="badge-glow-pulse inline-flex items-center gap-2 px-3 py-1 bg-[#10B981]/10 border border-[#10B981]/30 rounded-full text-[#10B981] font-mono text-xs font-semibold mb-2 shadow-sm">
+                  <span class="relative flex h-2 w-2">
+                    <span
+                      class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
+                  </span>
+                  T8/2025 - Hiện tại · KINH NGHIỆM LÀM VIỆC
+                </div>
+                <h3
+                  class="font-display font-bold text-xl sm:text-2xl text-[#292524] tracking-tight group-hover:text-[#007BFF] transition-colors">
+                  Nhân viên Văn phòng & Quản lý Website
+                </h3>
+                <span class="font-mono text-xs sm:text-sm text-[#007BFF] font-medium mt-0.5">
+                  Công ty TNHH MTV Xứ Lạng Education
+                </span>
+              </div>
+              <!-- Center Timeline Node / Checkpoint with pulsing ring -->
+              <div
+                class="timeline-node-active absolute left-4 sm:left-6 md:left-1/2 -translate-x-1/2 top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[#007BFF] flex items-center justify-center shadow-sm z-10 group-hover:scale-125 transition-transform duration-200">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#007BFF]"></span>
+              </div>
+              <!-- Right column on desktop (Technical Card Content) -->
+              <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-12">
+                <div
+                  class="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#007BFF] transition-all duration-300">
+                  <p class="text-justify text-sm sm:text-base text-[#44403C] leading-relaxed mb-3">
+                    Trực tiếp quản lý và cập nhật nội dung website, đồng thời phụ trách đăng tải nội dung trên Fanpage
+                    và các kênh online. Hỗ trợ công việc văn phòng, tư vấn thông tin khóa học và phối hợp vận hành các
+                    hoạt động của công ty.
+                  </p>
+                  <div class="p-3 rounded-xl bg-[#FFFBF5] border border-[#E7E5E4] mb-4">
+                    <div class="flex items-start gap-2 text-xs text-[#292524] leading-relaxed font-mono">
+                      <span class="text-[#007BFF] font-bold">▹</span>
+                      <span class="">Cập nhật nội dung, hình ảnh và thông tin khóa học trên website; xây dựng và đăng
+                        tải nội dung trên các kênh online.
+                    </div>
+                  </div>
+                  <!-- Tech stack badges -->
+                  <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Website</span>
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Fanpage</span>
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Zalo
+                      OA</span>
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Google
+                      map</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ================= TIMELINE ITEM 2 (2024 — 2025) ================= -->
+            <div class="relative flex flex-col md:flex-row items-start group reveal-on-scroll is-visible">
+              <!-- Left column on desktop (Technical Card Content) -->
+              <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 md:pr-12 order-2 md:order-1 mt-3 md:mt-0">
+                <div
+                  class="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#007BFF] transition-all duration-300">
+                  <p class="text-justify text-sm sm:text-base text-[#44403C] leading-relaxed mb-3">
+                    Xây dựng website quản lý sinh viên nhằm hỗ trợ quản lý thông tin sinh viên một cách trực quan, thuận
+                    tiện và có hệ thống.
+                  </p>
+                  <div class="p-3 rounded-xl bg-[#FFFBF5] border border-[#E7E5E4] mb-4">
+                    <div class="flex items-start gap-2 text-xs text-[#292524] leading-relaxed font-mono">
+                      <span class="text-[#007BFF] font-bold">▹</span>
+                      <span class="">Thiết kế giao diện, xây dựng các chức năng quản lý và thực hiện kết nối, xử lý dữ
+                        liệu theo yêu cầu của bài toán.</span>
+                    </div>
+                  </div>
+                  <!-- Tech stack badges -->
+                  <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">HTML</span>
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">CSS</span>
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">JavaScript</span>
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Python</span>
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">MySQL</span>
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">PHP</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Center Timeline Node / Checkpoint -->
+              <div
+                class="absolute left-4 sm:left-6 md:left-1/2 -translate-x-1/2 top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[#F59E0B] flex items-center justify-center shadow-sm z-10 group-hover:scale-125 group-hover:border-[#007BFF] transition-all duration-200">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#F59E0B] group-hover:bg-[#007BFF] transition-colors"></span>
+              </div>
+              <!-- Right column on desktop (Time Meta / Role Overview) -->
+              <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-12 order-1 md:order-2 flex flex-col items-start">
+                <div
+                  class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-full text-[#292524] font-mono text-xs font-semibold mb-2 shadow-sm">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
+                  2026 · DỰ ÁN
+                </div>
+                <h3
+                  class="font-display font-bold text-xl sm:text-2xl text-[#292524] tracking-tight group-hover:text-[#007BFF] transition-colors">
+                  Quản lý sinh viên
+                </h3>
+                <span class="font-mono text-xs sm:text-sm text-[#44403C] font-medium mt-0.5">
+                  Khoa Điện & Công nghệ thông tin (Trường Cao đẳng Lạng Sơn)
+                </span>
+              </div>
+            </div>
+            <!-- ================= TIMELINE ITEM 3 (2022 — 2026) ================= -->
+            <div class="relative flex flex-col md:flex-row items-start group reveal-on-scroll is-visible">
+              <!-- Left column on desktop (Time Meta / Role Overview) -->
+              <div
+                class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 md:pr-12 md:text-right flex flex-col md:items-end mb-3 md:mb-0">
+                <div
+                  class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-full text-[#292524] font-mono text-xs font-semibold mb-2 shadow-sm">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
+                  2024 — 2027 · BẰNG CẤP
+                </div>
+                <h3
+                  class="font-display font-bold text-xl sm:text-2xl text-[#292524] tracking-tight group-hover:text-[#007BFF] transition-colors">
+                  Kỹ sư thực hành Tin Học ứng dụng
+                </h3>
+                <span class="font-mono text-xs sm:text-sm text-[#44403C] font-medium mt-0.5">
+                  Trường Cao đẳng Lạng Sơn
+                </span>
+              </div>
+              <!-- Center Timeline Node / Checkpoint -->
+              <div
+                class="absolute left-4 sm:left-6 md:left-1/2 -translate-x-1/2 top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[#F59E0B] flex items-center justify-center shadow-sm z-10 group-hover:scale-125 group-hover:border-[#007BFF] transition-all duration-200">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#F59E0B] group-hover:bg-[#007BFF] transition-colors"></span>
+              </div>
+              <!-- Right column on desktop (Technical Card Content) -->
+              <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-12">
+                <div
+                  class="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#007BFF] transition-all duration-300">
+                  <p class="text-justify text-sm sm:text-base text-[#44403C] leading-relaxed mb-3">
+                    Tốt nghiệp loại Giỏi (GPA 3.8/4.0). Các môn học cốt lõi: Cấu trúc máy tính và hệ điều hành, Hệ quản
+                    trị cơ sở dữ liệu, Cấu trúc dữ liệu & Giải thuật, Phân tích thiết kế hệ thống, Mạng máy tính, Thiết
+                    kế website.
+                  </p>
+                  <div class="p-3 rounded-xl bg-[#FFFBF5] border border-[#E7E5E4] mb-4">
+                    <div class="flex items-start gap-2 text-xs text-[#292524] leading-relaxed font-mono">
+                      <span class="text-[#F59E0B] font-bold">★</span>
+                      <span class="">Đạt <strong class="text-[#292524]">Học bổng Khuyến khích Học tập Xuất sắc</strong>
+                        3 học kỳ liên tiếp nhờ thành tích học tập và nghiên cứu nổi trội.</span>
+                    </div>
+                  </div>
+                  <!-- Tech stack badges -->
+                  <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Data
+                      Structures</span>
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Algorithms</span>
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">SQL
+                      Server</span>
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">System
+                      Design</span>
+                    <span
+                      class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Git</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </section>
     <!-- ==================== 6. TECH STACK (Glassmorphism Edition) ==================== -->
     <section class="bg-[#FFFBF5] py-14 border-b border-[#E7E5E4] relative overflow-hidden" id="capabilities">
       <!-- Decorative dots/grid pattern -->
-      <div class="absolute inset-0 opacity-[0.35] pointer-events-none" aria-hidden="true" style="background-image: radial-gradient(circle, #E7E5E4 1px, transparent 1px); background-size: 22px 22px;"></div>
-      <div class="absolute top-10 left-10 w-[250px] h-[250px] rounded-full bg-gradient-to-br from-[#007BFF]/10 to-transparent blur-3xl pointer-events-none" aria-hidden="true"></div>
-      <div class="absolute bottom-10 right-10 w-[300px] h-[300px] rounded-full bg-gradient-to-tl from-[#F59E0B]/10 to-transparent blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute inset-0 opacity-[0.35] pointer-events-none" aria-hidden="true"
+        style="background-image: radial-gradient(circle, #E7E5E4 1px, transparent 1px); background-size: 22px 22px;">
+      </div>
+      <div
+        class="absolute top-10 left-10 w-[250px] h-[250px] rounded-full bg-gradient-to-br from-[#007BFF]/10 to-transparent blur-3xl pointer-events-none"
+        aria-hidden="true"></div>
+      <div
+        class="absolute bottom-10 right-10 w-[300px] h-[300px] rounded-full bg-gradient-to-tl from-[#F59E0B]/10 to-transparent blur-3xl pointer-events-none"
+        aria-hidden="true"></div>
 
       <div class="max-w-site mx-auto px-6 relative z-10">
-        <h2 class="font-display font-black text-3xl text-[#292524] tracking-tight text-center mb-3">Công nghệ <span class="text-[#007BFF]">sử dụng</span></h2>
-        <p class="text-center text-[#78716C] font-mono text-xs uppercase tracking-widest mb-12">Những công cụ &amp; ngôn ngữ tôi sử dụng hằng ngày</p>
+        <h2 class="font-display font-black text-3xl text-[#007BFF] tracking-tight text-center mb-3">Công nghệ <span
+            class="text-[#292524]">sử dụng</span></h2>
+        <p class="text-center text-[#292524] font-mono text-xs uppercase tracking-widest mb-12">Những công cụ &amp; ngôn
+          ngữ tôi sử dụng hằng ngày</p>
 
         <!-- Row 1: Frontend & Backend -->
         <div class="grid grid-cols-4 md:grid-cols-8 gap-5 md:gap-6 mb-10">
           <!-- React -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#007BFF] group-hover:border-[#007BFF] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-7 h-7 text-[#007BFF] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 10.11c1.03 0 1.87.84 1.87 1.89s-.84 1.89-1.87 1.89c-1.03 0-1.87-.84-1.87-1.89s.84-1.89 1.87-1.89M7.37 20c.63.95 1.54 1.74 2.65 2.19 1.25.51 2.54.51 3.79-.01 1.05-.44 1.93-1.2 2.55-2.12.35-.52.2-1.22-.32-1.57-.52-.35-1.22-.2-1.57.32-.4.6-.96 1.07-1.63 1.34-.84.34-1.74.34-2.58 0-.74-.3-1.34-.83-1.75-1.46-.72-1.11-1.08-2.67-1.08-4.66 0-.82.07-1.64.21-2.45l-.46.33c-.76.54-1.6.86-2.51.96-1.57.17-3.07-.46-4.01-1.68-.78-1.01-1.04-2.27-.72-3.46.3-1.13 1.1-2.03 2.19-2.48.91-.37 1.9-.38 2.87-.04.4.14.79.35 1.15.62l.62.47c.53-.78 1.17-1.5 1.9-2.14C10.15 6.44 11.06 6 12 6s1.85.44 2.69 1.27c.73.64 1.37 1.36 1.9 2.14l.62-.47c.36-.27.75-.48 1.15-.62.97-.34 1.96-.33 2.87.04 1.09.45 1.89 1.35 2.19 2.48.32 1.19.06 2.45-.72 3.46-.94 1.22-2.44 1.85-4.01 1.68-.91-.1-1.75-.42-2.51-.96l-.46-.33c.14.81.21 1.63.21 2.45 0 1.99-.36 3.55-1.08 4.66-.35.54-.2 1.25.34 1.6.53.35 1.24.2 1.59-.34.93-1.43 1.39-3.37 1.39-5.92 0-.96-.09-1.92-.26-2.85 1.06.66 2.24 1.03 3.47 1.08 2.11.08 4.09-.8 5.43-2.43 1.11-1.35 1.48-3.06 1.03-4.7-.44-1.62-1.59-2.91-3.15-3.53-1.28-.51-2.65-.5-3.97-.02-.59.21-1.15.53-1.67.93-.72-.94-1.57-1.77-2.54-2.46C14.72 2.67 13.38 2 12 2s-2.72.67-4.01 1.81c-.97.69-1.82 1.52-2.54 2.46-.52-.4-1.08-.72-1.67-.93-1.32-.48-2.69-.49-3.97.02C-1.76 5.98-.61 7.27-.17 8.89c.45 1.64.08 3.35-1.03 4.7 1.34 1.63 3.32 2.51 5.43 2.43 1.23-.05 2.41-.42 3.47-1.08-.17.93-.26 1.89-.26 2.85 0 2.55.46 4.49 1.39 5.92z"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#007BFF] group-hover:border-[#007BFF] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-7 h-7 text-[#007BFF] group-hover:text-white transition-colors" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M12 10.11c1.03 0 1.87.84 1.87 1.89s-.84 1.89-1.87 1.89c-1.03 0-1.87-.84-1.87-1.89s.84-1.89 1.87-1.89M7.37 20c.63.95 1.54 1.74 2.65 2.19 1.25.51 2.54.51 3.79-.01 1.05-.44 1.93-1.2 2.55-2.12.35-.52.2-1.22-.32-1.57-.52-.35-1.22-.2-1.57.32-.4.6-.96 1.07-1.63 1.34-.84.34-1.74.34-2.58 0-.74-.3-1.34-.83-1.75-1.46-.72-1.11-1.08-2.67-1.08-4.66 0-.82.07-1.64.21-2.45l-.46.33c-.76.54-1.6.86-2.51.96-1.57.17-3.07-.46-4.01-1.68-.78-1.01-1.04-2.27-.72-3.46.3-1.13 1.1-2.03 2.19-2.48.91-.37 1.9-.38 2.87-.04.4.14.79.35 1.15.62l.62.47c.53-.78 1.17-1.5 1.9-2.14C10.15 6.44 11.06 6 12 6s1.85.44 2.69 1.27c.73.64 1.37 1.36 1.9 2.14l.62-.47c.36-.27.75-.48 1.15-.62.97-.34 1.96-.33 2.87.04 1.09.45 1.89 1.35 2.19 2.48.32 1.19.06 2.45-.72 3.46-.94 1.22-2.44 1.85-4.01 1.68-.91-.1-1.75-.42-2.51-.96l-.46-.33c.14.81.21 1.63.21 2.45 0 1.99-.36 3.55-1.08 4.66-.35.54-.2 1.25.34 1.6.53.35 1.24.2 1.59-.34.93-1.43 1.39-3.37 1.39-5.92 0-.96-.09-1.92-.26-2.85 1.06.66 2.24 1.03 3.47 1.08 2.11.08 4.09-.8 5.43-2.43 1.11-1.35 1.48-3.06 1.03-4.7-.44-1.62-1.59-2.91-3.15-3.53-1.28-.51-2.65-.5-3.97-.02-.59.21-1.15.53-1.67.93-.72-.94-1.57-1.77-2.54-2.46C14.72 2.67 13.38 2 12 2s-2.72.67-4.01 1.81c-.97.69-1.82 1.52-2.54 2.46-.52-.4-1.08-.72-1.67-.93-1.32-.48-2.69-.49-3.97.02C-1.76 5.98-.61 7.27-.17 8.89c.45 1.64.08 3.35-1.03 4.7 1.34 1.63 3.32 2.51 5.43 2.43 1.23-.05 2.41-.42 3.47-1.08-.17.93-.26 1.89-.26 2.85 0 2.55.46 4.49 1.39 5.92z">
+                </path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">React</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">React</span>
           </div>
           <!-- Next.js -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#292524] group-hover:border-[#292524] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-7 h-7 text-[#292524] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.83 17.585L9.67 6.837h1.996l6.837 8.922c-.822.684-1.74 1.298-2.673 1.826zm-7.794-.482L6.163 6.837h1.996l3.873 10.266z"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#292524] group-hover:border-[#292524] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-7 h-7 text-[#292524] group-hover:text-white transition-colors" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.83 17.585L9.67 6.837h1.996l6.837 8.922c-.822.684-1.74 1.298-2.673 1.826zm-7.794-.482L6.163 6.837h1.996l3.873 10.266z">
+                </path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Next.js</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Next.js</span>
           </div>
           <!-- TypeScript -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#3178C6] group-hover:border-[#3178C6] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <span class="font-mono font-black text-lg text-[#3178C6] group-hover:text-white transition-colors">TS</span>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#3178C6] group-hover:border-[#3178C6] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <span
+                class="font-mono font-black text-lg text-[#3178C6] group-hover:text-white transition-colors">TS</span>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">TypeScript</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">TypeScript</span>
           </div>
           <!-- Tailwind -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#38BDF8] group-hover:border-[#38BDF8] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-7 h-7 text-[#38BDF8] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.335 6.182 14.974 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.335 13.382 8.974 12 6.001 12z"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#38BDF8] group-hover:border-[#38BDF8] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-7 h-7 text-[#38BDF8] group-hover:text-white transition-colors" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.335 6.182 14.974 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.335 13.382 8.974 12 6.001 12z">
+                </path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Tailwind</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Tailwind</span>
           </div>
           <!-- HTML5 -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#E34F26] group-hover:border-[#E34F26] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-6 h-6 text-[#E34F26] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm7.031 9.75l-.234-2.625h11.203l.235-2.625H5.422l.687 7.875h9.875l-.344 3.844-3.663 1.016-3.664-1.016-.234-2.64H5.454l.438 4.953 6.085 1.688 6.086-1.688.844-9.476H8.531z"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#E34F26] group-hover:border-[#E34F26] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-6 h-6 text-[#E34F26] group-hover:text-white transition-colors" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm7.031 9.75l-.234-2.625h11.203l.235-2.625H5.422l.687 7.875h9.875l-.344 3.844-3.663 1.016-3.664-1.016-.234-2.64H5.454l.438 4.953 6.085 1.688 6.086-1.688.844-9.476H8.531z">
+                </path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">HTML5</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">HTML5</span>
           </div>
           <!-- Node.js -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#339933] group-hover:border-[#339933] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-7 h-7 text-[#339933] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a1 1 0 00-.5.13l-8 4.62a1 1 0 00-.5.87v9.24a1 1 0 00.5.87l8 4.62a1 1 0 001 0l8-4.62a1 1 0 00.5-.87V7.62a1 1 0 00-.5-.87l-8-4.62A1 1 0 0012 2zm0 2.31l6.47 3.73L12 11.78 5.53 8.04 12 4.31zm-7 5.46l6.5 3.75v7.48L5 17.25V9.77zm14 0v7.48l-6.5 3.75v-7.48l6.5-3.75z"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#339933] group-hover:border-[#339933] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-7 h-7 text-[#339933] group-hover:text-white transition-colors" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M12 2a1 1 0 00-.5.13l-8 4.62a1 1 0 00-.5.87v9.24a1 1 0 00.5.87l8 4.62a1 1 0 001 0l8-4.62a1 1 0 00.5-.87V7.62a1 1 0 00-.5-.87l-8-4.62A1 1 0 0012 2zm0 2.31l6.47 3.73L12 11.78 5.53 8.04 12 4.31zm-7 5.46l6.5 3.75v7.48L5 17.25V9.77zm14 0v7.48l-6.5 3.75v-7.48l6.5-3.75z">
+                </path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Node.js</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Node.js</span>
           </div>
           <!-- Express -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#292524] group-hover:border-[#292524] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-6 h-6 text-[#292524] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#292524] group-hover:border-[#292524] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-6 h-6 text-[#292524] group-hover:text-white transition-colors" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Express</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Express</span>
           </div>
           <!-- SQL Server -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#CC292B] group-hover:border-[#CC292B] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-6 h-6 text-[#CC292B] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 4.02 2 6.5v11c0 2.48 4.48 4.5 10 4.5s10-2.02 10-4.5v-11C22 4.02 17.52 2 12 2zm0 2c4.96 0 8 1.76 8 2.5s-3.04 2.5-8 2.5-8-1.76-8-2.5 3.04-2.5 8-2.5zm0 15c-4.96 0-8-1.76-8-2.5V14.8c1.94 1.34 5.02 2.2 8 2.2s6.06-.86 8-2.2v1.7c0 .74-3.04 2.5-8 2.5z"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#CC292B] group-hover:border-[#CC292B] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-6 h-6 text-[#CC292B] group-hover:text-white transition-colors" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M12 2C6.48 2 2 4.02 2 6.5v11c0 2.48 4.48 4.5 10 4.5s10-2.02 10-4.5v-11C22 4.02 17.52 2 12 2zm0 2c4.96 0 8 1.76 8 2.5s-3.04 2.5-8 2.5-8-1.76-8-2.5 3.04-2.5 8-2.5zm0 15c-4.96 0-8-1.76-8-2.5V14.8c1.94 1.34 5.02 2.2 8 2.2s6.06-.86 8-2.2v1.7c0 .74-3.04 2.5-8 2.5z">
+                </path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">SQL Server</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">SQL
+              Server</span>
           </div>
         </div>
 
@@ -616,149 +860,238 @@
         <div class="grid grid-cols-4 md:grid-cols-8 gap-5 md:gap-6">
           <!-- PostgreSQL -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#336791] group-hover:border-[#336791] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-6 h-6 text-[#336791] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2c3.5 0 6.5 2.2 7.5 5.5h-15C5.5 6.2 8.5 4 12 4zm-8 8c0-.7.1-1.4.3-2h15.4c.2.6.3 1.3.3 2 0 .7-.1 1.4-.3 2H4.3c-.2-.6-.3-1.3-.3-2zm2.5 4.5h11c-1 3.3-4 5.5-7.5 5.5s-6.5-2.2-7.5-5.5z"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#336791] group-hover:border-[#336791] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-6 h-6 text-[#336791] group-hover:text-white transition-colors" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2c3.5 0 6.5 2.2 7.5 5.5h-15C5.5 6.2 8.5 4 12 4zm-8 8c0-.7.1-1.4.3-2h15.4c.2.6.3 1.3.3 2 0 .7-.1 1.4-.3 2H4.3c-.2-.6-.3-1.3-.3-2zm2.5 4.5h11c-1 3.3-4 5.5-7.5 5.5s-6.5-2.2-7.5-5.5z">
+                </path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">PostgreSQL</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">PostgreSQL</span>
           </div>
           <!-- C# -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#9B4F96] group-hover:border-[#9B4F96] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-8 h-8 group-hover:scale-110 transition-transform" viewBox="0 0 256 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
-                <path d="M255.833 161.833L207.5 113.5 255.833 65.167l-47.5-47.5L160.667 65l-47.5-47.5L65.667 65 113.5 112.5l-47.5 47.5 47.5 47.5L160.667 160l47.5 47.5 47.666-47.667zm-119.166 47.5L89 161.667l-47.667-47.5L89 66.667l47.667 47.5 47.5-47.5 47.666 47.5L184.167 161.667 136.667 209.333z" fill="url(#csGradient)"/>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#9B4F96] group-hover:border-[#9B4F96] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-8 h-8 group-hover:scale-110 transition-transform" viewBox="0 0 256 240"
+                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+                <path
+                  d="M255.833 161.833L207.5 113.5 255.833 65.167l-47.5-47.5L160.667 65l-47.5-47.5L65.667 65 113.5 112.5l-47.5 47.5 47.5 47.5L160.667 160l47.5 47.5 47.666-47.667zm-119.166 47.5L89 161.667l-47.667-47.5L89 66.667l47.667 47.5 47.5-47.5 47.666 47.5L184.167 161.667 136.667 209.333z"
+                  fill="url(#csGradient)" />
                 <defs>
                   <linearGradient id="csGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#9B4F96;stop-opacity:1"/>
-                    <stop offset="100%" style="stop-color:#5E2D5A;stop-opacity:1"/>
+                    <stop offset="0%" style="stop-color:#9B4F96;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#5E2D5A;stop-opacity:1" />
                   </linearGradient>
                 </defs>
               </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">C#</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">C#</span>
           </div>
           <!-- PHP -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#777BB4] group-hover:border-[#777BB4] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-7 h-7 text-[#777BB4] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M7.01 10.207h-.72c-.41 0-.767.323-.835.732l-.484 3.157a.45.45 0 00.124.408.47.47 0 00.348.157h.679c.077 0 .151-.026.21-.073a.354.354 0 00.131-.193l.144-.768a.426.426 0 01.42-.319h.852c1.578 0 2.586-.892 2.878-2.502.13-.713.018-1.32-.335-1.745-.392-.475-1.07-.735-1.964-.735zm.62 2.92a1.135 1.135 0 01-1.176.943h-.297l.213-1.413a.105.105 0 01.103-.09h.275c.314 0 .557.066.713.197.155.13.215.327.169.563zm5.732-2.92h-.72c-.41 0-.767.323-.835.732l-.484 3.157a.45.45 0 00.124.408.47.47 0 00.348.157h.685c.075 0 .148-.026.207-.073a.353.353 0 00.13-.193l.144-.768a.426.426 0 01.421-.319h.852c1.577 0 2.586-.892 2.878-2.502.13-.713.017-1.32-.336-1.745-.391-.475-1.069-.735-1.964-.735zm.62 2.92a1.135 1.135 0 01-1.176.943h-.298l.214-1.413a.105.105 0 01.103-.09h.275c.314 0 .557.066.713.197.156.13.215.327.169.563zm5.74-2.405c.131-.713.018-1.32-.335-1.745-.392-.475-1.07-.735-1.964-.735h-.72c-.41 0-.768.323-.835.732l-.484 3.157a.45.45 0 00.124.408c.086.103.21.157.348.157h.84c.164 0 .314-.121.347-.286l.106-.684a.426.426 0 01.42-.319h.852c1.578 0 2.587-.892 2.878-2.502l.273-1.105c.014-.057.025-.114.034-.171z"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#777BB4] group-hover:border-[#777BB4] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-7 h-7 text-[#777BB4] group-hover:text-white transition-colors" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M7.01 10.207h-.72c-.41 0-.767.323-.835.732l-.484 3.157a.45.45 0 00.124.408.47.47 0 00.348.157h.679c.077 0 .151-.026.21-.073a.354.354 0 00.131-.193l.144-.768a.426.426 0 01.42-.319h.852c1.578 0 2.586-.892 2.878-2.502.13-.713.018-1.32-.335-1.745-.392-.475-1.07-.735-1.964-.735zm.62 2.92a1.135 1.135 0 01-1.176.943h-.297l.213-1.413a.105.105 0 01.103-.09h.275c.314 0 .557.066.713.197.155.13.215.327.169.563zm5.732-2.92h-.72c-.41 0-.767.323-.835.732l-.484 3.157a.45.45 0 00.124.408.47.47 0 00.348.157h.685c.075 0 .148-.026.207-.073a.353.353 0 00.13-.193l.144-.768a.426.426 0 01.421-.319h.852c1.577 0 2.586-.892 2.878-2.502.13-.713.017-1.32-.336-1.745-.391-.475-1.069-.735-1.964-.735zm.62 2.92a1.135 1.135 0 01-1.176.943h-.298l.214-1.413a.105.105 0 01.103-.09h.275c.314 0 .557.066.713.197.156.13.215.327.169.563zm5.74-2.405c.131-.713.018-1.32-.335-1.745-.392-.475-1.07-.735-1.964-.735h-.72c-.41 0-.768.323-.835.732l-.484 3.157a.45.45 0 00.124.408c.086.103.21.157.348.157h.84c.164 0 .314-.121.347-.286l.106-.684a.426.426 0 01.42-.319h.852c1.578 0 2.587-.892 2.878-2.502l.273-1.105c.014-.057.025-.114.034-.171z">
+                </path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">PHP</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">PHP</span>
           </div>
           <!-- Python -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#3776AB] group-hover:border-[#3776AB] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-8 h-8 group-hover:scale-110 transition-transform" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
-                <path d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.162V33.97S194.67.072 126.916.072zM92.802 19.66a11.155 11.155 0 0 1 11.155 11.155 11.155 11.155 0 0 1-11.155 11.155A11.155 11.155 0 0 1 81.647 30.815 11.155 11.155 0 0 1 92.802 19.66z" fill="#3776AB"/>
-                <path d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.416-36.21-63.096-36.21-63.096h-21.61v30.355s1.165 36.21-35.632 36.21h-61.362s-34.475-.557-34.475 33.162v56.013s-5.235 33.873 62.519 33.873zm34.114-19.586a11.155 11.155 0 0 1-11.155-11.155 11.155 11.155 0 0 1 11.155-11.155 11.155 11.155 0 0 1 11.155 11.155 11.155 11.155 0 0 1-11.155 11.155z" fill="#FFD43B"/>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#3776AB] group-hover:border-[#3776AB] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-8 h-8 group-hover:scale-110 transition-transform" viewBox="0 0 256 255"
+                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+                <path
+                  d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.162V33.97S194.67.072 126.916.072zM92.802 19.66a11.155 11.155 0 0 1 11.155 11.155 11.155 11.155 0 0 1-11.155 11.155A11.155 11.155 0 0 1 81.647 30.815 11.155 11.155 0 0 1 92.802 19.66z"
+                  fill="#3776AB" />
+                <path
+                  d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.416-36.21-63.096-36.21-63.096h-21.61v30.355s1.165 36.21-35.632 36.21h-61.362s-34.475-.557-34.475 33.162v56.013s-5.235 33.873 62.519 33.873zm34.114-19.586a11.155 11.155 0 0 1-11.155-11.155 11.155 11.155 0 0 1 11.155-11.155 11.155 11.155 0 0 1 11.155 11.155 11.155 11.155 0 0 1-11.155 11.155z"
+                  fill="#FFD43B" />
               </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Python</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Python</span>
           </div>
           <!-- Git -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#F05032] group-hover:border-[#F05032] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-6 h-6 text-[#F05032] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M2.6 10.59L8.38 4.8a2.53 2.53 0 013.6 0l1.72 1.73a2.56 2.56 0 010 3.61L8.91 14.93a1.4 1.4 0 00-.4 1v2.1a1.43 1.43 0 102.86 0v-2.09c0-.38.16-.74.42-1l4.82-4.83a2.53 2.53 0 013.6 0l1.19 1.19a2.54 2.54 0 010 3.6l-5.78 5.79a2.54 2.54 0 01-3.6 0l-7.42-7.42a2.55 2.55 0 010-3.6z"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#F05032] group-hover:border-[#F05032] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-6 h-6 text-[#F05032] group-hover:text-white transition-colors" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M2.6 10.59L8.38 4.8a2.53 2.53 0 013.6 0l1.72 1.73a2.56 2.56 0 010 3.61L8.91 14.93a1.4 1.4 0 00-.4 1v2.1a1.43 1.43 0 102.86 0v-2.09c0-.38.16-.74.42-1l4.82-4.83a2.53 2.53 0 013.6 0l1.19 1.19a2.54 2.54 0 010 3.6l-5.78 5.79a2.54 2.54 0 01-3.6 0l-7.42-7.42a2.55 2.55 0 010-3.6z">
+                </path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Git</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Git</span>
           </div>
           <!-- Figma -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#A259FF] group-hover:border-[#A259FF] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-6 h-6 text-[#A259FF] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12a3 3 0 100-6 3 3 0 000 6zm0 0a3 3 0 100 6 3 3 0 000-6zm-3-6a3 3 0 100 6h3V6H9zm0 6a3 3 0 100 6h3v-6H9zm0 6a3 3 0 103 3v-3H9zm6-12a3 3 0 110 6h-3V6h3z"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#A259FF] group-hover:border-[#A259FF] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-6 h-6 text-[#A259FF] group-hover:text-white transition-colors" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M12 12a3 3 0 100-6 3 3 0 000 6zm0 0a3 3 0 100 6 3 3 0 000-6zm-3-6a3 3 0 100 6h3V6H9zm0 6a3 3 0 100 6h3v-6H9zm0 6a3 3 0 103 3v-3H9zm6-12a3 3 0 110 6h-3V6h3z">
+                </path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Figma</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Figma</span>
           </div>
           <!-- Linux -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#292524] group-hover:border-[#292524] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-6 h-6 text-[#292524] group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 17l6-5-6-5M12 19h8"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#292524] group-hover:border-[#292524] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-6 h-6 text-[#292524] group-hover:text-white transition-colors" fill="none"
+                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M4 17l6-5-6-5M12 19h8"></path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Linux</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Linux</span>
           </div>
           <!-- Postman -->
           <div class="group flex flex-col items-center">
-            <div class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#F97316] group-hover:border-[#F97316] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-              <svg class="w-6 h-6 text-[#F97316] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5l-5-3.5 5-3.5v7zm3-1.5h-2v-4h2v4z"></path></svg>
+            <div
+              class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#F97316] group-hover:border-[#F97316] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+              <svg class="w-6 h-6 text-[#F97316] group-hover:text-white transition-colors" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5l-5-3.5 5-3.5v7zm3-1.5h-2v-4h2v4z">
+                </path>
+              </svg>
             </div>
-            <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Postman</span>
+            <span
+              class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Postman</span>
           </div>
         </div>
       </div>
     </section>
     <!-- ==================== 7. CONTACT SECTION ==================== -->
-    <section class="border-b border-[#292524] relative overflow-hidden py-16" id="contact" style="background: linear-gradient(135deg, #FFFBF5 0%, #FFF8F0 50%, #DBEAFE/40 100%);">
-    <!-- Decorative shapes -->
-    <div class="absolute -top-20 left-1/4 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#007BFF]/15 via-[#93C5FD]/8 to-transparent blur-3xl pointer-events-none" aria-hidden="true"></div>
-    <div class="absolute -bottom-20 right-1/4 w-[350px] h-[350px] rounded-full bg-gradient-to-tl from-[#F59E0B]/15 via-[#F97316]/8 to-transparent blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <section class="border-b border-[#292524] relative overflow-hidden py-16" id="contact"
+      style="background: linear-gradient(135deg, #FFFBF5 0%, #FFF8F0 50%, #DBEAFE/40 100%);">
+      <!-- Decorative shapes -->
+      <div
+        class="absolute -top-20 left-1/4 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#007BFF]/15 via-[#93C5FD]/8 to-transparent blur-3xl pointer-events-none"
+        aria-hidden="true"></div>
+      <div
+        class="absolute -bottom-20 right-1/4 w-[350px] h-[350px] rounded-full bg-gradient-to-tl from-[#F59E0B]/15 via-[#F97316]/8 to-transparent blur-3xl pointer-events-none"
+        aria-hidden="true"></div>
 
-    <div class="max-w-site mx-auto px-6 relative z-10">
-    <div class="max-w-3xl mx-auto text-center flex flex-col items-center reveal-on-scroll is-visible">
-    <div class="inline-flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-widest text-[#007BFF] font-semibold mb-4">
-    <span class="w-2 h-0.5 bg-[#007BFF] rounded-full"></span>
-      LIÊN HỆ
-      <span class="w-2 h-0.5 bg-[#007BFF] rounded-full"></span>
-    </div>
-    <h2 class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-[#292524] tracking-tight leading-[1.08] mb-4">Bạn đang có ý tưởng, dự án hay cơ hội hợp tác mới?</h2>
-    <p class="text-xl sm:text-2xl text-[#44403C] font-normal mb-10">
-      Hãy cùng tạo nên những sản phẩm số giá trị.
-    </p>
-    <div class="flex flex-wrap items-center justify-center gap-4 mb-14">
-    <a class="btn-shimmer group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#007BFF] text-white font-medium text-lg hover:bg-[#0056CC] active:bg-[#0056CC] shadow-md hover:shadow-lg transition-all focus:ring-2 focus:ring-[#007BFF]" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=thanhkhanhhoang801@gmail.com" rel="noopener noreferrer" target="_blank">
-    <span class="">Gửi email</span>
-    <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-    </svg>
-    </a>
-    <a class="group inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] text-[#292524] font-medium text-base hover:bg-white hover:border-[#007BFF] hover:text-[#007BFF] transition-all shadow-sm hover:shadow-md" href="https://github.com/Khanhht801" rel="noopener noreferrer" target="_blank">
-    <svg class="w-5 h-5 text-[#292524]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path></svg>
-    <span class="">GitHub</span>
-    <span class="font-mono text-xs text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
-    </a>
-    <a class="group inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] text-[#292524] font-medium text-base hover:bg-white hover:border-[#007BFF] hover:text-[#007BFF] transition-all shadow-sm hover:shadow-md" href="https://www.facebook.com/share/1HztyqBM2J/" rel="noopener noreferrer" target="_blank">
-    <svg class="w-5 h-5 text-[#1877F2]" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-    <span class="">Facebook</span>
-    <span class="font-mono text-xs text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
-    </a>
-    </div>
-    <div class="pt-8 border-t border-[#E7E5E4] w-full flex flex-col sm:flex-row sm:items-center justify-between text-xs font-mono text-[#78716C] gap-2">
-    <div class="flex items-center justify-center gap-2">
-    <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-    <span class="">Đang mở nhận phỏng vấn cho các vị trí đợt 2026/2027</span>
-    </div>
-    <span class="">Múi giờ: GMT+7 (Giờ Đông Dương / Việt Nam)</span>
-    </div>
-    </div>
-    </div>
+      <div class="max-w-site mx-auto px-6 relative z-10">
+        <div class="max-w-3xl mx-auto text-center flex flex-col items-center reveal-on-scroll is-visible">
+          <div
+            class="inline-flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-widest text-[#292524] font-semibold mb-4">
+            <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
+            LIÊN HỆ
+            <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
+          </div>
+          <h2
+            class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-[#007BFF] tracking-tight leading-[1.08] mb-4">
+            Bạn đang có ý tưởng, dự án hay cơ hội hợp tác mới?</h2>
+          <p class="text-justify text-xl sm:text-2xl text-[#44403C] font-normal mb-10">
+            Hãy cùng tạo nên những sản phẩm số giá trị.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-4 mb-14">
+            <a class="btn-shimmer group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#007BFF] text-white font-medium text-lg hover:bg-[#0056CC] active:bg-[#0056CC] shadow-md hover:shadow-lg transition-all focus:ring-2 focus:ring-[#007BFF]"
+              href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=thanhkhanhhoang801@gmail.com"
+              rel="noopener noreferrer" target="_blank">
+              <span class="">Gửi email</span>
+              <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </a>
+            <a class="group inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] text-[#292524] font-medium text-base hover:bg-white hover:border-[#007BFF] hover:text-[#007BFF] transition-all shadow-sm hover:shadow-md"
+              href="https://github.com/Khanhht801" rel="noopener noreferrer" target="_blank">
+              <svg class="w-5 h-5 text-[#292524]" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                  fill-rule="evenodd"></path>
+              </svg>
+              <span class="">GitHub</span>
+              <span
+                class="font-mono text-xs text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+            </a>
+            <a class="group inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] text-[#292524] font-medium text-base hover:bg-white hover:border-[#007BFF] hover:text-[#007BFF] transition-all shadow-sm hover:shadow-md"
+              href="https://www.facebook.com/share/1HztyqBM2J/" rel="noopener noreferrer" target="_blank">
+              <svg class="w-5 h-5 text-[#1877F2]" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+              <span class="">Facebook</span>
+              <span
+                class="font-mono text-xs text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+            </a>
+          </div>
+          <div
+            class="pt-8 border-t border-[#E7E5E4] w-full flex flex-col sm:flex-row sm:items-center justify-between text-xs font-mono text-[#78716C] gap-2">
+            <div class="flex items-center justify-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+              <span class="">Đang mở nhận phỏng vấn cho các vị trí đợt 2026/2027</span>
+            </div>
+            <span class="">Múi giờ: GMT+7 (Giờ Đông Dương / Việt Nam)</span>
+          </div>
+        </div>
+      </div>
     </section>
-    </main>
-    <!-- ==================== 8. FOOTER ==================== -->
-    <footer class="relative text-white py-12 overflow-hidden" style="background: #142F4A;">
+  </main>
+  <!-- ==================== 8. FOOTER ==================== -->
+  <footer class="relative text-white py-12 overflow-hidden" style="background: #142F4A;">
     <!-- Subtle decorative grid -->
-    <div class="absolute inset-0 opacity-[0.02] pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 30px 30px;"></div>
+    <div class="absolute inset-0 opacity-[0.02] pointer-events-none" aria-hidden="true"
+      style="background-image: linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 30px 30px;">
+    </div>
     <div class="max-w-site mx-auto px-6 relative z-10">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/15 text-sm">
-    <!-- Left wordmark -->
-    <div class="flex items-center gap-3">
-      <img src="logo.jpg" alt="Khanhht Logo" class="w-8 h-8 rounded-full object-cover border-2 border-white/30 ring-2 ring-[#0B84FF]/40 shadow-lg">
-      <span class="font-display font-bold tracking-tight text-white text-base drop-shadow-sm">Khanhht</span>
-      <span class="text-white/70 font-mono text-xs bg-white/10 px-2 py-0.5 rounded-md border border-white/20">Lập trình viên Fullstack</span>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/15 text-sm">
+        <!-- Left wordmark -->
+        <div class="flex items-center gap-3">
+          <img src="image/logo.jpg" alt="Khanhht Logo"
+            class="w-8 h-8 rounded-full object-cover border-2 border-white/30 ring-2 ring-[#0B84FF]/40 shadow-lg">
+          <span class="font-display font-bold tracking-tight text-white text-base drop-shadow-sm">Khanhht</span>
+          <span class="text-white/70 font-mono text-xs bg-white/10 px-2 py-0.5 rounded-md border border-white/20">Lập
+            trình viên Fullstack</span>
+        </div>
+        <!-- Links -->
+        <div class="flex items-center gap-6 font-mono text-sm text-white/80">
+          <a class="hover:text-[#0B84FF] hover:drop-shadow-[0_0_8px_rgba(11,132,255,0.5)] transition-all duration-200 px-3 py-1 rounded-lg hover:bg-white/5"
+            href="https://github.com/Khanhht801" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
+          <a class="hover:text-[#0B84FF] hover:drop-shadow-[0_0_8px_rgba(11,132,255,0.5)] transition-all duration-200 px-3 py-1 rounded-lg hover:bg-white/5"
+            href="https://www.facebook.com/share/1HztyqBM2J/" rel="noopener noreferrer" target="_blank">Facebook ↗</a>
+          <a class="hover:text-[#0B84FF] hover:drop-shadow-[0_0_8px_rgba(11,132,255,0.5)] transition-all duration-200 px-3 py-1 rounded-lg hover:bg-white/5"
+            href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=thanhkhanhhoang801@gmail.com"
+            rel="noopener noreferrer" target="_blank">Email ↗</a>
+          <a class="hover:text-[#0B84FF] hover:drop-shadow-[0_0_8px_rgba(11,132,255,0.5)] transition-all duration-200 px-3 py-1 rounded-lg hover:bg-white/5 group flex items-center gap-1"
+            href="#hero">
+            Lên Đầu Trang <span class="transition-transform group-hover:-translate-y-1">↑</span>
+          </a>
+        </div>
+      </div>
+      <!-- Bottom Credits -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-sm font-mono text-[#B8C5D3] gap-2">
+        <p class="text-justify">© 2026 Khanhht. Bản quyền được bảo lưu.</p>
+        <p class="text-justify text-[#B8C5D3]/80">Được thiết kế & lập trình với <span
+            class="text-[#FCD34D] drop-shadow-[0_0_6px_rgba(252,211,77,0.5)]">♥</span> và sự tận tâm.</p>
+      </div>
     </div>
-    <!-- Links -->
-    <div class="flex items-center gap-6 font-mono text-sm text-white/80">
-    <a class="hover:text-[#0B84FF] hover:drop-shadow-[0_0_8px_rgba(11,132,255,0.5)] transition-all duration-200 px-3 py-1 rounded-lg hover:bg-white/5" href="https://github.com/Khanhht801" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
-    <a class="hover:text-[#0B84FF] hover:drop-shadow-[0_0_8px_rgba(11,132,255,0.5)] transition-all duration-200 px-3 py-1 rounded-lg hover:bg-white/5" href="https://www.facebook.com/share/1HztyqBM2J/" rel="noopener noreferrer" target="_blank">Facebook ↗</a>
-    <a class="hover:text-[#0B84FF] hover:drop-shadow-[0_0_8px_rgba(11,132,255,0.5)] transition-all duration-200 px-3 py-1 rounded-lg hover:bg-white/5" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=thanhkhanhhoang801@gmail.com" rel="noopener noreferrer" target="_blank">Email ↗</a>
-    <a class="hover:text-[#0B84FF] hover:drop-shadow-[0_0_8px_rgba(11,132,255,0.5)] transition-all duration-200 px-3 py-1 rounded-lg hover:bg-white/5 group flex items-center gap-1" href="#hero">
-      Lên Đầu Trang <span class="transition-transform group-hover:-translate-y-1">↑</span>
-    </a>
-    </div>
-    </div>
-    <!-- Bottom Credits -->
-    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-sm font-mono text-[#B8C5D3] gap-2">
-    <p class="">© 2026 Khanhht. Bản quyền được bảo lưu.</p>
-    <p class="text-[#B8C5D3]/80">Được thiết kế & lập trình với <span class="text-[#FCD34D] drop-shadow-[0_0_6px_rgba(252,211,77,0.5)]">♥</span> và sự tận tâm.</p>
-    </div>
-    </div>
-    </footer>
-    <!-- Custom JavaScript -->
-    <script src="script.js"></script>
-    </body></html>
+  </footer>
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+</body>
+
+</html>

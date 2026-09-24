@@ -119,6 +119,32 @@
   transform: translateY(0);
 }
 
+/* Aspect ratio 16:9 (1920x1080) cho ảnh preview trong các project card */
+.project-card-interactive > .overflow-hidden {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #f5f5f4;
+}
+
+/* Ảnh bên trong luôn phủ kín khung, neo lên trên để giữ phần đầu ảnh */
+.project-card-interactive > .overflow-hidden > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+/* Căn đều hai bên cho đoạn mô tả dự án */
+article p.text-base {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
 /* Active nav link state (scroll spy) */
 .nav-link-active {
   color: #007BFF !important;
