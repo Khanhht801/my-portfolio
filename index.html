@@ -157,7 +157,7 @@
   </header>
   <main>
     <!-- ==================== 2. HERO SECTION ==================== -->
-    <section class="relative overflow-hidden border-b border-[#E7E5E4] pb-12 pt-8" id="hero">
+    <section class="relative overflow-hidden border-b border-[#E7E5E4] min-h-screen flex items-center pt-24 pb-12" id="hero">
       <!-- Decorative warm gradient orbs -->
       <div
         class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#F59E0B]/15 via-[#F97316]/10 to-transparent -translate-y-1/2 translate-x-1/3 pointer-events-none blur-3xl"
@@ -169,8 +169,8 @@
         class="absolute top-1/2 left-1/3 w-[200px] h-[200px] rounded-full bg-gradient-to-br from-[#F59E0B]/8 to-transparent pointer-events-none blur-2xl"
         aria-hidden="true"></div>
 
-      <div class="max-w-site mx-auto px-6 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div class="max-w-site mx-auto px-6 relative z-10 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           <!-- Left Column (7 cols): Editorial Headline & Copy -->
           <div class="lg:col-span-7 flex flex-col items-start reveal-on-scroll is-visible">
             <!-- Category & Availability Meta Bar -->
@@ -238,20 +238,46 @@
               </div>
             </div>
           </div>
-          <!-- Right Column (5 cols): Glassmorphism Portrait -->
+          <!-- Right Column (5 cols): Soft Organic Background + Minimalist Frame -->
           <div class="lg:col-span-5 reveal-on-scroll is-visible">
-            <div class="relative mx-auto flex justify-center items-end">
-              <div class="animate-ambient-float relative w-full flex justify-center">
-                <!-- Glassmorphism frame -->
-                <div
-                  class="absolute -inset-4 bg-gradient-to-t from-[#007BFF]/20 via-[#F59E0B]/10 to-transparent blur-2xl rounded-3xl pointer-events-none -z-10">
-                </div>
-                <div
-                  class="relative rounded-3xl overflow-hidden border border-[#E7E5E4]/60 bg-white/60 backdrop-blur-xl shadow-xl">
-                  <!-- Warm gradient top bar -->
+            <div class="relative mx-auto flex justify-center items-center h-full">
+              <!-- Soft organic stage: gradient orbs + gentle blob behind photo -->
+              <div class="relative w-full max-w-md lg:max-w-lg py-6 overflow-visible">
+                <!-- Soft gradient orbs (very light, layered) -->
+                <div aria-hidden="true"
+                  class="orb-drift absolute -top-6 -left-8 w-44 h-44 rounded-full bg-gradient-to-br from-[#FDE68A]/55 via-[#FCA5A5]/35 to-transparent blur-2xl pointer-events-none"></div>
+                <div aria-hidden="true"
+                  class="orb-drift-slow absolute -bottom-8 -right-6 w-52 h-52 rounded-full bg-gradient-to-tr from-[#BFDBFE]/55 via-[#C7D2FE]/35 to-transparent blur-2xl pointer-events-none"></div>
+                <div aria-hidden="true"
+                  class="orb-drift absolute top-1/3 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-[#FBCFE8]/50 to-transparent blur-2xl pointer-events-none"></div>
+
+                <!-- Organic SVG blob shape (soft, curvy) -->
+                <svg aria-hidden="true"
+                  class="blob-breathe absolute inset-0 w-full h-full pointer-events-none -z-0"
+                  viewBox="0 0 400 520" preserveAspectRatio="xMidYMid meet">
+                  <defs>
+                    <linearGradient id="blobGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FDE68A" stop-opacity="0.35" />
+                      <stop offset="50%" stop-color="#FBCFE8" stop-opacity="0.28" />
+                      <stop offset="100%" stop-color="#BFDBFE" stop-opacity="0.35" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Flowing organic blob -->
+                  <path d="M 90 80
+                           C 30 120, 30 220, 70 290
+                           C 100 350, 60 420, 130 460
+                           C 210 500, 320 470, 350 400
+                           C 380 320, 320 240, 340 160
+                           C 360 80, 260 30, 180 50
+                           C 130 60, 110 60, 90 80 Z"
+                    fill="url(#blobGrad)" />
+                </svg>
+
+                <!-- Photo: clean, sitting on top of the soft stage -->
+                <div class="relative z-30 mx-auto w-[78%] aspect-[3/4] overflow-hidden bg-transparent">
                   <img alt="Hoàng Thanh Khánh - Lập Trình Viên Fullstack"
-                    class="w-full max-w-md lg:max-w-none max-h-[560px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02]"
-                    loading="lazy" src="image/chandung.jpg"
+                    class="absolute inset-0 w-full h-full object-contain transition-transform duration-700 hover:scale-[1.02]"
+                    loading="lazy" src="image/remove.png"
                     onerror="this.onerror=null;this.src='image/chandung.jpg';this.classList.add('bg-[#DBEAFE]','p-8');">
                 </div>
               </div>

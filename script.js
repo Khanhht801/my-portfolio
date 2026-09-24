@@ -87,4 +87,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => navObserver.observe(section));
   }
+
+  // 6. Hero SVG frame — draw lines on scroll
+  const heroFrame = document.querySelector('.hero-frame');
+  const heroFrameLines = document.querySelectorAll('.hero-frame-line');
+  if (heroFrame && heroFrameLines.length > 0 && 'IntersectionObserver' in window) {
+    const drawLines = () => {
+      heroFrameLines.forEach((line, i) => {
+        setTimeout(() => line.classList.add('is-drawn'), 150 * i);
+      });
+    };
+
+    const frameObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          drawLines();
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    frameObserver.observe(heroFrame);
+  }
 });

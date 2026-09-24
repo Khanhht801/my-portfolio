@@ -31,6 +31,39 @@
   animation: ambientFloat 6s ease-in-out infinite;
 }
 
+/* Soft organic blob — gentle morphing + float */
+@keyframes blobBreathe {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(6px, -8px) scale(1.03) rotate(1.2deg);
+  }
+  66% {
+    transform: translate(-5px, 5px) scale(0.98) rotate(-1deg);
+  }
+}
+.blob-breathe {
+  transform-origin: center;
+  animation: blobBreathe 14s ease-in-out infinite;
+}
+
+@keyframes orbDrift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  25%  { transform: translate3d(40px, -30px, 0) scale(1.08); }
+  50%  { transform: translate3d(-20px, -50px, 0) scale(0.96); }
+  75%  { transform: translate3d(-50px, 20px, 0) scale(1.04); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+.orb-drift {
+  animation: orbDrift 12s ease-in-out infinite !important;
+  will-change: transform;
+}
+.orb-drift-slow {
+  animation: orbDrift 18s ease-in-out infinite !important;
+  will-change: transform;
+}
+
 /* Shimmer Effect for Buttons */
 .btn-shimmer {
   position: relative;
@@ -149,6 +182,22 @@ article p.text-base {
 .nav-link-active {
   color: #007BFF !important;
   background-color: #FFFBF5 !important;
+}
+
+/* Hero minimalist frame — SVG line draw on scroll */
+.hero-frame-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1200ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.hero-frame-line.is-drawn {
+  stroke-dashoffset: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-frame-line {
+    transition: none;
+    stroke-dashoffset: 0;
+  }
 }
 
 /* Accessibility reduced motion */
