@@ -64,6 +64,62 @@
   will-change: transform;
 }
 
+/* Hero decorative typography behind the portrait.
+   Acts as a visual "ground" so the image looks anchored, not cropped mid-body. */
+.hero-type-bg {
+  font-family: 'Hanken Grotesk', 'Montserrat', 'Poppins', 'Be Vietnam Pro', sans-serif;
+  text-align: center;
+  max-width: 100%;
+  /* Soft fade at the edges so the text reads as background, not as a hard label */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  animation: heroTypeFadeIn 0.9s ease-out 0.15s both;
+}
+@keyframes heroTypeFadeIn {
+  from { opacity: 0; transform: translate(-50%, 6px); }
+  to   { opacity: 0.10; transform: translate(-50%, 0); }
+}
+/* On mobile, hide the giant background typography so it never feels cramped. */
+@media (max-width: 480px) {
+  .hero-type-bg {
+    display: none;
+  }
+}
+
+/* Ground shadow ellipse — DISABLED: no longer used per design direction.
+   Kept here commented so it can be re-enabled easily if needed. */
+/* .hero-ground-shadow { ... } */
+
+/* Ground band / ribbon under the figure. — DISABLED: removed per request. */
+/* .hero-ground-band { ... } */
+
+/* Floating card at the figure's feet. — DISABLED: removed per request. */
+/* .hero-foot-card { ... } */
+
+/* Ground shadow ellipse under the figure. */
+.hero-ground-shadow {
+  animation: heroShadowPulse 6s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes heroShadowPulse {
+  0%, 100% { transform: translate(-50%, 0) scaleX(1);   opacity: 0.85; }
+  50%      { transform: translate(-50%, 0) scaleX(1.05); opacity: 1;    }
+}
+
+/* Floating "Open to Internship" status card. */
+.hero-status-card {
+  animation: heroCardRise 0.7s ease-out 0.35s both;
+}
+@keyframes heroCardRise {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-type-bg,
+  .hero-ground-shadow,
+  .hero-status-card { animation: none !important; }
+}
+
 /* Shimmer Effect for Buttons */
 .btn-shimmer {
   position: relative;
