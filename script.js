@@ -1,4 +1,22 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* ============================================================
+   script.js — chính của portfolio
+   - Chờ section-loader inject xong DOM rồi mới bind events
+   - Đợi event "sections:loaded" (phát ra bởi section-loader.js
+     khi 3 section above-the-fold đã load xong)
+   - Các section còn lại (work, about, ...) load nền bằng
+     requestIdleCallback → các script vẫn bind kịp khi user
+     cuộn tới
+   - ANIMATION LAYER: Khoi tao IntersectionObserver dat rieng
+     de fire cac class animate.css khi section vao viewport.
+     Dam bao section load nen (work, capabilities, contact, ...)
+     cung duoc hieu ung khi user cuon toi.
+   ============================================================ */
+
+const initApp = () => {
+  // 0. BAT ANIMATE.CSS READY — bo an .animate-booted placeholder
+  //    Lam ngay tai day de animation khong phu thuoc vao section
+  //    (hữu ích cho các element đã có sẵn trong DOM như navbar).
+  document.documentElement.classList.add('animate-ready');
   // 1. Scroll Progress Bar
   const progressBar = document.getElementById('scroll-progress');
   const updateScrollProgress = () => {
@@ -28,35 +46,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Scroll Reveal with IntersectionObserver
-  const reveals = document.querySelectorAll('.reveal-on-scroll');
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.08,
-      rootMargin: '0px 0px -30px 0px'
-    });
-
-    reveals.forEach(el => observer.observe(el));
-  } else {
-    reveals.forEach(el => el.classList.add('is-visible'));
-  }
+  // 3. Scroll Reveal — DISABLED per request (animation khi scroll da tat)
+  //    Force hien thi ngay tat ca .reveal-on-scroll, khong can IntersectionObserver.
+  document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+    el.classList.add('is-visible');
+  });
 
   // 4. Header Shadow on scroll
   const header = document.getElementById('main-header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
-      header.classList.add('shadow-sm');
-    } else {
-      header.classList.remove('shadow-sm');
-    }
-  }, { passive: true });
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        header.classList.add('shadow-sm');
+      } else {
+        header.classList.remove('shadow-sm');
+      }
+    }, { passive: true });
+  }
 
   // 5. Active Nav Link on scroll (Spy Scroll)
   const navLinks = document.querySelectorAll('header nav a[href^="#"]');
@@ -73,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const navObserver = new IntersectionObserver((entries) => {
-      // Find the section closest to top of viewport
       const visible = entries
         .filter(e => e.isIntersecting)
         .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
@@ -88,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => navObserver.observe(section));
   }
 
-  // 6. Hero SVG frame — draw lines on scroll
+  // 6. Hero SVG frame — draw lines on scroll (giữ logic, không dùng markup hiện tại)
   const heroFrame = document.querySelector('.hero-frame');
   const heroFrameLines = document.querySelectorAll('.hero-frame-line');
   if (heroFrame && heroFrameLines.length > 0 && 'IntersectionObserver' in window) {
@@ -102,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           drawLines();
-          obs.unobserve(entry.target);
+          obs.unobserve(entry);
         }
       });
     }, { threshold: 0.2 });
@@ -160,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    // Pause khi người dùng tương tác, resume sau intervalMs kể từ lần tương tác cuối
     const bump = () => {
       stop();
       if (!isPaused && isInView) {
@@ -181,11 +185,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Tạm dừng khi hover vào slider
     slider.addEventListener('mouseenter', () => { isPaused = true; stop(); });
     slider.addEventListener('mouseleave', () => { isPaused = false; start(); });
 
-    // Tạm dừng khi tab bị ẩn
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         stop();
@@ -194,7 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Autoplay chỉ chạy khi section about nằm trong viewport
     if ('IntersectionObserver' in window) {
       const inViewObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -212,7 +213,140 @@ document.addEventListener('DOMContentLoaded', () => {
       start();
     }
 
-    // Khởi tạo slide đầu tiên
     showSlide(0);
   });
-});
+
+  // 9. Tech Stack Marquee — tạo đủ bản sao để luôn phủ kín viewport.
+  //    Khoảng dịch được đo từ đầu hai bộ icon liên tiếp nên bao gồm cả `gap`;
+  //    cách này tránh cú giật nhỏ do translateX(-50%) bị lệch nửa gap.
+  const setupMarquee = (track) => {
+    if (!track) return;
+
+    track.removeAttribute('data-marquee-ready');
+    track.querySelectorAll('[data-marquee-clone]').forEach((clone) => clone.remove());
+
+    const items = Array.from(track.children);
+    const mask = track.closest('.marquee-mask');
+    if (items.length === 0 || !mask) return;
+
+    const appendItemSet = () => {
+      items.forEach((item, index) => {
+        const clone = item.cloneNode(true);
+        clone.dataset.marqueeClone = 'true';
+        clone.setAttribute('aria-hidden', 'true');
+        if (index === 0) clone.dataset.marqueeSetStart = 'true';
+        track.appendChild(clone);
+      });
+    };
+
+    // Bản sao đầu tiên cho biết chính xác quãng đường của một chu kỳ.
+    appendItemSet();
+    const firstClone = track.querySelector('[data-marquee-set-start]');
+    const cycleWidth = firstClone.offsetLeft - items[0].offsetLeft;
+    if (cycleWidth <= 0) return;
+
+    // Luôn giữ ít nhất một chu kỳ đầy đủ ngoài khung nhìn để không lộ khoảng trống.
+    const requiredWidth = mask.clientWidth + cycleWidth;
+    while (track.scrollWidth < requiredWidth) appendItemSet();
+
+    track.style.setProperty('--marquee-translate', `${-cycleWidth}px`);
+    track.dataset.marqueeReady = 'true';
+  };
+
+  //    Áp dụng cho mọi track đã có sẵn trong DOM
+  document.querySelectorAll('.marquee-track').forEach(setupMarquee);
+
+  //    Section 06-capabilities được load nền qua section-loader.js
+  //    (requestIdleCallback) — có thể chưa tồn tại khi block này chạy.
+  //    MutationObserver bắt các track mới xuất hiện và duplicate ngay,
+  //    đảm bảo 2 hàng marquee luôn loop liền mạch không khoảng trắng.
+  const marqueeObserver = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      m.addedNodes.forEach((node) => {
+        if (node.nodeType !== 1 || !node.querySelectorAll) return;
+        // Track chính nó
+        if (node.matches && node.matches('.marquee-track')) {
+          setupMarquee(node);
+        }
+        // Track nằm bên trong node mới được inject
+        node.querySelectorAll('.marquee-track').forEach(setupMarquee);
+      });
+    }
+  });
+  marqueeObserver.observe(document.body, { childList: true, subtree: true });
+
+  // Tính lại khi breakpoint/gap hoặc chiều rộng viewport thay đổi.
+  let marqueeResizeFrame;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(marqueeResizeFrame);
+    marqueeResizeFrame = requestAnimationFrame(() => {
+      document.querySelectorAll('.marquee-track').forEach(setupMarquee);
+    });
+  }, { passive: true });
+
+  // 10. Re-bind cho cac section load nen (work, about, experience, capabilities,
+  //     contact, footer) — DISABLED per request (animation khi scroll da tat)
+  //     Moi section moi inject se tu dong hien thi (CSS da force visible),
+  //     khong can observer.
+  const bindRevealFor = (root) => {
+    root.querySelectorAll('.reveal-on-scroll:not(.is-visible)')
+      .forEach(el => el.classList.add('is-visible'));
+  };
+
+  // Lắng nghe section mới được inject — van quan sat de goi bindRevealFor
+  // (giup class is-visible luon duoc them, nhung khong tao animation).
+  const observer = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      m.addedNodes.forEach((node) => {
+        if (node.nodeType === 1 && node.querySelectorAll) {
+          bindRevealFor(node);
+        }
+      });
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // 11. ANIMATION OBSERVER (animate.css) — DISABLED per request
+  //     (animation khi scroll da tat). Tat ca .animate-booted se duoc
+  //     force fire ngay lap tuc, khong can IntersectionObserver.
+  const fireAllAnimateBooted = (root = document) => {
+    if (!root || !root.querySelectorAll) return;
+    root.querySelectorAll('.animate-booted:not(.animate__triggered)').forEach(el => {
+      el.classList.add('animate__triggered', 'animate__animated', el.dataset.anim);
+    });
+  };
+
+  // Fire ngay voi DOM hien tai
+  fireAllAnimateBooted(document);
+
+  // Dam bao section load nen (03-08) cung duoc fire khi inject
+  const animateMutObs = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      m.addedNodes.forEach((node) => {
+        if (node.nodeType !== 1 || !node.querySelectorAll) return;
+        fireAllAnimateBooted(node);
+      });
+    }
+  });
+  animateMutObs.observe(document.body, { childList: true, subtree: true });
+
+  // 12. Hero headline stagger — DISABLED per request (animation khi scroll da tat)
+  //     Fire ngay tat ca .animate-hero-line, khong can IntersectionObserver.
+  document.querySelectorAll('.animate-hero-line').forEach(line => {
+    line.classList.add('is-fired');
+  });
+};
+
+// Chờ section-loader inject xong 3 section above-the-fold rồi mới init
+if (document.documentElement.hasAttribute('data-sections-ready')) {
+  initApp();
+} else {
+  window.addEventListener('sections:loaded', initApp, { once: true });
+  // Fallback: nếu section-loader lỗi (offline, blocked), vẫn chạy sau 3s
+  setTimeout(() => {
+    if (!document.documentElement.hasAttribute('data-sections-ready')) {
+      console.warn('[script.js] sections:loaded timeout, chạy initApp fallback');
+      initApp();
+    }
+  }, 3000);
+}

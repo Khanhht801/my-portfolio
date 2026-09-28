@@ -1,0 +1,119 @@
+<!-- ============================================================
+     02. HERO SECTION
+     - Banner chính: tiêu đề, headline gradient, CTA, chân dung
+     - Có hiệu ứng blob + orb trang trí
+     - Selector JS phụ thuộc:
+         + .reveal-on-scroll.is-visible (IntersectionObserver)
+         + .hero-frame, .hero-frame-line (optional - hiện không dùng trong markup)
+============================================================ -->
+<section class="hero-section relative overflow-hidden border-b border-[#E7E5E4] flex items-center py-8 lg:py-6" id="hero">
+  <!-- Decorative blue gradient orbs -->
+  <div
+    class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#007BFF]/10 via-[#60A5FA]/8 to-transparent -translate-y-1/2 translate-x-1/3 pointer-events-none blur-3xl"
+    aria-hidden="true"></div>
+  <div
+    class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-[#007BFF]/10 via-[#93C5FD]/8 to-transparent translate-y-1/2 -translate-x-1/4 pointer-events-none blur-3xl"
+    aria-hidden="true"></div>
+  <div
+    class="absolute top-1/2 left-1/3 w-[200px] h-[200px] rounded-full bg-gradient-to-br from-[#F59E0B]/8 to-transparent pointer-events-none blur-2xl"
+    aria-hidden="true"></div>
+
+  <div class="hero-inner max-w-site mx-auto px-6 relative z-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+      <!-- Left Column (7 cols): Editorial Headline & Copy -->
+      <div class="lg:col-span-7 flex flex-col items-start reveal-on-scroll is-visible">
+        <!-- Category & Availability Meta Bar -->
+        <div class="flex flex-wrap items-center gap-2.5 mb-4">
+          <span class="hero-hello-badge" aria-hidden="true">
+            <span></span> Xin chào!
+          </span>
+          <div
+            class="badge-glow-pulse inline-flex items-center gap-2 px-2.5 py-1 bg-[#10B981]/10 border border-[#10B981]/30 rounded-xl text-[#10B981] font-mono text-xs font-semibold">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
+            </span>
+            Sẵn sàng nhận việc thực tập / junior
+          </div>
+        </div>
+
+        <!-- Headline -->
+        <h1
+          class="font-display font-black text-4xl sm:text-5xl lg:text-[52px] leading-[1.08] tracking-tight text-[#292524] mb-4">
+          <span class="text-2xl sm:text-3xl lg:text-[32px] font-bold block mb-1">Mình là
+            <span class="hero-name-accent">Hoàng Thanh Khánh</span>
+          </span>
+          <span class="block animate-hero-line">Fullstack <span class="animated-text-gradient">Developer</span></span>
+        </h1>
+
+        <!-- Supporting copy -->
+        <p class="text-left text-base md:text-lg text-[#44403C] font-normal leading-relaxed mb-6 max-w-2xl animate-booted"
+          data-anim="animate__fadeInUp" data-delay="0.15">
+          Sinh viên năm 3 ngành Tin học ứng dụng, định hướng phát triển Fullstack. Có nền tảng lập trình web, kinh
+          nghiệm quản lý nội dung website và luôn chủ động trau dồi kỹ năng để xây dựng sản phẩm hoàn chỉnh.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto" data-stagger>
+          <a class="btn-shimmer animate-booted group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#007BFF] text-white font-sans font-medium text-base hover:bg-[#0056CC] active:bg-[#0056CC] shadow-md hover:shadow-lg transition-all focus:ring-2 focus:ring-offset-2 focus:ring-[#007BFF]"
+            data-anim="animate__fadeInUp" data-delay="0.05" href="#work">
+            <span class="">Xem dự án tiêu biểu</span>
+            <svg class="w-4 h-4 transition-transform group-hover:translate-y-1" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+              </path>
+            </svg>
+          </a>
+          <a class="animate-booted group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/80 backdrop-blur-sm border border-[#E7E5E4] text-[#292524] font-sans font-medium text-base hover:bg-white hover:border-[#007BFF] hover:text-[#007BFF] transition-all shadow-sm hover:shadow-md focus:ring-2 focus:ring-[#292524]"
+            data-anim="animate__fadeInUp" data-delay="0.15" href="cv.pdf" download>
+            <span class="">Tải hồ sơ (CV)</span>
+            <svg
+              class="w-4 h-4 text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:-translate-y-0.5"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column (5 cols): Soft Organic Background + Minimalist Frame -->
+      <div class="lg:col-span-5 lg:self-stretch reveal-on-scroll is-visible">
+        <div class="relative mx-auto flex justify-center items-center lg:items-end h-full">
+          <!-- Portrait composition: blue organic shape + floating role badges. -->
+          <div class="hero-portrait-stage relative z-10 w-full max-w-[300px] sm:max-w-[360px] lg:max-w-[420px]">
+            <div class="relative aspect-[3/4] overflow-visible bg-transparent">
+              <div class="hero-portrait-blob" aria-hidden="true"></div>
+              <div class="hero-portrait-ring" aria-hidden="true"></div>
+              <svg class="hero-portrait-spark" aria-hidden="true" viewBox="0 0 48 48" fill="none">
+                <path d="M24 2c1.4 13.7 8.3 20.6 22 22-13.7 1.4-20.6 8.3-22 22C22.6 32.3 15.7 25.4 2 24 15.7 22.6 22.6 15.7 24 2Z" fill="currentColor"/>
+              </svg>
+              <span class="hero-floating-badge hero-badge-role" aria-hidden="true">FULLSTACK DEVELOPER</span>
+              <span class="hero-floating-badge hero-badge-status" aria-hidden="true">
+                <span class="hero-badge-dot"></span> OPEN TO INTERNSHIP
+              </span>
+              <img alt="Hoàng Thanh Khánh - Lập Trình Viên Fullstack"
+                class="absolute z-10 inset-0 w-full h-full object-contain transition-transform duration-700 hover:scale-[1.03] drop-shadow-[0_24px_32px_rgba(0,65,150,0.16)]"
+                loading="eager" decoding="async" fetchpriority="high" src="image/remove.png"
+                onerror="this.onerror=null;this.src='image/2.jpg';">
+            </div>
+            <!-- Subtle accent: chấm nhỏ trang trí, không che ảnh -->
+            <div aria-hidden="true"
+              class="orb-drift-slow absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-gradient-to-br from-[#F59E0B]/20 to-transparent blur-xl pointer-events-none">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expertise strip: vừa neo chân ảnh, vừa giới thiệu nhanh chuyên môn. -->
+  <div class="hero-skill-strip absolute bottom-0 left-0 right-0 z-20" aria-label="Chuyên môn chính">
+    <div class="hero-skill-strip__inner">
+      <span>WEB DEVELOPMENT</span><i aria-hidden="true"></i>
+      <span>REACT &amp; NEXT.JS</span><i aria-hidden="true"></i>
+      <span>NODE.JS &amp; PHP</span><i aria-hidden="true"></i>
+      <span>RESPONSIVE UI</span>
+    </div>
+  </div>
+</section>

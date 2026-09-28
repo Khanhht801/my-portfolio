@@ -31,6 +31,213 @@
   animation: ambientFloat 6s ease-in-out infinite;
 }
 
+/* Neo nhẹ chân dung xuống dải xanh ở đáy hero mà không làm cụm hero quá cao. */
+.hero-portrait-stage {
+  transform: translateY(1.5rem);
+}
+
+.hero-section {
+  background-color: #fffcf8;
+  background-image: radial-gradient(rgba(0, 123, 255, 0.055) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.hero-hello-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2rem;
+  padding: 0.3rem 0.75rem;
+  border: 1.5px solid #292524;
+  background: rgba(255, 255, 255, 0.88);
+  color: #292524;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transform: rotate(-1.5deg);
+  box-shadow: 3px 3px 0 rgba(0, 123, 255, 0.18);
+}
+
+.hero-hello-badge span {
+  width: 0.45rem;
+  height: 0.45rem;
+  background: #007bff;
+  transform: rotate(45deg);
+}
+
+.hero-name-accent {
+  position: relative;
+  color: #007bff;
+  white-space: nowrap;
+}
+
+.hero-name-accent::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -0.12em;
+  left: 0;
+  height: 0.12em;
+  border-radius: 999px;
+  background: #007bff;
+  transform: rotate(-1deg);
+  opacity: 0.8;
+}
+
+.hero-portrait-blob {
+  position: absolute;
+  inset: 15% 2% 5% 4%;
+  z-index: 1;
+  border-radius: 43% 57% 48% 52% / 54% 40% 60% 46%;
+  background: linear-gradient(145deg, #1687ff 0%, #006be6 58%, #004fae 100%);
+  box-shadow: 0 28px 70px rgba(0, 105, 230, 0.26);
+  transform: rotate(-5deg);
+}
+
+.hero-portrait-ring {
+  position: absolute;
+  inset: 9% -3% 1% 8%;
+  z-index: 0;
+  border: 2px solid rgba(0, 123, 255, 0.32);
+  border-radius: 48% 52% 44% 56% / 55% 46% 54% 45%;
+  transform: rotate(8deg);
+}
+
+.hero-portrait-spark {
+  position: absolute;
+  top: 16%;
+  left: -9%;
+  z-index: 15;
+  width: 2rem;
+  color: #007bff;
+  transform: rotate(-12deg);
+  filter: drop-shadow(0 6px 10px rgba(0, 123, 255, 0.2));
+}
+
+.hero-floating-badge {
+  position: absolute;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.5rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 999px;
+  background: #007bff;
+  color: #fff;
+  box-shadow: 0 14px 28px rgba(0, 91, 204, 0.26);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.hero-badge-role {
+  top: 24%;
+  left: -13%;
+  transform: rotate(-7deg);
+}
+
+.hero-badge-status {
+  right: -13%;
+  bottom: 14%;
+  transform: rotate(7deg);
+}
+
+.hero-badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #86efac;
+  box-shadow: 0 0 0 4px rgba(134, 239, 172, 0.2);
+}
+
+.hero-skill-strip {
+  min-height: 3.25rem;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  background: linear-gradient(90deg, #005dcc 0%, #087cff 46%, #0069e6 100%);
+  box-shadow: 0 -10px 30px rgba(0, 123, 255, 0.2);
+  color: #fff;
+}
+
+.hero-skill-strip__inner {
+  display: flex;
+  min-height: 3.25rem;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  white-space: nowrap;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: clamp(0.72rem, 1.15vw, 1rem);
+  font-weight: 800;
+  letter-spacing: 0.055em;
+}
+
+.hero-skill-strip__inner i {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex: 0 0 auto;
+  background: #fff;
+  transform: rotate(45deg);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.7);
+}
+
+/* Ở desktop, cho vùng nội dung chiếm trọn chiều cao khả dụng để cột ảnh có
+   thể neo xuống đáy thay vì bị căn giữa theo chiều cao màn hình. */
+@media (min-width: 1024px) {
+  .hero-section {
+    min-height: calc(100svh - 5rem);
+  }
+
+  .hero-portrait-stage {
+    max-width: min(26.25rem, calc((100svh - 7rem) * 0.75));
+  }
+
+  .hero-inner {
+    align-self: stretch;
+    display: flex;
+  }
+
+  .hero-inner > .grid {
+    flex: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-name-accent {
+    white-space: normal;
+  }
+
+  .hero-badge-role {
+    left: -2%;
+  }
+
+  .hero-badge-status {
+    right: -2%;
+  }
+
+  .hero-floating-badge {
+    min-height: 2.15rem;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.62rem;
+  }
+
+  .hero-skill-strip__inner {
+    width: max-content;
+    min-width: 100%;
+    justify-content: flex-start;
+  }
+}
+
 /* Soft organic blob — gentle morphing + float */
 @keyframes blobBreathe {
   0%, 100% {
@@ -124,6 +331,9 @@
 .btn-shimmer {
   position: relative;
   overflow: hidden;
+  /* Đồng nhất font cho mọi button trên site: dùng Be Vietnam Pro (sans),
+     không bị ảnh hưởng bởi font-mono từ class cha nào đó. */
+  font-family: "Be Vietnam Pro", "Hanken Grotesk", sans-serif;
 }
 .btn-shimmer::after {
   content: '';
@@ -196,16 +406,31 @@
   animation: nodePing 2s infinite ease-out;
 }
 
-/* Reveal on scroll system */
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
+/* Reveal on scroll system — DISABLED per request
+   (animation khi scroll da tat. Giu comment de de revert.)
+   Element .reveal-on-scroll luon o trang thai hien thi, khong fade/slide. */
+.reveal-on-scroll,
 .reveal-on-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Tat cac hieu ung animate.css (fadeInDown, zoomIn, fadeInUp, ...) khi
+   scroll den — DISABLED per request. Class animate__animated van duoc
+   them (de khong pha HTML contract) nhung animation bi chan. */
+.animate__animated,
+.animate__animated.animate__fadeInDown,
+.animate__animated.animate__fadeInUp,
+.animate__animated.animate__fadeInLeft,
+.animate__animated.animate__fadeInRight,
+.animate__animated.animate__zoomIn {
+  animation: none !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
 }
 
 /* Aspect ratio 16:9 (1920x1080) cho ảnh preview trong các project card */
@@ -258,11 +483,7 @@ article p.text-base {
 
 /* Accessibility reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .reveal-on-scroll {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
+  /* Reveal-on-scroll da duoc disable o tren — khoi can reset them o day */
   .animate-ambient-float,
   .badge-glow-pulse,
   .timeline-node-active,
@@ -272,4 +493,228 @@ article p.text-base {
   .project-card-interactive:hover {
     transform: none !important;
   }
+}
+
+/* ============================================
+   TECH STACK — Marquee (chạy ngang, loop liền mạch)
+   ============================================ */
+.marquee-mask {
+  /* Tạo gradient mờ ở 2 mép để icon xuất hiện/ biến mất mượt */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  /* Ngăn các item bị flex co lại giữa 2 bản duplicate → gây khoảng trắng khi loop */
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+/* Chỉ chạy sau khi JS đã đo chính xác một chu kỳ và thêm đủ bản sao. */
+.marquee-track[data-marquee-ready="true"] {
+  /* animation-duration đặt qua inline style để mỗi hàng có thể chạy tốc độ khác nhau */
+  animation: marquee-scroll linear infinite;
+}
+
+/* Mỗi item trong marquee cũng phải không bị co — đảm bảo 2 bản duplicate ghép liền mạch */
+.marquee-track > * {
+  flex-shrink: 0;
+}
+
+.marquee-track.marquee-track-reverse[data-marquee-ready="true"] {
+  animation-name: marquee-scroll-reverse;
+}
+
+/* Pause animation on hover — UX tốt hơn khi user muốn xem rõ icon */
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(var(--marquee-translate, 0px), 0, 0); }
+}
+
+@keyframes marquee-scroll-reverse {
+  from { transform: translate3d(var(--marquee-translate, 0px), 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+
+/* Respect người dùng tắt motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================================
+   CUSTOM ANIMATION LAYER (animate.css + tailwind)
+   - Headline "split text" reveal (tu dam mau chu thanh gradient)
+   - Gradient border animation cho card
+   - Shimmer line running duoi border
+   - Magnetic hover cho button
+   - Floating badge bobbing nhe
+   - Typewriter caret blink (cho section header mono text)
+   ============================================================ */
+
+/* Hero headline — fade + slide up voi delay tung cum tu — DISABLED per request
+   (animation khi scroll da tat. Giu comment de de revert.) */
+.animate-hero-line {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+.animate-hero-line.is-fired {
+  animation: none !important;
+}
+
+/* Gradient border gradient chay vong quanh card */
+@keyframes gradientBorderSpin {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+.gradient-border {
+  position: relative;
+  background-clip: padding-box;
+  border: 2px solid transparent !important;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  margin: -2px;
+  border-radius: inherit;
+  background: linear-gradient(120deg,
+    #007BFF 0%, #38BDF8 25%, #F59E0B 50%, #F97316 75%, #007BFF 100%);
+  background-size: 300% 100%;
+  animation: gradientBorderSpin 6s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.gradient-border:hover::before { opacity: 1; }
+
+/* Shimmer line (vach sang chay ngang) */
+@keyframes shimmerLine {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+.shimmer-line-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 2px;
+  background: #E7E5E4;
+}
+.shimmer-line-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 35%;
+  background: linear-gradient(90deg, transparent, #007BFF, #F59E0B, transparent);
+  animation: shimmerLine 2.4s ease-in-out infinite;
+}
+
+/* Floating badge nhe nhang */
+@keyframes softBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+.float-bob { animation: softBob 3.6s ease-in-out infinite; }
+
+/* Caret blink (typewriter hint) */
+@keyframes caretBlink {
+  0%, 50%   { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+.caret::after {
+  content: '▍';
+  margin-left: 2px;
+  color: #007BFF;
+  animation: caretBlink 1s steps(1) infinite;
+}
+
+/* Underline reveal — vach ke mo rong tu giua */
+@keyframes underlineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.underline-reveal {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+.underline-reveal::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.underline-reveal:hover::after,
+.underline-reveal.is-fired::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Icon rotate-in khi hover */
+@keyframes iconSpinIn {
+  from { transform: rotate(-180deg) scale(0.4); opacity: 0; }
+  to   { transform: rotate(0deg)    scale(1);   opacity: 1; }
+}
+.icon-pop:hover svg { animation: iconSpinIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* Wrapper don gian cho animate.css utility (loai bo mat thoi gian delay mac dinh)
+   Dung de ben script.js tuy chinh --animate-duration va --animate-delay */
+.animate-booted {
+  --animate-duration: 0.9s;
+  --animate-delay: 0s;
+  opacity: 1; /* hien thi ngay khi animate.css them .animate__animated */
+}
+
+/* Stack tilt — card nghieng nhe khi hover (CSS thuan, khong can JS) */
+.tilt-card { transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.tilt-card:hover { transform: perspective(900px) rotateX(2deg) rotateY(-2deg) translateY(-4px); }
+
+/* Section divider — vach phan cach sections co animation slide-in */
+@keyframes dividerExpand {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.divider-expand {
+  display: block;
+  transform-origin: left center;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #007BFF 30%, #F59E0B 70%, transparent);
+  animation: dividerExpand 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Pulse dot variant — cham tron phat sang lien tuc */
+@keyframes pulseDot {
+  0%, 100% { box-shadow: 0 0 0 0 currentColor; }
+  50%      { box-shadow: 0 0 0 6px transparent; }
+}
+.dot-pulse { animation: pulseDot 2s ease-in-out infinite; }
+
+/* Accessibility: tat moi custom animation khi user yeu cau */
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-line,
+  .gradient-border::before,
+  .shimmer-line-wrap::after,
+  .float-bob,
+  .caret::after,
+  .underline-reveal::after,
+  .divider-expand,
+  .dot-pulse {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .tilt-card:hover { transform: none !important; }
 }

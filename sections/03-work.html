@@ -1,0 +1,188 @@
+<!-- ============================================================
+     03. SELECTED WORK
+     - Danh sách 3 dự án tiêu biểu (ảnh + mô tả + tech stack)
+     - Selector JS phụ thuộc:
+         + .reveal-on-scroll.is-visible (IntersectionObserver)
+         + .project-card-interactive (hover effect định nghĩa trong style.css)
+         + .aspect-16-9 (custom aspect ratio trong style.css)
+============================================================ -->
+<section class="border-b border-[#E7E5E4] bg-white py-12" id="work">
+  <div class="max-w-site mx-auto px-6">
+    <!-- Section Header -->
+    <div
+      class="flex flex-col items-center text-center justify-center pb-6 border-b border-[#292524] gap-4 mb-10 reveal-on-scroll is-visible">
+      <div class="flex flex-col items-center animate-booted" data-anim="animate__fadeInDown" data-delay="0">
+        <div
+          class="font-mono text-xs uppercase tracking-widest text-[#292524] font-semibold mb-2 flex items-center justify-center gap-2 caret">
+          <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
+          DỰ ÁN THỰC CHIẾN
+          <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-[#007BFF] tracking-tight">
+          DỰ ÁN HỌC TẬP <span class="text-[#292524]">&amp;</span> SẢN PHẨM CÁ NHÂN
+        </h2>
+      </div>
+    </div>
+
+    <!-- Project List -->
+    <div class="space-y-14">
+
+      <!-- ==================== PROJECT 01 ==================== -->
+      <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center reveal-on-scroll is-visible">
+        <div class="lg:col-span-7 animate-booted gradient-border rounded-2xl" data-anim="animate__fadeInLeft" data-delay="0">
+          <div
+            class="project-card-interactive group relative rounded-2xl overflow-hidden border border-[#E7E5E4] bg-white shadow-md">
+            <div class="bg-[#FFFBF5] px-4 py-2.5 border-b border-[#E7E5E4] flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FCA5A5] group-hover:bg-[#EF4444]/70 transition-colors"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FCD34D] group-hover:bg-[#F59E0B]/70 transition-colors"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#6EE7B7] group-hover:bg-[#10B981]/70 transition-colors"></span>
+              </div>
+              <span class="font-mono text-[11px] text-[#78716C]">lsc.qlsv.edu.vn</span>
+              <span class="font-mono text-[11px] text-[#10B981] font-semibold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping"></span>
+                ● Production
+              </span>
+            </div>
+            <div class="overflow-hidden aspect-16-9">
+              <img alt="Hệ thống Quản lý sinh viên"
+                class="object-cover object-top group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+                loading="lazy"
+                src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/2024_1_25_638418165452180038_it-project-manager-1-1.jpg"
+                onerror="this.onerror=null;this.src='image/logo.jpg';this.classList.add('object-contain','bg-[#DBEAFE]','p-12');">
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 flex flex-col items-start">
+          <div class="font-mono text-xs text-[#007BFF] font-bold tracking-widest mb-2 flex items-center gap-2">
+            <span class="text-[#F59E0B] font-black">01</span> // SẢN PHẨM HỌC TẬP
+          </div>
+          <h3 class="font-display font-black text-2xl sm:text-3xl text-[#292524] tracking-tight mb-3">
+            Hệ thống Quản lý sinh viên
+          </h3>
+          <p class="text-justify text-[#44403C] text-base leading-relaxed mb-6">
+            Hệ thống hỗ trợ quản lý lớp học và thông tin sinh viên trong phạm vi Khoa, cung cấp tài khoản riêng cho
+            người dùng và tích hợp tính năng trao đổi trực tuyến giữa sinh viên và giảng viên.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6 font-mono text-xs">
+            <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">HTML</span>
+            <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">CSS</span>
+            <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">JavaScript</span>
+            <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Python</span>
+          </div>
+          <a class="group inline-flex items-center gap-2 font-display font-bold text-sm text-[#007BFF] hover:text-[#0056CC] focus:outline-none icon-pop underline-reveal"
+            href="#horizon-project">
+            <span class="group-hover:underline">Xem dự án</span>
+            <span class="font-mono transition-transform duration-200 group-hover:translate-x-1.5">→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ==================== PROJECT 02 ==================== -->
+      <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center reveal-on-scroll is-visible">
+        <div class="lg:col-span-5 order-2 lg:order-1 flex flex-col items-start animate-booted" data-anim="animate__fadeInLeft" data-delay="0.1">
+          <div class="font-mono text-xs text-[#007BFF] font-bold tracking-widest mb-2 flex items-center gap-2">
+            <span class="text-[#F59E0B] font-black">02</span> // LOGISTICS & VẬN TẢI
+          </div>
+          <h3 class="font-display font-black text-2xl sm:text-3xl text-[#292524] tracking-tight mb-3">
+            Hệ Thống Giám Sát Vận Tải & Chuỗi Cung Ứng
+          </h3>
+          <p class="text-justify text-[#44403C] text-base leading-relaxed mb-6">
+            Giải pháp điều phối chuỗi cung ứng thời gian thực với bản đồ định tuyến trực quan, hỗ trợ theo dõi lộ
+            trình vận chuyển quốc tế với độ trễ phản hồi dưới 1 giây.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6 font-mono text-xs">
+            <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Next.js 14</span>
+            <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">WebSockets</span>
+            <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">PostgreSQL</span>
+            <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Mapbox GL</span>
+          </div>
+          <a class="group inline-flex items-center gap-2 font-display font-bold text-sm text-[#007BFF] hover:text-[#0056CC] focus:outline-none"
+            href="#nexus-project">
+            <span class="group-hover:underline">Xem dự án</span>
+            <span class="font-mono transition-transform duration-200 group-hover:translate-x-1.5">→</span>
+          </a>
+        </div>
+
+        <div class="lg:col-span-7 order-1 lg:order-2 animate-booted gradient-border rounded-2xl" data-anim="animate__fadeInRight" data-delay="0.1">
+          <div
+            class="project-card-interactive group relative rounded-2xl overflow-hidden border border-[#E7E5E4] bg-white shadow-md">
+            <div class="bg-[#FFFBF5] px-4 py-2.5 border-b border-[#E7E5E4] flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FCA5A5] group-hover:bg-[#EF4444]/70 transition-colors"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FCD34D] group-hover:bg-[#F59E0B]/70 transition-colors"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#6EE7B7] group-hover:bg-[#10B981]/70 transition-colors"></span>
+              </div>
+              <span class="font-mono text-[11px] text-[#78716C]">logistics.nexus-fleet.internal</span>
+              <span class="font-mono text-[11px] text-[#10B981] font-semibold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping"></span>
+                ● Live Stream
+              </span>
+            </div>
+            <div class="overflow-hidden">
+              <img alt="Hệ Thống Giám Sát Vận Tải & Chuỗi Cung Ứng"
+                class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+                loading="lazy"
+                src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/2024_1_25_638418165452180038_it-project-manager-1-1.jpg"
+                onerror="this.onerror=null;this.src='image/logo.jpg';this.classList.add('object-contain','bg-[#DBEAFE]','p-12');">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ==================== PROJECT 03 ==================== -->
+      <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center reveal-on-scroll is-visible">
+        <div class="lg:col-span-7 animate-booted gradient-border rounded-2xl" data-anim="animate__fadeInLeft" data-delay="0.05">
+          <div
+            class="project-card-interactive group relative rounded-2xl overflow-hidden border border-[#E7E5E4] bg-white shadow-md">
+            <div class="bg-[#FFFBF5] px-4 py-2.5 border-b border-[#E7E5E4] flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FCA5A5] group-hover:bg-[#EF4444]/70 transition-colors"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FCD34D] group-hover:bg-[#F59E0B]/70 transition-colors"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#6EE7B7] group-hover:bg-[#10B981]/70 transition-colors"></span>
+              </div>
+              <span class="font-mono text-[11px] text-[#78716C]">analytics.omnilytics.store</span>
+              <span class="font-mono text-[11px] text-[#10B981] font-semibold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping"></span>
+                ● Cloud Node
+              </span>
+            </div>
+            <div class="overflow-hidden">
+              <img alt="Nền Tảng Thương Mại Điện Tử Phân Tán"
+                class="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+                loading="lazy"
+                src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/2024_1_25_638418165452180038_it-project-manager-1-1.jpg"
+                onerror="this.onerror=null;this.src='image/logo.jpg';this.classList.add('object-contain','bg-[#DBEAFE]','p-12');">
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 flex flex-col items-start animate-booted" data-anim="animate__fadeInRight" data-delay="0.15">
+          <div class="font-mono text-xs text-[#007BFF] font-bold tracking-widest mb-2 flex items-center gap-2">
+            <span class="text-[#F59E0B] font-black">03</span> // E-COMMERCE & ANALYTICS
+          </div>
+          <h3 class="font-display font-black text-2xl sm:text-3xl text-[#292524] tracking-tight mb-3">
+            Nền Tảng Thương Mại Điện Tử Phân Tán
+          </h3>
+          <p class="text-justify text-[#44403C] text-base leading-relaxed mb-6">
+            Hệ thống xử lý lưu lượng đơn hàng cao cho sự kiện flash-sale, phân tích số liệu thời gian thực và quản
+            trị kho hàng đa kênh với kiến trúc dịch vụ vi mô linh hoạt.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6 font-mono text-xs">
+            <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">React</span>
+            <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">TypeScript</span>
+            <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Fastify</span>
+            <span class="px-2.5 py-1 bg-[#FFFBF5] text-[#292524] border border-[#E7E5E4] rounded-lg hover:border-[#007BFF] hover:bg-[#DBEAFE]/30 transition-all">Redis Cache</span>
+          </div>
+          <a class="group inline-flex items-center gap-2 font-display font-bold text-sm text-[#007BFF] hover:text-[#0056CC] focus:outline-none"
+            href="#ecommerce-project">
+            <span class="group-hover:underline">Xem dự án</span>
+            <span class="font-mono transition-transform duration-200 group-hover:translate-x-1.5">→</span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>

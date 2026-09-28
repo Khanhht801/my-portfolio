@@ -1,0 +1,201 @@
+<!-- ============================================================
+     05. EXPERIENCE SECTION
+     - Timeline 3 mốc: hiện tại, dự án, bằng cấp
+     - Selector JS phụ thuộc:
+         + .reveal-on-scroll.is-visible (IntersectionObserver)
+         + .timeline-node-active (style.css style định nghĩa)
+============================================================ -->
+<section class="border-b border-[#E7E5E4] bg-[#FFF8F0] py-12 relative overflow-hidden" id="experience">
+  <div
+    class="absolute -top-32 -left-32 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#007BFF]/8 to-transparent blur-3xl pointer-events-none"
+    aria-hidden="true"></div>
+
+  <div class="max-w-site mx-auto px-6 relative z-10">
+    <!-- Section Header -->
+    <div
+      class="flex flex-col items-center text-center justify-center pb-6 border-b border-[#292524] gap-2 mb-10 reveal-on-scroll is-visible">
+      <div
+        class="font-mono text-xs uppercase tracking-widest text-[#292524] font-semibold mb-1 flex items-center justify-center gap-2">
+        <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
+        LỘ TRÌNH PHÁT TRIỂN
+        <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
+      </div>
+      <h2 class="font-display font-black text-3xl sm:text-4xl text-[#007BFF] tracking-tight">
+        KINH NGHIỆM <span class="text-[#292524]">&</span> CỘT MỐC HỌC THUẬT
+      </h2>
+      <span class="text-xs font-mono text-[#78716C] mt-1">2024 — HIỆN TẠI</span>
+    </div>
+
+    <!-- Vertical Timeline Container -->
+    <div class="relative max-w-4xl mx-auto" data-stagger>
+      <!-- Vertical Connecting Line -->
+      <div
+        class="absolute left-4 sm:left-6 md:left-1/2 top-3 bottom-8 w-[2px] bg-gradient-to-b from-[#007BFF] via-[#F59E0B] to-[#F59E0B]/30 -translate-x-1/2">
+      </div>
+
+      <div class="space-y-12 sm:space-y-16">
+
+        <!-- ================= TIMELINE ITEM 1 (Hiện tại) ================= -->
+        <div class="relative flex flex-col md:flex-row items-start group reveal-on-scroll is-visible animate-booted"
+          data-anim="animate__fadeInUp" data-delay="0">
+          <!-- Left column: Time / Role Overview -->
+          <div
+            class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 md:pr-12 md:text-right flex flex-col md:items-end mb-3 md:mb-0">
+            <div
+              class="badge-glow-pulse inline-flex items-center gap-2 px-3 py-1 bg-[#10B981]/10 border border-[#10B981]/30 rounded-full text-[#10B981] font-mono text-xs font-semibold mb-2 shadow-sm">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
+              </span>
+              T8/2025 - Hiện tại · KINH NGHIỆM LÀM VIỆC
+            </div>
+            <h3
+              class="font-display font-bold text-xl sm:text-2xl text-[#292524] tracking-tight group-hover:text-[#007BFF] transition-colors">
+              Nhân viên Văn phòng & Quản lý Website
+            </h3>
+            <span class="font-mono text-xs sm:text-sm text-[#007BFF] font-medium mt-0.5">
+              Công ty TNHH MTV Xứ Lạng Education
+            </span>
+          </div>
+
+          <!-- Center Node -->
+          <div
+            class="timeline-node-active absolute left-4 sm:left-6 md:left-1/2 -translate-x-1/2 top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[#007BFF] flex items-center justify-center shadow-sm z-10 group-hover:scale-125 transition-transform duration-200">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#007BFF]"></span>
+          </div>
+
+          <!-- Right column: Technical Card -->
+          <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-12">
+            <div
+              class="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#007BFF] transition-all duration-300">
+              <p class="text-justify text-sm sm:text-base text-[#44403C] leading-relaxed mb-3">
+                Trực tiếp quản lý và cập nhật nội dung website, đồng thời phụ trách đăng tải nội dung trên Fanpage
+                và các kênh online. Hỗ trợ công việc văn phòng, tư vấn thông tin khóa học và phối hợp vận hành các
+                hoạt động của công ty.
+              </p>
+              <div class="p-3 rounded-xl bg-[#FFFBF5] border border-[#E7E5E4] mb-4">
+                <div class="flex items-start gap-2 text-xs text-[#292524] leading-relaxed font-mono">
+                  <span class="text-[#007BFF] font-bold">▹</span>
+                  <span class="">Cập nhật nội dung, hình ảnh và thông tin khóa học trên website; xây dựng và đăng
+                    tải nội dung trên các kênh online.</span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Website</span>
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Fanpage</span>
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Zalo OA</span>
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Google map</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TIMELINE ITEM 2 (Dự án) ================= -->
+        <div class="relative flex flex-col md:flex-row items-start group reveal-on-scroll is-visible animate-booted"
+          data-anim="animate__fadeInUp" data-delay="0.1">
+          <!-- Left column: Technical Card -->
+          <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 md:pr-12 order-2 md:order-1 mt-3 md:mt-0">
+            <div
+              class="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#007BFF] transition-all duration-300">
+              <p class="text-justify text-sm sm:text-base text-[#44403C] leading-relaxed mb-3">
+                Xây dựng website quản lý sinh viên nhằm hỗ trợ quản lý thông tin sinh viên một cách trực quan, thuận
+                tiện và có hệ thống.
+              </p>
+              <div class="p-3 rounded-xl bg-[#FFFBF5] border border-[#E7E5E4] mb-4">
+                <div class="flex items-start gap-2 text-xs text-[#292524] leading-relaxed font-mono">
+                  <span class="text-[#007BFF] font-bold">▹</span>
+                  <span class="">Thiết kế giao diện, xây dựng các chức năng quản lý và thực hiện kết nối, xử lý dữ
+                    liệu theo yêu cầu của bài toán.</span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">HTML</span>
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">CSS</span>
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">JavaScript</span>
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Python</span>
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">MySQL</span>
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">PHP</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Node -->
+          <div
+            class="absolute left-4 sm:left-6 md:left-1/2 -translate-x-1/2 top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[#F59E0B] flex items-center justify-center shadow-sm z-10 group-hover:scale-125 group-hover:border-[#007BFF] transition-all duration-200">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#F59E0B] group-hover:bg-[#007BFF] transition-colors"></span>
+          </div>
+
+          <!-- Right column: Time / Role -->
+          <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-12 order-1 md:order-2 flex flex-col items-start">
+            <div
+              class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-full text-[#292524] font-mono text-xs font-semibold mb-2 shadow-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
+              2026 · DỰ ÁN
+            </div>
+            <h3
+              class="font-display font-bold text-xl sm:text-2xl text-[#292524] tracking-tight group-hover:text-[#007BFF] transition-colors">
+              Quản lý sinh viên
+            </h3>
+            <span class="font-mono text-xs sm:text-sm text-[#44403C] font-medium mt-0.5">
+              Khoa Điện & Công nghệ thông tin (Trường Cao đẳng Lạng Sơn)
+            </span>
+          </div>
+        </div>
+
+        <!-- ================= TIMELINE ITEM 3 (Bằng cấp) ================= -->
+        <div class="relative flex flex-col md:flex-row items-start group reveal-on-scroll is-visible animate-booted"
+          data-anim="animate__fadeInUp" data-delay="0.2">
+          <!-- Left column: Time -->
+          <div
+            class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 md:pr-12 md:text-right flex flex-col md:items-end mb-3 md:mb-0">
+            <div
+              class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-full text-[#292524] font-mono text-xs font-semibold mb-2 shadow-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
+              2024 — 2027 · BẰNG CẤP
+            </div>
+            <h3
+              class="font-display font-bold text-xl sm:text-2xl text-[#292524] tracking-tight group-hover:text-[#007BFF] transition-colors">
+              Kỹ sư thực hành Tin Học ứng dụng
+            </h3>
+            <span class="font-mono text-xs sm:text-sm text-[#44403C] font-medium mt-0.5">
+              Trường Cao đẳng Lạng Sơn
+            </span>
+          </div>
+
+          <!-- Center Node -->
+          <div
+            class="absolute left-4 sm:left-6 md:left-1/2 -translate-x-1/2 top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[#F59E0B] flex items-center justify-center shadow-sm z-10 group-hover:scale-125 group-hover:border-[#007BFF] transition-all duration-200">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#F59E0B] group-hover:bg-[#007BFF] transition-colors"></span>
+          </div>
+
+          <!-- Right column: Technical Card -->
+          <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-12">
+            <div
+              class="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#007BFF] transition-all duration-300">
+              <p class="text-justify text-sm sm:text-base text-[#44403C] leading-relaxed mb-3">
+                Tốt nghiệp loại Giỏi (GPA 3.8/4.0). Các môn học cốt lõi: Cấu trúc máy tính và hệ điều hành, Hệ quản
+                trị cơ sở dữ liệu, Cấu trúc dữ liệu & Giải thuật, Phân tích thiết kế hệ thống, Mạng máy tính, Thiết
+                kế website.
+              </p>
+              <div class="p-3 rounded-xl bg-[#FFFBF5] border border-[#E7E5E4] mb-4">
+                <div class="flex items-start gap-2 text-xs text-[#292524] leading-relaxed font-mono">
+                  <span class="text-[#F59E0B] font-bold">★</span>
+                  <span class="">Đạt <strong class="text-[#292524]">Học bổng Khuyến khích Học tập Xuất sắc</strong>
+                    3 học kỳ liên tiếp nhờ thành tích học tập và nghiên cứu nổi trội.</span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Data Structures</span>
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Algorithms</span>
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">SQL Server</span>
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">System Design</span>
+                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Git</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
