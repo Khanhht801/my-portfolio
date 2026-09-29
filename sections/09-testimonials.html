@@ -1,0 +1,253 @@
+<!-- ============================================================
+     09. TESTIMONIALS — Vertical auto-scrolling columns
+     - 3 cột card lời chứng nhận, mỗi cột cuộn lên vô hạn
+     - Animation bằng CSS @keyframes (linear, infinite)
+     - Có mask gradient ở mép trên/dưới để card xuất hiện/ẩn mượt
+     - Selector JS phụ thuộc:
+         + .testimonials-column  (cột chứa card)
+         + data-anim-duration    (tốc độ cuộn riêng từng cột, inline style)
+         + data-marquee-clone    (JS sẽ duplicate các card để loop liền mạch)
+     - Pause-on-hover được CSS xử lý (animation-play-state: paused)
+     - Ảnh chân dung dùng Unsplash random với ?sig= để tránh cache trùng
+============================================================ -->
+<section class="testimonials-section relative overflow-hidden border-b border-[#E7E5E4]" id="testimonials">
+  <div class="testimonials-section__orb testimonials-section__orb--left" aria-hidden="true"></div>
+  <div class="testimonials-section__orb testimonials-section__orb--right" aria-hidden="true"></div>
+  <span class="testimonials-section__index" aria-hidden="true">05</span>
+
+  <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <header class="testimonials-heading reveal-on-scroll is-visible">
+      <h2 class="testimonials-heading__title section-heading-title animate-booted" data-anim="animate__fadeInUp">
+        Khách hàng &amp; đồng nghiệp<br>
+        <span>nói gì về tôi.</span>
+      </h2>
+    </header>
+
+    <!-- Mask gradient + 3 cột cuộn dọc -->
+    <div class="testimonials-grid" aria-label="Danh sách lời chứng nhận">
+      <!-- Cột 1 -->
+      <div class="testimonials-column testimonials-column--mask testimonials-column--vertical">
+        <div class="testimonials-track" data-testimonials-track data-anim-duration="22s">
+          <!-- Nhóm A (sẽ được JS duplicate) -->
+          <div class="testimonials-track__group">
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Hệ thống ERP này đã cách mạng hoá vận hành của chúng tôi, giúp dòng tiền và tồn kho trở nên minh bạch. Nền tảng cloud giúp team làm việc hiệu quả dù ở bất kỳ đâu.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Briana Patton"
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Briana Patton</strong>
+                  <small>Operations Manager</small>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Triển khai hệ thống diễn ra nhanh chóng và mượt mà. Giao diện trực quan, dễ tuỳ biến giúp team tôi hoàn tất khóa training chỉ trong vài ngày.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Bilal Ahmed"
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Bilal Ahmed</strong>
+                  <small>IT Manager</small>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Đội ngũ hỗ trợ cực kỳ tận tâm — họ đồng hành từ khâu setup ban đầu cho đến vận hành hằng ngày, đảm bảo trải nghiệm của chúng tôi luôn trọn vẹn.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Saman Malik"
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Saman Malik</strong>
+                  <small>Customer Support Lead</small>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Khả năng tích hợp liền mạch của hệ thống đã nâng tầm quy trình vận hành và hiệu suất kinh doanh của chúng tôi. Rất đáng để giới thiệu rộng rãi.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Omar Raza"
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Omar Raza</strong>
+                  <small>CEO</small>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Các tính năng robust cùng đội ngũ support phản hồi nhanh đã thay đổi hoàn toàn workflow của team — giúp chúng tôi hiệu quả hơn rõ rệt.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Zainab Hussain"
+                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Zainab Hussain</strong>
+                  <small>Project Manager</small>
+                </div>
+              </footer>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cột 2 -->
+      <div class="testimonials-column testimonials-column--mask testimonials-column--vertical testimonials-column--hidden-md">
+        <div class="testimonials-track" data-testimonials-track data-anim-duration="28s">
+          <div class="testimonials-track__group">
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Triển khai diễn ra vượt ngoài mong đợi. Quy trình được tinh gọn ngay từ ngày đầu tiên và hiệu suất kinh doanh tổng thể được cải thiện rõ rệt.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Aliza Khan"
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Aliza Khan</strong>
+                  <small>Business Analyst</small>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Hoạt động kinh doanh của chúng tôi cải thiện rõ rệt nhờ thiết kế thân thiện và phản hồi tích cực từ khách hàng. Feedback từ người dùng cuối rất khả quan.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Farhan Siddiqui"
+                  src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Farhan Siddiqui</strong>
+                  <small>Marketing Director</small>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Họ đã giao một giải pháp vượt kỳ vọng — thấu hiểu nhu cầu và nâng tầm vận hành doanh nghiệp của chúng tôi một cách trọn vẹn.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Sana Sheikh"
+                  src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Sana Sheikh</strong>
+                  <small>Sales Manager</small>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Nhờ hệ thống này, hiện diện online và tỉ lệ chuyển đổi của chúng tôi tăng mạnh — đẩy mạnh hiệu quả kinh doanh toàn diện.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Hassan Ali"
+                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Hassan Ali</strong>
+                  <small>E-commerce Manager</small>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Điểm mạnh nhất của hệ thống là sự ổn định khi vận hành liên tục ở quy mô lớn. Gần như không có downtime và đội ngũ kỹ thuật rất chủ động.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Mariam Iqbal"
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Mariam Iqbal</strong>
+                  <small>Operations Director</small>
+                </div>
+              </footer>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cột 3 -->
+      <div class="testimonials-column testimonials-column--mask testimonials-column--vertical testimonials-column--hidden-lg">
+        <div class="testimonials-track" data-testimonials-track data-anim-duration="25s">
+          <div class="testimonials-track__group">
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Workflow onboarding cho nhân viên mới rút ngắn còn một nửa nhờ dashboard tập trung — team tôi dễ dàng theo dõi tiến độ từng bước.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Daniel Rivera"
+                  src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Daniel Rivera</strong>
+                  <small>HR Lead</small>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Chất lượng code và tư duy kiến trúc của Khánh rất sạch sẽ. Mọi PR đều đi kèm giải thích rõ ràng, review vì người đọc chứ không chỉ để pass CI.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Linh Tran"
+                  src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Linh Tran</strong>
+                  <small>Senior Frontend Engineer</small>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Tốc độ xử lý yêu cầu thay đổi rất ấn tượng — Khánh không chỉ code mà còn chủ động đề xuất giải pháp tối ưu UX. Là một đối tác đáng tin cậy.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Phương Nguyễn"
+                  src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Phương Nguyễn</strong>
+                  <small>Product Owner</small>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Hệ thống database và API do Khánh thiết kế rất dễ mở rộng. Nhờ vậy team backend tôi tích hợp thêm 3 module mới chỉ trong 2 tuần.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Minh Đỗ"
+                  src="https://images.unsplash.com/photo-1504257432389-52343af06ae3?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Minh Đỗ</strong>
+                  <small>Backend Tech Lead</small>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">Cách Khánh viết tài liệu kỹ thuật rất dễ hiểu — ngay cả bạn mới ra trường cũng có thể onboard dự án chỉ trong vài ngày nhờ README và diagram rõ ràng.</p>
+              <footer class="testimonial-card__author">
+                <img loading="lazy" width="40" height="40" alt="Trang Lê"
+                  src="https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=facearea&facepad=2.4&w=160&h=160&q=80"
+                  class="testimonial-card__avatar"
+                  onerror="this.onerror=null;this.src='image/2.jpg';">
+                <div>
+                  <strong>Trang Lê</strong>
+                  <small>QA Lead</small>
+                </div>
+              </footer>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonials-marquee" aria-hidden="true">
+      <span>REAL FEEDBACK</span><i></i><span>FROM REAL PEOPLE</span><i></i><span>BUILT ON TRUST</span>
+    </div>
+  </div>
+</section>

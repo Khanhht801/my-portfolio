@@ -1,0 +1,45 @@
+/* Shared section-title scale and alignment. Loaded after section-specific styles. */
+body .section-heading-title,
+.project-gallery__header .section-heading-title,
+.about-heading .section-heading-title,
+.journey-heading .section-heading-title,
+.tech-section-heading .section-heading-title,
+.testimonials-heading__title.section-heading-title {
+  width: 100%;
+  max-width: 52rem;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Keep the project heading centered across the whole section header. */
+.project-gallery__header {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  text-align: center;
+}
+
+.project-gallery__eyebrow {
+  justify-content: center;
+}
+
+.project-gallery__header p {
+  margin-inline: auto;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  body .section-heading-title,
+  .project-gallery__header .section-heading-title,
+  .about-heading .section-heading-title,
+  .journey-heading .section-heading-title,
+  .tech-section-heading .section-heading-title,
+  .testimonials-heading__title.section-heading-title {
+    font-size: clamp(1.85rem, 8.5vw, 2.5rem);
+    line-height: 1.1;
+  }
+}

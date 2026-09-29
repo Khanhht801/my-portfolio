@@ -6,7 +6,7 @@
          + .marquee-track, .marquee-mask, .marquee-track-reverse (style.css + script.js
            duplicate các item để loop liền mạch)
 ============================================================ -->
-<section class="bg-[#FFFBF5] py-14 border-b border-[#E7E5E4] relative overflow-hidden" id="capabilities">
+<section class="tech-section bg-[#FFFBF5] py-14 border-b border-[#E7E5E4] relative overflow-hidden" id="capabilities">
   <!-- Decorative dots/grid pattern -->
   <div class="absolute inset-0 opacity-[0.35] pointer-events-none" aria-hidden="true"
     style="background-image: radial-gradient(circle, #E7E5E4 1px, transparent 1px); background-size: 22px 22px;">
@@ -18,18 +18,24 @@
     class="absolute bottom-10 right-10 w-[300px] h-[300px] rounded-full bg-gradient-to-tl from-[#F59E0B]/10 to-transparent blur-3xl pointer-events-none"
     aria-hidden="true"></div>
 
-  <div class="max-w-site mx-auto px-6 relative z-10">
-    <h2 class="font-display font-black text-3xl text-[#007BFF] tracking-tight text-center mb-3 animate-booted"
-      data-anim="animate__zoomIn">
-      Công nghệ <span class="text-[#292524]">sử dụng</span>
-    </h2>
-    <p class="text-center text-[#292524] font-mono text-xs uppercase tracking-widest mb-12 caret animate-booted"
-      data-anim="animate__fadeInUp" data-delay="0.15">
-      Những công cụ &amp; ngôn ngữ tôi sử dụng hằng ngày
-    </p>
+  <div class="max-w-[1100px] mx-auto px-6 relative z-10">
+    <header class="tech-section-header">
+      <div class="tech-section-heading">
+        <span class="tech-section-kicker"><i aria-hidden="true"></i>CAPABILITIES / 04</span>
+        <h2 class="section-heading-title font-display font-black text-[#292524] tracking-tight animate-booted"
+          data-anim="animate__zoomIn">
+          Công nghệ <span>sử dụng.</span>
+        </h2>
+
+      </div>
+    </header>
 
     <!-- Marquee Row 1: Frontend & Backend (phải → trái) -->
-    <div class="marquee-mask overflow-hidden mb-10" aria-label="Frontend và Backend">
+    <div class="tech-row-heading">
+      <div><span>01</span><strong>Frontend &amp; Backend</strong></div>
+      <small>BUILD THE PRODUCT · HOVER TO PAUSE</small>
+    </div>
+    <div class="tech-marquee marquee-mask overflow-hidden mb-8" aria-label="Frontend và Backend">
       <div class="marquee-track gap-5 md:gap-6" style="animation-duration: 22s;">
 
         <!-- React -->
@@ -141,7 +147,11 @@
     </div>
 
     <!-- Marquee Row 2: Database, DevOps & Tools (trái → phải) -->
-    <div class="marquee-mask overflow-hidden" aria-label="Database, DevOps và Tools">
+    <div class="tech-row-heading">
+      <div><span>02</span><strong>Database &amp; Tools</strong></div>
+      <small>SHIP &amp; MAINTAIN · HOVER TO PAUSE</small>
+    </div>
+    <div class="tech-marquee marquee-mask overflow-hidden" aria-label="Database, DevOps và Tools">
       <div class="marquee-track marquee-track-reverse gap-5 md:gap-6" style="animation-duration: 22s;">
 
         <!-- PostgreSQL -->

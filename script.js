@@ -19,15 +19,21 @@ const initApp = () => {
   document.documentElement.classList.add('animate-ready');
   // 1. Scroll Progress Bar
   const progressBar = document.getElementById('scroll-progress');
+  let scrollUiFrame = 0;
   const updateScrollProgress = () => {
+    scrollUiFrame = 0;
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    const scrolled = scrollHeight > 0 ? Math.min(1, Math.max(0, scrollTop / scrollHeight)) : 0;
     if (progressBar) {
-      progressBar.style.width = scrolled + '%';
+      progressBar.style.transform = `scaleX(${scrolled})`;
     }
   };
-  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  const requestScrollUiUpdate = () => {
+    if (scrollUiFrame) return;
+    scrollUiFrame = requestAnimationFrame(updateScrollProgress);
+  };
+  window.addEventListener('scroll', requestScrollUiUpdate, { passive: true });
   updateScrollProgress();
 
   // 2. Mobile Menu Toggle
@@ -116,15 +122,17 @@ const initApp = () => {
   }
 
   // 7. About Portrait Slider (autoplay 3s + prev/next + dots + pause on user interaction / off-screen / hidden tab)
-  const sliders = document.querySelectorAll('[data-autoplay-slider]');
+  const setupAboutSlider = (slider) => {
+    if (!slider || slider.dataset.sliderBound === 'true') return;
 
-  sliders.forEach((slider) => {
     const slides = Array.from(slider.querySelectorAll('[data-slide]'));
     const prevBtn = slider.querySelector('[data-prev]');
     const nextBtn = slider.querySelector('[data-next]');
     const dots = Array.from(slider.querySelectorAll('[data-dot-index]'));
+    const slideCount = slider.querySelector('.about-slider__caption-count');
     const total = slides.length;
     if (total < 2) return;
+    slider.dataset.sliderBound = 'true';
 
     const intervalMs = parseInt(slider.dataset.autoplayMs, 10) || 3000;
 
@@ -139,6 +147,7 @@ const initApp = () => {
         slide.classList.toggle('opacity-100', i === idx);
         slide.classList.toggle('opacity-0', i !== idx);
         slide.classList.toggle('z-[1]', i === idx);
+        slide.setAttribute('aria-hidden', i === idx ? 'false' : 'true');
       });
       dots.forEach((dot, i) => {
         const active = i === idx;
@@ -146,6 +155,9 @@ const initApp = () => {
         dot.classList.toggle('bg-[#E7E5E4]', !active);
         dot.setAttribute('aria-selected', active ? 'true' : 'false');
       });
+      if (slideCount) {
+        slideCount.textContent = `${String(idx + 1).padStart(2, '0')} — ${String(total).padStart(2, '0')}`;
+      }
       current = idx;
     };
 
@@ -174,6 +186,18 @@ const initApp = () => {
 
     if (nextBtn) nextBtn.addEventListener('click', () => { goNext(); bump(); });
     if (prevBtn) prevBtn.addEventListener('click', () => { goPrev(); bump(); });
+
+    slider.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        goNext();
+        bump();
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        goPrev();
+        bump();
+      }
+    });
 
     dots.forEach((dot) => {
       dot.addEventListener('click', () => {
@@ -214,9 +238,117 @@ const initApp = () => {
     }
 
     showSlide(0);
-  });
+  };
 
-  // 9. Tech Stack Marquee — tạo đủ bản sao để luôn phủ kín viewport.
+  document.querySelectorAll('[data-autoplay-slider]').forEach(setupAboutSlider);
+
+  // About được load nền sau khi app khởi tạo, nên bind slider ngay khi section xuất hiện.
+  const sliderObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeType !== 1 || !node.querySelectorAll) return;
+        if (node.matches?.('[data-autoplay-slider]')) setupAboutSlider(node);
+        node.querySelectorAll('[data-autoplay-slider]').forEach(setupAboutSlider);
+      });
+    });
+  });
+  sliderObserver.observe(document.body, { childList: true, subtree: true });
+
+  // 9. Project gallery — cuộn dọc điều khiển rail ngang trên desktop.
+  //    Không chặn wheel/touch: section dùng sticky + chiều cao tài liệu tự nhiên.
+  //    Mobile và prefers-reduced-motion giữ carousel ngang native.
+  const setupProjectScroller = (projectSection) => {
+    if (!projectSection || projectSection.dataset.projectScrollBound === 'true') return;
+
+    const projectSticky = projectSection.querySelector('.project-gallery__sticky');
+    const projectViewport = projectSection.querySelector('[data-project-viewport]');
+    const projectTrack = projectSection.querySelector('[data-project-track]');
+    const projectProgress = projectSection.querySelector('[data-project-progress]');
+    const projectCurrent = projectSection.querySelector('[data-project-current]');
+    if (!projectSticky || !projectViewport || !projectTrack) return;
+
+    projectSection.dataset.projectScrollBound = 'true';
+    const projectMotionQuery = window.matchMedia('(min-width: 900px) and (prefers-reduced-motion: no-preference)');
+    let projectTravel = 0;
+    let projectFrame = 0;
+
+    const resetProjectScroll = () => {
+      projectSection.classList.remove('is-scroll-ready');
+      projectSection.style.removeProperty('height');
+      projectTrack.style.removeProperty('transform');
+      if (projectProgress) projectProgress.style.removeProperty('transform');
+      if (projectCurrent) projectCurrent.textContent = '01';
+    };
+
+    const updateProjectScroll = () => {
+      projectFrame = 0;
+      if (!projectMotionQuery.matches || !projectSection.classList.contains('is-scroll-ready')) return;
+
+      const stickyTop = Number.parseFloat(getComputedStyle(projectSticky).top) || 0;
+      const sectionTop = projectSection.getBoundingClientRect().top + window.scrollY;
+      const start = sectionTop - stickyTop;
+      const scrollDistance = Math.max(1, projectSection.offsetHeight - projectSticky.offsetHeight);
+      const progress = Math.min(1, Math.max(0, (window.scrollY - start) / scrollDistance));
+
+      projectTrack.style.transform = `translate3d(${-projectTravel * progress}px, 0, 0)`;
+      if (projectProgress) projectProgress.style.transform = `scaleX(${progress})`;
+      if (projectCurrent) {
+        const total = projectTrack.children.length;
+        const active = Math.min(total, Math.floor(progress * total) + 1);
+        projectCurrent.textContent = String(active).padStart(2, '0');
+      }
+    };
+
+    const requestProjectUpdate = () => {
+      cancelAnimationFrame(projectFrame);
+      projectFrame = requestAnimationFrame(updateProjectScroll);
+    };
+
+    const measureProjectScroll = () => {
+      if (!projectMotionQuery.matches) {
+        resetProjectScroll();
+        return;
+      }
+
+      projectSection.classList.add('is-scroll-ready');
+      projectTravel = Math.max(0, projectTrack.scrollWidth - projectViewport.clientWidth);
+
+      // Quãng cuộn dài hơn quãng dịch một chút để từng card có đủ thời gian đọc.
+      const scrollDistance = Math.max(window.innerHeight * 0.9, projectTravel * 1.08);
+      projectSection.style.height = `${projectSticky.offsetHeight + scrollDistance}px`;
+      requestProjectUpdate();
+    };
+
+    window.addEventListener('scroll', requestProjectUpdate, { passive: true });
+    window.addEventListener('resize', () => requestAnimationFrame(measureProjectScroll), { passive: true });
+    projectMotionQuery.addEventListener('change', measureProjectScroll);
+
+    if ('ResizeObserver' in window) {
+      const projectResizeObserver = new ResizeObserver(() => requestAnimationFrame(measureProjectScroll));
+      projectResizeObserver.observe(projectViewport);
+      projectResizeObserver.observe(projectTrack);
+    }
+
+    requestAnimationFrame(measureProjectScroll);
+  };
+
+  const bindProjectScrollerWithin = (root) => {
+    if (!root || root.nodeType !== 1) return;
+    if (root.matches?.('[data-project-scroll]')) setupProjectScroller(root);
+    root.querySelectorAll?.('[data-project-scroll]').forEach(setupProjectScroller);
+  };
+
+  // Bind ngay nếu section đã có, đồng thời theo dõi trường hợp section-loader
+  // inject 03-work sau khi initApp đã chạy. data-project-scroll-bound ngăn bind trùng.
+  document.querySelectorAll('[data-project-scroll]').forEach(setupProjectScroller);
+  const projectSectionObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach(bindProjectScrollerWithin);
+    });
+  });
+  projectSectionObserver.observe(document.body, { childList: true, subtree: true });
+
+  // 10. Tech Stack Marquee — tạo đủ bản sao để luôn phủ kín viewport.
   //    Khoảng dịch được đo từ đầu hai bộ icon liên tiếp nên bao gồm cả `gap`;
   //    cách này tránh cú giật nhỏ do translateX(-50%) bị lệch nửa gap.
   const setupMarquee = (track) => {
@@ -255,6 +387,64 @@ const initApp = () => {
 
   //    Áp dụng cho mọi track đã có sẵn trong DOM
   document.querySelectorAll('.marquee-track').forEach(setupMarquee);
+
+  // 10b. Testimonials vertical columns — duplicate nhom card de loop liet mach.
+  //     Track dich tu 0 → -100% (do 2 ban group chong len nhau) → quay ve
+  //     vi tri ban dau mot cach tron ven.
+  const setupTestimonials = (track) => {
+    if (!track || track.dataset.testimonialsReady === 'true') return;
+
+    const group = track.querySelector('.testimonials-track__group');
+    if (!group) return;
+
+    // Tao ban sao va append vao cuoi track (cloneNode deep = mac dinh)
+    const clone = group.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+
+    // Đo trực tiếp khoảng cách tới bản sao để bao gồm chính xác gap responsive.
+    const translatePx = clone.offsetTop - group.offsetTop;
+    track.style.setProperty('--testimonials-translate', `-${translatePx}px`);
+
+    // animation-duration set qua inline style (HTML cung cap data-anim-duration)
+    const dur = track.dataset.animDuration || '22s';
+    track.style.animationDuration = dur;
+
+    track.dataset.testimonialsReady = 'true';
+  };
+
+  // Bind ngay voi cac track da co san trong DOM (khi section 09 inject truoc khi initApp chay)
+  document.querySelectorAll('[data-testimonials-track]').forEach(setupTestimonials);
+
+  // Section 09-testimonials load nen qua section-loader.js (requestIdleCallback)
+  // — theo doi de duplicate khi section moi inject.
+  const testimonialsObserver = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      m.addedNodes.forEach((node) => {
+        if (node.nodeType !== 1 || !node.querySelectorAll) return;
+        if (node.matches?.('[data-testimonials-track]')) setupTestimonials(node);
+        node.querySelectorAll?.('[data-testimonials-track]').forEach(setupTestimonials);
+      });
+    }
+  });
+  testimonialsObserver.observe(document.body, { childList: true, subtree: true });
+
+  // Tinh lai khi viewport / font-size thay doi (co the lam group thay doi chieu cao)
+  let testimonialsResizeFrame;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(testimonialsResizeFrame);
+    testimonialsResizeFrame = requestAnimationFrame(() => {
+      document.querySelectorAll('[data-testimonials-track][data-testimonials-ready="true"]').forEach((t) => {
+        const groups = t.querySelectorAll('.testimonials-track__group');
+        const group = groups[0];
+        const clone = groups[1];
+        if (group && clone) {
+          const translatePx = clone.offsetTop - group.offsetTop;
+          t.style.setProperty('--testimonials-translate', `-${translatePx}px`);
+        }
+      });
+    });
+  }, { passive: true });
 
   //    Section 06-capabilities được load nền qua section-loader.js
   //    (requestIdleCallback) — có thể chưa tồn tại khi block này chạy.

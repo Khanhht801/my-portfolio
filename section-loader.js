@@ -17,7 +17,8 @@
   const PRIORITY_ORDER = [
     '00-scroll-progress', '01-navbar', '02-hero',
     '03-work', '04-about', '05-experience',
-    '06-capabilities', '07-contact', '08-footer'
+    '06-capabilities', '09-testimonials', '07-contact',
+    '08-footer'
   ];
 
   // 1. Fetch một section, inject HTML, preload ảnh đầu tiên nếu có
@@ -25,7 +26,12 @@
     const slot = document.querySelector(`[data-section="${name}"]`);
     if (!slot) return;
     try {
-      const res = await fetch(SECTIONS_DIR + name + '.html', { cache: 'default' });
+      // Khi phát triển local, luôn lấy fragment mới nhất. Tránh trường hợp trình
+      // duyệt giữ nguyên section cũ dù file HTML đã được cập nhật.
+      const isLocal = ['localhost', '127.0.0.1', '[::1]', ''].includes(window.location.hostname);
+      const res = await fetch(SECTIONS_DIR + name + '.html', {
+        cache: isLocal ? 'no-store' : 'default'
+      });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const html = await res.text();
       slot.innerHTML = html;

@@ -61,8 +61,12 @@
   const WATCH_TARGETS = [
     { url: 'index.html', parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
     { url: 'style.css',  parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
+    { url: 'about.css', parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
+    { url: 'experience.css', parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
     { url: 'script.js',  parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
     { url: 'section-loader.js', parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
+    { url: 'sections/04-about.html', parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
+    { url: 'sections/05-experience.html', parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
   ];
 
   const STORAGE_KEY = 'autoreload_signatures';

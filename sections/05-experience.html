@@ -1,201 +1,136 @@
 <!-- ============================================================
-     05. EXPERIENCE SECTION
-     - Timeline 3 mốc: hiện tại, dự án, bằng cấp
-     - Selector JS phụ thuộc:
-         + .reveal-on-scroll.is-visible (IntersectionObserver)
-         + .timeline-node-active (style.css style định nghĩa)
+     05. EXPERIENCE — compact evidence timeline
+     - Left: concrete work/learning outcomes
+     - Right: contextual image
 ============================================================ -->
-<section class="border-b border-[#E7E5E4] bg-[#FFF8F0] py-12 relative overflow-hidden" id="experience">
-  <div
-    class="absolute -top-32 -left-32 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#007BFF]/8 to-transparent blur-3xl pointer-events-none"
-    aria-hidden="true"></div>
+<section class="journey-section relative overflow-hidden border-b border-[#E7E5E4]" id="experience">
+  <div class="journey-section__orb journey-section__orb--blue" aria-hidden="true"></div>
+  <span class="journey-section__index" aria-hidden="true">03</span>
 
-  <div class="max-w-site mx-auto px-6 relative z-10">
-    <!-- Section Header -->
-    <div
-      class="flex flex-col items-center text-center justify-center pb-6 border-b border-[#292524] gap-2 mb-10 reveal-on-scroll is-visible">
-      <div
-        class="font-mono text-xs uppercase tracking-widest text-[#292524] font-semibold mb-1 flex items-center justify-center gap-2">
-        <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
-        LỘ TRÌNH PHÁT TRIỂN
-        <span class="w-2 h-0.5 bg-[#292524] rounded-full"></span>
-      </div>
-      <h2 class="font-display font-black text-3xl sm:text-4xl text-[#007BFF] tracking-tight">
-        KINH NGHIỆM <span class="text-[#292524]">&</span> CỘT MỐC HỌC THUẬT
+  <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <header class="journey-heading reveal-on-scroll is-visible">
+      <h2 class="journey-heading__title section-heading-title animate-booted" data-anim="animate__fadeInUp">
+        <span>Kinh nghiệm làm việc.</span>
       </h2>
-      <span class="text-xs font-mono text-[#78716C] mt-1">2024 — HIỆN TẠI</span>
+    </header>
+
+    <div class="journey-layout">
+      <ol class="journey-timeline" aria-label="Các cột mốc kinh nghiệm và học tập">
+        <!-- 01 · Work -->
+        <li class="journey-item journey-item--current reveal-on-scroll is-visible animate-booted"
+          data-anim="animate__fadeInUp" data-delay="0">
+          <time class="journey-item__date" datetime="2025-08">
+            <span>T8</span><strong>2025</strong><small>HIỆN TẠI</small>
+          </time>
+          <div class="journey-item__rail" aria-hidden="true"><span class="journey-item__node timeline-node-active"><i></i></span></div>
+          <article class="journey-card">
+            <div class="journey-card__topline">
+              <span class="journey-card__type"><i></i>KINH NGHIỆM LÀM VIỆC</span>
+              <span class="journey-card__number">01 / 03</span>
+            </div>
+            <div class="journey-card__heading">
+              <h3>Nhân viên Văn phòng &amp; Quản lý Website</h3>
+              <p>Công ty TNHH MTV Xứ Lạng Education</p>
+            </div>
+            <div class="journey-card__content">
+              <div class="journey-card__details">
+                <ul class="journey-card__bullets">
+                  <li>Quản lý và cập nhật nội dung, hình ảnh, thông tin khóa học trên website.</li>
+                  <li>Xây dựng nội dung cho Fanpage, Zalo OA và các kênh online.</li>
+                  <li>Hỗ trợ tư vấn khóa học và phối hợp vận hành công việc văn phòng.</li>
+                </ul>
+                <ul class="journey-card__tags" aria-label="Kỹ năng sử dụng">
+                  <li>Website</li><li>Fanpage</li><li>Zalo OA</li><li>Google Maps</li>
+                </ul>
+              </div>
+              <figure class="journey-card__media">
+                <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+                  alt="Không gian văn phòng đại diện cho công việc quản lý website" width="1000" height="750" loading="lazy"
+                  onerror="this.onerror=null;this.src='image/logo.jpg';">
+                <figcaption><span></span>Website operations</figcaption>
+              </figure>
+            </div>
+          </article>
+        </li>
+
+        <!-- 02 · Project -->
+        <li class="journey-item journey-item--project reveal-on-scroll is-visible animate-booted"
+          data-anim="animate__fadeInUp" data-delay="0.1">
+          <time class="journey-item__date" datetime="2026">
+            <span>NĂM</span><strong>2026</strong><small>DỰ ÁN</small>
+          </time>
+          <div class="journey-item__rail" aria-hidden="true"><span class="journey-item__node"><i></i></span></div>
+          <article class="journey-card">
+            <div class="journey-card__topline">
+              <span class="journey-card__type"><i></i>DỰ ÁN HỌC THUẬT</span>
+              <span class="journey-card__number">02 / 03</span>
+            </div>
+            <div class="journey-card__heading">
+              <h3>Hệ thống quản lý sinh viên</h3>
+              <p>Khoa Điện &amp; Công nghệ thông tin · Trường Cao đẳng Lạng Sơn</p>
+            </div>
+            <div class="journey-card__content">
+              <div class="journey-card__details">
+                <ul class="journey-card__bullets">
+                  <li>Thiết kế giao diện quản lý thông tin sinh viên và lớp học trực quan.</li>
+                  <li>Xây dựng chức năng thêm, sửa, tìm kiếm và quản lý dữ liệu.</li>
+                  <li>Kết nối database và hoàn thiện luồng xử lý dữ liệu của hệ thống.</li>
+                </ul>
+                <ul class="journey-card__tags" aria-label="Công nghệ sử dụng">
+                  <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li><li>MySQL</li><li>PHP</li>
+                </ul>
+              </div>
+              <figure class="journey-card__media">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+                  alt="Màn hình dashboard đại diện cho dự án quản lý sinh viên" width="1000" height="750" loading="lazy"
+                  onerror="this.onerror=null;this.src='image/logo.jpg';">
+                <figcaption><span></span>Fullstack project</figcaption>
+              </figure>
+            </div>
+          </article>
+        </li>
+
+        <!-- 03 · Education -->
+        <li class="journey-item journey-item--education reveal-on-scroll is-visible animate-booted"
+          data-anim="animate__fadeInUp" data-delay="0.2">
+          <time class="journey-item__date" datetime="2024">
+            <span>2024</span><strong>—</strong><small>2027</small>
+          </time>
+          <div class="journey-item__rail" aria-hidden="true"><span class="journey-item__node"><i></i></span></div>
+          <article class="journey-card">
+            <div class="journey-card__topline">
+              <span class="journey-card__type"><i></i>HỌC THUẬT</span>
+              <span class="journey-card__number">03 / 03</span>
+            </div>
+            <div class="journey-card__heading">
+              <h3>Kỹ sư thực hành Tin học ứng dụng</h3>
+              <p>Trường Cao đẳng Lạng Sơn</p>
+            </div>
+            <div class="journey-card__content">
+              <div class="journey-card__details">
+                <ul class="journey-card__bullets">
+                  <li>Duy trì GPA <strong>3.8/4.0</strong>, định hướng tốt nghiệp loại Giỏi.</li>
+                  <li>Tập trung vào giải thuật, cơ sở dữ liệu và phân tích thiết kế hệ thống.</li>
+                  <li>Nhận Học bổng Khuyến khích Học tập Xuất sắc trong 3 học kỳ liên tiếp.</li>
+                </ul>
+                <ul class="journey-card__tags" aria-label="Kiến thức chuyên môn">
+                  <li>Data Structures</li><li>Algorithms</li><li>SQL Server</li><li>System Design</li><li>Git</li>
+                </ul>
+              </div>
+              <figure class="journey-card__media">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+                  alt="Sinh viên học tập đại diện cho hành trình học thuật" width="1000" height="750" loading="lazy"
+                  onerror="this.onerror=null;this.src='image/logo.jpg';">
+                <figcaption><span></span>Academic journey</figcaption>
+              </figure>
+            </div>
+          </article>
+        </li>
+      </ol>
     </div>
 
-    <!-- Vertical Timeline Container -->
-    <div class="relative max-w-4xl mx-auto" data-stagger>
-      <!-- Vertical Connecting Line -->
-      <div
-        class="absolute left-4 sm:left-6 md:left-1/2 top-3 bottom-8 w-[2px] bg-gradient-to-b from-[#007BFF] via-[#F59E0B] to-[#F59E0B]/30 -translate-x-1/2">
-      </div>
-
-      <div class="space-y-12 sm:space-y-16">
-
-        <!-- ================= TIMELINE ITEM 1 (Hiện tại) ================= -->
-        <div class="relative flex flex-col md:flex-row items-start group reveal-on-scroll is-visible animate-booted"
-          data-anim="animate__fadeInUp" data-delay="0">
-          <!-- Left column: Time / Role Overview -->
-          <div
-            class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 md:pr-12 md:text-right flex flex-col md:items-end mb-3 md:mb-0">
-            <div
-              class="badge-glow-pulse inline-flex items-center gap-2 px-3 py-1 bg-[#10B981]/10 border border-[#10B981]/30 rounded-full text-[#10B981] font-mono text-xs font-semibold mb-2 shadow-sm">
-              <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
-              </span>
-              T8/2025 - Hiện tại · KINH NGHIỆM LÀM VIỆC
-            </div>
-            <h3
-              class="font-display font-bold text-xl sm:text-2xl text-[#292524] tracking-tight group-hover:text-[#007BFF] transition-colors">
-              Nhân viên Văn phòng & Quản lý Website
-            </h3>
-            <span class="font-mono text-xs sm:text-sm text-[#007BFF] font-medium mt-0.5">
-              Công ty TNHH MTV Xứ Lạng Education
-            </span>
-          </div>
-
-          <!-- Center Node -->
-          <div
-            class="timeline-node-active absolute left-4 sm:left-6 md:left-1/2 -translate-x-1/2 top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[#007BFF] flex items-center justify-center shadow-sm z-10 group-hover:scale-125 transition-transform duration-200">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#007BFF]"></span>
-          </div>
-
-          <!-- Right column: Technical Card -->
-          <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-12">
-            <div
-              class="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#007BFF] transition-all duration-300">
-              <p class="text-justify text-sm sm:text-base text-[#44403C] leading-relaxed mb-3">
-                Trực tiếp quản lý và cập nhật nội dung website, đồng thời phụ trách đăng tải nội dung trên Fanpage
-                và các kênh online. Hỗ trợ công việc văn phòng, tư vấn thông tin khóa học và phối hợp vận hành các
-                hoạt động của công ty.
-              </p>
-              <div class="p-3 rounded-xl bg-[#FFFBF5] border border-[#E7E5E4] mb-4">
-                <div class="flex items-start gap-2 text-xs text-[#292524] leading-relaxed font-mono">
-                  <span class="text-[#007BFF] font-bold">▹</span>
-                  <span class="">Cập nhật nội dung, hình ảnh và thông tin khóa học trên website; xây dựng và đăng
-                    tải nội dung trên các kênh online.</span>
-                </div>
-              </div>
-              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Website</span>
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Fanpage</span>
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Zalo OA</span>
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Google map</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ================= TIMELINE ITEM 2 (Dự án) ================= -->
-        <div class="relative flex flex-col md:flex-row items-start group reveal-on-scroll is-visible animate-booted"
-          data-anim="animate__fadeInUp" data-delay="0.1">
-          <!-- Left column: Technical Card -->
-          <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 md:pr-12 order-2 md:order-1 mt-3 md:mt-0">
-            <div
-              class="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#007BFF] transition-all duration-300">
-              <p class="text-justify text-sm sm:text-base text-[#44403C] leading-relaxed mb-3">
-                Xây dựng website quản lý sinh viên nhằm hỗ trợ quản lý thông tin sinh viên một cách trực quan, thuận
-                tiện và có hệ thống.
-              </p>
-              <div class="p-3 rounded-xl bg-[#FFFBF5] border border-[#E7E5E4] mb-4">
-                <div class="flex items-start gap-2 text-xs text-[#292524] leading-relaxed font-mono">
-                  <span class="text-[#007BFF] font-bold">▹</span>
-                  <span class="">Thiết kế giao diện, xây dựng các chức năng quản lý và thực hiện kết nối, xử lý dữ
-                    liệu theo yêu cầu của bài toán.</span>
-                </div>
-              </div>
-              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">HTML</span>
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">CSS</span>
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">JavaScript</span>
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Python</span>
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">MySQL</span>
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">PHP</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Center Node -->
-          <div
-            class="absolute left-4 sm:left-6 md:left-1/2 -translate-x-1/2 top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[#F59E0B] flex items-center justify-center shadow-sm z-10 group-hover:scale-125 group-hover:border-[#007BFF] transition-all duration-200">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#F59E0B] group-hover:bg-[#007BFF] transition-colors"></span>
-          </div>
-
-          <!-- Right column: Time / Role -->
-          <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-12 order-1 md:order-2 flex flex-col items-start">
-            <div
-              class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-full text-[#292524] font-mono text-xs font-semibold mb-2 shadow-sm">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
-              2026 · DỰ ÁN
-            </div>
-            <h3
-              class="font-display font-bold text-xl sm:text-2xl text-[#292524] tracking-tight group-hover:text-[#007BFF] transition-colors">
-              Quản lý sinh viên
-            </h3>
-            <span class="font-mono text-xs sm:text-sm text-[#44403C] font-medium mt-0.5">
-              Khoa Điện & Công nghệ thông tin (Trường Cao đẳng Lạng Sơn)
-            </span>
-          </div>
-        </div>
-
-        <!-- ================= TIMELINE ITEM 3 (Bằng cấp) ================= -->
-        <div class="relative flex flex-col md:flex-row items-start group reveal-on-scroll is-visible animate-booted"
-          data-anim="animate__fadeInUp" data-delay="0.2">
-          <!-- Left column: Time -->
-          <div
-            class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 md:pr-12 md:text-right flex flex-col md:items-end mb-3 md:mb-0">
-            <div
-              class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-full text-[#292524] font-mono text-xs font-semibold mb-2 shadow-sm">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
-              2024 — 2027 · BẰNG CẤP
-            </div>
-            <h3
-              class="font-display font-bold text-xl sm:text-2xl text-[#292524] tracking-tight group-hover:text-[#007BFF] transition-colors">
-              Kỹ sư thực hành Tin Học ứng dụng
-            </h3>
-            <span class="font-mono text-xs sm:text-sm text-[#44403C] font-medium mt-0.5">
-              Trường Cao đẳng Lạng Sơn
-            </span>
-          </div>
-
-          <!-- Center Node -->
-          <div
-            class="absolute left-4 sm:left-6 md:left-1/2 -translate-x-1/2 top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[#F59E0B] flex items-center justify-center shadow-sm z-10 group-hover:scale-125 group-hover:border-[#007BFF] transition-all duration-200">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#F59E0B] group-hover:bg-[#007BFF] transition-colors"></span>
-          </div>
-
-          <!-- Right column: Technical Card -->
-          <div class="w-full md:w-1/2 pl-12 sm:pl-16 md:pl-12">
-            <div
-              class="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#007BFF] transition-all duration-300">
-              <p class="text-justify text-sm sm:text-base text-[#44403C] leading-relaxed mb-3">
-                Tốt nghiệp loại Giỏi (GPA 3.8/4.0). Các môn học cốt lõi: Cấu trúc máy tính và hệ điều hành, Hệ quản
-                trị cơ sở dữ liệu, Cấu trúc dữ liệu & Giải thuật, Phân tích thiết kế hệ thống, Mạng máy tính, Thiết
-                kế website.
-              </p>
-              <div class="p-3 rounded-xl bg-[#FFFBF5] border border-[#E7E5E4] mb-4">
-                <div class="flex items-start gap-2 text-xs text-[#292524] leading-relaxed font-mono">
-                  <span class="text-[#F59E0B] font-bold">★</span>
-                  <span class="">Đạt <strong class="text-[#292524]">Học bổng Khuyến khích Học tập Xuất sắc</strong>
-                    3 học kỳ liên tiếp nhờ thành tích học tập và nghiên cứu nổi trội.</span>
-                </div>
-              </div>
-              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Data Structures</span>
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Algorithms</span>
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">SQL Server</span>
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">System Design</span>
-                <span class="px-2 py-0.5 bg-white text-[#292524] border border-[#E7E5E4] rounded-md hover:border-[#007BFF] transition-colors">Git</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
+    <div class="journey-footer" aria-hidden="true">
+      <span>LEARN</span><i></i><span>BUILD</span><i></i><span>WORK</span><b>KEEP MOVING FORWARD →</b>
     </div>
   </div>
 </section>
