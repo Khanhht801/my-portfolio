@@ -9,7 +9,7 @@
        - Subset Google Fonts (giam ~60-70% weight)
        - Preload anh LCP hero + font critical
        - defer script.js + section-loader.js (non-blocking)
-       - Tailwind CDN: giu nguyen theo yeu cau nguoi dung
+       - Tailwind CSS duoc build san cho production
        ============================================================ -->
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -65,7 +65,7 @@
     (xem section-loader.js → fetchSection).
   -->
 
-  <!-- Critical inline style (giu de khong phu thuoc Tailwind CDN load cham) -->
+  <!-- Critical inline style -->
   <style>
     h1,
     h2,
@@ -108,53 +108,13 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer">
 
-  <!-- Tailwind CSS CDN (JIT runtime - giu theo yeu cau nguoi dung) -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            warm: {
-              bg: '#FFFBF5',
-              surface: '#FFF8F0',
-              white: '#FFFFFF',
-              border: '#E7E5E4',
-              'border-subtle': '#F5F0EB',
-              muted: '#78716C',
-              body: '#44403C',
-              dark: '#292524',
-            },
-            brand: {
-              blue: '#007BFF',
-              'blue-hover': '#0056CC',
-              'blue-light': '#DBEAFE',
-              amber: '#F59E0B',
-              'amber-light': '#FEF3C7',
-              coral: '#F97316',
-              success: '#10B981',
-              danger: '#EF4444',
-              info: '#38BDF8',
-            }
-          },
-          fontFamily: {
-            sans: ['"Be Vietnam Pro"', '"Hanken Grotesk"', 'sans-serif'],
-            display: ['"Hanken Grotesk"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          maxWidth: { 'site': '1280px' },
-          borderRadius: { sm: '4px', md: '8px', lg: '12px' }
-        }
-      }
-    }
-  </script>
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="about.css?v=20260929">
-  <link rel="stylesheet" href="experience.css?v=20260929-2">
-  <link rel="stylesheet" href="section-headings.css?v=20260929">
-  <link rel="stylesheet" href="testimonials.css?v=20260929">
+  <!-- Compiled Tailwind + custom CSS -->
+  <link rel="stylesheet" href="tailwind.css?v=20260929-3">
+  <link rel="stylesheet" href="style.css?v=20260929-3">
+  <link rel="stylesheet" href="about.css?v=20260929-3">
+  <link rel="stylesheet" href="experience.css?v=20260929-3">
+  <link rel="stylesheet" href="section-headings.css?v=20260929-3">
+  <link rel="stylesheet" href="testimonials.css?v=20260929-3">
 
   <!-- Font ready: go bo anti-FOUC -->
   <script>
@@ -224,13 +184,10 @@
   <div data-section="08-footer"></div>
 
   <!-- Section loader (load trước, không cần đợi section xong) -->
-  <script src="section-loader.js" defer></script>
-
-  <!-- DEV-ONLY: auto-reload khi sửa file. XÓA dòng này khi deploy production. -->
-  <script src="auto-reload.js" defer></script>
+  <script src="section-loader.js?v=20260929-3" defer></script>
 
   <!-- Main app script (chờ event "sections:loaded" mới init) -->
-  <script src="script.js" defer></script>
+  <script src="script.js?v=20260929-3" defer></script>
 </body>
 
 </html>

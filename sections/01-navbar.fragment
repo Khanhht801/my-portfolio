@@ -18,7 +18,7 @@
 
     <!-- Desktop Navigation -->
     <nav aria-label="Điều hướng chính" id="desktop-navigation"
-      class="hidden lg:flex items-center gap-1 text-base font-medium text-[#292524] absolute left-1/2 -translate-x-1/2 normal-case">
+      class="hidden lg:flex items-center gap-2 text-base font-medium text-[#292524] absolute left-1/2 -translate-x-1/2 normal-case">
       <a class="site-nav-link" href="#work">Dự án</a>
       <a class="site-nav-link" href="#about">Giới thiệu</a>
       <a class="site-nav-link" href="#experience">Kinh nghiệm</a>

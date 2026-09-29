@@ -1,14 +1,12 @@
 <!-- ============================================================
      06. TECH STACK (Marquee rows)
      - Hai hàng marquee: Frontend/Backend (phải → trái) và DB/DevOps (trái → phải)
+     - Logo công nghệ: Devicon v2.17.0, ghim phiên bản qua jsDelivr
      - Selector JS phụ thuộc:
-         + .reveal-on-scroll.is-visible (IntersectionObserver) - không có ở markup gốc
          + .marquee-track, .marquee-mask, .marquee-track-reverse (style.css + script.js
            duplicate các item để loop liền mạch)
 ============================================================ -->
 <section class="tech-section bg-[#FFFBF5] py-14 border-b border-[#E7E5E4] relative overflow-hidden" id="capabilities">
-  <span class="section-corner-index" aria-hidden="true">04</span>
-  <!-- Decorative dots/grid pattern -->
   <div class="absolute inset-0 opacity-[0.35] pointer-events-none" aria-hidden="true"
     style="background-image: radial-gradient(circle, #E7E5E4 1px, transparent 1px); background-size: 22px 22px;">
   </div>
@@ -27,7 +25,6 @@
           data-anim="animate__zoomIn">
           Công nghệ <span>sử dụng.</span>
         </h2>
-
       </div>
     </header>
 
@@ -39,239 +36,143 @@
     <div class="tech-marquee marquee-mask overflow-hidden mb-8" aria-label="Frontend và Backend">
       <div class="marquee-track gap-5 md:gap-6" style="animation-duration: 22s;">
 
-        <!-- React -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#007BFF] group-hover:border-[#007BFF] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-7 h-7 text-[#007BFF] group-hover:text-white transition-colors" fill="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                d="M12 10.11c1.03 0 1.87.84 1.87 1.89s-.84 1.89-1.87 1.89c-1.03 0-1.87-.84-1.87-1.89s.84-1.89 1.87-1.89M7.37 20c.63.95 1.54 1.74 2.65 2.19 1.25.51 2.54.51 3.79-.01 1.05-.44 1.93-1.2 2.55-2.12.35-.52.2-1.22-.32-1.57-.52-.35-1.22-.2-1.57.32-.4.6-.96 1.07-1.63 1.34-.84.34-1.74.34-2.58 0-.74-.3-1.34-.83-1.75-1.46-.72-1.11-1.08-2.67-1.08-4.66 0-.82.07-1.64.21-2.45l-.46.33c-.76.54-1.6.86-2.51.96-1.57.17-3.07-.46-4.01-1.68-.78-1.01-1.04-2.27-.72-3.46.3-1.13 1.1-2.03 2.19-2.48.91-.37 1.9-.38 2.87-.04.4.14.79.35 1.15.62l.62.47c.53-.78 1.17-1.5 1.9-2.14C10.15 6.44 11.06 6 12 6s1.85.44 2.69 1.27c.73.64 1.37 1.36 1.9 2.14l.62-.47c.36-.27.75-.48 1.15-.62.97-.34 1.96-.33 2.87.04 1.09.45 1.89 1.35 2.19 2.48.32 1.19.06 2.45-.72 3.46-.94 1.22-2.44 1.85-4.01 1.68-.91-.1-1.75-.42-2.51-.96l-.46-.33c.14.81.21 1.63.21 2.45 0 1.99-.36 3.55-1.08 4.66-.35.54-.2 1.25.34 1.6.53.35 1.24.2 1.59-.34.93-1.43 1.39-3.37 1.39-5.92 0-.96-.09-1.92-.26-2.85 1.06.66 2.24 1.03 3.47 1.08 2.11.08 4.09-.8 5.43-2.43 1.11-1.35 1.48-3.06 1.03-4.7-.44-1.62-1.59-2.91-3.15-3.53-1.28-.51-2.65-.5-3.97-.02-.59.21-1.15.53-1.67.93-.72-.94-1.57-1.77-2.54-2.46C14.72 2.67 13.38 2 12 2s-2.72.67-4.01 1.81c-.97.69-1.82 1.52-2.54 2.46-.52-.4-1.08-.72-1.67-.93-1.32-.48-2.69-.49-3.97.02C-1.76 5.98-.61 7.27-.17 8.89c.45 1.64.08 3.35-1.03 4.7 1.34 1.63 3.32 2.51 5.43 2.43 1.23-.05 2.41-.42 3.47-1.08-.17.93-.26 1.89-.26 2.85 0 2.55.46 4.49 1.39 5.92z">
-              </path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #61dafb; --tech-tint: #effcff;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/react/react-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">React</span>
+          <span class="tech-icon-label">React</span>
         </div>
 
-        <!-- Next.js -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#292524] group-hover:border-[#292524] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-7 h-7 text-[#292524] group-hover:text-white transition-colors" fill="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.83 17.585L9.67 6.837h1.996l6.837 8.922c-.822.684-1.74 1.298-2.673 1.826zm-7.794-.482L6.163 6.837h1.996l3.873 10.266z">
-              </path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #292524; --tech-tint: #f5f5f4;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/nextjs/nextjs-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Next.js</span>
+          <span class="tech-icon-label">Next.js</span>
         </div>
 
-        <!-- TypeScript -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#3178C6] group-hover:border-[#3178C6] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <span class="font-mono font-black text-lg text-[#3178C6] group-hover:text-white transition-colors">TS</span>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #3178c6; --tech-tint: #eff7ff;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/typescript/typescript-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">TypeScript</span>
+          <span class="tech-icon-label">TypeScript</span>
         </div>
 
-        <!-- Tailwind -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#38BDF8] group-hover:border-[#38BDF8] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-7 h-7 text-[#38BDF8] group-hover:text-white transition-colors" fill="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.335 6.182 14.974 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.335 13.382 8.974 12 6.001 12z">
-              </path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #38bdf8; --tech-tint: #effbff;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/tailwindcss/tailwindcss-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Tailwind</span>
+          <span class="tech-icon-label">Tailwind</span>
         </div>
 
-        <!-- HTML5 -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#E34F26] group-hover:border-[#E34F26] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-6 h-6 text-[#E34F26] group-hover:text-white transition-colors" fill="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm7.031 9.75l-.234-2.625h11.203l.235-2.625H5.422l.687 7.875h9.875l-.344 3.844-3.663 1.016-3.664-1.016-.234-2.64H5.454l.438 4.953 6.085 1.688 6.086-1.688.844-9.476H8.531z">
-              </path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #e34f26; --tech-tint: #fff5f1;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/html5/html5-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">HTML5</span>
+          <span class="tech-icon-label">HTML5</span>
         </div>
 
-        <!-- Node.js -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#339933] group-hover:border-[#339933] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-7 h-7 text-[#339933] group-hover:text-white transition-colors" fill="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                d="M12 2a1 1 0 00-.5.13l-8 4.62a1 1 0 00-.5.87v9.24a1 1 0 00.5.87l8 4.62a1 1 0 001 0l8-4.62a1 1 0 00.5-.87V7.62a1 1 0 00-.5-.87l-8-4.62A1 1 0 0012 2zm0 2.31l6.47 3.73L12 11.78 5.53 8.04 12 4.31zm-7 5.46l6.5 3.75v7.48L5 17.25V9.77zm14 0v7.48l-6.5 3.75v-7.48l6.5-3.75z">
-              </path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #5fa04e; --tech-tint: #f2faef;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/nodejs/nodejs-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Node.js</span>
+          <span class="tech-icon-label">Node.js</span>
         </div>
 
-        <!-- Express -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#292524] group-hover:border-[#292524] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-6 h-6 text-[#292524] group-hover:text-white transition-colors" fill="currentColor"
-              viewBox="0 0 24 24">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #292524; --tech-tint: #f5f5f4;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/express/express-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Express</span>
+          <span class="tech-icon-label">Express</span>
         </div>
 
-        <!-- SQL Server -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#CC292B] group-hover:border-[#CC292B] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-6 h-6 text-[#CC292B] group-hover:text-white transition-colors" fill="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                d="M12 2C6.48 2 2 4.02 2 6.5v11c0 2.48 4.48 4.5 10 4.5s10-2.02 10-4.5v-11C22 4.02 17.52 2 12 2zm0 2c4.96 0 8 1.76 8 2.5s-3.04 2.5-8 2.5-8-1.76-8-2.5 3.04-2.5 8-2.5zm0 15c-4.96 0-8-1.76-8-2.5V14.8c1.94 1.34 5.02 2.2 8 2.2s6.06-.86 8-2.2v1.7c0 .74-3.04 2.5-8 2.5z">
-              </path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #cc292b; --tech-tint: #fff2f2;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/microsoftsqlserver/microsoftsqlserver-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">SQL Server</span>
+          <span class="tech-icon-label">SQL Server</span>
         </div>
 
       </div>
     </div>
 
-    <!-- Marquee Row 2: Database, DevOps & Tools (trái → phải) -->
+    <!-- Marquee Row 2: Database, languages & tools (trái → phải) -->
     <div class="tech-row-heading">
       <div><span>02</span><strong>Database &amp; Tools</strong></div>
       <small>SHIP &amp; MAINTAIN · HOVER TO PAUSE</small>
     </div>
-    <div class="tech-marquee marquee-mask overflow-hidden" aria-label="Database, DevOps và Tools">
+    <div class="tech-marquee marquee-mask overflow-hidden" aria-label="Database, ngôn ngữ và công cụ">
       <div class="marquee-track marquee-track-reverse gap-5 md:gap-6" style="animation-duration: 22s;">
 
-        <!-- PostgreSQL -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#336791] group-hover:border-[#336791] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-6 h-6 text-[#336791] group-hover:text-white transition-colors" fill="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2c3.5 0 6.5 2.2 7.5 5.5h-15C5.5 6.2 8.5 4 12 4zm-8 8c0-.7.1-1.4.3-2h15.4c.2.6.3 1.3.3 2 0 .7-.1 1.4-.3 2H4.3c-.2-.6-.3-1.3-.3-2zm2.5 4.5h11c-1 3.3-4 5.5-7.5 5.5s-6.5-2.2-7.5-5.5z">
-              </path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #336791; --tech-tint: #f0f7fb;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/postgresql/postgresql-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">PostgreSQL</span>
+          <span class="tech-icon-label">PostgreSQL</span>
         </div>
 
-        <!-- C# -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#9B4F96] group-hover:border-[#9B4F96] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-8 h-8 group-hover:scale-110 transition-transform" viewBox="0 0 256 240"
-              xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
-              <path
-                d="M255.833 161.833L207.5 113.5 255.833 65.167l-47.5-47.5L160.667 65l-47.5-47.5L65.667 65 113.5 112.5l-47.5 47.5 47.5 47.5L160.667 160l47.5 47.5 47.666-47.667zm-119.166 47.5L89 161.667l-47.667-47.5L89 66.667l47.667 47.5 47.5-47.5 47.666 47.5L184.167 161.667 136.667 209.333z"
-                fill="url(#csGradient)" />
-              <defs>
-                <linearGradient id="csGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color:#9B4F96;stop-opacity:1" />
-                  <stop offset="100%" style="stop-color:#5E2D5A;stop-opacity:1" />
-                </linearGradient>
-              </defs>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #68217a; --tech-tint: #faf1fc;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/csharp/csharp-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">C#</span>
+          <span class="tech-icon-label">C#</span>
         </div>
 
-        <!-- PHP -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#777BB4] group-hover:border-[#777BB4] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-7 h-7 text-[#777BB4] group-hover:text-white transition-colors" fill="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                d="M7.01 10.207h-.72c-.41 0-.767.323-.835.732l-.484 3.157a.45.45 0 00.124.408.47.47 0 00.348.157h.679c.077 0 .151-.026.21-.073a.354.354 0 00.131-.193l.144-.768a.426.426 0 01.42-.319h.852c1.578 0 2.586-.892 2.878-2.502.13-.713.018-1.32-.335-1.745-.392-.475-1.07-.735-1.964-.735zm.62 2.92a1.135 1.135 0 01-1.176.943h-.297l.213-1.413a.105.105 0 01.103-.09h.275c.314 0 .557.066.713.197.155.13.215.327.169.563zm5.732-2.92h-.72c-.41 0-.767.323-.835.732l-.484 3.157a.45.45 0 00.124.408.47.47 0 00.348.157h.685c.075 0 .148-.026.207-.073a.353.353 0 00.13-.193l.144-.768a.426.426 0 01.421-.319h.852c1.577 0 2.586-.892 2.878-2.502.13-.713.017-1.32-.336-1.745-.391-.475-1.069-.735-1.964-.735zm.62 2.92a1.135 1.135 0 01-1.176.943h-.298l.214-1.413a.105.105 0 01.103-.09h.275c.314 0 .557.066.713.197.156.13.215.327.169.563zm5.74-2.405c.131-.713.018-1.32-.335-1.745-.392-.475-1.07-.735-1.964-.735h-.72c-.41 0-.768.323-.835.732l-.484 3.157a.45.45 0 00.124.408c.086.103.21.157.348.157h.84c.164 0 .314-.121.347-.286l.106-.684a.426.426 0 01.42-.319h.852c1.578 0 2.587-.892 2.878-2.502l.273-1.105c.014-.057.025-.114.034-.171z">
-              </path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #777bb3; --tech-tint: #f4f4fb;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/php/php-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">PHP</span>
+          <span class="tech-icon-label">PHP</span>
         </div>
 
-        <!-- Python -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#3776AB] group-hover:border-[#3776AB] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-8 h-8 group-hover:scale-110 transition-transform" viewBox="0 0 256 255"
-              xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
-              <path
-                d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.162V33.97S194.67.072 126.916.072zM92.802 19.66a11.155 11.155 0 0 1 11.155 11.155 11.155 11.155 0 0 1-11.155 11.155A11.155 11.155 0 0 1 81.647 30.815 11.155 11.155 0 0 1 92.802 19.66z"
-                fill="#3776AB" />
-              <path
-                d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.416-36.21-63.096-36.21-63.096h-21.61v30.355s1.165 36.21-35.632 36.21h-61.362s-34.475-.557-34.475 33.162v56.013s-5.235 33.873 62.519 33.873zm34.114-19.586a11.155 11.155 0 0 1-11.155-11.155 11.155 11.155 0 0 1 11.155-11.155 11.155 11.155 0 0 1 11.155 11.155 11.155 11.155 0 0 1-11.155 11.155z"
-                fill="#FFD43B" />
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #3776ab; --tech-tint: #eff7fc;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/python/python-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Python</span>
+          <span class="tech-icon-label">Python</span>
         </div>
 
-        <!-- Git -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#F05032] group-hover:border-[#F05032] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-6 h-6 text-[#F05032] group-hover:text-white transition-colors" fill="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                d="M2.6 10.59L8.38 4.8a2.53 2.53 0 013.6 0l1.72 1.73a2.56 2.56 0 010 3.61L8.91 14.93a1.4 1.4 0 00-.4 1v2.1a1.43 1.43 0 102.86 0v-2.09c0-.38.16-.74.42-1l4.82-4.83a2.53 2.53 0 013.6 0l1.19 1.19a2.54 2.54 0 010 3.6l-5.78 5.79a2.54 2.54 0 01-3.6 0l-7.42-7.42a2.55 2.55 0 010-3.6z">
-              </path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #f05032; --tech-tint: #fff3ef;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/git/git-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Git</span>
+          <span class="tech-icon-label">Git</span>
         </div>
 
-        <!-- Figma -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#A259FF] group-hover:border-[#A259FF] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-6 h-6 text-[#A259FF] group-hover:text-white transition-colors" fill="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                d="M12 12a3 3 0 100-6 3 3 0 000 6zm0 0a3 3 0 100 6 3 3 0 000-6zm-3-6a3 3 0 100 6h3V6H9zm0 6a3 3 0 100 6h3v-6H9zm0 6a3 3 0 103 3v-3H9zm6-12a3 3 0 110 6h-3V6h3z">
-              </path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #a259ff; --tech-tint: #f8f2ff;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/figma/figma-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Figma</span>
+          <span class="tech-icon-label">Figma</span>
         </div>
 
-        <!-- Linux -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#292524] group-hover:border-[#292524] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-6 h-6 text-[#292524] group-hover:text-white transition-colors" fill="none"
-              stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M4 17l6-5-6-5M12 19h8"></path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #292524; --tech-tint: #f5f5f4;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/linux/linux-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Linux</span>
+          <span class="tech-icon-label">Linux</span>
         </div>
 
-        <!-- Postman -->
-        <div class="group flex flex-col items-center shrink-0 w-20">
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center group-hover:bg-[#F97316] group-hover:border-[#F97316] group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <svg class="w-6 h-6 text-[#F97316] group-hover:text-white transition-colors" fill="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5l-5-3.5 5-3.5v7zm3-1.5h-2v-4h2v4z">
-              </path>
-            </svg>
+        <div class="tech-stack-item group flex flex-col items-center shrink-0 w-20" style="--tech-color: #f37036; --tech-tint: #fff4ef;">
+          <div class="tech-icon-card">
+            <img class="tech-icon-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/postman/postman-original.svg"
+              width="34" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <span class="mt-2.5 text-xs font-semibold text-[#292524] text-center group-hover:text-[#007BFF] transition-colors">Postman</span>
+          <span class="tech-icon-label">Postman</span>
         </div>
 
       </div>

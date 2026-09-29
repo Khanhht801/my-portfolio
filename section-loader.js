@@ -13,6 +13,7 @@
   'use strict';
 
   const SECTIONS_DIR = 'sections/';
+  const ASSET_VERSION = '20260929-3';
   // Thứ tự load ưu tiên (above-the-fold trước)
   const PRIORITY_ORDER = [
     '00-scroll-progress', '01-navbar', '02-hero',
@@ -37,7 +38,9 @@
       // Khi phát triển local, luôn lấy fragment mới nhất. Tránh trường hợp trình
       // duyệt giữ nguyên section cũ dù file HTML đã được cập nhật.
       const isLocal = ['localhost', '127.0.0.1', '[::1]', ''].includes(window.location.hostname);
-      const res = await fetch(SECTIONS_DIR + name + '.fragment', {
+      const sectionUrl = SECTIONS_DIR + name + '.fragment'
+        + (isLocal ? '' : `?v=${ASSET_VERSION}`);
+      const res = await fetch(sectionUrl, {
         cache: isLocal ? 'no-store' : 'default'
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);

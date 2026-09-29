@@ -12,7 +12,13 @@
      cung duoc hieu ung khi user cuon toi.
    ============================================================ */
 
+let isAppInitialized = false;
+
 const initApp = () => {
+  // The ready event and timeout fallback can race on slow/static hosting.
+  // Initializing once prevents duplicate global listeners and stale DOM refs.
+  if (isAppInitialized) return;
+  isAppInitialized = true;
   // 0. BAT ANIMATE.CSS READY — bo an .animate-booted placeholder
   //    Lam ngay tai day de animation khong phu thuoc vao section
   //    (hữu ích cho các element đã có sẵn trong DOM như navbar).
@@ -135,18 +141,8 @@ const initApp = () => {
   const navLinks = document.querySelectorAll('.site-nav-link[href^="#"], .mobile-nav-link[href^="#"]');
   const sectionIds = [...new Set(Array.from(navLinks)
     .map(link => link.getAttribute('href').slice(1)))];
-  const sections = sectionIds.map((id) => {
-    const section = document.getElementById(id);
-    if (section) return section;
 
-    // Các section dưới fold được inject bất đồng bộ. Quan sát slot có sẵn để
-    // scroll-spy hoạt động ngay cả khi nội dung fragment chưa tải xong.
-    const slot = document.querySelector(`[data-section$="-${id}"]`);
-    if (slot) slot.dataset.navTarget = id;
-    return slot;
-  }).filter(Boolean);
-
-  if ('IntersectionObserver' in window && sections.length > 0) {
+  if ('IntersectionObserver' in window && navLinks.length > 0) {
     const setActiveLink = (id) => {
       navLinks.forEach(link => {
         const isActive = link.getAttribute('href') === '#' + id;
@@ -171,7 +167,32 @@ const initApp = () => {
       threshold: 0
     });
 
-    sections.forEach(section => navObserver.observe(section));
+    const observedNavSections = new Set();
+    const observeNavSection = (section) => {
+      if (!section || observedNavSections.has(section)) return;
+      observedNavSections.add(section);
+      navObserver.observe(section);
+    };
+
+    const observeAvailableNavSections = (root = document) => {
+      sectionIds.forEach((id) => {
+        if (root.nodeType === 1 && root.id === id) observeNavSection(root);
+        observeNavSection(root.querySelector?.(`#${id}`));
+      });
+    };
+
+    // Chỉ quan sát section thật có layout box. Các placeholder rỗng dùng
+    // display: contents, nên observer gắn quá sớm có thể bỏ lỡ #work khi
+    // project gallery được inject và thay đổi chiều cao cho sticky scroll.
+    observeAvailableNavSections();
+    const navSectionObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === 1) observeAvailableNavSections(node);
+        });
+      });
+    });
+    navSectionObserver.observe(document.body, { childList: true, subtree: true });
   }
 
   // 6. Hero SVG frame — draw lines on scroll (giữ logic, không dùng markup hiện tại)

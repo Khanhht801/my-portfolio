@@ -19,10 +19,21 @@ body.menu-open {
    ============================================================ */
 .site-header {
   --nav-height: 4rem;
-  border-bottom: 1px solid rgba(231, 229, 228, 0.72);
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0;
+  margin-inline: auto;
+  transform: translateY(0);
+  border: 1px solid transparent;
+  border-bottom-color: rgba(231, 229, 228, 0.72);
+  border-radius: 0;
   background: rgba(255, 251, 245, 0.96);
   box-shadow: 0 1px 0 rgba(41, 37, 36, 0.02);
   transition:
+    width 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    max-width 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 280ms cubic-bezier(0.16, 1, 0.3, 1),
     background-color 220ms ease,
     border-color 220ms ease,
     box-shadow 220ms ease,
@@ -30,9 +41,15 @@ body.menu-open {
 }
 
 .site-header.is-scrolled {
-  border-color: rgba(231, 229, 228, 0.58);
-  background: rgba(255, 251, 245, 0.76);
-  box-shadow: 0 10px 30px rgba(41, 37, 36, 0.08);
+  width: calc(100% - 1rem);
+  max-width: 76rem;
+  transform: translateY(0.5rem);
+  border-color: rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: rgba(255, 251, 245, 0.72);
+  box-shadow:
+    0 18px 45px rgba(20, 47, 74, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.76);
   -webkit-backdrop-filter: blur(18px) saturate(150%);
   backdrop-filter: blur(18px) saturate(150%);
 }
@@ -54,7 +71,7 @@ body.menu-open {
   position: relative;
   display: inline-flex;
   min-height: 2.75rem;
-  padding: 0.65rem 0.9rem;
+  padding: 0.65rem 1rem;
   align-items: center;
   color: #292524;
   border-radius: 0.75rem;
@@ -63,9 +80,9 @@ body.menu-open {
 
 .site-nav-link::after {
   position: absolute;
-  right: 0.9rem;
+  right: 1rem;
   bottom: 0.38rem;
-  left: 0.9rem;
+  left: 1rem;
   height: 2px;
   border-radius: 999px;
   background: #007bff;
@@ -140,14 +157,14 @@ body.menu-open {
   position: absolute;
   z-index: 60;
   top: 100%;
-  right: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  width: 100vw;
   height: calc(100svh - var(--nav-height));
   border: 0;
   background: rgba(20, 47, 74, 0.18);
   opacity: 0;
   pointer-events: none;
+  transform: translateX(-50%);
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   transition: opacity 220ms ease;
@@ -271,7 +288,12 @@ body.menu-open {
 
 @media (min-width: 1024px) {
   .site-header { --nav-height: 5rem; }
-  .site-header.is-scrolled { --nav-height: 4rem; }
+  .site-header.is-scrolled {
+    --nav-height: 4rem;
+    width: calc(100% - 2rem);
+    transform: translateY(0.625rem);
+    border-radius: 999px;
+  }
   .site-header.is-scrolled .site-brand__logo { width: 2rem; height: 2rem; }
   .mobile-menu,
   .mobile-menu-scrim,
@@ -2026,6 +2048,54 @@ article p.text-base {
 
 .tech-marquee .marquee-track {
   padding-block: 0.9rem;
+}
+
+.tech-icon-card {
+  display: flex;
+  width: 3.5rem;
+  height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e7e5e4;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 1px 2px rgba(41, 37, 36, 0.04);
+  transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
+}
+
+.tech-icon-logo {
+  display: block;
+  width: 2.125rem;
+  height: 2.125rem;
+  object-fit: contain;
+  transition: transform 220ms ease;
+}
+
+.tech-icon-label {
+  margin-top: 0.625rem;
+  color: #292524;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1rem;
+  text-align: center;
+  transition: color 220ms ease;
+}
+
+@media (hover: hover) {
+  .tech-stack-item:hover .tech-icon-card {
+    border-color: var(--tech-color, #007bff);
+    background: var(--tech-tint, #f5f9ff);
+    box-shadow: 0 10px 24px rgba(41, 37, 36, 0.12);
+    transform: translateY(-3px);
+  }
+
+  .tech-stack-item:hover .tech-icon-logo {
+    transform: scale(1.06);
+  }
+
+  .tech-stack-item:hover .tech-icon-label {
+    color: var(--tech-color, #007bff);
+  }
 }
 
 @media (max-width: 899px) {
