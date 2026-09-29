@@ -1,0 +1,83 @@
+<!-- ============================================================
+     01. NAVBAR
+     - Desktop: centered navigation, animated underline, compact-on-scroll
+     - Mobile: accessible animated drawer with menu/close morph
+     - Selector JS phụ thuộc:
+         + #main-header, #desktop-navigation
+         + #mobile-toggle, #mobile-menu, #mobile-menu-scrim
+============================================================ -->
+<header class="site-header relative z-50" id="main-header">
+  <div class="site-header__inner max-w-site mx-auto px-4 sm:px-6 flex items-center justify-end relative gap-4">
+    <!-- Brand / Logo -->
+    <a aria-label="Khanhht - Trang chủ" class="site-brand absolute left-4 sm:left-6 flex items-center gap-2 group z-10"
+      href="#hero">
+      <img src="image/logo.jpg" alt="Khanhht Logo" width="36" height="36"
+        class="site-brand__logo w-9 h-9 rounded-full object-cover border-2 border-[#007BFF] shadow-sm">
+      <span class="font-display font-bold tracking-tight text-[#292524] group-hover:text-[#007BFF] transition-colors duration-200">Khanhht</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav aria-label="Điều hướng chính" id="desktop-navigation"
+      class="hidden lg:flex items-center gap-1 text-base font-medium text-[#292524] absolute left-1/2 -translate-x-1/2 normal-case">
+      <a class="site-nav-link" href="#work">Dự án</a>
+      <a class="site-nav-link" href="#about">Giới thiệu</a>
+      <a class="site-nav-link" href="#experience">Kinh nghiệm</a>
+      <a class="site-nav-link" href="#capabilities">Kỹ năng</a>
+      <a class="site-nav-link" href="#contact">Liên hệ</a>
+    </nav>
+
+    <!-- Desktop actions + mobile menu button -->
+    <div class="flex items-center gap-2.5 sm:gap-3 z-10">
+      <a aria-label="Trang GitHub của Khanhht"
+        class="site-header__github hidden lg:inline-flex items-center justify-center w-10 h-10 rounded-xl border border-[#E7E5E4] bg-white/70 text-[#292524] hover:text-[#007BFF] hover:border-[#007BFF] transition-all duration-200 hover:-translate-y-0.5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007BFF] focus-visible:ring-offset-2"
+        href="https://github.com/Khanhht801" rel="noopener noreferrer" target="_blank">
+        <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path clip-rule="evenodd"
+            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+            fill-rule="evenodd"></path>
+        </svg>
+      </a>
+
+      <a class="site-header__cta btn-shimmer hidden lg:inline-flex min-h-11 items-center gap-2 text-sm font-sans font-semibold px-5 py-2.5 rounded-full bg-[#007BFF] text-white hover:bg-[#0056CC] shadow-md shadow-blue-500/20 hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#007BFF] group"
+        href="#contact">
+        <span>CONTACT ME</span>
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor"
+          viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 12h14m-5-5 5 5-5 5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+        </svg>
+      </a>
+
+      <button aria-controls="mobile-menu" aria-expanded="false" aria-label="Mở menu điều hướng"
+        class="mobile-menu-toggle lg:hidden" id="mobile-toggle" type="button">
+        <span class="mobile-menu-toggle__line mobile-menu-toggle__line--top" aria-hidden="true"></span>
+        <span class="mobile-menu-toggle__line mobile-menu-toggle__line--middle" aria-hidden="true"></span>
+        <span class="mobile-menu-toggle__line mobile-menu-toggle__line--bottom" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Click-away layer. Drawer và scrim giữ trong DOM để có exit animation. -->
+  <button class="mobile-menu-scrim lg:hidden" id="mobile-menu-scrim" type="button" tabindex="-1"
+    aria-label="Đóng menu điều hướng" aria-hidden="true"></button>
+
+  <div class="mobile-menu lg:hidden" id="mobile-menu" aria-hidden="true" inert>
+    <nav class="mobile-menu__nav" aria-label="Điều hướng trên thiết bị di động">
+      <a class="mobile-nav-link" href="#work"><span>01</span>Dự án</a>
+      <a class="mobile-nav-link" href="#about"><span>02</span>Giới thiệu</a>
+      <a class="mobile-nav-link" href="#experience"><span>03</span>Kinh nghiệm</a>
+      <a class="mobile-nav-link" href="#capabilities"><span>04</span>Kỹ năng</a>
+      <a class="mobile-nav-link" href="#contact"><span>05</span>Liên hệ</a>
+    </nav>
+    <div class="mobile-menu__footer">
+      <a class="mobile-menu__github" href="https://github.com/Khanhht801" rel="noopener noreferrer" target="_blank">
+        GitHub <span aria-hidden="true">↗</span>
+      </a>
+      <a class="mobile-menu__cta" href="#contact">
+        Contact me
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 12h14m-5-5 5 5-5 5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>

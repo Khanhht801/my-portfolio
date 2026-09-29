@@ -13,7 +13,7 @@
 <section class="testimonials-section relative overflow-hidden border-b border-[#E7E5E4]" id="testimonials">
   <div class="testimonials-section__orb testimonials-section__orb--left" aria-hidden="true"></div>
   <div class="testimonials-section__orb testimonials-section__orb--right" aria-hidden="true"></div>
-  <span class="testimonials-section__index" aria-hidden="true">05</span>
+  <span class="testimonials-section__index section-corner-index" aria-hidden="true">05</span>
 
   <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <header class="testimonials-heading reveal-on-scroll is-visible">

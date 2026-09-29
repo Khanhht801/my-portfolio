@@ -5,7 +5,7 @@
 ============================================================ -->
 <section class="journey-section relative overflow-hidden border-b border-[#E7E5E4]" id="experience">
   <div class="journey-section__orb journey-section__orb--blue" aria-hidden="true"></div>
-  <span class="journey-section__index" aria-hidden="true">03</span>
+  <span class="journey-section__index section-corner-index" aria-hidden="true">03</span>
 
   <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <header class="journey-heading reveal-on-scroll is-visible">

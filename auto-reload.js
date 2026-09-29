@@ -33,6 +33,13 @@
     return;
   }
 
+  // Live Server da co WebSocket reload rieng. Khong chay polling song song,
+  // tranh hai co che reload cung luc trong qua trinh phat trien.
+  if (sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+    console.info('[auto-reload] Live Server detected — bo qua polling noi bo.');
+    return;
+  }
+
   // 1. Cho phep tat/bat qua query string hoac localStorage
   const url = new URL(location.href);
   if (url.searchParams.has('autoreload')) {
@@ -65,8 +72,8 @@
     { url: 'experience.css', parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
     { url: 'script.js',  parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
     { url: 'section-loader.js', parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
-    { url: 'sections/04-about.html', parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
-    { url: 'sections/05-experience.html', parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
+    { url: 'sections/04-about.fragment', parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
+    { url: 'sections/05-experience.fragment', parse: h => `${h.get('Last-Modified') || ''}|${h.get('Content-Length') || ''}` },
   ];
 
   const STORAGE_KEY = 'autoreload_signatures';

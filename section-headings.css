@@ -1,4 +1,26 @@
 /* Shared section-title scale and alignment. Loaded after section-specific styles. */
+.section-corner-index,
+.about-showcase__index.section-corner-index,
+.journey-section__index.section-corner-index,
+.testimonials-section__index.section-corner-index {
+  position: absolute;
+  top: clamp(0.35rem, 1vw, 0.75rem);
+  right: clamp(1rem, 4vw, 4rem);
+  z-index: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: rgba(0, 123, 255, 0.055);
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: clamp(7rem, 18vw, 16rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.09em;
+  pointer-events: none;
+  user-select: none;
+}
+
 body .section-heading-title,
 .project-gallery__header .section-heading-title,
 .about-heading .section-heading-title,
@@ -33,6 +55,15 @@ body .section-heading-title,
 }
 
 @media (max-width: 640px) {
+  .section-corner-index,
+  .about-showcase__index.section-corner-index,
+  .journey-section__index.section-corner-index,
+  .testimonials-section__index.section-corner-index {
+    top: 0.5rem;
+    right: 1rem;
+    font-size: clamp(6rem, 34vw, 9rem);
+  }
+
   body .section-heading-title,
   .project-gallery__header .section-heading-title,
   .about-heading .section-heading-title,

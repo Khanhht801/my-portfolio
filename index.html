@@ -176,15 +176,7 @@
    script.js          : logic JS chính (đợi section inject xong mới chạy)
    section-loader.js  : loader runtime — fetch & inject sections/*.html
    sections/          : HTML fragment của từng section, load qua fetch()
-       00-scroll-progress.html  -> vạch tiến trình cuộn (đặt tĩnh trong <body>)
-       01-navbar.html           -> header sticky + nav chính + mobile menu
-       02-hero.html             -> banner giới thiệu chính
-       03-work.html             -> danh sách 3 dự án tiêu biểu
-       04-about.html            -> giới thiệu + slider chân dung autoplay
-       05-experience.html       -> timeline kinh nghiệm + bằng cấp
-       06-capabilities.html     -> tech stack (2 marquee rows)
-       07-contact.html          -> CTA liên hệ + email/github/facebook
-       08-footer.html           -> footer
+       *.fragment               -> các HTML fragment được section-loader nạp
   ------------------------------------------------------------
    Luồng hoạt động:
      1. Browser tải index.html (rất nhẹ, ~5-6 KB)

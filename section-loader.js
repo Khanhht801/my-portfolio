@@ -1,6 +1,6 @@
 /* ============================================================
    section-loader.js
-   - Fetch song song tất cả section từ /sections/*.html
+   - Fetch song song tất cả section từ /sections/*.fragment
    - Inject HTML vào placeholder <div data-section="XX">
    - Preload ảnh hero để tránh Chrome cảnh báo "preloaded but
      not used within a few seconds" (vì hero được inject sau DOM
@@ -21,6 +21,14 @@
     '08-footer'
   ];
 
+  // VS Code Live Server chen client reload vao moi response .html. Voi cac
+  // fragment khong co <body>, doan script co the bi chen ngay truoc </svg>,
+  // lam hong icon/anh SVG khi fragment duoc gan bang innerHTML.
+  const stripInjectedLiveServerClient = (html) => html.replace(
+    /<!--\s*Code injected by live-server\s*-->[\s\S]*?<\/script>/gi,
+    ''
+  );
+
   // 1. Fetch một section, inject HTML, preload ảnh đầu tiên nếu có
   const fetchSection = async (name) => {
     const slot = document.querySelector(`[data-section="${name}"]`);
@@ -29,11 +37,11 @@
       // Khi phát triển local, luôn lấy fragment mới nhất. Tránh trường hợp trình
       // duyệt giữ nguyên section cũ dù file HTML đã được cập nhật.
       const isLocal = ['localhost', '127.0.0.1', '[::1]', ''].includes(window.location.hostname);
-      const res = await fetch(SECTIONS_DIR + name + '.html', {
+      const res = await fetch(SECTIONS_DIR + name + '.fragment', {
         cache: isLocal ? 'no-store' : 'default'
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const html = await res.text();
+      const html = stripInjectedLiveServerClient(await res.text());
       slot.innerHTML = html;
 
       // Preload ảnh đầu tiên trong section (thường là ảnh LCP/hero) NGAY SAU khi inject

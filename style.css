@@ -9,6 +9,299 @@ body {
   overscroll-behavior-y: none;
 }
 
+body.menu-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* ============================================================
+   NAVIGATION — compact-on-scroll + accessible mobile drawer
+   ============================================================ */
+.site-header {
+  --nav-height: 4rem;
+  border-bottom: 1px solid rgba(231, 229, 228, 0.72);
+  background: rgba(255, 251, 245, 0.96);
+  box-shadow: 0 1px 0 rgba(41, 37, 36, 0.02);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    backdrop-filter 220ms ease;
+}
+
+.site-header.is-scrolled {
+  border-color: rgba(231, 229, 228, 0.58);
+  background: rgba(255, 251, 245, 0.76);
+  box-shadow: 0 10px 30px rgba(41, 37, 36, 0.08);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+}
+
+.site-header__inner {
+  height: var(--nav-height);
+  transition: height 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.site-brand__logo {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), width 220ms ease, height 220ms ease;
+}
+
+.site-brand:hover .site-brand__logo {
+  transform: scale(1.06);
+}
+
+.site-nav-link {
+  position: relative;
+  display: inline-flex;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.9rem;
+  align-items: center;
+  color: #292524;
+  border-radius: 0.75rem;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.site-nav-link::after {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.38rem;
+  left: 0.9rem;
+  height: 2px;
+  border-radius: 999px;
+  background: #007bff;
+  content: '';
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.site-nav-link:hover,
+.site-nav-link:focus-visible,
+.site-nav-link.nav-link-active {
+  color: #007bff;
+}
+
+.site-nav-link:hover::after,
+.site-nav-link:focus-visible::after,
+.site-nav-link.nav-link-active::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.site-nav-link:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.mobile-menu-toggle {
+  position: relative;
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e7e5e4;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.82);
+  color: #292524;
+  box-shadow: 0 4px 14px rgba(41, 37, 36, 0.06);
+  transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.mobile-menu-toggle:hover,
+.mobile-menu-toggle:focus-visible,
+.mobile-menu-toggle.is-open {
+  border-color: rgba(0, 123, 255, 0.45);
+  background: #fff;
+  color: #007bff;
+}
+
+.mobile-menu-toggle:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.mobile-menu-toggle__line {
+  position: absolute;
+  width: 1.15rem;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), opacity 140ms ease;
+}
+
+.mobile-menu-toggle__line--top { transform: translateY(-6px); }
+.mobile-menu-toggle__line--bottom { transform: translateY(6px); }
+.mobile-menu-toggle.is-open .mobile-menu-toggle__line--top { transform: rotate(45deg); }
+.mobile-menu-toggle.is-open .mobile-menu-toggle__line--middle { opacity: 0; transform: scaleX(0); }
+.mobile-menu-toggle.is-open .mobile-menu-toggle__line--bottom { transform: rotate(-45deg); }
+
+.mobile-menu-scrim {
+  position: absolute;
+  z-index: 60;
+  top: 100%;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100svh - var(--nav-height));
+  border: 0;
+  background: rgba(20, 47, 74, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  transition: opacity 220ms ease;
+}
+
+.mobile-menu-scrim.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  right: 0.75rem;
+  left: 0.75rem;
+  z-index: 70;
+  max-height: calc(100svh - var(--nav-height) - 1.5rem);
+  padding: 0.65rem;
+  overflow-y: auto;
+  border: 1px solid rgba(231, 229, 228, 0.88);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 24px 64px rgba(20, 47, 74, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-12px) scale(0.985);
+  transform-origin: top center;
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+  transition:
+    opacity 180ms ease,
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 220ms;
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  transition-delay: 0s;
+}
+
+.mobile-menu__nav {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.mobile-nav-link {
+  display: flex;
+  min-height: 3.2rem;
+  padding: 0.7rem 0.9rem;
+  align-items: center;
+  gap: 0.8rem;
+  border-radius: 0.85rem;
+  color: #292524;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.mobile-nav-link span {
+  color: #a8a29e;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus-visible,
+.mobile-nav-link.nav-link-active {
+  background: #dbeafe;
+  color: #007bff;
+  transform: translateX(3px);
+}
+
+.mobile-nav-link:focus-visible,
+.mobile-menu__github:focus-visible,
+.mobile-menu__cta:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.mobile-menu__footer {
+  display: flex;
+  margin-top: 0.65rem;
+  padding: 0.75rem 0.25rem 0.15rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-top: 1px solid #e7e5e4;
+}
+
+.mobile-menu__github {
+  display: inline-flex;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.75rem;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 0.75rem;
+  color: #57534e;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.mobile-menu__cta {
+  display: inline-flex;
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: #007bff;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.22);
+}
+
+@media (min-width: 1024px) {
+  .site-header { --nav-height: 5rem; }
+  .site-header.is-scrolled { --nav-height: 4rem; }
+  .site-header.is-scrolled .site-brand__logo { width: 2rem; height: 2rem; }
+  .mobile-menu,
+  .mobile-menu-scrim,
+  .mobile-menu-toggle { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header__inner,
+  .site-brand__logo,
+  .site-nav-link,
+  .site-nav-link::after,
+  .mobile-menu-toggle,
+  .mobile-menu-toggle__line,
+  .mobile-menu,
+  .mobile-menu-scrim,
+  .mobile-nav-link {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Ghim cả slot được section-loader tạo ra; sticky trên header con sẽ bị giới hạn
+   bởi chiều cao của chính slot và biến mất ngay khi cuộn qua navbar. */
+[data-section="01-navbar"] {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  width: 100%;
+}
+
 section[id] {
   scroll-margin-top: 5.5rem;
 }
@@ -391,6 +684,7 @@ section[id] {
    COMPACT PROJECT GALLERY — image-based, 3-up desktop / snap mobile
    ============================================================ */
 .project-gallery {
+  position: relative;
   overflow: hidden;
   padding-block: clamp(3.25rem, 5vw, 4.75rem);
   border-bottom: 1px solid #e7e5e4;
@@ -707,10 +1001,9 @@ section[id] {
 
   .project-gallery.is-scroll-ready .project-gallery__sticky {
     position: sticky;
-    /* Navbar đã cuộn khỏi màn hình khi tới section này; không chừa lại 5rem
-       phía trên vì khoảng trống đó làm cả cụm nội dung bị lệch xuống dưới. */
-    top: 0;
-    height: 100svh;
+    /* Navbar luôn ghim trên viewport, nên gallery bắt đầu ngay dưới navbar. */
+    top: 5rem;
+    height: calc(100svh - 5rem);
     overflow: hidden;
     background:
       radial-gradient(circle at 8% 10%, rgba(0, 123, 255, 0.09), transparent 22rem),
@@ -1587,12 +1880,6 @@ article p.text-base {
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
-}
-
-/* Active nav link state (scroll spy) */
-.nav-link-active {
-  color: #007BFF !important;
-  background-color: #FFFBF5 !important;
 }
 
 /* Hero minimalist frame — SVG line draw on scroll */

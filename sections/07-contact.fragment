@@ -5,6 +5,7 @@
 ============================================================ -->
 <section class="border-b border-[#292524] relative overflow-hidden py-16" id="contact"
   style="background: linear-gradient(135deg, #FFFBF5 0%, #FFF8F0 50%, #DBEAFE/40 100%);">
+  <span class="section-corner-index" aria-hidden="true">06</span>
   <!-- Decorative shapes -->
   <div
     class="absolute -top-20 left-1/4 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#007BFF]/15 via-[#93C5FD]/8 to-transparent blur-3xl pointer-events-none"

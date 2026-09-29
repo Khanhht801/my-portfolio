@@ -36,19 +36,77 @@ const initApp = () => {
   window.addEventListener('scroll', requestScrollUiUpdate, { passive: true });
   updateScrollProgress();
 
-  // 2. Mobile Menu Toggle
+  // 2. Mobile navigation — animated drawer, focus management and Escape support
+  const header = document.getElementById('main-header');
   const mobileToggle = document.getElementById('mobile-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuScrim = document.getElementById('mobile-menu-scrim');
 
   if (mobileToggle && mobileMenu) {
-    mobileToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+    let isMobileMenuOpen = false;
+
+    const getMenuFocusableElements = () => [
+      mobileToggle,
+      ...mobileMenu.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+    ].filter(el => el.offsetParent !== null);
+
+    const setMobileMenu = (shouldOpen, restoreFocus = true) => {
+      if (isMobileMenuOpen === shouldOpen) return;
+      isMobileMenuOpen = shouldOpen;
+
+      mobileToggle.classList.toggle('is-open', shouldOpen);
+      mobileMenu.classList.toggle('is-open', shouldOpen);
+      mobileMenuScrim?.classList.toggle('is-open', shouldOpen);
+      document.body.classList.toggle('menu-open', shouldOpen);
+
+      mobileToggle.setAttribute('aria-expanded', String(shouldOpen));
+      mobileToggle.setAttribute('aria-label', shouldOpen ? 'Đóng menu điều hướng' : 'Mở menu điều hướng');
+      mobileMenu.setAttribute('aria-hidden', String(!shouldOpen));
+      mobileMenuScrim?.setAttribute('aria-hidden', String(!shouldOpen));
+
+      if (shouldOpen) {
+        mobileMenu.removeAttribute('inert');
+        requestAnimationFrame(() => mobileMenu.querySelector('a[href]')?.focus());
+      } else {
+        mobileMenu.setAttribute('inert', '');
+        if (restoreFocus) mobileToggle.focus({ preventScroll: true });
+      }
+    };
+
+    mobileToggle.addEventListener('click', () => setMobileMenu(!isMobileMenuOpen));
+    mobileMenuScrim?.addEventListener('click', () => setMobileMenu(false));
 
     mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-      });
+      link.addEventListener('click', () => setMobileMenu(false, false));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (!isMobileMenuOpen) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setMobileMenu(false);
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+      const focusable = getMenuFocusableElements();
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    const desktopNavQuery = window.matchMedia('(min-width: 1024px)');
+    desktopNavQuery.addEventListener('change', (event) => {
+      if (event.matches) setMobileMenu(false, false);
     });
   }
 
@@ -58,29 +116,46 @@ const initApp = () => {
     el.classList.add('is-visible');
   });
 
-  // 4. Header Shadow on scroll
-  const header = document.getElementById('main-header');
+  // 4. Compact translucent header on scroll
   if (header) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        header.classList.add('shadow-sm');
-      } else {
-        header.classList.remove('shadow-sm');
-      }
-    }, { passive: true });
+    let headerFrame = 0;
+    const updateHeaderState = () => {
+      headerFrame = 0;
+      header.classList.toggle('is-scrolled', window.scrollY > 24);
+    };
+    const requestHeaderUpdate = () => {
+      if (headerFrame) return;
+      headerFrame = requestAnimationFrame(updateHeaderState);
+    };
+    window.addEventListener('scroll', requestHeaderUpdate, { passive: true });
+    updateHeaderState();
   }
 
   // 5. Active Nav Link on scroll (Spy Scroll)
-  const navLinks = document.querySelectorAll('header nav a[href^="#"]');
-  const sections = Array.from(navLinks)
-    .map(link => document.querySelector(link.getAttribute('href')))
-    .filter(Boolean);
+  const navLinks = document.querySelectorAll('.site-nav-link[href^="#"], .mobile-nav-link[href^="#"]');
+  const sectionIds = [...new Set(Array.from(navLinks)
+    .map(link => link.getAttribute('href').slice(1)))];
+  const sections = sectionIds.map((id) => {
+    const section = document.getElementById(id);
+    if (section) return section;
+
+    // Các section dưới fold được inject bất đồng bộ. Quan sát slot có sẵn để
+    // scroll-spy hoạt động ngay cả khi nội dung fragment chưa tải xong.
+    const slot = document.querySelector(`[data-section$="-${id}"]`);
+    if (slot) slot.dataset.navTarget = id;
+    return slot;
+  }).filter(Boolean);
 
   if ('IntersectionObserver' in window && sections.length > 0) {
     const setActiveLink = (id) => {
       navLinks.forEach(link => {
         const isActive = link.getAttribute('href') === '#' + id;
         link.classList.toggle('nav-link-active', isActive);
+        if (isActive) {
+          link.setAttribute('aria-current', 'location');
+        } else {
+          link.removeAttribute('aria-current');
+        }
       });
     };
 
@@ -89,7 +164,7 @@ const initApp = () => {
         .filter(e => e.isIntersecting)
         .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
       if (visible[0]) {
-        setActiveLink(visible[0].target.id);
+        setActiveLink(visible[0].target.dataset.navTarget || visible[0].target.id);
       }
     }, {
       rootMargin: '-40% 0px -55% 0px',

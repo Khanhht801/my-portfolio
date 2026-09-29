@@ -8,7 +8,7 @@
 <section class="about-showcase relative overflow-hidden border-b border-[#E7E5E4]" id="about">
   <div class="about-showcase__orb about-showcase__orb--top" aria-hidden="true"></div>
   <div class="about-showcase__orb about-showcase__orb--bottom" aria-hidden="true"></div>
-  <span class="about-showcase__index" aria-hidden="true">02</span>
+  <span class="about-showcase__index section-corner-index" aria-hidden="true">02</span>
 
   <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <header class="about-heading reveal-on-scroll is-visible">
