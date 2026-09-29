@@ -57,6 +57,9 @@ const initApp = () => {
     ].filter(el => el.offsetParent !== null);
 
     const setMobileMenu = (shouldOpen, restoreFocus = true) => {
+      // Guard: navbar có thể chưa inject xong khi section-loader fallback timeout
+      // kích hoạt trên static hosting chậm (vd GitHub Pages).
+      if (!mobileToggle || !mobileMenu) return;
       if (isMobileMenuOpen === shouldOpen) return;
       isMobileMenuOpen = shouldOpen;
 
@@ -628,11 +631,14 @@ if (document.documentElement.hasAttribute('data-sections-ready')) {
   initApp();
 } else {
   window.addEventListener('sections:loaded', initApp, { once: true });
-  // Fallback: nếu section-loader lỗi (offline, blocked), vẫn chạy sau 3s
+  // Fallback: nếu section-loader lỗi (offline, blocked) hoặc fetch quá chậm
+  // trên static hosting (vd GitHub Pages CDN lần đầu), vẫn chạy initApp sau 8s.
+  // setMobileMenu() đã có guard null-check, nên chạy sớm không crash — chỉ
+  // là navbar chưa có thì user phải đợi section inject xong để có menu mobile.
   setTimeout(() => {
     if (!document.documentElement.hasAttribute('data-sections-ready')) {
       console.warn('[script.js] sections:loaded timeout, chạy initApp fallback');
       initApp();
     }
-  }, 3000);
+  }, 8000);
 }
