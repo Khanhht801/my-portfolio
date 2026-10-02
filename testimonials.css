@@ -131,7 +131,8 @@
 }
 
 /* Pause-on-hover */
-.testimonials-track:hover {
+.testimonials-track:hover,
+.testimonials-track:focus-within {
   animation-play-state: paused;
 }
 
@@ -231,21 +232,6 @@
   height: 0.4rem;
   background: #007bff;
   border-radius: 9999px;
-}
-
-/* ===== Respect reduced-motion ===== */
-@media (prefers-reduced-motion: reduce) {
-  .testimonials-track,
-  .testimonials-track[data-testimonials-ready="true"] {
-    animation: none !important;
-    transform: none !important;
-  }
-  .testimonials-grid {
-    max-height: none;
-    overflow: visible;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
 }
 
 /* ===== Responsive ===== */

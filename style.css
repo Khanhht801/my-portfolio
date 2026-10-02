@@ -1013,7 +1013,7 @@ section[id] {
 }
 
 /* Desktop scroll story: natural vertical scroll drives a pinned horizontal rail. */
-@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+@media (min-width: 900px) {
   .project-gallery.is-scroll-ready {
     padding-block: 0;
     /* Sticky cannot pin inside an overflow-hidden ancestor. The sticky viewport
@@ -1193,6 +1193,64 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
   .project-tile,
   .project-tile__media img { transition: none !important; transform: none !important; }
+}
+
+/* Project autoplay marquee: starts only while the section is in the viewport. */
+.project-gallery.is-project-marquee-ready .project-gallery__viewport {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 3%, #000 97%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 3%, #000 97%, transparent 100%);
+}
+
+.project-gallery.is-project-marquee-ready .project-gallery__track {
+  display: flex;
+  width: max-content;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  gap: clamp(0.85rem, 2vw, 1.5rem);
+  overflow: visible;
+  align-items: stretch;
+  scroll-snap-type: none;
+  animation: project-marquee-scroll var(--project-marquee-duration, 42s) linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+.project-gallery.is-project-marquee-playing .project-gallery__track {
+  animation-play-state: running;
+}
+
+.project-gallery.is-project-marquee-ready .project-gallery__viewport:hover .project-gallery__track,
+.project-gallery.is-project-marquee-ready .project-gallery__viewport:focus-within .project-gallery__track {
+  animation-play-state: paused;
+}
+
+.project-gallery.is-project-marquee-ready .project-tile,
+.project-gallery.is-project-marquee-ready .project-tile:last-child {
+  width: clamp(18rem, 27vw, 23rem);
+  min-width: clamp(18rem, 27vw, 23rem);
+  min-height: 31rem;
+  height: auto;
+  flex: 0 0 clamp(18rem, 27vw, 23rem);
+  grid-column: auto;
+  justify-self: auto;
+  scroll-snap-align: none;
+}
+
+@keyframes project-marquee-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(var(--project-marquee-translate, 0px), 0, 0); }
+}
+
+@media (max-width: 639px) {
+  .project-gallery.is-project-marquee-ready .project-tile,
+  .project-gallery.is-project-marquee-ready .project-tile:last-child {
+    width: min(84vw, 22rem);
+    min-width: min(84vw, 22rem);
+    flex-basis: min(84vw, 22rem);
+  }
 }
 
 /* ============================================================
@@ -2147,7 +2205,8 @@ article p.text-base {
 }
 
 /* Pause animation on hover — UX tốt hơn khi user muốn xem rõ icon */
-.marquee-track:hover {
+.marquee-track:hover,
+.marquee-track:focus-within {
   animation-play-state: paused;
 }
 
@@ -2159,14 +2218,6 @@ article p.text-base {
 @keyframes marquee-scroll-reverse {
   from { transform: translate3d(var(--marquee-translate, 0px), 0, 0); }
   to   { transform: translate3d(0, 0, 0); }
-}
-
-/* Respect người dùng tắt motion */
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none !important;
-    transform: none !important;
-  }
 }
 
 /* ============================================================

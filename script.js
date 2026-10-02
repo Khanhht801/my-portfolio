@@ -220,13 +220,12 @@ const initApp = () => {
     frameObserver.observe(heroFrame);
   }
 
-  // 7. About Portrait Slider (autoplay 3s + prev/next + dots + pause on user interaction / off-screen / hidden tab)
+  // 7. About Portrait Slider (autoplay 3s + click ảnh để next + dots + keyboard)
   const setupAboutSlider = (slider) => {
     if (!slider || slider.dataset.sliderBound === 'true') return;
 
     const slides = Array.from(slider.querySelectorAll('[data-slide]'));
-    const prevBtn = slider.querySelector('[data-prev]');
-    const nextBtn = slider.querySelector('[data-next]');
+    const slideNextTarget = slider.querySelector('[data-slide-next]');
     const dots = Array.from(slider.querySelectorAll('[data-dot-index]'));
     const slideCount = slider.querySelector('.about-slider__caption-count');
     const total = slides.length;
@@ -237,7 +236,6 @@ const initApp = () => {
 
     let current = 0;
     let timerId = null;
-    let isPaused = false;
     let isInView = false;
 
     const showSlide = (nextIndex) => {
@@ -265,7 +263,7 @@ const initApp = () => {
 
     const start = () => {
       stop();
-      if (isPaused || !isInView) return;
+      if (!isInView || document.hidden) return;
       timerId = window.setInterval(goNext, intervalMs);
     };
 
@@ -278,13 +276,22 @@ const initApp = () => {
 
     const bump = () => {
       stop();
-      if (!isPaused && isInView) {
+      if (isInView && !document.hidden) {
         timerId = window.setInterval(goNext, intervalMs);
       }
     };
 
-    if (nextBtn) nextBtn.addEventListener('click', () => { goNext(); bump(); });
-    if (prevBtn) prevBtn.addEventListener('click', () => { goPrev(); bump(); });
+    slideNextTarget?.addEventListener('click', () => {
+      goNext();
+      bump();
+    });
+
+    slideNextTarget?.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      goNext();
+      bump();
+    });
 
     slider.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowRight') {
@@ -307,9 +314,6 @@ const initApp = () => {
         }
       });
     });
-
-    slider.addEventListener('mouseenter', () => { isPaused = true; stop(); });
-    slider.addEventListener('mouseleave', () => { isPaused = false; start(); });
 
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
@@ -353,96 +357,71 @@ const initApp = () => {
   });
   sliderObserver.observe(document.body, { childList: true, subtree: true });
 
-  // 9. Project gallery — cuộn dọc điều khiển rail ngang trên desktop.
-  //    Không chặn wheel/touch: section dùng sticky + chiều cao tài liệu tự nhiên.
-  //    Mobile và prefers-reduced-motion giữ carousel ngang native.
-  const setupProjectScroller = (projectSection) => {
-    if (!projectSection || projectSection.dataset.projectScrollBound === 'true') return;
+  // 9. Project gallery — tự chạy khi section đi vào viewport.
+  //    Nhân bản một bộ card và dịch đúng chiều rộng bộ gốc để loop liền mạch.
+  const setupProjectMarquee = (projectSection) => {
+    if (!projectSection || projectSection.dataset.projectMarqueeBound === 'true') return;
 
-    const projectSticky = projectSection.querySelector('.project-gallery__sticky');
-    const projectViewport = projectSection.querySelector('[data-project-viewport]');
     const projectTrack = projectSection.querySelector('[data-project-track]');
-    const projectProgress = projectSection.querySelector('[data-project-progress]');
-    const projectCurrent = projectSection.querySelector('[data-project-current]');
-    if (!projectSticky || !projectViewport || !projectTrack) return;
+    if (!projectTrack) return;
 
-    projectSection.dataset.projectScrollBound = 'true';
-    const projectMotionQuery = window.matchMedia('(min-width: 900px) and (prefers-reduced-motion: no-preference)');
-    let projectTravel = 0;
-    let projectFrame = 0;
+    projectSection.dataset.projectMarqueeBound = 'true';
+    projectSection.classList.add('is-project-marquee-ready');
 
-    const resetProjectScroll = () => {
-      projectSection.classList.remove('is-scroll-ready');
-      projectSection.style.removeProperty('height');
-      projectTrack.style.removeProperty('transform');
-      if (projectProgress) projectProgress.style.removeProperty('transform');
-      if (projectCurrent) projectCurrent.textContent = '01';
+    const originalItems = Array.from(projectTrack.children);
+    if (originalItems.length === 0) return;
+
+    originalItems.forEach((item, index) => {
+      const clone = item.cloneNode(true);
+      clone.dataset.projectMarqueeClone = 'true';
+      clone.setAttribute('aria-hidden', 'true');
+      clone.setAttribute('inert', '');
+      if (index === 0) clone.dataset.projectMarqueeSetStart = 'true';
+      projectTrack.appendChild(clone);
+    });
+
+    const measureProjectMarquee = () => {
+      const firstClone = projectTrack.querySelector('[data-project-marquee-set-start]');
+      const cycleWidth = firstClone ? firstClone.offsetLeft - originalItems[0].offsetLeft : 0;
+      if (cycleWidth <= 0) return;
+
+      projectTrack.style.setProperty('--project-marquee-translate', `${-cycleWidth}px`);
+      projectTrack.style.setProperty('--project-marquee-duration', `${Math.max(32, cycleWidth / 46)}s`);
     };
 
-    const updateProjectScroll = () => {
-      projectFrame = 0;
-      if (!projectMotionQuery.matches || !projectSection.classList.contains('is-scroll-ready')) return;
-
-      const stickyTop = Number.parseFloat(getComputedStyle(projectSticky).top) || 0;
-      const sectionTop = projectSection.getBoundingClientRect().top + window.scrollY;
-      const start = sectionTop - stickyTop;
-      const scrollDistance = Math.max(1, projectSection.offsetHeight - projectSticky.offsetHeight);
-      const progress = Math.min(1, Math.max(0, (window.scrollY - start) / scrollDistance));
-
-      projectTrack.style.transform = `translate3d(${-projectTravel * progress}px, 0, 0)`;
-      if (projectProgress) projectProgress.style.transform = `scaleX(${progress})`;
-      if (projectCurrent) {
-        const total = projectTrack.children.length;
-        const active = Math.min(total, Math.floor(progress * total) + 1);
-        projectCurrent.textContent = String(active).padStart(2, '0');
-      }
+    let isInViewport = false;
+    const syncProjectPlayback = () => {
+      const shouldPlay = isInViewport && !document.hidden;
+      projectSection.classList.toggle('is-project-marquee-playing', shouldPlay);
     };
 
-    const requestProjectUpdate = () => {
-      cancelAnimationFrame(projectFrame);
-      projectFrame = requestAnimationFrame(updateProjectScroll);
-    };
-
-    const measureProjectScroll = () => {
-      if (!projectMotionQuery.matches) {
-        resetProjectScroll();
-        return;
-      }
-
-      projectSection.classList.add('is-scroll-ready');
-      projectTravel = Math.max(0, projectTrack.scrollWidth - projectViewport.clientWidth);
-
-      // Quãng cuộn dài hơn quãng dịch một chút để từng card có đủ thời gian đọc.
-      const scrollDistance = Math.max(window.innerHeight * 0.9, projectTravel * 1.08);
-      projectSection.style.height = `${projectSticky.offsetHeight + scrollDistance}px`;
-      requestProjectUpdate();
-    };
-
-    window.addEventListener('scroll', requestProjectUpdate, { passive: true });
-    window.addEventListener('resize', () => requestAnimationFrame(measureProjectScroll), { passive: true });
-    projectMotionQuery.addEventListener('change', measureProjectScroll);
-
-    if ('ResizeObserver' in window) {
-      const projectResizeObserver = new ResizeObserver(() => requestAnimationFrame(measureProjectScroll));
-      projectResizeObserver.observe(projectViewport);
-      projectResizeObserver.observe(projectTrack);
+    if ('IntersectionObserver' in window) {
+      const projectObserver = new IntersectionObserver(([entry]) => {
+        isInViewport = entry.isIntersecting;
+        syncProjectPlayback();
+      }, { threshold: 0.12 });
+      projectObserver.observe(projectSection);
+    } else {
+      isInViewport = true;
+      syncProjectPlayback();
     }
 
-    requestAnimationFrame(measureProjectScroll);
+    document.addEventListener('visibilitychange', syncProjectPlayback);
+    window.addEventListener('resize', () => requestAnimationFrame(measureProjectMarquee), { passive: true });
+    requestAnimationFrame(measureProjectMarquee);
   };
 
-  const bindProjectScrollerWithin = (root) => {
+  const bindProjectMarqueeWithin = (root) => {
     if (!root || root.nodeType !== 1) return;
-    if (root.matches?.('[data-project-scroll]')) setupProjectScroller(root);
-    root.querySelectorAll?.('[data-project-scroll]').forEach(setupProjectScroller);
+    if (root.matches?.('[data-project-marquee]')) setupProjectMarquee(root);
+    root.querySelectorAll?.('[data-project-marquee]').forEach(setupProjectMarquee);
   };
 
-  // Bind ngay nếu section đã có, đồng thời theo dõi trường hợp section-loader
-  // inject 03-work sau khi initApp đã chạy. data-project-scroll-bound ngăn bind trùng.
-  document.querySelectorAll('[data-project-scroll]').forEach(setupProjectScroller);
+  // Bind ngay nếu section đã có, đồng thời theo dõi section được loader inject sau.
+  document.querySelectorAll('[data-project-marquee]').forEach(setupProjectMarquee);
   const projectSectionObserver = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      mutation.addedNodes.forEach(bindProjectScrollerWithin);
+      mutation.addedNodes.forEach(bindProjectMarqueeWithin);
     });
   });
   projectSectionObserver.observe(document.body, { childList: true, subtree: true });

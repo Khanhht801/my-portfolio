@@ -1,10 +1,10 @@
 <!-- ============================================================
      03. COMPACT PROJECT GALLERY
-     - Desktop: pinned horizontal rail with vertical project cards
-     - Mobile: horizontal scroll-snap carousel
+     - Tự động chạy ngang khi section đi vào viewport
+     - Pause khi hover/focus card; loop liền mạch bằng một bộ card clone
      - Images are replaceable through each <img src="...">
 ============================================================ -->
-<section class="project-gallery" id="work" data-project-scroll>
+<section class="project-gallery" id="work" data-project-marquee>
   <div class="project-gallery__sticky">
     <span class="section-corner-index" aria-hidden="true">01</span>
     <div class="project-gallery__inner max-w-site mx-auto px-4 sm:px-6">
@@ -138,12 +138,12 @@
     </div>
 
     <div class="project-gallery__progress" aria-hidden="true">
-      <span>SCROLL TO EXPLORE</span>
+      <span>AUTO PLAY · HOVER TO PAUSE</span>
       <div><i data-project-progress></i></div>
       <strong><b data-project-current>01</b> / 05</strong>
     </div>
 
-    <p class="project-gallery__hint"><span aria-hidden="true">←</span> Vuốt để xem thêm dự án <span aria-hidden="true">→</span></p>
+    <p class="project-gallery__hint">Tự động trình chiếu · Di chuột vào card để tạm dừng</p>
   </div>
   </div>
 </section>

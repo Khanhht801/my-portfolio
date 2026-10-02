@@ -1,9 +1,9 @@
 <!-- ============================================================
      04. ABOUT SECTION
      - Editorial composition đồng bộ với hero
-     - Slider chân dung autoplay, điều khiển bàn phím và touch-friendly
+     - Click/chạm trực tiếp vào ảnh để xem ảnh kế tiếp; autoplay mỗi 3 giây
      - Selector JS phụ thuộc: [data-autoplay-slider], [data-slide],
-       [data-prev], [data-next], [data-dot-index]
+       [data-slide-next], [data-dot-index]
 ============================================================ -->
 <section class="about-showcase relative overflow-hidden border-b border-[#E7E5E4]" id="about">
   <div class="about-showcase__orb about-showcase__orb--top" aria-hidden="true"></div>
@@ -32,8 +32,9 @@
           <span>LEARN</span><i></i><span>BUILD</span><i></i><span>IMPROVE</span>
         </div>
 
-        <div class="about-slider" data-autoplay-slider data-autoplay-ms="4000">
-          <div class="about-slider__frame">
+        <div class="about-slider" data-autoplay-slider data-autoplay-ms="3000">
+          <div class="about-slider__frame" data-slide-next role="button" tabindex="0"
+            aria-label="Xem ảnh chân dung tiếp theo">
             <ul class="about-slider__slides" data-slides aria-live="polite">
               <li class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100" data-slide>
                 <img alt="Hoàng Thanh Khánh - chân dung 01" loading="lazy" width="1200" height="1800"
@@ -72,16 +73,6 @@
               <span class="about-slider__caption-count">01 — 05</span>
             </div>
 
-            <button type="button" data-prev aria-label="Xem ảnh chân dung trước" class="about-slider__arrow about-slider__arrow--prev">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"></path>
-              </svg>
-            </button>
-            <button type="button" data-next aria-label="Xem ảnh chân dung tiếp theo" class="about-slider__arrow about-slider__arrow--next">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"></path>
-              </svg>
-            </button>
           </div>
 
           <div class="about-slider__dots" data-dots role="tablist" aria-label="Chọn ảnh chân dung">

@@ -1,8 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="scroll-smooth" lang="vi">
-
-<head>
-  <!-- ============================================================
+  <head>
+    <!-- ============================================================
        <head> da toi uu (Quick wins)
        - Meta SEO + Open Graph + Twitter Card
        - Favicon gom nhom (loai bo .ico khong ton tai)
@@ -11,53 +10,95 @@
        - defer script.js + section-loader.js (non-blocking)
        - Tailwind CSS duoc build san cho production
        ============================================================ -->
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta name="theme-color" content="#FFFBF5">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="theme-color" content="#FFFBF5" />
 
-  <!-- SEO co ban -->
-  <title>Hoàng Thanh Khánh — Lập trình viên Fullstack & Kỹ sư phần mềm</title>
-  <meta name="description"
-    content="Portfolio cá nhân của Hoàng Thanh Khánh — Lập trình viên Fullstack, sinh viên năm 3 chuyên ngành Tin học ứng dụng. Chia sẻ dự án, kinh nghiệm và tech stack (React, Next.js, PHP, Python, SQL).">
-  <meta name="keywords"
-    content="Hoàng Thanh Khánh, Khanhht, Fullstack Developer, Portfolio, Lập trình viên, React, Next.js, PHP, Python, MySQL">
-  <meta name="author" content="Hoàng Thanh Khánh">
-  <meta name="robots" content="index, follow">
+    <!-- SEO co ban -->
+    <title>Hoàng Thanh Khánh — Lập trình viên Fullstack & Kỹ sư phần mềm</title>
+    <meta
+      name="description"
+      content="Portfolio cá nhân của Hoàng Thanh Khánh — Lập trình viên Fullstack, sinh viên năm 3 chuyên ngành Tin học ứng dụng. Chia sẻ dự án, kinh nghiệm và tech stack (React, Next.js, PHP, Python, SQL)."
+    />
+    <meta
+      name="keywords"
+      content="Hoàng Thanh Khánh, Khanhht, Fullstack Developer, Portfolio, Lập trình viên, React, Next.js, PHP, Python, MySQL"
+    />
+    <meta name="author" content="Hoàng Thanh Khánh" />
+    <meta name="robots" content="index, follow" />
 
-  <!-- Open Graph (Facebook, LinkedIn) -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Hoàng Thanh Khánh — Lập trình viên Fullstack">
-  <meta property="og:description"
-    content="Portfolio cá nhân — dự án, kinh nghiệm và tech stack của một lập trình viên Fullstack tại Việt Nam.">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="image/remove.png">
-  <meta property="og:locale" content="vi_VN">
-  <meta property="og:site_name" content="Khanhht Portfolio">
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Hoàng Thanh Khánh — Lập trình viên Fullstack"
+    />
+    <meta
+      property="og:description"
+      content="Portfolio cá nhân — dự án, kinh nghiệm và tech stack của một lập trình viên Fullstack tại Việt Nam."
+    />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="image/remove.png" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:site_name" content="Khanhht Portfolio" />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Hoàng Thanh Khánh — Lập trình viên Fullstack">
-  <meta name="twitter:description"
-    content="Portfolio cá nhân — dự án, kinh nghiệm và tech stack của một lập trình viên Fullstack.">
-  <meta name="twitter:image" content="image/remove.png">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Hoàng Thanh Khánh — Lập trình viên Fullstack"
+    />
+    <meta
+      name="twitter:description"
+      content="Portfolio cá nhân — dự án, kinh nghiệm và tech stack của một lập trình viên Fullstack."
+    />
+    <meta name="twitter:image" content="image/remove.png" />
 
-  <!-- Favicon (gom nhom, bo file .ico khong ton tai) -->
-  <link rel="icon" type="image/png" sizes="32x32" href="image/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="64x64" href="image/favicon-64.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="image/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="image/android-chrome-192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="image/android-chrome-512.png">
+    <!-- Favicon (gom nhom, bo file .ico khong ton tai) -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="image/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="image/favicon-64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="image/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="image/android-chrome-192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="image/android-chrome-512.png"
+    />
 
-  <!-- Preconnect font + preload font critical -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Hanken+Grotesk:wght@700;800&family=JetBrains+Mono:wght@500;700&display=swap">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Hanken+Grotesk:wght@700;800&family=JetBrains+Mono:wght@500;700&display=swap"
-    rel="stylesheet">
+    <!-- Preconnect font + preload font critical -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Hanken+Grotesk:wght@700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Hanken+Grotesk:wght@700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!--
+    <!--
     LUU Y: KHONG preload <link rel="preload" as="image"> cho image/remove.png o day.
     Ly do: section #hero duoc section-loader.js inject SAU khi DOM ready,
     nen Chrome se bao loi "preloaded but not used within a few seconds".
@@ -65,38 +106,38 @@
     (xem section-loader.js → fetchSection).
   -->
 
-  <!-- Critical inline style -->
-  <style>
-    h1,
-    h2,
-    h3,
-    h4,
-    .font-display {
-      font-family: 'Hanken Grotesk', 'Inter', sans-serif !important;
-    }
-    /* An body cho den khi font san sang (anti-FOUC) */
-    html.fonts-loading body {
-      visibility: hidden;
-    }
-    /* Placeholder section: giu chieu cao toi thieu de tranh layout shift */
-    [data-section] {
-      min-height: 0;
-    }
-    [data-section]:empty {
-      /* Section chua load → khong hien thi nham noi dung */
-      display: contents;
-    }
-    /* ============================================
+    <!-- Critical inline style -->
+    <style>
+      h1,
+      h2,
+      h3,
+      h4,
+      .font-display {
+        font-family: "Hanken Grotesk", "Inter", sans-serif !important;
+      }
+      /* An body cho den khi font san sang (anti-FOUC) */
+      html.fonts-loading body {
+        visibility: hidden;
+      }
+      /* Placeholder section: giu chieu cao toi thieu de tranh layout shift */
+      [data-section] {
+        min-height: 0;
+      }
+      [data-section]:empty {
+        /* Section chua load → khong hien thi nham noi dung */
+        display: contents;
+      }
+      /* ============================================
        ANIMATE.CSS BOOT — an cac element co class
        animate__animated cho den khi JS add class
        animate__triggered (tranh FOUC khi reveal).
        ============================================ */
-    html:not(.animate-ready) .animate-booted {
-      opacity: 0 !important;
-    }
-  </style>
+      html:not(.animate-ready) .animate-booted {
+        opacity: 0 !important;
+      }
+    </style>
 
-  <!-- ============================================================
+    <!-- ============================================================
        ANIMATION LIBRARY — Animate.css (CDN, vanilla)
        - Them hieu ung animate.css (fade, slide, bounce, zoom, ...)
        - Tuong thich prefers-reduced-motion san (an toan a11y)
@@ -104,30 +145,36 @@
        Chi dung class .animate-booted de gan animate.css utilities
        (khong xung dot voi .reveal-on-scroll hien co).
        ============================================================ -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-  <!-- Compiled Tailwind + custom CSS -->
-  <link rel="stylesheet" href="tailwind.css?v=20260929-3">
-  <link rel="stylesheet" href="style.css?v=20260929-3">
-  <link rel="stylesheet" href="about.css?v=20260929-3">
-  <link rel="stylesheet" href="experience.css?v=20260929-3">
-  <link rel="stylesheet" href="section-headings.css?v=20260929-3">
-  <link rel="stylesheet" href="testimonials.css?v=20260929-3">
+    <!-- Compiled Tailwind + custom CSS -->
+    <link rel="stylesheet" href="tailwind.css?v=20261001-1" />
+    <link rel="stylesheet" href="style.css?v=20261001-3" />
+    <link rel="stylesheet" href="about.css?v=20261001-4" />
+    <link rel="stylesheet" href="experience.css?v=20260929-3" />
+    <link rel="stylesheet" href="section-headings.css?v=20260929-3" />
+    <link rel="stylesheet" href="testimonials.css?v=20261001-1" />
 
-  <!-- Font ready: go bo anti-FOUC -->
-  <script>
-    document.fonts.ready.then(() => {
-      document.documentElement.classList.remove('fonts-loading');
-    });
-    window.addEventListener('load', () => {
-      setTimeout(() => document.documentElement.classList.remove('fonts-loading'), 500);
-    });
-  </script>
-</head>
+    <!-- Font ready: go bo anti-FOUC -->
+    <script>
+      document.fonts.ready.then(() => {
+        document.documentElement.classList.remove("fonts-loading");
+      });
+      window.addEventListener("load", () => {
+        setTimeout(
+          () => document.documentElement.classList.remove("fonts-loading"),
+          500,
+        );
+      });
+    </script>
+  </head>
 
-<!--
+  <!--
   ============================================================
    MY-PORTFOLIO — index.html: skeleton tham chiếu các section
   ------------------------------------------------------------
@@ -149,45 +196,45 @@
   ============================================================
 -->
 
-<body class="bg-[#FFFBF5] text-[#292524] font-sans antialiased selection:bg-[#007BFF] selection:text-white relative">
+  <body
+    class="bg-[#FFFBF5] text-[#292524] font-sans antialiased selection:bg-[#007BFF] selection:text-white relative"
+  >
+    <!-- 00. SCROLL PROGRESS (đặt tĩnh để khỏi FOUC) -->
+    <div aria-hidden="true" id="scroll-progress"></div>
 
-  <!-- 00. SCROLL PROGRESS (đặt tĩnh để khỏi FOUC) -->
-  <div aria-hidden="true" id="scroll-progress"></div>
+    <!-- 01. NAVBAR -->
+    <div data-section="01-navbar"></div>
 
-  <!-- 01. NAVBAR -->
-  <div data-section="01-navbar"></div>
+    <main>
+      <!-- 02. HERO -->
+      <div data-section="02-hero"></div>
 
-  <main>
-    <!-- 02. HERO -->
-    <div data-section="02-hero"></div>
+      <!-- 03. SELECTED WORK -->
+      <div data-section="03-work"></div>
 
-    <!-- 03. SELECTED WORK -->
-    <div data-section="03-work"></div>
+      <!-- 04. ABOUT -->
+      <div data-section="04-about"></div>
 
-    <!-- 04. ABOUT -->
-    <div data-section="04-about"></div>
+      <!-- 05. EXPERIENCE -->
+      <div data-section="05-experience"></div>
 
-    <!-- 05. EXPERIENCE -->
-    <div data-section="05-experience"></div>
+      <!-- 06. TECH STACK -->
+      <div data-section="06-capabilities"></div>
 
-    <!-- 06. TECH STACK -->
-    <div data-section="06-capabilities"></div>
+      <!-- 09. TESTIMONIALS -->
+      <div data-section="09-testimonials"></div>
 
-    <!-- 09. TESTIMONIALS -->
-    <div data-section="09-testimonials"></div>
+      <!-- 07. CONTACT -->
+      <div data-section="07-contact"></div>
+    </main>
 
-    <!-- 07. CONTACT -->
-    <div data-section="07-contact"></div>
-  </main>
+    <!-- 08. FOOTER -->
+    <div data-section="08-footer"></div>
 
-  <!-- 08. FOOTER -->
-  <div data-section="08-footer"></div>
+    <!-- Section loader (load trước, không cần đợi section xong) -->
+    <script src="section-loader.js?v=20261001-4" defer></script>
 
-  <!-- Section loader (load trước, không cần đợi section xong) -->
-  <script src="section-loader.js?v=20260929-4" defer></script>
-
-  <!-- Main app script (chờ event "sections:loaded" mới init) -->
-  <script src="script.js?v=20260929-4" defer></script>
-</body>
-
+    <!-- Main app script (chờ event "sections:loaded" mới init) -->
+    <script src="script.js?v=20261001-4" defer></script>
+  </body>
 </html>

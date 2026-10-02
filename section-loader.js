@@ -13,7 +13,7 @@
   'use strict';
 
   const SECTIONS_DIR = 'sections/';
-  const ASSET_VERSION = '20260929-4';
+  const ASSET_VERSION = '20261001-4';
   // Thứ tự load ưu tiên (above-the-fold trước)
   const PRIORITY_ORDER = [
     '00-scroll-progress', '01-navbar', '02-hero',
@@ -73,17 +73,20 @@
   };
 
   // 3. Load nhóm ưu tiên (above-the-fold) ngay khi DOM ready
-  const loadPriority = () => {
-    const priority = PRIORITY_ORDER
+  const getPrioritySections = () => PRIORITY_ORDER
       .filter(name => document.querySelector(`[data-section="${name}"]`))
       .slice(0, 3);
+
+  const loadPriority = () => {
+    const priority = getPrioritySections();
     return Promise.all(priority.map(fetchSection));
   };
 
   // 4. Load các section còn lại khi trình duyệt rảnh
   const loadRest = () => {
-    const rest = PRIORITY_ORDER.slice(3).filter(name =>
-      document.querySelector(`[data-section="${name}"]`)
+    const priority = new Set(getPrioritySections());
+    const rest = PRIORITY_ORDER.filter(name =>
+      !priority.has(name) && document.querySelector(`[data-section="${name}"]`)
     );
     if ('requestIdleCallback' in window) {
       window.requestIdleCallback(() => {
