@@ -35,9 +35,10 @@
             <div class="journey-card__content">
               <div class="journey-card__details">
                 <ul class="journey-card__bullets">
-                  <li>Quản lý và cập nhật nội dung, hình ảnh, thông tin khóa học trên website.</li>
-                  <li>Xây dựng nội dung cho Fanpage, Zalo OA và các kênh online.</li>
-                  <li>Hỗ trợ tư vấn khóa học và phối hợp vận hành công việc văn phòng.</li>
+                  <li>Quản lý cập nhật nội dung Website và các kênh online của công ty.</li>
+                  <li>Thiết kế và chỉnh sửa hình ảnh, ấn phẩm truyền thông bằng Canva và các công cụ AI.</li>
+                  <li>Tư vấn, chăm sóc khách hàng, tiếp nhận và hỗ trợ giải đáp nhu cầu của khách hàng.</li>
+                  <li>Hỗ trợ công việc vận hành, quản lý tài liệu, nhập liệu và tổng hợp thông tin.</li>
                 </ul>
                 <ul class="journey-card__tags" aria-label="Kỹ năng sử dụng">
                   <li>Website</li><li>Fanpage</li><li>Zalo OA</li><li>Google Maps</li>
@@ -72,9 +73,10 @@
             <div class="journey-card__content">
               <div class="journey-card__details">
                 <ul class="journey-card__bullets">
-                  <li>Thiết kế giao diện quản lý thông tin sinh viên và lớp học trực quan.</li>
-                  <li>Xây dựng chức năng thêm, sửa, tìm kiếm và quản lý dữ liệu.</li>
-                  <li>Kết nối database và hoàn thiện luồng xử lý dữ liệu của hệ thống.</li>
+                  <li>Quản lý sinh viên, lớp học, điểm và dữ liệu học tập quy mô khoa.</li>
+                  <li>Phát triển các chức năng thêm, sửa, xóa, tìm kiếm và quản lý thông tin.</li>
+                  <li>Tích hợp chat trực tiếp Giảng viên ↔ Sinh viên và Sinh viên ↔ Sinh viên.</li>
+                  <li>Kết nối cơ sở dữ liệu và xây dựng luồng xử lý giữa frontend – backend – database.</li>
                 </ul>
                 <ul class="journey-card__tags" aria-label="Công nghệ sử dụng">
                   <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li><li>MySQL</li><li>PHP</li>
@@ -84,7 +86,7 @@
                 <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
                   alt="Màn hình dashboard đại diện cho dự án quản lý sinh viên" width="1000" height="750" loading="lazy"
                   onerror="this.onerror=null;this.src='image/logo.jpg';">
-                <figcaption><span></span>Fullstack project</figcaption>
+                <figcaption><span></span>REAL-TIME CHAT</figcaption>
               </figure>
             </div>
           </article>
@@ -94,7 +96,7 @@
         <li class="journey-item journey-item--education reveal-on-scroll is-visible animate-booted"
           data-anim="animate__fadeInUp" data-delay="0.2">
           <time class="journey-item__date" datetime="2024">
-            <span>2024</span><strong>—</strong><small>2027</small>
+            <span>T9</span><strong>2024</strong><small>hiện tại</small>
           </time>
           <div class="journey-item__rail" aria-hidden="true"><span class="journey-item__node"><i></i></span></div>
           <article class="journey-card">
@@ -103,18 +105,18 @@
               <span class="journey-card__number">03 / 03</span>
             </div>
             <div class="journey-card__heading">
-              <h3>Kỹ sư thực hành Tin học ứng dụng</h3>
+              <h3>Chuyên ngành Tin học ứng dụng</h3>
               <p>Trường Cao đẳng Lạng Sơn</p>
             </div>
             <div class="journey-card__content">
               <div class="journey-card__details">
                 <ul class="journey-card__bullets">
-                  <li>Duy trì GPA <strong>3.8/4.0</strong>, định hướng tốt nghiệp loại Giỏi.</li>
-                  <li>Tập trung vào giải thuật, cơ sở dữ liệu và phân tích thiết kế hệ thống.</li>
+                  <li>Duy trì GPA <strong>3.7/4.0</strong>, định hướng tốt nghiệp loại Giỏi.</li>
+                  <li>Tập trung vào phát triển web, cơ sở dữ liệu và xây dựng ứng dụng thực tế.</li>
                   <li>Nhận Học bổng Khuyến khích Học tập Xuất sắc trong 3 học kỳ liên tiếp.</li>
                 </ul>
                 <ul class="journey-card__tags" aria-label="Kiến thức chuyên môn">
-                  <li>Data Structures</li><li>Algorithms</li><li>SQL Server</li><li>System Design</li><li>Git</li>
+                  <li>Frontend</li><li>Backend</li><li>Database</li><li>Git</li><li>Web Development</li>
                 </ul>
               </div>
               <figure class="journey-card__media">

@@ -774,8 +774,9 @@ section[id] {
 .project-tile {
   display: flex;
   min-width: 0;
-  min-height: 31rem;
+  min-height: 0;
   overflow: hidden;
+  align-self: start;
   flex-direction: column;
   border: 1px solid #dedbd7;
   border-radius: 1.35rem;
@@ -864,8 +865,8 @@ section[id] {
 
 .project-tile__body {
   display: flex;
-  flex: 1;
-  padding: 1.2rem;
+  flex: 0 0 auto;
+  padding: 1rem;
   flex-direction: column;
 }
 
@@ -908,7 +909,7 @@ section[id] {
 .project-tile__body > p {
   display: -webkit-box;
   overflow: hidden;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   color: #57534e;
   font-size: 0.84rem;
   line-height: 1.6;
@@ -923,8 +924,8 @@ section[id] {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  margin-top: auto;
-  padding-top: 0.9rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
   border-top: 1px solid #dedbd7;
   color: #78716c;
   font-family: "JetBrains Mono", monospace;
@@ -1181,7 +1182,7 @@ section[id] {
   .project-tile:last-child {
     width: auto;
     min-width: min(84vw, 22rem);
-    min-height: 27.5rem;
+    min-height: 0;
     flex: 0 0 min(84vw, 22rem);
     scroll-snap-align: start;
   }
@@ -1211,7 +1212,7 @@ section[id] {
   padding: 0;
   gap: clamp(0.85rem, 2vw, 1.5rem);
   overflow: visible;
-  align-items: stretch;
+  align-items: flex-start;
   scroll-snap-type: none;
   animation: project-marquee-scroll var(--project-marquee-duration, 42s) linear infinite;
   animation-play-state: paused;
@@ -1231,7 +1232,7 @@ section[id] {
 .project-gallery.is-project-marquee-ready .project-tile:last-child {
   width: clamp(18rem, 27vw, 23rem);
   min-width: clamp(18rem, 27vw, 23rem);
-  min-height: 31rem;
+  min-height: 0;
   height: auto;
   flex: 0 0 clamp(18rem, 27vw, 23rem);
   grid-column: auto;

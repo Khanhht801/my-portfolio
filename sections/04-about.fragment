@@ -69,7 +69,7 @@
             </ul>
 
             <div class="about-slider__caption">
-              <span class="about-slider__caption-label">PORTRAIT SERIES</span>
+              <span class="about-slider__caption-label">MY JOURNEY</span>
               <span class="about-slider__caption-count">01 — 05</span>
             </div>
 
@@ -101,25 +101,22 @@
 
         <div class="about-story__copy">
           <p>
-            Tôi thích tìm hiểu cách một sản phẩm được hình thành từ những ý tưởng ban đầu đến khi trở thành một giao
-            diện có thể sử dụng thực tế. Trong quá trình học và thực hiện dự án, tôi đặc biệt quan tâm đến cách tổ
-            chức giao diện, trải nghiệm người dùng và cách hệ thống hoạt động phía sau.
+            Tôi là sinh viên năm 3 ngành Tin học ứng dụng, định hướng phát triển Fullstack. Tôi yêu thích việc biến ý tưởng thành những sản phẩm web có giao diện rõ ràng, dễ sử dụng và vận hành ổn định.
           </p>
           <p>
-            Bên cạnh đó, tôi cũng có kinh nghiệm trực tiếp quản lý và cập nhật website, xây dựng nội dung trên các
-            kênh online. Những trải nghiệm này giúp tôi hiểu hơn về việc tạo ra một sản phẩm không chỉ hoạt động tốt,
-            mà còn cần rõ ràng, dễ sử dụng và phù hợp với người dùng.
+            Bên cạnh lập trình, tôi có kinh nghiệm quản lý website, xây dựng nội dung số. Điều đó giúp tôi chú ý hơn đến trải nghiệm người dùng, tính thực tế và sự chỉn chu của sản phẩm.
           </p>
         </div>
 
         <ul class="about-values" aria-label="Ba giá trị trong cách tôi làm việc">
-          <li><span>01</span><strong>Tò mò</strong><small>Luôn đặt câu hỏi</small></li>
-          <li><span>02</span><strong>Chỉn chu</strong><small>Quan tâm chi tiết</small></li>
-          <li><span>03</span><strong>Rõ ràng</strong><small>Ưu tiên người dùng</small></li>
+          <li><span>01</span><strong>Chủ động</strong><small>Tự học và tìm giải pháp</small></li>
+          <li><span>02</span><strong>Chỉn chu</strong><small>Quan tâm đến chất lượng sản phẩm</small></li>
+          <li><span>03</span><strong>Thực tế</strong><small>Ưu tiên giải pháp dễ dùng và hiệu quả</small></li>
         </ul>
 
         <div class="about-story__actions">
-          <a class="btn-shimmer about-action about-action--primary group" href="cv.pdf" download>
+          <a class="btn-shimmer about-action about-action--primary group"
+            href="CV - Hoàng Thanh Khánh - Fullstack.pdf?v=1d70854a" target="_blank" rel="noopener noreferrer">
             <span>Xem hồ sơ (CV)</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
               <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>

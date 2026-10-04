@@ -49,8 +49,7 @@
         <!-- Supporting copy -->
         <p class="text-left text-base md:text-lg text-[#44403C] font-normal leading-relaxed mb-6 max-w-2xl animate-booted"
           data-anim="animate__fadeInUp" data-delay="0.15">
-          Sinh viên năm 3 ngành Tin học ứng dụng, định hướng phát triển Fullstack. Có nền tảng lập trình web, kinh
-          nghiệm quản lý nội dung website và luôn chủ động trau dồi kỹ năng để xây dựng sản phẩm hoàn chỉnh.
+          Sinh viên năm 3 ngành Tin học ứng dụng, định hướng phát triển Fullstack. Có kinh nghiệm quản lý website và đang tìm kiếm cơ hội Internship/Junior để phát triển qua các dự án thực tế.
         </p>
 
         <!-- CTA Buttons -->
@@ -65,7 +64,9 @@
             </svg>
           </a>
           <a class="animate-booted group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/80 backdrop-blur-sm border border-[#E7E5E4] text-[#292524] font-sans font-medium text-base hover:bg-white hover:border-[#007BFF] hover:text-[#007BFF] transition-all shadow-sm hover:shadow-md focus:ring-2 focus:ring-[#292524]"
-            data-anim="animate__fadeInUp" data-delay="0.15" href="cv.pdf" download>
+            data-anim="animate__fadeInUp" data-delay="0.15"
+            href="CV - Hoàng Thanh Khánh - Fullstack.pdf?v=1d70854a"
+            download="CV - Hoàng Thanh Khánh - Fullstack.pdf">
             <span class="">Tải hồ sơ (CV)</span>
             <svg
               class="w-4 h-4 text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:-translate-y-0.5"
@@ -111,8 +112,8 @@
   <div class="hero-skill-strip absolute bottom-0 left-0 right-0 z-20" aria-label="Chuyên môn chính">
     <div class="hero-skill-strip__inner">
       <span>WEB DEVELOPMENT</span><i aria-hidden="true"></i>
-      <span>REACT &amp; NEXT.JS</span><i aria-hidden="true"></i>
-      <span>NODE.JS &amp; PHP</span><i aria-hidden="true"></i>
+      <span>FRONTEND </span><i aria-hidden="true"></i>
+      <span>BACKEND</span><i aria-hidden="true"></i>
       <span>RESPONSIVE UI</span>
     </div>
   </div>
