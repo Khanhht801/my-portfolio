@@ -95,7 +95,7 @@
               </span>
               <img alt="Hoàng Thanh Khánh - Lập Trình Viên Fullstack"
                 class="absolute z-10 inset-0 w-full h-full object-contain transition-transform duration-700 hover:scale-[1.03] drop-shadow-[0_24px_32px_rgba(0,65,150,0.16)]"
-                loading="eager" decoding="async" fetchpriority="high" src="image/remove.png"
+                loading="eager" decoding="async" fetchpriority="high" src="image/herop1.png"
                 onerror="this.onerror=null;this.src='image/2.jpg';">
             </div>
             <!-- Subtle accent: chấm nhỏ trang trí, không che ảnh -->

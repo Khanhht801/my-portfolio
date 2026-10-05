@@ -45,7 +45,7 @@
                 </ul>
               </div>
               <figure class="journey-card__media">
-                <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+                <img src="image/kn1.jpg"
                   alt="Không gian văn phòng đại diện cho công việc quản lý website" width="1000" height="750" loading="lazy"
                   onerror="this.onerror=null;this.src='image/logo.jpg';">
                 <figcaption><span></span>Website operations</figcaption>

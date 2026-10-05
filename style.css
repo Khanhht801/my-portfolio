@@ -913,6 +913,8 @@ section[id] {
   color: #57534e;
   font-size: 0.84rem;
   line-height: 1.6;
+  text-align: justify;
+  text-justify: inter-word;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
