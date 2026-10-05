@@ -120,7 +120,7 @@
                 </ul>
               </div>
               <figure class="journey-card__media">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+                <img src="image/kn3.jpg"
                   alt="Sinh viên học tập đại diện cho hành trình học thuật" width="1000" height="750" loading="lazy"
                   onerror="this.onerror=null;this.src='image/logo.jpg';">
                 <figcaption><span></span>Academic journey</figcaption>
