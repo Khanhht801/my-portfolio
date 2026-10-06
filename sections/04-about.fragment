@@ -44,7 +44,7 @@
               </li>
               <li class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0" data-slide>
                 <img alt="Hoàng Thanh Khánh - chân dung 02" loading="lazy" width="1200" height="1800"
-                  class="w-full h-full object-cover object-top block"
+                  class="w-full h-full object-cover object-center block"
                   src="image/about/a2.jpg"
                   onerror="this.onerror=null;this.src='image/about/a1.jpg';">
               </li>

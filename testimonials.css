@@ -163,6 +163,9 @@
   color: #44403c;
   font-weight: 500;
   letter-spacing: -0.005em;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
   /* Mở đầu bằng dấu nháy đôi để tạo điểm nhấn thị giác */
   position: relative;
 }

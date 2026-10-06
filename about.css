@@ -278,7 +278,12 @@
   line-height: 1.8;
 }
 
-.about-story__copy p { margin: 0; }
+.about-story__copy p {
+  margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
 
 .about-values {
   display: grid;
@@ -290,17 +295,28 @@
   list-style: none;
 }
 
-.about-values li { position: relative; display: grid; padding: 1rem 0.75rem; }
+.about-values li { position: relative; display: grid; align-items: start; padding: 1rem 0.75rem; }
 .about-values li + li { border-left: 1px solid #d6d3d1; }
 
 .about-values span {
+  display: block;
   margin-bottom: 0.5rem;
   color: #007bff;
   font: 700 0.62rem / 1 "JetBrains Mono", monospace;
 }
 
-.about-values strong { color: #292524; font: 800 1rem / 1.25 "Hanken Grotesk", sans-serif; }
-.about-values small { margin-top: 0.25rem; color: #78716c; font-size: 0.7rem; }
+.about-values strong {
+  display: flex;
+  align-items: center;
+  color: #292524;
+  /* Dùng flex + height cố định để khóa tuyệt đối baseline của 3 từ:
+     - height: 1.5rem cứng → 3 <strong> cùng cao
+     - align-items: center → text nằm giữa, baseline thẳng hàng
+     - Bỏ qua hoàn toàn descender (g, y, p, q) của "Chủ động". */
+  height: 1.5rem;
+  font: 800 1rem / 1rem "Hanken Grotesk", sans-serif;
+}
+.about-values small { display: block; margin-top: 0.25rem; color: #78716c; font-size: 0.85rem; }
 
 .about-story__actions {
   display: flex;
