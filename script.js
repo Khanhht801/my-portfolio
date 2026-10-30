@@ -712,19 +712,18 @@ const initApp = () => {
     // Stagger related blocks, without delaying an entire section for long.
     const siblings = [...(element.parentElement?.children || [])]
       .filter(sibling => sibling.matches(motionSelector));
-    const stagger = Math.max(0, siblings.indexOf(element)) * 90;
+    const stagger = Math.max(0, siblings.indexOf(element)) * 120;
     const explicitDelay = Number(element.dataset.delay) * 1000 || 0;
-    const delay = Math.min(320, Math.max(0, explicitDelay + stagger));
+    const delay = Math.min(360, Math.max(0, explicitDelay + stagger));
     const isVisual = element.matches('.about-visual, .project-gallery__viewport, .testimonials-column');
-    const direction = element.dataset.anim === 'animate__fadeInRight' ? 30 : 0;
+    const direction = element.dataset.anim === 'animate__fadeInRight' ? 22 : 0;
     const animation = element.animate([
-      { opacity: 0, transform: `translate(${direction}px, ${isVisual ? 52 : 36}px) scale(${isVisual ? 0.92 : 0.97})`, offset: 0 },
-      { opacity: 1, transform: 'translate(0, -5px) scale(1.012)', offset: 0.72 },
+      { opacity: 0, transform: `translate(${direction}px, ${isVisual ? 40 : 28}px) scale(${isVisual ? 0.96 : 0.985})`, offset: 0 },
       { opacity: 1, transform: 'translate(0, 0) scale(1)', offset: 1 }
     ], {
-      duration: isVisual ? 850 : 720,
+      duration: isVisual ? 1200 : 1000,
       delay,
-      easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
       fill: 'backwards'
     });
     // Keyboard focus must never wait for an entrance effect.
