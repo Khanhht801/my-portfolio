@@ -7,7 +7,7 @@
      requestIdleCallback → các script vẫn bind kịp khi user
      cuộn tới
    - ANIMATION LAYER: Khoi tao IntersectionObserver dat rieng
-     de fire cac class animate.css khi section vao viewport.
+     de reveal noi dung mot lan khi section vao viewport.
      Dam bao section load nen (work, capabilities, contact, ...)
      cung duoc hieu ung khi user cuon toi.
    ============================================================ */
@@ -19,10 +19,7 @@ const initApp = () => {
   // Initializing once prevents duplicate global listeners and stale DOM refs.
   if (isAppInitialized) return;
   isAppInitialized = true;
-  // 0. BAT ANIMATE.CSS READY — bo an .animate-booted placeholder
-  //    Lam ngay tai day de animation khong phu thuoc vao section
-  //    (hữu ích cho các element đã có sẵn trong DOM như navbar).
-  document.documentElement.classList.add('animate-ready');
+
   // 1. Scroll Progress Bar
   const progressBar = document.getElementById('scroll-progress');
   let scrollUiFrame = 0;
@@ -118,12 +115,6 @@ const initApp = () => {
       if (event.matches) setMobileMenu(false, false);
     });
   }
-
-  // 3. Scroll Reveal — DISABLED per request (animation khi scroll da tat)
-  //    Force hien thi ngay tat ca .reveal-on-scroll, khong can IntersectionObserver.
-  document.querySelectorAll('.reveal-on-scroll').forEach(el => {
-    el.classList.add('is-visible');
-  });
 
   // 4. Compact translucent header on scroll
   if (header) {
@@ -706,57 +697,61 @@ const initApp = () => {
     });
   }, { passive: true });
 
-  // 10. Re-bind cho cac section load nen (work, about, experience, capabilities,
-  //     contact, footer) — DISABLED per request (animation khi scroll da tat)
-  //     Moi section moi inject se tu dong hien thi (CSS da force visible),
-  //     khong can observer.
-  const bindRevealFor = (root) => {
-    root.querySelectorAll('.reveal-on-scroll:not(.is-visible)')
-      .forEach(el => el.classList.add('is-visible'));
+  // One-shot reveals: content stays readable if animation APIs are unavailable.
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const motionSelector = '.animate-booted, .animate-hero-line';
+  const seenMotion = new WeakSet();
+  const activeMotion = new Set();
+  const revealMotion = (element) => {
+    if (motionPreference.matches || typeof element.animate !== 'function') return;
+    const delay = Math.min(200, Math.max(0, Number(element.dataset.delay) * 1000 || 0));
+    const animation = element.animate([
+      { opacity: 0, transform: 'translateY(16px)' },
+      { opacity: 1, transform: 'translateY(0)' }
+    ], {
+      duration: element.matches('.animate-hero-line') ? 650 : 480,
+      delay,
+      easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      fill: 'backwards'
+    });
+    activeMotion.add(animation);
+    const release = () => activeMotion.delete(animation);
+    animation.addEventListener('finish', release, { once: true });
+    animation.addEventListener('cancel', release, { once: true });
   };
-
-  // Lắng nghe section mới được inject — van quan sat de goi bindRevealFor
-  // (giup class is-visible luon duoc them, nhung khong tao animation).
-  const observer = new MutationObserver((mutations) => {
-    for (const m of mutations) {
-      m.addedNodes.forEach((node) => {
-        if (node.nodeType === 1 && node.querySelectorAll) {
-          bindRevealFor(node);
-        }
+  const motionObserver = 'IntersectionObserver' in window
+    ? new IntersectionObserver((entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (!isIntersecting) return;
+        motionObserver.unobserve(target);
+        revealMotion(target);
       });
-    }
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
+    }, { threshold: 0, rootMargin: '0px 0px -24px 0px' })
+    : null;
 
-  // 11. ANIMATION OBSERVER (animate.css) — DISABLED per request
-  //     (animation khi scroll da tat). Tat ca .animate-booted se duoc
-  //     force fire ngay lap tuc, khong can IntersectionObserver.
-  const fireAllAnimateBooted = (root = document) => {
-    if (!root || !root.querySelectorAll) return;
-    root.querySelectorAll('.animate-booted:not(.animate__triggered)').forEach(el => {
-      el.classList.add('animate__triggered', 'animate__animated', el.dataset.anim);
+  const bindMotion = (root) => {
+    const elements = [...root.querySelectorAll(motionSelector)];
+    if (root.matches?.(motionSelector)) elements.unshift(root);
+    elements.forEach(element => {
+      if (seenMotion.has(element)) return;
+      seenMotion.add(element);
+      if (motionObserver && !motionPreference.matches) motionObserver.observe(element);
     });
   };
-
-  // Fire ngay voi DOM hien tai
-  fireAllAnimateBooted(document);
-
-  // Dam bao section load nen (03-08) cung duoc fire khi inject
-  const animateMutObs = new MutationObserver((mutations) => {
-    for (const m of mutations) {
-      m.addedNodes.forEach((node) => {
-        if (node.nodeType !== 1 || !node.querySelectorAll) return;
-        fireAllAnimateBooted(node);
-      });
-    }
+  bindMotion(document);
+  const motionMutations = new MutationObserver((mutations) => {
+    mutations.forEach(mutation => mutation.addedNodes.forEach(node => {
+      if (node.nodeType === 1) bindMotion(node);
+    }));
   });
-  animateMutObs.observe(document.body, { childList: true, subtree: true });
-
-  // 12. Hero headline stagger — DISABLED per request (animation khi scroll da tat)
-  //     Fire ngay tat ca .animate-hero-line, khong can IntersectionObserver.
-  document.querySelectorAll('.animate-hero-line').forEach(line => {
-    line.classList.add('is-fired');
+  motionMutations.observe(document.body, { childList: true, subtree: true });
+  motionPreference.addEventListener('change', () => {
+    if (!motionPreference.matches) return;
+    motionObserver?.disconnect();
+    activeMotion.forEach(animation => animation.cancel());
+    activeMotion.clear();
   });
+
 };
 
 // Chờ section-loader inject xong 3 section above-the-fold rồi mới init

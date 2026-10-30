@@ -127,34 +127,11 @@
         /* Section chua load → khong hien thi nham noi dung */
         display: contents;
       }
-      /* ============================================
-       ANIMATE.CSS BOOT — an cac element co class
-       animate__animated cho den khi JS add class
-       animate__triggered (tranh FOUC khi reveal).
-       ============================================ */
-      html:not(.animate-ready) .animate-booted {
-        opacity: 0 !important;
-      }
     </style>
-
-    <!-- ============================================================
-       ANIMATION LIBRARY — Animate.css (CDN, vanilla)
-       - Them hieu ung animate.css (fade, slide, bounce, zoom, ...)
-       - Tuong thich prefers-reduced-motion san (an toan a11y)
-       - 71KB gzip ~110KB; CDN cache tot trong trinh duyet
-       Chi dung class .animate-booted de gan animate.css utilities
-       (khong xung dot voi .reveal-on-scroll hien co).
-       ============================================================ -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
 
     <!-- Compiled Tailwind + custom CSS -->
     <link rel="stylesheet" href="tailwind.css?v=20261001-1" />
-    <link rel="stylesheet" href="style.css?v=20261030-1" />
+    <link rel="stylesheet" href="style.css?v=20261030-3" />
     <link rel="stylesheet" href="about.css?v=20261030-1" />
     <link rel="stylesheet" href="experience.css?v=20261030-1" />
     <link rel="stylesheet" href="section-headings.css?v=20260929-3" />
@@ -235,6 +212,6 @@
     <script src="section-loader.js?v=20261030-1" defer></script>
 
     <!-- Main app script (chờ event "sections:loaded" mới init) -->
-    <script src="script.js?v=20261030-2" defer></script>
+    <script src="script.js?v=20261030-3" defer></script>
   </body>
 </html>

@@ -1990,31 +1990,10 @@ a.case-button--primary:hover { background: #0056cc; box-shadow: 0 14px 25px rgba
   animation: nodePing 2s infinite ease-out;
 }
 
-/* Reveal on scroll system — DISABLED per request
-   (animation khi scroll da tat. Giu comment de de revert.)
-   Element .reveal-on-scroll luon o trang thai hien thi, khong fade/slide. */
+/* Reveals use the native Web Animations API; the resting state is visible. */
 .reveal-on-scroll,
-.reveal-on-scroll.is-visible {
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
-}
-
-/* Tat cac hieu ung animate.css (fadeInDown, zoomIn, fadeInUp, ...) khi
-   scroll den — DISABLED per request. Class animate__animated van duoc
-   them (de khong pha HTML contract) nhung animation bi chan. */
-.animate__animated,
-.animate__animated.animate__fadeInDown,
-.animate__animated.animate__fadeInUp,
-.animate__animated.animate__fadeInLeft,
-.animate__animated.animate__fadeInRight,
-.animate__animated.animate__zoomIn {
-  animation: none !important;
-  animation-duration: 0s !important;
-  animation-delay: 0s !important;
-  opacity: 1 !important;
-  transform: none !important;
-  filter: none !important;
+.animate-booted {
+  opacity: 1;
 }
 
 /* Aspect ratio 16:9 (1920x1080) cho ảnh preview trong các project card */
@@ -2312,15 +2291,9 @@ article p.text-base {
    - Typewriter caret blink (cho section header mono text)
    ============================================================ */
 
-/* Hero headline — fade + slide up voi delay tung cum tu — DISABLED per request
-   (animation khi scroll da tat. Giu comment de de revert.) */
+/* Hero headline rests in its readable state after the entrance animation. */
 .animate-hero-line {
-  opacity: 1 !important;
-  transform: none !important;
-  filter: none !important;
-}
-.animate-hero-line.is-fired {
-  animation: none !important;
+  opacity: 1;
 }
 
 /* Gradient border gradient chay vong quanh card */
@@ -2699,5 +2672,15 @@ article p.text-base {
   }
   .journey-card__number {
     margin-left: 0;
+  }
+}
+
+/* Honor motion preferences for every decorative loop and smooth-scroll utility. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }
