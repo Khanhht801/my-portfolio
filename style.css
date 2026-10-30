@@ -371,6 +371,10 @@ section[id] {
   transform: translateY(calc(0.5rem - 24px));
 }
 
+.hero-description {
+  text-align: justify;
+}
+
 .hero-section {
   background-color: #fffcf8;
   background-image: radial-gradient(rgba(0, 123, 255, 0.055) 1px, transparent 1px);

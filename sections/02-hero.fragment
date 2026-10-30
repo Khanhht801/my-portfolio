@@ -47,7 +47,7 @@
         </h1>
 
         <!-- Supporting copy -->
-        <p class="text-left text-base md:text-lg text-[#44403C] font-normal leading-relaxed mb-6 max-w-2xl animate-booted"
+        <p class="hero-description text-base md:text-lg text-[#44403C] font-normal leading-relaxed mb-6 max-w-2xl animate-booted"
           data-anim="animate__fadeInUp" data-delay="0.15">
           Sinh viên năm 3 ngành Tin học ứng dụng, định hướng phát triển Fullstack. Có kinh nghiệm quản lý website và đang tìm kiếm cơ hội Internship/Junior để phát triển qua các dự án thực tế.
         </p>
