@@ -1,6 +1,6 @@
 /* About section — asymmetric editorial composition */
 .about-showcase {
-  padding: clamp(4.5rem, 8vw, 7.5rem) 0 0;
+  padding: clamp(2.5rem, 4vw, 3.5rem) 0 0;
   background-color: #fffdf9;
   background-image:
     linear-gradient(rgba(41, 37, 36, 0.035) 1px, transparent 1px),
@@ -99,7 +99,7 @@
   grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
   align-items: center;
   gap: clamp(3rem, 7vw, 7rem);
-  padding: clamp(3.5rem, 6vw, 6rem) 0;
+  padding: clamp(2.5rem, 4vw, 4rem) 0;
 }
 
 .about-visual {
@@ -389,7 +389,7 @@
 }
 
 @media (max-width: 767px) {
-  .about-showcase { padding-top: 4rem; background-size: 36px 36px; }
+  .about-showcase { padding-top: 2.5rem; background-size: 36px 36px; }
   .about-heading { gap: 1rem; }
   .about-heading__note { display: none; }
   .about-heading__title {
@@ -399,7 +399,7 @@
     overflow-wrap: anywhere;
   }
   .about-heading__title span { display: block; }
-  .about-layout { grid-template-columns: 1fr; padding-block: 3rem 4rem; }
+  .about-layout { grid-template-columns: 1fr; padding-block: 2.5rem 3rem; }
   .about-visual { width: min(100%, 28rem); margin-inline: auto; padding-right: 0; }
   .about-visual__sticker { right: 0.75rem; max-width: calc(100% - 1.5rem); }
   .about-story__quote { font-size: clamp(2.2rem, 11vw, 3.5rem); }
