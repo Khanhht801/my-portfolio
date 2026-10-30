@@ -392,6 +392,8 @@ const initApp = () => {
 
       projectTrack.style.setProperty('--project-marquee-translate', `${-cycleWidth}px`);
       projectTrack.style.setProperty('--project-marquee-duration', `${Math.max(32, cycleWidth / 46)}s`);
+      const centerOffset = Math.max(0, (projectViewport.clientWidth - originalItems[0].getBoundingClientRect().width) / 2);
+      projectTrack.style.setProperty('--project-center-offset', `${centerOffset}px`);
     };
 
     // Seek the existing animation so manual movement and autoplay share one position.
@@ -401,19 +403,68 @@ const initApp = () => {
       if (!animation || !cycleWidth || typeof duration !== 'number') return;
       const nextTime = Number(animation.currentTime || 0) + distance / cycleWidth * duration;
       animation.currentTime = ((nextTime % duration) + duration) % duration;
+      updateProjectDots();
     };
 
     let drag = null;
     let suppressClick = false;
+    let snapFrame = 0;
+    const mobileProjects = window.matchMedia('(max-width: 767px)');
+    const projectPosition = () => {
+      const animation = projectTrack.getAnimations()[0];
+      const duration = animation?.effect?.getTiming().duration;
+      return typeof duration === 'number' && duration > 0
+        ? Number(animation.currentTime || 0) / duration * cycleWidth : 0;
+    };
+    const dotsContainer = projectSection.querySelector('[data-project-dots]');
+    const projectDots = originalItems.map((item, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'project-gallery__dot';
+      dot.setAttribute('aria-label', `Xem dự án ${index + 1}: ${item.querySelector('h3')?.textContent || ''}`);
+      dot.setAttribute('aria-pressed', index === 0 ? 'true' : 'false');
+      dot.appendChild(document.createElement('span'));
+      dot.addEventListener('click', () => {
+        if (!cycleWidth) return;
+        cancelAnimationFrame(snapFrame);
+        seekProjects(index * cycleWidth / originalItems.length - projectPosition());
+      });
+      dotsContainer?.appendChild(dot);
+      return dot;
+    });
+    let activeProjectDot = -1;
+    const updateProjectDots = () => {
+      if (!cycleWidth) return;
+      const index = Math.round(projectPosition() / (cycleWidth / originalItems.length)) % originalItems.length;
+      if (index === activeProjectDot) return;
+      activeProjectDot = index;
+      projectDots.forEach((dot, i) => dot.setAttribute('aria-pressed', i === index ? 'true' : 'false'));
+    };
+    const snapProject = (distance) => {
+      const started = performance.now();
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let applied = 0;
+      const tick = (now) => {
+        const progress = reducedMotion ? 1 : Math.min(1, (now - started) / 220);
+        const next = distance * (1 - (1 - progress) ** 3);
+        seekProjects(next - applied);
+        applied = next;
+        if (progress < 1) snapFrame = requestAnimationFrame(tick);
+      };
+      snapFrame = requestAnimationFrame(tick);
+    };
     projectViewport.addEventListener('pointerdown', (event) => {
       if (!event.isPrimary || event.button !== 0) return;
+      cancelAnimationFrame(snapFrame);
       suppressClick = false;
-      drag = { id: event.pointerId, startX: event.clientX, lastX: event.clientX, moved: false };
+      drag = { id: event.pointerId, startX: event.clientX, startY: event.clientY,
+        lastX: event.clientX, moved: false, position: projectPosition(), mobile: mobileProjects.matches };
       projectViewport.classList.add('is-dragging');
     });
     projectViewport.addEventListener('pointermove', (event) => {
       if (!drag || drag.id !== event.pointerId) return;
       if (!drag.moved && Math.abs(event.clientX - drag.startX) < 6) return;
+      if (!drag.moved && Math.abs(event.clientY - drag.startY) > Math.abs(event.clientX - drag.startX)) return;
       if (!drag.moved) {
         drag.moved = true;
         projectViewport.setPointerCapture(event.pointerId);
@@ -424,6 +475,14 @@ const initApp = () => {
     const endProjectDrag = (event) => {
       if (!drag || drag.id !== event.pointerId) return;
       suppressClick = drag.moved;
+      if (drag.mobile && drag.moved && cycleWidth > 0) {
+        const step = cycleWidth / originalItems.length;
+        const swipe = drag.startX - drag.lastX;
+        const direction = event.type === 'pointerup' && Math.abs(swipe) >= 24 ? Math.sign(swipe) : 0;
+        const target = (Math.round(drag.position / step) + direction) * step;
+        // Keep the unwrapped position so swipes also work across the loop boundary.
+        snapProject(target - (drag.position + swipe));
+      }
       drag = null;
       projectViewport.classList.remove('is-dragging');
       if (projectViewport.hasPointerCapture(event.pointerId)) {
@@ -449,9 +508,16 @@ const initApp = () => {
     }, { passive: false });
 
     let isInViewport = false;
+    let dotsFrame = 0;
+    const followProjectDots = () => {
+      updateProjectDots();
+      dotsFrame = requestAnimationFrame(followProjectDots);
+    };
     const syncProjectPlayback = () => {
       const shouldPlay = isInViewport && !document.hidden;
       projectSection.classList.toggle('is-project-marquee-playing', shouldPlay);
+      cancelAnimationFrame(dotsFrame);
+      if (shouldPlay) followProjectDots();
     };
 
     if ('IntersectionObserver' in window) {

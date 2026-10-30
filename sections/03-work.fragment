@@ -140,7 +140,7 @@
       <strong><b data-project-current>01</b> / 05</strong>
     </div>
 
-    <p class="project-gallery__hint">Tự động trình chiếu · Di chuột vào card để tạm dừng</p>
+    <div class="project-gallery__dots" data-project-dots role="group" aria-label="Chọn dự án"></div>
   </div>
   </div>
 </section>
