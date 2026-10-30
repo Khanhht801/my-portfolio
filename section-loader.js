@@ -13,7 +13,7 @@
   'use strict';
 
   const SECTIONS_DIR = 'sections/';
-  const ASSET_VERSION = '20261001-4';
+  const ASSET_VERSION = '20261030-1';
   // Thứ tự load ưu tiên (above-the-fold trước)
   const PRIORITY_ORDER = [
     '00-scroll-progress', '01-navbar', '02-hero',

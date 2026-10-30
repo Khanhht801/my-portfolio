@@ -491,7 +491,11 @@ const initApp = () => {
     };
     window.addEventListener('pointerup', endProjectDrag);
     projectViewport.addEventListener('pointercancel', endProjectDrag);
-    projectViewport.addEventListener('lostpointercapture', endProjectDrag);
+    projectViewport.addEventListener('lostpointercapture', (event) => {
+      // Touch starts with implicit capture on the image/link. Transferring it to
+      // the viewport emits a bubbling event from that child, not a released swipe.
+      if (event.target === projectViewport) endProjectDrag(event);
+    });
     projectViewport.addEventListener('dragstart', (event) => event.preventDefault());
     projectViewport.addEventListener('click', (event) => {
       if (!suppressClick) return;

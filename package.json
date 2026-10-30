@@ -4,7 +4,7 @@
   "scripts": {
     "build:css": "tailwindcss -i ./tailwind.input.css -o ./tailwind.css --minify",
     "build": "npm run build:css",
-    "test": "node ./tests/deployment-smoke.test.mjs"
+    "test": "node ./tests/deployment-smoke.test.mjs && node ./tests/project-swipe.test.mjs"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
