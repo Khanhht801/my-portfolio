@@ -409,7 +409,26 @@ const initApp = () => {
     let drag = null;
     let suppressClick = false;
     let snapFrame = 0;
+    let mobileAutoplayTimer = 0;
+    let isInViewport = false;
     const mobileProjects = window.matchMedia('(max-width: 767px)');
+    const stopMobileAutoplay = () => {
+      clearTimeout(mobileAutoplayTimer);
+    };
+    const scheduleMobileAutoplay = () => {
+      stopMobileAutoplay();
+      if (!mobileProjects.matches || !isInViewport || document.hidden || drag) return;
+      mobileAutoplayTimer = setTimeout(() => {
+        if (!cycleWidth) {
+          scheduleMobileAutoplay();
+          return;
+        }
+        const step = cycleWidth / originalItems.length;
+        const position = projectPosition();
+        cancelAnimationFrame(snapFrame);
+        snapProject((Math.round(position / step) + 1) * step - position);
+      }, 2500);
+    };
     const projectPosition = () => {
       const animation = projectTrack.getAnimations()[0];
       const duration = animation?.effect?.getTiming().duration;
@@ -428,6 +447,7 @@ const initApp = () => {
         if (!cycleWidth) return;
         cancelAnimationFrame(snapFrame);
         seekProjects(index * cycleWidth / originalItems.length - projectPosition());
+        scheduleMobileAutoplay();
       });
       dotsContainer?.appendChild(dot);
       return dot;
@@ -450,11 +470,13 @@ const initApp = () => {
         seekProjects(next - applied);
         applied = next;
         if (progress < 1) snapFrame = requestAnimationFrame(tick);
+        else scheduleMobileAutoplay();
       };
       snapFrame = requestAnimationFrame(tick);
     };
     projectViewport.addEventListener('pointerdown', (event) => {
       if (!event.isPrimary || event.button !== 0) return;
+      stopMobileAutoplay();
       cancelAnimationFrame(snapFrame);
       suppressClick = false;
       drag = { id: event.pointerId, startX: event.clientX, startY: event.clientY,
@@ -488,6 +510,7 @@ const initApp = () => {
       if (projectViewport.hasPointerCapture(event.pointerId)) {
         projectViewport.releasePointerCapture(event.pointerId);
       }
+      scheduleMobileAutoplay();
     };
     window.addEventListener('pointerup', endProjectDrag);
     projectViewport.addEventListener('pointercancel', endProjectDrag);
@@ -509,9 +532,9 @@ const initApp = () => {
       event.preventDefault();
       const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? projectViewport.clientWidth : 1;
       seekProjects(distance * unit);
+      scheduleMobileAutoplay();
     }, { passive: false });
 
-    let isInViewport = false;
     let dotsFrame = 0;
     const followProjectDots = () => {
       updateProjectDots();
@@ -522,6 +545,7 @@ const initApp = () => {
       projectSection.classList.toggle('is-project-marquee-playing', shouldPlay);
       cancelAnimationFrame(dotsFrame);
       if (shouldPlay) followProjectDots();
+      scheduleMobileAutoplay();
     };
 
     if ('IntersectionObserver' in window) {
@@ -536,6 +560,7 @@ const initApp = () => {
     }
 
     document.addEventListener('visibilitychange', syncProjectPlayback);
+    mobileProjects.addEventListener('change', syncProjectPlayback);
     window.addEventListener('resize', () => requestAnimationFrame(measureProjectMarquee), { passive: true });
     requestAnimationFrame(measureProjectMarquee);
   };
