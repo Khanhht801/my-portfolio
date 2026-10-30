@@ -699,23 +699,42 @@ const initApp = () => {
 
   // One-shot reveals: content stays readable if animation APIs are unavailable.
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const motionSelector = '.animate-booted, .animate-hero-line';
+  const motionSelector = [
+    '.animate-booted', '.animate-hero-line',
+    '.project-gallery__header', '.project-gallery__viewport',
+    '.about-visual', '.about-story__copy', '.about-story__actions',
+    '.tech-marquee', '.testimonials-column'
+  ].join(', ');
   const seenMotion = new WeakSet();
   const activeMotion = new Set();
   const revealMotion = (element) => {
     if (motionPreference.matches || typeof element.animate !== 'function') return;
-    const delay = Math.min(200, Math.max(0, Number(element.dataset.delay) * 1000 || 0));
+    // Stagger related blocks, without delaying an entire section for long.
+    const siblings = [...(element.parentElement?.children || [])]
+      .filter(sibling => sibling.matches(motionSelector));
+    const stagger = Math.max(0, siblings.indexOf(element)) * 90;
+    const explicitDelay = Number(element.dataset.delay) * 1000 || 0;
+    const delay = Math.min(320, Math.max(0, explicitDelay + stagger));
+    const isVisual = element.matches('.about-visual, .project-gallery__viewport, .testimonials-column');
+    const direction = element.dataset.anim === 'animate__fadeInRight' ? 30 : 0;
     const animation = element.animate([
-      { opacity: 0, transform: 'translateY(16px)' },
-      { opacity: 1, transform: 'translateY(0)' }
+      { opacity: 0, transform: `translate(${direction}px, ${isVisual ? 52 : 36}px) scale(${isVisual ? 0.92 : 0.97})`, offset: 0 },
+      { opacity: 1, transform: 'translate(0, -5px) scale(1.012)', offset: 0.72 },
+      { opacity: 1, transform: 'translate(0, 0) scale(1)', offset: 1 }
     ], {
-      duration: element.matches('.animate-hero-line') ? 650 : 480,
+      duration: isVisual ? 850 : 720,
       delay,
       easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
       fill: 'backwards'
     });
+    // Keyboard focus must never wait for an entrance effect.
+    const showFocusedContent = () => animation.cancel();
+    element.addEventListener('focusin', showFocusedContent, { once: true });
     activeMotion.add(animation);
-    const release = () => activeMotion.delete(animation);
+    const release = () => {
+      activeMotion.delete(animation);
+      element.removeEventListener('focusin', showFocusedContent);
+    };
     animation.addEventListener('finish', release, { once: true });
     animation.addEventListener('cancel', release, { once: true });
   };
@@ -726,7 +745,7 @@ const initApp = () => {
         motionObserver.unobserve(target);
         revealMotion(target);
       });
-    }, { threshold: 0, rootMargin: '0px 0px -24px 0px' })
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
     : null;
 
   const bindMotion = (root) => {
