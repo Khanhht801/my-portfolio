@@ -363,7 +363,8 @@ const initApp = () => {
     if (!projectSection || projectSection.dataset.projectMarqueeBound === 'true') return;
 
     const projectTrack = projectSection.querySelector('[data-project-track]');
-    if (!projectTrack) return;
+    const projectViewport = projectSection.querySelector('[data-project-viewport]');
+    if (!projectTrack || !projectViewport) return;
 
     projectSection.dataset.projectMarqueeBound = 'true';
     projectSection.classList.add('is-project-marquee-ready');
@@ -375,19 +376,77 @@ const initApp = () => {
       const clone = item.cloneNode(true);
       clone.dataset.projectMarqueeClone = 'true';
       clone.setAttribute('aria-hidden', 'true');
-      clone.setAttribute('inert', '');
+      // Repeated cards remain clickable without duplicating keyboard tab stops.
+      clone.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach((element) => {
+        element.setAttribute('tabindex', '-1');
+      });
       if (index === 0) clone.dataset.projectMarqueeSetStart = 'true';
       projectTrack.appendChild(clone);
     });
 
+    let cycleWidth = 0;
     const measureProjectMarquee = () => {
       const firstClone = projectTrack.querySelector('[data-project-marquee-set-start]');
-      const cycleWidth = firstClone ? firstClone.offsetLeft - originalItems[0].offsetLeft : 0;
+      cycleWidth = firstClone ? firstClone.offsetLeft - originalItems[0].offsetLeft : 0;
       if (cycleWidth <= 0) return;
 
       projectTrack.style.setProperty('--project-marquee-translate', `${-cycleWidth}px`);
       projectTrack.style.setProperty('--project-marquee-duration', `${Math.max(32, cycleWidth / 46)}s`);
     };
+
+    // Seek the existing animation so manual movement and autoplay share one position.
+    const seekProjects = (distance) => {
+      const animation = projectTrack.getAnimations()[0];
+      const duration = animation?.effect?.getTiming().duration;
+      if (!animation || !cycleWidth || typeof duration !== 'number') return;
+      const nextTime = Number(animation.currentTime || 0) + distance / cycleWidth * duration;
+      animation.currentTime = ((nextTime % duration) + duration) % duration;
+    };
+
+    let drag = null;
+    let suppressClick = false;
+    projectViewport.addEventListener('pointerdown', (event) => {
+      if (!event.isPrimary || event.button !== 0) return;
+      suppressClick = false;
+      drag = { id: event.pointerId, startX: event.clientX, lastX: event.clientX, moved: false };
+      projectViewport.classList.add('is-dragging');
+    });
+    projectViewport.addEventListener('pointermove', (event) => {
+      if (!drag || drag.id !== event.pointerId) return;
+      if (!drag.moved && Math.abs(event.clientX - drag.startX) < 6) return;
+      if (!drag.moved) {
+        drag.moved = true;
+        projectViewport.setPointerCapture(event.pointerId);
+      }
+      seekProjects(drag.lastX - event.clientX);
+      drag.lastX = event.clientX;
+    });
+    const endProjectDrag = (event) => {
+      if (!drag || drag.id !== event.pointerId) return;
+      suppressClick = drag.moved;
+      drag = null;
+      projectViewport.classList.remove('is-dragging');
+      if (projectViewport.hasPointerCapture(event.pointerId)) {
+        projectViewport.releasePointerCapture(event.pointerId);
+      }
+    };
+    window.addEventListener('pointerup', endProjectDrag);
+    projectViewport.addEventListener('pointercancel', endProjectDrag);
+    projectViewport.addEventListener('lostpointercapture', endProjectDrag);
+    projectViewport.addEventListener('dragstart', (event) => event.preventDefault());
+    projectViewport.addEventListener('click', (event) => {
+      if (!suppressClick) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      suppressClick = false;
+    }, true);
+    projectViewport.addEventListener('wheel', (event) => {
+      const distance = event.shiftKey ? event.deltaY || event.deltaX : event.deltaX;
+      if (!distance) return;
+      event.preventDefault();
+      const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? projectViewport.clientWidth : 1;
+      seekProjects(distance * unit);
+    }, { passive: false });
 
     let isInViewport = false;
     const syncProjectPlayback = () => {

@@ -368,7 +368,7 @@ section[id] {
 
 /* Neo nhẹ chân dung xuống dải xanh ở đáy hero mà không làm cụm hero quá cao. */
 .hero-portrait-stage {
-  transform: translateY(1.5rem);
+  transform: translateY(calc(0.5rem - 24px));
 }
 
 .hero-section {
@@ -553,7 +553,9 @@ section[id] {
   }
 
   .hero-badge-role {
-    left: -2%;
+    top: 5%;
+    bottom: auto;
+    left: 0;
   }
 
   .hero-badge-status {
@@ -826,6 +828,12 @@ section[id] {
 }
 
 .project-tile:hover .project-tile__media img { transform: scale(1.035); }
+
+.project-tile__media img[src="image/futurelearn.png"] {
+  position: relative;
+  top: -12px;
+  height: calc(100% + 12px);
+}
 
 .project-tile__number {
   position: absolute;
@@ -1204,6 +1212,9 @@ section[id] {
 .project-gallery.is-project-marquee-ready .project-gallery__viewport {
   width: 100%;
   overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
   -webkit-mask-image: linear-gradient(to right, transparent 0, #000 3%, #000 97%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0, #000 3%, #000 97%, transparent 100%);
 }
@@ -1228,8 +1239,14 @@ section[id] {
 }
 
 .project-gallery.is-project-marquee-ready .project-gallery__viewport:hover .project-gallery__track,
+.project-gallery.is-project-marquee-ready .project-gallery__viewport.is-dragging .project-gallery__track,
 .project-gallery.is-project-marquee-ready .project-gallery__viewport:focus-within .project-gallery__track {
   animation-play-state: paused;
+}
+
+.project-gallery.is-project-marquee-ready .project-gallery__viewport.is-dragging,
+.project-gallery.is-project-marquee-ready .project-gallery__viewport.is-dragging * {
+  cursor: grabbing;
 }
 
 .project-gallery.is-project-marquee-ready .project-tile,

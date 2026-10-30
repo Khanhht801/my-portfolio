@@ -22,25 +22,22 @@
       <article class="project-tile" role="listitem">
         <figure class="project-tile__media">
           <img
-            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
-            alt="Không gian làm việc với dashboard quản lý trên màn hình"
+            src="image/futurelearn.png"
+            alt="Ảnh minh họa dự án FutureLearn"
             width="1200" height="675" loading="lazy"
             onerror="this.onerror=null;this.src='image/logo.jpg';">
           <span class="project-tile__number" aria-hidden="true">01</span>
           <div class="project-tile__badges"><span>ACADEMIC</span><span>2026</span></div>
         </figure>
         <div class="project-tile__body">
-          <div class="project-tile__meta"><span>FULLSTACK</span><span>HTML · CSS · JS · PYTHON</span></div>
-          <h3>Hệ thống Quản lý sinh viên</h3>
-          <p>Quản lý tập trung lớp học, hồ sơ sinh viên và trao đổi giữa sinh viên với giảng viên.</p>
+          <div class="project-tile__meta"><span>FULLSTACK</span><span>WEB APPLICATION</span></div>
+          <h3>FutureLearn</h3>
+          <p>Nền tảng học tiếng Anh và Toán cho trẻ mầm non, tiểu học, giúp phụ huynh theo dõi tiến độ học tập của con.</p>
           <div class="project-tile__footer">
             <span>Fullstack Developer</span>
             <div class="project-tile__actions">
-              <a href="https://lsc.qlsv.edu.vn" target="_blank" rel="noopener noreferrer" aria-label="Xem dự án Quản lý sinh viên">
+              <a href="https://future-learn.khanhht.tech" target="_blank" rel="noopener noreferrer" aria-label="Xem dự án FutureLearn">
                 Xem dự án <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
-              </a>
-              <a class="project-tile__icon-link" href="https://github.com/Khanhht801" target="_blank" rel="noopener noreferrer" aria-label="Xem GitHub">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
               </a>
             </div>
           </div>
