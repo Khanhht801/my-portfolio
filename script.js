@@ -195,7 +195,7 @@ const initApp = () => {
   if (heroFrame && heroFrameLines.length > 0 && 'IntersectionObserver' in window) {
     const drawLines = () => {
       heroFrameLines.forEach((line, i) => {
-        setTimeout(() => line.classList.add('is-drawn'), 150 * i);
+        setTimeout(() => line.classList.add('is-drawn'), 100 * i);
       });
     };
 
@@ -712,18 +712,17 @@ const initApp = () => {
     // Stagger related blocks, without delaying an entire section for long.
     const siblings = [...(element.parentElement?.children || [])]
       .filter(sibling => sibling.matches(motionSelector));
-    const stagger = Math.max(0, siblings.indexOf(element)) * 120;
-    const explicitDelay = Number(element.dataset.delay) * 1000 || 0;
-    const delay = Math.min(360, Math.max(0, explicitDelay + stagger));
+    const stagger = Math.max(0, siblings.indexOf(element)) * 100;
+    const delay = Math.min(300, stagger);
     const isVisual = element.matches('.about-visual, .project-gallery__viewport, .testimonials-column');
     const direction = element.dataset.anim === 'animate__fadeInRight' ? 22 : 0;
     const animation = element.animate([
       { opacity: 0, transform: `translate(${direction}px, ${isVisual ? 40 : 28}px) scale(${isVisual ? 0.96 : 0.985})`, offset: 0 },
       { opacity: 1, transform: 'translate(0, 0) scale(1)', offset: 1 }
     ], {
-      duration: isVisual ? 1200 : 1000,
+      duration: isVisual ? 2000 : 1600,
       delay,
-      easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+      easing: 'ease-out',
       fill: 'backwards'
     });
     // Keyboard focus must never wait for an entrance effect.

@@ -621,7 +621,7 @@ section[id] {
   /* Soft fade at the edges so the text reads as background, not as a hard label */
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
           mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
-  animation: heroTypeFadeIn 0.9s ease-out 0.15s both;
+  animation: heroTypeFadeIn 1.5s ease-out 0.1s both;
 }
 @keyframes heroTypeFadeIn {
   from { opacity: 0; transform: translate(-50%, 6px); }
@@ -656,7 +656,7 @@ section[id] {
 
 /* Floating "Open to Internship" status card. */
 .hero-status-card {
-  animation: heroCardRise 0.7s ease-out 0.35s both;
+  animation: heroCardRise 1.2s ease-out 0.1s both;
 }
 @keyframes heroCardRise {
   from { opacity: 0; transform: translate(-50%, 8px); }
@@ -2026,7 +2026,7 @@ article p.text-base {
 .hero-frame-line {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  transition: stroke-dashoffset 1200ms cubic-bezier(0.65, 0, 0.35, 1);
+  transition: stroke-dashoffset 2000ms ease-in-out;
 }
 .hero-frame-line.is-drawn {
   stroke-dashoffset: 0;
@@ -2417,7 +2417,7 @@ article p.text-base {
   transform-origin: left center;
   height: 1px;
   background: linear-gradient(90deg, transparent, #007BFF 30%, #F59E0B 70%, transparent);
-  animation: dividerExpand 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: dividerExpand 2s ease-out forwards;
 }
 
 /* Pulse dot variant — cham tron phat sang lien tuc */
@@ -2678,6 +2678,7 @@ article p.text-base {
 /* Honor motion preferences for every decorative loop and smooth-scroll utility. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
+  .orb-drift, .orb-drift-slow,
   *, *::before, *::after {
     animation: none !important;
     transition: none !important;
