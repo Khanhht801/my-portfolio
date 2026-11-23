@@ -1,20 +1,6 @@
-/* ============================================================
-   script.js — chính của portfolio
-   - Chờ section-loader inject xong DOM rồi mới bind events
-   - Đợi event "sections:loaded" (phát ra bởi section-loader.js
-     khi 3 section above-the-fold đã load xong)
-   - Các section còn lại (work, about, ...) load nền bằng
-     requestIdleCallback → các script vẫn bind kịp khi user
-     cuộn tới
-   - ANIMATION LAYER: Khoi tao IntersectionObserver dat rieng
-     de reveal noi dung mot lan khi section vao viewport.
-     Dam bao section load nen (work, capabilities, contact, ...)
-     cung duoc hieu ung khi user cuon toi.
-   ============================================================ */
-
 let isAppInitialized = false;
 
-const initApp = () => {
+export const initApp = () => {
   // The ready event and timeout fallback can race on slow/static hosting.
   // Initializing once prevents duplicate global listeners and stale DOM refs.
   if (isAppInitialized) return;
@@ -770,20 +756,3 @@ const initApp = () => {
   });
 
 };
-
-// Chờ section-loader inject xong 3 section above-the-fold rồi mới init
-if (document.documentElement.hasAttribute('data-sections-ready')) {
-  initApp();
-} else {
-  window.addEventListener('sections:loaded', initApp, { once: true });
-  // Fallback: nếu section-loader lỗi (offline, blocked) hoặc fetch quá chậm
-  // trên static hosting (vd GitHub Pages CDN lần đầu), vẫn chạy initApp sau 8s.
-  // setMobileMenu() đã có guard null-check, nên chạy sớm không crash — chỉ
-  // là navbar chưa có thì user phải đợi section inject xong để có menu mobile.
-  setTimeout(() => {
-    if (!document.documentElement.hasAttribute('data-sections-ready')) {
-      console.warn('[script.js] sections:loaded timeout, chạy initApp fallback');
-      initApp();
-    }
-  }, 8000);
-}

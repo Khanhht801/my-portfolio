@@ -1,0 +1,211 @@
+import React from 'react';
+
+export default function Testimonials() {
+  return (
+    <>
+{/* ============================================================
+     09. TESTIMONIALS — Vertical auto-scrolling columns
+     - 3 cột card lời chứng nhận, mỗi cột cuộn lên vô hạn
+     - Animation bằng CSS @keyframes (linear, infinite)
+     - Có mask gradient ở mép trên/dưới để card xuất hiện/ẩn mượt
+     - Selector JS phụ thuộc:
+   + .testimonials-column  (cột chứa card)
+   + data-anim-duration=""    (tốc độ cuộn riêng từng cột, inline style)
+   + data-marquee-clone=""    (JS sẽ duplicate các card để loop liền mạch)
+     - Pause-on-hover được CSS xử lý (animation-play-state: paused)
+     - Ảnh chân dung dùng Unsplash random với ?sig= để tránh cache trùng
+============================================================ */}
+<section className="testimonials-section relative overflow-hidden border-b border-[#E7E5E4]" id="testimonials">
+  <div className="testimonials-section__orb testimonials-section__orb--left" aria-hidden="true" />
+  <div className="testimonials-section__orb testimonials-section__orb--right" aria-hidden="true" />
+  <span className="testimonials-section__index section-corner-index" aria-hidden="true">05</span>
+  <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <header className="testimonials-heading reveal-on-scroll is-visible">
+      <h2 className="testimonials-heading__title section-heading-title animate-booted" data-anim="animate__fadeInUp">
+        Bạn bè &amp; đồng nghiệp<br />
+        <span>nói gì về tôi.</span>
+      </h2>
+    </header>
+    {/* Mask gradient + 3 cột cuộn dọc */}
+    <div className="testimonials-grid" aria-label="Danh sách lời chứng nhận">
+      {/* Cột 1 */}
+      <div className="testimonials-column testimonials-column--mask testimonials-column--vertical">
+        <div className="testimonials-track" data-testimonials-track="" data-anim-duration="22s">
+          {/* Nhóm A (sẽ được JS duplicate) */}
+          <div className="testimonials-track__group">
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh có khả năng tiếp thu công nghệ khá nhanh, đặc biệt là các kiến thức về lập trình và phát triển web. Bạn ấy luôn chủ động tìm hiểu thêm khi gặp vấn đề mới.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Minh Anh" src="image/testimonials/minh-anh.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Minh Anh</strong>
+                  <small>Bạn học</small>
+                </div>
+              </footer>
+            </article>
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh có trách nhiệm với công việc được giao và luôn cố gắng hoàn thành đúng yêu cầu. Các sản phẩm website và nội dung đều được bạn ấy kiểm tra khá kỹ trước khi hoàn thiện.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Tran Hien" src="image/testimonials/tran-hien.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Tran Hien</strong>
+                  <small>Bạn học</small>
+                </div>
+              </footer>
+            </article>
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh có khả năng tự học tốt và biết cách tìm kiếm giải pháp khi gặp khó khăn trong quá trình lập trình. Qua từng dự án, kỹ năng của bạn ấy tiến bộ khá rõ.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Lang Thanh Thinh" src="image/testimonials/lang-thanh-thinh.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Lang Thanh Thinh</strong>
+                  <small>Bạn học</small>
+                </div>
+              </footer>
+            </article>
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Trong công việc, Khánh thường chủ động cập nhật nội dung website và các kênh online. Bạn ấy cũng tiếp thu góp ý nhanh và biết cách cải thiện sản phẩm sau mỗi lần chỉnh sửa.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Trang Nguyen" src="image/testimonials/trang-nguyen.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Trang Nguyen</strong>
+                  <small>Đồng nghiệp</small>
+                </div>
+              </footer>
+            </article>
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh có khả năng kết hợp giữa tư duy công nghệ và thiết kế. Những sản phẩm bạn ấy thực hiện thường chú ý cả về giao diện lẫn trải nghiệm người dùng.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Thu Ha" src="image/testimonials/thu-ha-colleague.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Thu Ha</strong>
+                  <small>Đồng nghiệp</small>
+                </div>
+              </footer>
+            </article>
+          </div>
+        </div>
+      </div>
+      {/* Cột 2 */}
+      <div className="testimonials-column testimonials-column--mask testimonials-column--vertical testimonials-column--hidden-md">
+        <div className="testimonials-track" data-testimonials-track="" data-anim-duration="28s">
+          <div className="testimonials-track__group">
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh đảm nhiệm tốt vai trò lớp phó học tập, thường xuyên theo dõi tình hình học tập và hỗ trợ các công việc chung của lớp.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Mai Linh" src="image/testimonials/mai-linh.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Mai Linh</strong>
+                  <small>Bạn học</small>
+                </div>
+              </footer>
+            </article>
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh có tinh thần học hỏi tốt và luôn chủ động bổ sung kiến thức ngoài chương trình học. Đặc biệt là các kiến thức liên quan đến lập trình web và công nghệ mới.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Minh Thanh" src="image/testimonials/minh-thanh.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Minh Thanh</strong>
+                  <small>Bạn học</small>
+                </div>
+              </footer>
+            </article>
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh làm việc khá cẩn thận với các nội dung trên website và fanpage. Bạn ấy luôn chú ý đến cách trình bày và tính chính xác của thông tin.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Phuong Ngan Nguyen" src="image/testimonials/phuong-ngan-nguyen.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Phuong Ngan Nguyen</strong>
+                  <small>Đồng nghiệp</small>
+                </div>
+              </footer>
+            </article>
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh có khả năng tự triển khai một số công việc trên website và chủ động tìm hiểu cách xử lý khi gặp lỗi. Đây là điểm mình đánh giá cao trong quá trình làm việc cùng bạn.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Hoang Nam" src="image/testimonials/hoang-nam.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Hoang Nam</strong>
+                  <small>Bạn học</small>
+                </div>
+              </footer>
+            </article>
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Với các bài tập và dự án lập trình, Khánh luôn cố gắng hoàn thiện sản phẩm thay vì chỉ dừng ở mức chạy được. Bạn ấy cũng khá tích cực thử nghiệm những cách làm mới.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Gia Bao" src="image/testimonials/gia-bao.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Gia Bao</strong>
+                  <small>Bạn học</small>
+                </div>
+              </footer>
+            </article>
+          </div>
+        </div>
+      </div>
+      {/* Cột 3 */}
+      <div className="testimonials-column testimonials-column--mask testimonials-column--vertical testimonials-column--hidden-lg">
+        <div className="testimonials-track" data-testimonials-track="" data-anim-duration="25s">
+          <div className="testimonials-track__group">
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh tiếp thu kiến thức mới khá nhanh và có sự tiến bộ rõ rệt trong quá trình học. Bạn ấy cũng thường hỗ trợ các bạn khác khi làm bài tập hoặc gặp vấn đề trong môn học.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Yen Nhi" src="image/testimonials/yen-nhi.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Yen Nhi</strong>
+                  <small>Bạn học</small>
+                </div>
+              </footer>
+            </article>
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh có khả năng quản lý và cập nhật nội dung trên các kênh online khá tốt. Những công việc được giao đều được theo dõi và hoàn thành tương đối đầy đủ.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Lieu Thanh Tung" src="image/testimonials/lieu-thanh-tung.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Lieu Thanh Tung</strong>
+                  <small>Đồng nghiệp</small>
+                </div>
+              </footer>
+            </article>
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh có tư duy khá tốt trong việc xây dựng và cải thiện giao diện website. Bạn ấy luôn quan tâm đến cả tính thẩm mỹ và khả năng sử dụng thực tế.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Minh Khang" src="image/testimonials/minh-khang.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Minh Khang</strong>
+                  <small>Bạn học</small>
+                </div>
+              </footer>
+            </article>
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh có tinh thần trách nhiệm tốt trong học tập cũng như các hoạt động chung của lớp. Vai trò lớp phó học tập giúp bạn ấy có nhiều cơ hội rèn luyện khả năng tổ chức và phối hợp công việc.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Thu Ha" src="image/testimonials/thu-ha-classmate.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Thu Ha</strong>
+                  <small>Bạn học</small>
+                </div>
+              </footer>
+            </article>
+            <article className="testimonial-card">
+              <p className="testimonial-card__text">Khánh có tinh thần học hỏi và trách nhiệm tốt trong công việc. Bạn ấy tiếp thu góp ý nhanh, chủ động cải thiện kỹ năng và có sự tiến bộ rõ ràng qua từng giai đoạn.</p>
+              <footer className="testimonial-card__author">
+                <img loading="lazy" width={40} height={40} alt="Dung Nguyen" src="image/testimonials/dung-nguyen.png" className="testimonial-card__avatar" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+                <div>
+                  <strong>Dung Nguyen</strong>
+                  <small>Quản lý</small>
+                </div>
+              </footer>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="testimonials-marquee" aria-hidden="true">
+      <span>REAL FEEDBACK</span><i /><span>FROM REAL PEOPLE</span><i /><span>BUILT ON TRUST</span>
+    </div>
+  </div>
+</section>
+    </>
+  );
+}

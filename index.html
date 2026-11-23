@@ -7,7 +7,7 @@
        - Favicon gom nhom (loai bo .ico khong ton tai)
        - Subset Google Fonts (giam ~60-70% weight)
        - Preload anh LCP hero + font critical
-       - defer script.js + section-loader.js (non-blocking)
+       - React entry duoc tai duoi dang module
        - Tailwind CSS duoc build san cho production
        ============================================================ -->
     <meta charset="utf-8" />
@@ -98,14 +98,6 @@
       rel="stylesheet"
     />
 
-    <!--
-    LUU Y: KHONG preload <link rel="preload" as="image"> cho image/chandung2remove.png o day.
-    Ly do: section #hero duoc section-loader.js inject SAU khi DOM ready,
-    nen Chrome se bao loi "preloaded but not used within a few seconds".
-    section-loader.js se tu dong preload + inject anh hero ngay khi fetch xong
-    (xem section-loader.js → fetchSection).
-  -->
-
     <!-- Critical inline style -->
     <style>
       h1,
@@ -151,67 +143,8 @@
     </script>
   </head>
 
-  <!--
-  ============================================================
-   MY-PORTFOLIO — index.html: skeleton tham chiếu các section
-  ------------------------------------------------------------
-   index.html         : file này (skeleton, không chứa nội dung section)
-   style.css          : CSS tùy chỉnh
-   script.js          : logic JS chính (đợi section inject xong mới chạy)
-   section-loader.js  : loader runtime — fetch & inject sections/*.html
-   sections/          : HTML fragment của từng section, load qua fetch()
-       *.fragment               -> các HTML fragment được section-loader nạp
-  ------------------------------------------------------------
-   Luồng hoạt động:
-     1. Browser tải index.html (rất nhẹ, ~5-6 KB)
-     2. section-loader.js (defer) fetch song song 3 section above-the-fold:
-        00, 01, 02 → inject vào các placeholder tương ứng
-     3. Khi 3 section trên load xong → phát event "sections:loaded"
-     4. script.js (defer) bind events cho navbar, hero, slider, ...
-     5. requestIdleCallback → load các section còn lại (03-08) trong nền
-     6. Khi section mới được inject → MutationObserver re-bind reveal observer
-  ============================================================
--->
-
-  <body
-    class="bg-[#FFFBF5] text-[#292524] font-sans antialiased selection:bg-[#007BFF] selection:text-white relative"
-  >
-    <!-- 00. SCROLL PROGRESS (đặt tĩnh để khỏi FOUC) -->
-    <div aria-hidden="true" id="scroll-progress"></div>
-
-    <!-- 01. NAVBAR -->
-    <div data-section="01-navbar"></div>
-
-    <main>
-      <!-- 02. HERO -->
-      <div data-section="02-hero"></div>
-
-      <!-- 03. SELECTED WORK -->
-      <div data-section="03-work"></div>
-
-      <!-- 04. ABOUT -->
-      <div data-section="04-about"></div>
-
-      <!-- 05. EXPERIENCE -->
-      <div data-section="05-experience"></div>
-
-      <!-- 06. TECH STACK -->
-      <div data-section="06-capabilities"></div>
-
-      <!-- 09. TESTIMONIALS -->
-      <div data-section="09-testimonials"></div>
-
-      <!-- 07. CONTACT -->
-      <div data-section="07-contact"></div>
-    </main>
-
-    <!-- 08. FOOTER -->
-    <div data-section="08-footer"></div>
-
-    <!-- Section loader (load trước, không cần đợi section xong) -->
-    <script src="section-loader.js?v=20261030-1" defer></script>
-
-    <!-- Main app script (chờ event "sections:loaded" mới init) -->
-    <script src="script.js?v=20261031-1" defer></script>
+  <body class="bg-[#FFFBF5] text-[#292524] font-sans antialiased selection:bg-[#007BFF] selection:text-white relative">
+    <div id="root"></div>
+    <script type="module" src="./src/main.jsx"></script>
   </body>
 </html>

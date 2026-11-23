@@ -6,8 +6,8 @@ const script = readFileSync(new URL('../script.js', import.meta.url), 'utf8');
 const style = readFileSync(new URL('../style.css', import.meta.url), 'utf8');
 const about = readFileSync(new URL('../about.css', import.meta.url), 'utf8');
 const testimonials = readFileSync(new URL('../testimonials.css', import.meta.url), 'utf8');
-const sectionLoader = readFileSync(new URL('../section-loader.js', import.meta.url), 'utf8');
-const aboutFragment = readFileSync(new URL('../sections/04-about.fragment', import.meta.url), 'utf8');
+const app = readFileSync(new URL('../src/App.jsx', import.meta.url), 'utf8');
+const aboutFragment = readFileSync(new URL('../src/sections/About.jsx', import.meta.url), 'utf8');
 
 assert.doesNotMatch(
   index,
@@ -24,16 +24,8 @@ assert.match(
   /href="tailwind\.css\?v=[^"]+"/,
   'Compiled Tailwind CSS must be linked with a cache-busting version.',
 );
-assert.match(
-  index,
-  /src="section-loader\.js\?v=[^"]+"/,
-  'The section loader must use a cache-busting URL.',
-);
-assert.match(
-  index,
-  /src="script\.js\?v=[^"]+"/,
-  'The application script must use a cache-busting URL.',
-);
+assert.match(index, /src="\.\/src\/main\.jsx"/, 'The React entry must be loaded.');
+assert.match(app, /useEffect\(\(\) => \{ initApp\(\); \}/, 'Interactions must initialize after React renders.');
 assert.match(
   script,
   /if \(header\) \{[\s\S]*?header\.classList\.toggle/,
@@ -75,13 +67,8 @@ assert.doesNotMatch(
   'Testimonial marquees must remain available when the operating system requests reduced motion.',
 );
 assert.match(
-  sectionLoader,
-  /const priority = new Set\(getPrioritySections\(\)\);[\s\S]*?!priority\.has\(name\)/,
-  'Background loading must exclude sections that were already loaded as priority content.',
-);
-assert.match(
   aboutFragment,
-  /data-autoplay-ms="3000"[\s\S]*?data-slide-next/,
+  /data-autoplay-ms=\{3000\}[\s\S]*?data-slide-next/,
   'The About portrait must advance on image click and autoplay every three seconds.',
 );
 assert.doesNotMatch(

@@ -1,0 +1,132 @@
+import React from 'react';
+
+export default function Experience() {
+  return (
+    <>
+{/* ============================================================
+     05. EXPERIENCE — compact evidence timeline
+     - Left: concrete work/learning outcomes
+     - Right: contextual image
+============================================================ */}
+<section className="journey-section relative overflow-hidden border-b border-[#E7E5E4]" id="experience">
+  <div className="journey-section__orb journey-section__orb--blue" aria-hidden="true" />
+  <span className="journey-section__index section-corner-index" aria-hidden="true">03</span>
+  <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <header className="journey-heading reveal-on-scroll is-visible">
+      <h2 className="journey-heading__title section-heading-title animate-booted" data-anim="animate__fadeInUp">
+        <span>Kinh nghiệm làm việc.</span>
+      </h2>
+    </header>
+    <div className="journey-layout">
+      <ol className="journey-timeline" aria-label="Các cột mốc kinh nghiệm và học tập">
+        {/* 01 · Work */}
+        <li className="journey-item journey-item--current reveal-on-scroll is-visible animate-booted" data-anim="animate__fadeInUp" data-delay={0}>
+          <time className="journey-item__date" dateTime="2025-08">
+            <span>T8</span><strong>2025</strong><small>HIỆN TẠI</small>
+          </time>
+          <div className="journey-item__rail" aria-hidden="true"><span className="journey-item__node timeline-node-active"><i /></span></div>
+          <article className="journey-card">
+            <div className="journey-card__topline">
+              <span className="journey-card__type"><i />KINH NGHIỆM LÀM VIỆC</span>
+              <span className="journey-card__number">01 / 03</span>
+            </div>
+            <div className="journey-card__heading">
+              <h3>Nhân viên Văn phòng &amp; Quản lý Website</h3>
+              <p>Công ty TNHH MTV Xứ Lạng Education</p>
+            </div>
+            <div className="journey-card__content">
+              <div className="journey-card__details">
+                <ul className="journey-card__bullets">
+                  <li>Quản lý cập nhật nội dung Website và các kênh online của công ty.</li>
+                  <li>Thiết kế và chỉnh sửa hình ảnh, ấn phẩm truyền thông bằng Canva và các công cụ AI.</li>
+                  <li>Tư vấn, chăm sóc khách hàng, tiếp nhận và hỗ trợ giải đáp nhu cầu của khách hàng.</li>
+                  <li>Hỗ trợ công việc vận hành, quản lý tài liệu, nhập liệu và tổng hợp thông tin.</li>
+                </ul>
+                <ul className="journey-card__tags" aria-label="Kỹ năng sử dụng">
+                  <li>Website</li><li>Fanpage</li><li>Zalo OA</li><li>Google Maps</li>
+                </ul>
+              </div>
+              <figure className="journey-card__media">
+                <img src="image/kn1.jpg" alt="Không gian văn phòng đại diện cho công việc quản lý website" width={1000} height={750} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
+                <figcaption><span />Website operations</figcaption>
+              </figure>
+            </div>
+          </article>
+        </li>
+        {/* 02 · Project */}
+        <li className="journey-item journey-item--project reveal-on-scroll is-visible animate-booted" data-anim="animate__fadeInUp" data-delay="0.1">
+          <time className="journey-item__date" dateTime={2026}>
+            <span>NĂM</span><strong>2026</strong><small>DỰ ÁN</small>
+          </time>
+          <div className="journey-item__rail" aria-hidden="true"><span className="journey-item__node"><i /></span></div>
+          <article className="journey-card">
+            <div className="journey-card__topline">
+              <span className="journey-card__type"><i />DỰ ÁN HỌC THUẬT</span>
+              <span className="journey-card__number">02 / 03</span>
+            </div>
+            <div className="journey-card__heading">
+              <h3>Hệ thống quản lý sinh viên</h3>
+              <p>Khoa Điện &amp; Công nghệ thông tin · Trường Cao đẳng Lạng Sơn</p>
+            </div>
+            <div className="journey-card__content">
+              <div className="journey-card__details">
+                <ul className="journey-card__bullets">
+                  <li>Quản lý sinh viên, lớp học, điểm và dữ liệu học tập quy mô khoa.</li>
+                  <li>Phát triển các chức năng thêm, sửa, xóa, tìm kiếm và quản lý thông tin.</li>
+                  <li>Tích hợp chat trực tiếp Giảng viên ↔ Sinh viên và Sinh viên ↔ Sinh viên.</li>
+                  <li>Kết nối cơ sở dữ liệu và xây dựng luồng xử lý giữa frontend – backend – database.</li>
+                </ul>
+                <ul className="journey-card__tags" aria-label="Công nghệ sử dụng">
+                  <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li><li>MySQL</li><li>PHP</li>
+                </ul>
+              </div>
+              <figure className="journey-card__media">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=85" alt="Màn hình dashboard đại diện cho dự án quản lý sinh viên" width={1000} height={750} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
+                <figcaption><span />REAL-TIME CHAT</figcaption>
+              </figure>
+            </div>
+          </article>
+        </li>
+        {/* 03 · Education */}
+        <li className="journey-item journey-item--education reveal-on-scroll is-visible animate-booted" data-anim="animate__fadeInUp" data-delay="0.2">
+          <time className="journey-item__date" dateTime={2024}>
+            <span>T9</span><strong>2024</strong><small>hiện tại</small>
+          </time>
+          <div className="journey-item__rail" aria-hidden="true"><span className="journey-item__node"><i /></span></div>
+          <article className="journey-card">
+            <div className="journey-card__topline">
+              <span className="journey-card__type"><i />HỌC THUẬT</span>
+              <span className="journey-card__number">03 / 03</span>
+            </div>
+            <div className="journey-card__heading">
+              <h3>Chuyên ngành Tin học ứng dụng</h3>
+              <p>Trường Cao đẳng Lạng Sơn</p>
+            </div>
+            <div className="journey-card__content">
+              <div className="journey-card__details">
+                <ul className="journey-card__bullets">
+                  <li>Duy trì GPA <strong>3.7/4.0</strong>, định hướng tốt nghiệp loại Giỏi.</li>
+                  <li>Tập trung vào phát triển web, cơ sở dữ liệu và xây dựng ứng dụng thực tế.</li>
+                  <li>Nhận Học bổng Khuyến khích Học tập Xuất sắc trong 3 học kỳ liên tiếp.</li>
+                </ul>
+                <ul className="journey-card__tags" aria-label="Kiến thức chuyên môn">
+                  <li>Frontend</li><li>Backend</li><li>Database</li><li>Git</li><li>Web Development</li>
+                </ul>
+              </div>
+              <figure className="journey-card__media">
+                <img src="image/kn3.jpg" alt="Sinh viên học tập đại diện cho hành trình học thuật" width={1000} height={750} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
+                <figcaption><span />Academic journey</figcaption>
+              </figure>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </div>
+    <div className="journey-footer" aria-hidden="true">
+      <span>LEARN</span><i /><span>BUILD</span><i /><span>WORK</span><b>KEEP MOVING FORWARD →</b>
+    </div>
+  </div>
+</section>
+    </>
+  );
+}
