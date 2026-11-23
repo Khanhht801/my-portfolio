@@ -25,7 +25,7 @@ assert.match(
   'Compiled Tailwind CSS must be linked with a cache-busting version.',
 );
 assert.match(index, /src="\.\/src\/main\.jsx"/, 'The React entry must be loaded.');
-assert.match(app, /useEffect\(\(\) => \{ initApp\(\); \}/, 'Interactions must initialize after React renders.');
+assert.match(app, /useLayoutEffect\(\(\) => \{ initApp\(\); \}/, 'Interactions must initialize after React renders.');
 assert.match(
   script,
   /if \(header\) \{[\s\S]*?header\.classList\.toggle/,

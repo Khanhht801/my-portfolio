@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { initApp } from '../script.js';
 import Navbar from './sections/Navbar.jsx';
 import Hero from './sections/Hero.jsx';
@@ -11,7 +11,7 @@ import Contact from './sections/Contact.jsx';
 import Footer from './sections/Footer.jsx';
 
 export default function App() {
-  useEffect(() => { initApp(); }, []);
+  useLayoutEffect(() => { initApp(); }, []);
   return (
     <>
       <div aria-hidden="true" id="scroll-progress" />

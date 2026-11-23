@@ -693,44 +693,19 @@ export const initApp = () => {
   ].join(', ');
   const seenMotion = new WeakSet();
   const activeMotion = new Set();
-  const revealMotion = (element) => {
-    if (motionPreference.matches || typeof element.animate !== 'function') return;
-    // Stagger related blocks, without delaying an entire section for long.
-    const siblings = [...(element.parentElement?.children || [])]
-      .filter(sibling => sibling.matches(motionSelector));
-    const stagger = Math.max(0, siblings.indexOf(element)) * 50;
-    const delay = Math.min(150, stagger);
-    const isVisual = element.matches('.about-visual, .project-gallery__viewport, .testimonials-column');
-    const direction = element.dataset.anim === 'animate__fadeInRight' ? 22 : 0;
-    const animation = element.animate([
-      { opacity: 0, transform: `translate(${direction}px, ${isVisual ? 40 : 28}px) scale(${isVisual ? 0.96 : 0.985})`, offset: 0 },
-      { opacity: 1, transform: 'translate(0, 0) scale(1)', offset: 1 }
-    ], {
-      duration: isVisual ? 2000 : 700,
-      delay,
-      easing: 'ease-out',
-      fill: 'backwards'
-    });
-    // Keyboard focus must never wait for an entrance effect.
-    const showFocusedContent = () => animation.cancel();
-    element.addEventListener('focusin', showFocusedContent, { once: true });
-    activeMotion.add(animation);
-    const release = () => {
-      activeMotion.delete(animation);
-      element.removeEventListener('focusin', showFocusedContent);
-    };
-    animation.addEventListener('finish', release, { once: true });
-    animation.addEventListener('cancel', release, { once: true });
-  };
+  // Prepare the entrance before observing so content cannot flash at its
+  // resting position and then jump back when the observer fires.
   const motionObserver = 'IntersectionObserver' in window
     ? new IntersectionObserver((entries) => {
       entries.forEach(({ target, isIntersecting }) => {
         if (!isIntersecting) return;
         motionObserver.unobserve(target);
-        revealMotion(target);
+        pendingMotion.get(target)?.play();
+        pendingMotion.delete(target);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
+    }, { threshold: 0, rootMargin: '0px 0px 100px 0px' })
     : null;
+  const pendingMotion = new WeakMap();
 
   const bindMotion = (root) => {
     const elements = [...root.querySelectorAll(motionSelector)];
@@ -738,7 +713,31 @@ export const initApp = () => {
     elements.forEach(element => {
       if (seenMotion.has(element)) return;
       seenMotion.add(element);
-      if (motionObserver && !motionPreference.matches) motionObserver.observe(element);
+      if (!motionObserver || motionPreference.matches || typeof element.animate !== 'function') return;
+
+      const isVisual = element.matches('.about-visual, .project-gallery__viewport, .testimonials-column');
+      const animation = element.animate([
+        { opacity: 0, transform: 'translateY(8px)' },
+        { opacity: 1, transform: 'translateY(0)' }
+      ], {
+        duration: isVisual ? 850 : 700,
+        easing: 'ease-out',
+        fill: 'backwards'
+      });
+      animation.pause();
+      pendingMotion.set(element, animation);
+      activeMotion.add(animation);
+      const release = () => {
+        pendingMotion.delete(element);
+        activeMotion.delete(animation);
+        element.removeEventListener('focusin', showFocusedContent);
+      };
+      // Keyboard focus must never wait for an entrance effect.
+      const showFocusedContent = () => animation.cancel();
+      element.addEventListener('focusin', showFocusedContent, { once: true });
+      animation.addEventListener('finish', release, { once: true });
+      animation.addEventListener('cancel', release, { once: true });
+      motionObserver.observe(element);
     });
   };
   bindMotion(document);
