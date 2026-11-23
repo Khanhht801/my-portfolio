@@ -698,15 +698,15 @@ export const initApp = () => {
     // Stagger related blocks, without delaying an entire section for long.
     const siblings = [...(element.parentElement?.children || [])]
       .filter(sibling => sibling.matches(motionSelector));
-    const stagger = Math.max(0, siblings.indexOf(element)) * 100;
-    const delay = Math.min(300, stagger);
+    const stagger = Math.max(0, siblings.indexOf(element)) * 50;
+    const delay = Math.min(150, stagger);
     const isVisual = element.matches('.about-visual, .project-gallery__viewport, .testimonials-column');
     const direction = element.dataset.anim === 'animate__fadeInRight' ? 22 : 0;
     const animation = element.animate([
       { opacity: 0, transform: `translate(${direction}px, ${isVisual ? 40 : 28}px) scale(${isVisual ? 0.96 : 0.985})`, offset: 0 },
       { opacity: 1, transform: 'translate(0, 0) scale(1)', offset: 1 }
     ], {
-      duration: isVisual ? 2000 : 1600,
+      duration: isVisual ? 2000 : 700,
       delay,
       easing: 'ease-out',
       fill: 'backwards'
