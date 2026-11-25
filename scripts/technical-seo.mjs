@@ -1,8 +1,18 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-// The navigation has one document; hash sections and the dialog are not routes.
-const pages = [{ entry: 'index.html', path: '/' }];
+const defaultShareImage = {
+  path: '/og/portfolio.png',
+  width: 1200,
+  height: 630,
+  type: 'image/png',
+  alt: 'Hoàng Thanh Khánh — Lập trình viên Fullstack, với chân dung trên nền kem và xanh của Khanhht Portfolio.',
+};
+const siteName = 'Khanhht Portfolio';
+
+// The only document is the portfolio home page; its cover is also the fallback.
+// Add a real page's own image here when that document exists.
+const pages = [{ entry: 'index.html', path: '/', image: defaultShareImage }];
 
 function readDomain(root) {
   let domain;
@@ -20,13 +30,42 @@ function readDomain(root) {
   return domain;
 }
 
-function pageHtml(html, canonical) {
+function pageHtml(html, canonical, image = defaultShareImage) {
+  const title = html.match(/<title\b[^>]*>([^<]*)<\/title>/i)?.[1].trim();
+  const descriptionTag = html.match(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*>/i)?.[0];
+  const description = descriptionTag?.match(/\bcontent=(["'])(.*?)\1/i)?.[2];
+  if (!title || !description) throw new Error('Sharing metadata requires a page title and meta description.');
   // Replace the existing tags rather than adding a second indexing policy.
   const clean = html
     .replace(/<meta\b(?=[^>]*\bname=["']robots["'])[^>]*>/gi, '')
+    .replace(/<meta\b(?=[^>]*\b(?:name|property)=["'](?:og|twitter):[^"']+["'])[^>]*>/gi, '')
     .replace(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/gi, '');
   const tags = [`<meta name="robots" content="${canonical ? 'index, follow' : 'noindex, follow'}" />`];
   if (canonical) tags.push(`<link rel="canonical" href="${canonical}" />`);
+  const imageUrl = canonical ? new URL(image.path, canonical).href : image.path;
+  const metadata = {
+    'og:type': 'website',
+    'og:title': title,
+    'og:description': description,
+    ...(canonical ? { 'og:url': canonical } : {}),
+    'og:image': imageUrl,
+    'og:image:type': image.type,
+    'og:image:width': image.width,
+    'og:image:height': image.height,
+    'og:image:alt': image.alt,
+    'og:locale': 'vi_VN',
+    'og:site_name': siteName,
+    'twitter:card': 'summary_large_image',
+    'twitter:title': title,
+    'twitter:description': description,
+    'twitter:image': imageUrl,
+    'twitter:image:alt': image.alt,
+  };
+  for (const [key, value] of Object.entries(metadata)) {
+    // Title/description come from already HTML-encoded source attributes/text.
+    const content = String(value).replace(/"/g, '&quot;');
+    tags.push(`<meta ${key.startsWith('og:') ? 'property' : 'name'}="${key}" content="${content}" />`);
+  }
   return clean.replace('</head>', `${tags.join('\n    ')}\n  </head>`);
 }
 
@@ -59,7 +98,7 @@ export function technicalSeo({ command, mode }) {
       handler(html, context) {
         const page = pages.find(item => resolve(root, item.entry) === resolve(context.filename));
         if (!page) throw new Error(`Configure canonical/indexability for HTML entry: ${context.filename}`);
-        return pageHtml(html, origin ? new URL(page.path, origin).href : null);
+        return pageHtml(html, origin ? new URL(page.path, origin).href : null, page.image);
       },
     },
     generateBundle() {
