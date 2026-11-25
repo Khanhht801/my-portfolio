@@ -15,7 +15,7 @@ export default function Footer() {
     <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/15 text-sm">
       {/* Wordmark */}
       <div className="flex items-center gap-3">
-        <img src="image/logo.jpg" alt="Khanhht Logo" width={32} height={32} className="w-8 h-8 rounded-full object-cover border-2 border-white/30 ring-2 ring-[#0B84FF]/40 shadow-lg" />
+        <img src="image/logo.jpg" alt="" width={32} height={32} className="w-8 h-8 rounded-full object-cover border-2 border-white/30 ring-2 ring-[#0B84FF]/40 shadow-lg" />
         <span className="font-display font-bold tracking-tight text-white text-base drop-shadow-sm">Khanhht</span>
         <span className="text-white/70 font-mono text-xs bg-white/10 px-2 py-0.5 rounded-md border border-white/20">Lập
           trình viên Fullstack</span>

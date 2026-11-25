@@ -35,8 +35,8 @@ export default function About() {
           <span>LEARN</span><i /><span>BUILD</span><i /><span>IMPROVE</span>
         </div>
         <div className="about-slider" data-autoplay-slider="" data-autoplay-ms={3000}>
-          <div className="about-slider__frame" data-slide-next="" role="button" tabIndex={0} aria-label="Xem ảnh chân dung tiếp theo">
-            <ul className="about-slider__slides" data-slides="" aria-live="polite">
+          <div className="about-slider__frame">
+            <ul className="about-slider__slides" data-slides="">
               <li className="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100" data-slide="">
                 <img alt="Hoàng Thanh Khánh - chân dung 01" loading="lazy" width={1200} height={1800} className="w-full h-full object-cover object-top block" src="image/about/a1.jpg" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/about/a1.jpg') event.currentTarget.src = 'image/about/a1.jpg'; }} />
               </li>
@@ -53,17 +53,18 @@ export default function About() {
                 <img alt="Hoàng Thanh Khánh - chân dung 05" loading="lazy" width={1200} height={1800} className="w-full h-full object-cover object-top block" src="image/about/a5.jpg" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/about/a1.jpg') event.currentTarget.src = 'image/about/a1.jpg'; }} />
               </li>
             </ul>
+            <button type="button" className="about-slider__next" data-slide-next="" aria-label="Xem ảnh chân dung tiếp theo" />
             <div className="about-slider__caption">
               <span className="about-slider__caption-label">MY JOURNEY</span>
               <span className="about-slider__caption-count">01 — 05</span>
             </div>
           </div>
-          <div className="about-slider__dots" data-dots="" role="tablist" aria-label="Chọn ảnh chân dung">
-            <button type="button" role="tab" data-dot-index={0} className="about-slider__dot bg-[#007BFF]" aria-label="Xem ảnh 1"><span /></button>
-            <button type="button" role="tab" data-dot-index={1} className="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 2"><span /></button>
-            <button type="button" role="tab" data-dot-index={2} className="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 3"><span /></button>
-            <button type="button" role="tab" data-dot-index={3} className="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 4"><span /></button>
-            <button type="button" role="tab" data-dot-index={4} className="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 5"><span /></button>
+          <div className="about-slider__dots" data-dots="" role="group" aria-label="Chọn ảnh chân dung">
+            <button type="button" aria-pressed="true" data-dot-index={0} className="about-slider__dot bg-[#007BFF]" aria-label="Xem ảnh 1"><span /></button>
+            <button type="button" aria-pressed="false" data-dot-index={1} className="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 2"><span /></button>
+            <button type="button" aria-pressed="false" data-dot-index={2} className="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 3"><span /></button>
+            <button type="button" aria-pressed="false" data-dot-index={3} className="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 4"><span /></button>
+            <button type="button" aria-pressed="false" data-dot-index={4} className="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 5"><span /></button>
           </div>
         </div>
       </div>

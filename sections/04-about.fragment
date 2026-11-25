@@ -33,9 +33,8 @@
         </div>
 
         <div class="about-slider" data-autoplay-slider data-autoplay-ms="3000">
-          <div class="about-slider__frame" data-slide-next role="button" tabindex="0"
-            aria-label="Xem ảnh chân dung tiếp theo">
-            <ul class="about-slider__slides" data-slides aria-live="polite">
+          <div class="about-slider__frame">
+            <ul class="about-slider__slides" data-slides>
               <li class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100" data-slide>
                 <img alt="Hoàng Thanh Khánh - chân dung 01" loading="lazy" width="1200" height="1800"
                   class="w-full h-full object-cover object-top block"
@@ -68,6 +67,7 @@
               </li>
             </ul>
 
+            <button type="button" class="about-slider__next" data-slide-next aria-label="Xem ảnh chân dung tiếp theo"></button>
             <div class="about-slider__caption">
               <span class="about-slider__caption-label">MY JOURNEY</span>
               <span class="about-slider__caption-count">01 — 05</span>
@@ -75,12 +75,12 @@
 
           </div>
 
-          <div class="about-slider__dots" data-dots role="tablist" aria-label="Chọn ảnh chân dung">
-            <button type="button" role="tab" data-dot-index="0" class="about-slider__dot bg-[#007BFF]" aria-label="Xem ảnh 1"><span></span></button>
-            <button type="button" role="tab" data-dot-index="1" class="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 2"><span></span></button>
-            <button type="button" role="tab" data-dot-index="2" class="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 3"><span></span></button>
-            <button type="button" role="tab" data-dot-index="3" class="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 4"><span></span></button>
-            <button type="button" role="tab" data-dot-index="4" class="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 5"><span></span></button>
+          <div class="about-slider__dots" data-dots role="group" aria-label="Chọn ảnh chân dung">
+            <button type="button" aria-pressed="true" data-dot-index="0" class="about-slider__dot bg-[#007BFF]" aria-label="Xem ảnh 1"><span></span></button>
+            <button type="button" aria-pressed="false" data-dot-index="1" class="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 2"><span></span></button>
+            <button type="button" aria-pressed="false" data-dot-index="2" class="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 3"><span></span></button>
+            <button type="button" aria-pressed="false" data-dot-index="3" class="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 4"><span></span></button>
+            <button type="button" aria-pressed="false" data-dot-index="4" class="about-slider__dot bg-[#E7E5E4]" aria-label="Xem ảnh 5"><span></span></button>
           </div>
         </div>
       </div>

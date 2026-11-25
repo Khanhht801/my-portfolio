@@ -57,7 +57,7 @@
           <a class="btn-shimmer animate-booted group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#007BFF] text-white font-sans font-medium text-base hover:bg-[#0056CC] active:bg-[#0056CC] shadow-md hover:shadow-lg transition-all focus:ring-2 focus:ring-offset-2 focus:ring-[#007BFF]"
             data-anim="animate__fadeInUp" data-delay="0.05" href="#work">
             <span class="">Xem dự án tiêu biểu</span>
-            <svg class="w-4 h-4 transition-transform group-hover:translate-y-1" fill="none" stroke="currentColor"
+            <svg aria-hidden="true" class="w-4 h-4 transition-transform group-hover:translate-y-1" fill="none" stroke="currentColor"
               viewBox="0 0 24 24">
               <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
               </path>
@@ -68,7 +68,7 @@
             href="CV - Hoàng Thanh Khánh - Fullstack.pdf?v=1d70854a"
             download="CV - Hoàng Thanh Khánh - Fullstack.pdf">
             <span class="">Tải hồ sơ (CV)</span>
-            <svg
+            <svg aria-hidden="true"
               class="w-4 h-4 text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:-translate-y-0.5"
               fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round"

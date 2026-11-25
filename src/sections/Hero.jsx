@@ -48,14 +48,14 @@ export default function Hero() {
         <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto" data-stagger="">
           <a className="btn-shimmer animate-booted group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#007BFF] text-white font-sans font-medium text-base hover:bg-[#0056CC] active:bg-[#0056CC] shadow-md hover:shadow-lg transition-all focus:ring-2 focus:ring-offset-2 focus:ring-[#007BFF]" data-anim="animate__fadeInUp" data-delay="0.05" href="#work">
             <span className="">Xem dự án tiêu biểu</span>
-            <svg className="w-4 h-4 transition-transform group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg aria-hidden="true" className="w-4 h-4 transition-transform group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path d="M19 14l-7 7m0 0l-7-7m7 7V3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5">
               </path>
             </svg>
           </a>
           <a className="animate-booted group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/80 backdrop-blur-sm border border-[#E7E5E4] text-[#292524] font-sans font-medium text-base hover:bg-white hover:border-[#007BFF] hover:text-[#007BFF] transition-all shadow-sm hover:shadow-md focus:ring-2 focus:ring-[#292524]" data-anim="animate__fadeInUp" data-delay="0.15" href="CV - Hoàng Thanh Khánh - Fullstack.pdf?v=1d70854a" download="CV - Hoàng Thanh Khánh - Fullstack.pdf">
             <span className="">Tải hồ sơ (CV)</span>
-            <svg className="w-4 h-4 text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg aria-hidden="true" className="w-4 h-4 text-[#78716C] group-hover:text-[#007BFF] transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
             </svg>
           </a>

@@ -17,9 +17,9 @@
     </header>
 
     <div class="project-gallery__viewport" data-project-viewport>
-    <div class="project-gallery__track" data-project-track role="list" aria-label="Danh sách dự án tiêu biểu">
+    <ul class="project-gallery__track" data-project-track aria-label="Danh sách dự án tiêu biểu">
       <!-- PROJECT 01 -->
-      <article class="project-tile" role="listitem">
+      <li class="project-tile">
         <figure class="project-tile__media">
           <img
             src="image/futurelearn.png"
@@ -43,10 +43,10 @@
             </div>
           </div>
         </div>
-      </article>
+      </li>
 
       <!-- PROJECT 02 -->
-      <article class="project-tile project-tile--blue" role="listitem">
+      <li class="project-tile project-tile--blue">
         <figure class="project-tile__media">
           <img
             src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
@@ -65,10 +65,10 @@
             <span class="project-tile__soon" aria-label="Demo đang cập nhật">Demo · Soon</span>
           </div>
         </div>
-      </article>
+      </li>
 
       <!-- PROJECT 03 -->
-      <article class="project-tile project-tile--dark" role="listitem">
+      <li class="project-tile project-tile--dark">
         <figure class="project-tile__media">
           <img
             src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
@@ -87,10 +87,10 @@
             <span class="project-tile__soon" aria-label="Source code đang cập nhật">Source · Soon</span>
           </div>
         </div>
-      </article>
+      </li>
 
       <!-- PROJECT 04 -->
-      <article class="project-tile" role="listitem">
+      <li class="project-tile">
         <figure class="project-tile__media">
           <img
             src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
@@ -109,10 +109,10 @@
             <span class="project-tile__soon" aria-label="Case study đang cập nhật">Case study · Soon</span>
           </div>
         </div>
-      </article>
+      </li>
 
       <!-- PROJECT 05 -->
-      <article class="project-tile project-tile--blue" role="listitem">
+      <li class="project-tile project-tile--blue">
         <figure class="project-tile__media">
           <img
             src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
@@ -131,8 +131,8 @@
             <a class="project-tile__current" href="#hero">Đang xem <span aria-hidden="true">↑</span></a>
           </div>
         </div>
-      </article>
-    </div>
+      </li>
+    </ul>
     </div>
 
     <div class="project-gallery__progress" aria-hidden="true">

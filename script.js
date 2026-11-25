@@ -227,7 +227,7 @@ export const initApp = () => {
         const active = i === idx;
         dot.classList.toggle('bg-[#007BFF]', active);
         dot.classList.toggle('bg-[#E7E5E4]', !active);
-        dot.setAttribute('aria-selected', active ? 'true' : 'false');
+        dot.setAttribute('aria-pressed', active ? 'true' : 'false');
       });
       if (slideCount) {
         slideCount.textContent = `${String(idx + 1).padStart(2, '0')} — ${String(total).padStart(2, '0')}`;
@@ -240,7 +240,7 @@ export const initApp = () => {
 
     const start = () => {
       stop();
-      if (!isInView || document.hidden) return;
+      if (!isInView || document.hidden || slider.contains(document.activeElement)) return;
       timerId = window.setInterval(goNext, intervalMs);
     };
 
@@ -253,19 +253,12 @@ export const initApp = () => {
 
     const bump = () => {
       stop();
-      if (isInView && !document.hidden) {
+      if (isInView && !document.hidden && !slider.contains(document.activeElement)) {
         timerId = window.setInterval(goNext, intervalMs);
       }
     };
 
     slideNextTarget?.addEventListener('click', () => {
-      goNext();
-      bump();
-    });
-
-    slideNextTarget?.addEventListener('keydown', (event) => {
-      if (event.key !== 'Enter' && event.key !== ' ') return;
-      event.preventDefault();
       goNext();
       bump();
     });
@@ -290,6 +283,11 @@ export const initApp = () => {
           bump();
         }
       });
+    });
+
+    slider.addEventListener('focusin', stop);
+    slider.addEventListener('focusout', (event) => {
+      if (!slider.contains(event.relatedTarget)) start();
     });
 
     document.addEventListener('visibilitychange', () => {

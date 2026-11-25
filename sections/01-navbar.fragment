@@ -11,7 +11,7 @@
     <!-- Brand / Logo -->
     <a aria-label="Khanhht - Trang chủ" class="site-brand absolute left-4 sm:left-6 flex items-center gap-2 group z-10"
       href="#hero">
-      <img src="image/logo.jpg" alt="Khanhht Logo" width="36" height="36"
+      <img src="image/logo.jpg" alt="" width="36" height="36"
         class="site-brand__logo w-9 h-9 rounded-full object-cover border-2 border-[#007BFF] shadow-sm">
       <span class="font-display font-bold tracking-tight text-[#292524] group-hover:text-[#007BFF] transition-colors duration-200">Khanhht</span>
     </a>

@@ -15,7 +15,7 @@ export default function Navbar() {
   <div className="site-header__inner max-w-site mx-auto px-4 sm:px-6 flex items-center justify-end relative gap-4">
     {/* Brand / Logo */}
     <a aria-label="Khanhht - Trang chủ" className="site-brand absolute left-4 sm:left-6 flex items-center gap-2 group z-10" href="#hero">
-      <img src="image/logo.jpg" alt="Khanhht Logo" width={36} height={36} className="site-brand__logo w-9 h-9 rounded-full object-cover border-2 border-[#007BFF] shadow-sm" />
+      <img src="image/logo.jpg" alt="" width={36} height={36} className="site-brand__logo w-9 h-9 rounded-full object-cover border-2 border-[#007BFF] shadow-sm" />
       <span className="font-display font-bold tracking-tight text-[#292524] group-hover:text-[#007BFF] transition-colors duration-200">Khanhht</span>
     </a>
     {/* Desktop Navigation */}

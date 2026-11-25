@@ -42,9 +42,9 @@ export default function Work() {
         <p>Các dự án học tập, ý tưởng sản phẩm và công việc vận hành website của tôi. FutureLearn có case study và bản demo để bạn khám phá.</p>
       </header>
       <div className="project-gallery__viewport" data-project-viewport="">
-        <div className="project-gallery__track" data-project-track="" role="list" aria-label="Danh sách dự án tiêu biểu">
+        <ul className="project-gallery__track" data-project-track="" aria-label="Danh sách dự án tiêu biểu">
           {/* PROJECT 01 */}
-          <article className="project-tile" role="listitem">
+          <li className="project-tile">
             <figure className="project-tile__media">
               <img src="image/futurelearn.png" alt="Ảnh minh họa dự án FutureLearn" width={1200} height={675} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
               <span className="project-tile__number" aria-hidden="true">01</span>
@@ -64,9 +64,9 @@ export default function Work() {
                 </div>
               </div>
             </div>
-          </article>
+          </li>
           {/* PROJECT 02 */}
-          <article className="project-tile project-tile--blue" role="listitem">
+          <li className="project-tile project-tile--blue">
             <figure className="project-tile__media">
               <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85" alt="Khu vận chuyển container đại diện cho dự án logistics" width={1200} height={675} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
               <span className="project-tile__number" aria-hidden="true">02</span>
@@ -81,9 +81,9 @@ export default function Work() {
                 <span className="project-tile__soon" aria-label="Demo đang cập nhật">Demo · Soon</span>
               </div>
             </div>
-          </article>
+          </li>
           {/* PROJECT 03 */}
-          <article className="project-tile project-tile--dark" role="listitem">
+          <li className="project-tile project-tile--dark">
             <figure className="project-tile__media">
               <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85" alt="Thanh toán trực tuyến đại diện cho dự án thương mại điện tử" width={1200} height={675} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
               <span className="project-tile__number" aria-hidden="true">03</span>
@@ -98,9 +98,9 @@ export default function Work() {
                 <span className="project-tile__soon" aria-label="Source code đang cập nhật">Source · Soon</span>
               </div>
             </div>
-          </article>
+          </li>
           {/* PROJECT 04 */}
-          <article className="project-tile" role="listitem">
+          <li className="project-tile">
             <figure className="project-tile__media">
               <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Không gian làm việc đại diện cho dự án vận hành website" width={1200} height={675} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
               <span className="project-tile__number" aria-hidden="true">04</span>
@@ -115,9 +115,9 @@ export default function Work() {
                 <span className="project-tile__soon" aria-label="Case study đang cập nhật">Case study · Soon</span>
               </div>
             </div>
-          </article>
+          </li>
           {/* PROJECT 05 */}
-          <article className="project-tile project-tile--blue" role="listitem">
+          <li className="project-tile project-tile--blue">
             <figure className="project-tile__media">
               <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1200&q=85" alt="Màn hình lập trình đại diện cho portfolio cá nhân" width={1200} height={675} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
               <span className="project-tile__number" aria-hidden="true">05</span>
@@ -132,8 +132,8 @@ export default function Work() {
                 <a className="project-tile__current" href="#hero">Đang xem <span aria-hidden="true">↑</span></a>
               </div>
             </div>
-          </article>
-        </div>
+          </li>
+        </ul>
       </div>
       <div className="project-gallery__progress" aria-hidden="true">
         <span>AUTO PLAY · HOVER TO PAUSE</span>
