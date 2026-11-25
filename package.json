@@ -4,7 +4,8 @@
   "scripts": {
     "build:css": "tailwindcss -i ./tailwind.input.css -o ./tailwind.css --minify",
     "build": "npm run build:css && vite build && node scripts/copy-static.mjs",
-    "test": "node ./tests/deployment-smoke.test.mjs && node ./tests/project-swipe.test.mjs && node ./tests/react-sections.test.mjs && node ./tests/react-interactions.test.mjs && node ./tests/reveal-motion.test.mjs",
+    "build:preview": "npm run build:css && vite build --mode preview && node scripts/copy-static.mjs",
+    "test": "node ./tests/deployment-smoke.test.mjs && node ./tests/project-swipe.test.mjs && node ./tests/react-sections.test.mjs && node ./tests/react-interactions.test.mjs && node ./tests/reveal-motion.test.mjs && node ./tests/technical-seo.test.mjs",
     "dev": "vite --host 127.0.0.1",
     "preview": "vite preview --host 127.0.0.1"
   },
