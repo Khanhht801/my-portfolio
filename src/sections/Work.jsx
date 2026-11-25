@@ -39,7 +39,7 @@ export default function Work() {
           <span className="project-gallery__eyebrow"><i aria-hidden="true" />SELECTED WORK / 05</span>
           <h2 className="section-heading-title">Dự án <span>tiêu biểu.</span></h2>
         </div>
-        <p>Một số dự án tôi đã thực hiện trong quá trình học tập, thực hành và phát triển kỹ năng lập trình web.</p>
+        <p>Các dự án học tập, ý tưởng sản phẩm và công việc vận hành website của tôi. FutureLearn có case study và bản demo để bạn khám phá.</p>
       </header>
       <div className="project-gallery__viewport" data-project-viewport="">
         <div className="project-gallery__track" data-project-track="" role="list" aria-label="Danh sách dự án tiêu biểu">
@@ -75,7 +75,7 @@ export default function Work() {
             <div className="project-tile__body">
               <div className="project-tile__meta"><span>REAL-TIME</span><span>NEXT.JS · WEBSOCKET · SQL</span></div>
               <h3>Giám sát vận tải &amp; chuỗi cung ứng</h3>
-              <p>Theo dõi vị trí, trạng thái đội xe và hỗ trợ phát hiện chậm trễ trong quá trình vận hành.</p>
+              <p>Ý tưởng ứng dụng theo dõi vị trí, trạng thái đội xe và hỗ trợ phát hiện chậm trễ trong quá trình vận hành.</p>
               <div className="project-tile__footer">
                 <span>Product &amp; Fullstack</span>
                 <span className="project-tile__soon" aria-label="Demo đang cập nhật">Demo · Soon</span>
@@ -124,9 +124,9 @@ export default function Work() {
               <div className="project-tile__badges"><span>PERSONAL</span><span>2026</span></div>
             </figure>
             <div className="project-tile__body">
-              <div className="project-tile__meta"><span>FRONTEND</span><span>HTML · TAILWIND · JAVASCRIPT</span></div>
+              <div className="project-tile__meta"><span>FRONTEND</span><span>REACT · TAILWIND · JAVASCRIPT</span></div>
               <h3>Portfolio cá nhân Khanhht</h3>
-              <p>Portfolio responsive thể hiện dự án, hành trình học tập và định hướng phát triển Fullstack.</p>
+              <p>Website cá nhân xây dựng bằng React và Tailwind CSS, giới thiệu dự án, kinh nghiệm, học vấn và hồ sơ CV.</p>
               <div className="project-tile__footer">
                 <span>Designer &amp; Developer</span>
                 <a className="project-tile__current" href="#hero">Đang xem <span aria-hidden="true">↑</span></a>

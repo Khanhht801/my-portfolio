@@ -42,7 +42,7 @@ export default function Hero() {
         </h1>
         {/* Supporting copy */}
         <p className="hero-description text-base md:text-lg text-[#44403C] font-normal leading-relaxed mb-6 max-w-2xl animate-booted" data-anim="animate__fadeInUp" data-delay="0.15">
-          Sinh viên năm 3 ngành Tin học ứng dụng, định hướng phát triển Fullstack. Có kinh nghiệm quản lý website và đang tìm kiếm cơ hội Internship/Junior để phát triển qua các dự án thực tế.
+          Tôi là sinh viên ngành Tin học ứng dụng, có kinh nghiệm quản lý website và phát triển các dự án web trong quá trình học. Tôi đang tìm cơ hội thực tập hoặc vị trí Junior Fullstack.
         </p>
         {/* CTA Buttons */}
         <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto" data-stagger="">

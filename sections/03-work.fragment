@@ -13,7 +13,7 @@
         <span class="project-gallery__eyebrow"><i aria-hidden="true"></i>SELECTED WORK / 05</span>
         <h2 class="section-heading-title">Dự án <span>tiêu biểu.</span></h2>
       </div>
-      <p>Một số dự án tôi đã thực hiện trong quá trình học tập, thực hành và phát triển kỹ năng lập trình web.</p>
+      <p>Các dự án học tập, ý tưởng sản phẩm và công việc vận hành website của tôi. FutureLearn có case study và bản demo để bạn khám phá.</p>
     </header>
 
     <div class="project-gallery__viewport" data-project-viewport>
@@ -59,7 +59,7 @@
         <div class="project-tile__body">
           <div class="project-tile__meta"><span>REAL-TIME</span><span>NEXT.JS · WEBSOCKET · SQL</span></div>
           <h3>Giám sát vận tải &amp; chuỗi cung ứng</h3>
-          <p>Theo dõi vị trí, trạng thái đội xe và hỗ trợ phát hiện chậm trễ trong quá trình vận hành.</p>
+          <p>Ý tưởng ứng dụng theo dõi vị trí, trạng thái đội xe và hỗ trợ phát hiện chậm trễ trong quá trình vận hành.</p>
           <div class="project-tile__footer">
             <span>Product &amp; Fullstack</span>
             <span class="project-tile__soon" aria-label="Demo đang cập nhật">Demo · Soon</span>
@@ -123,9 +123,9 @@
           <div class="project-tile__badges"><span>PERSONAL</span><span>2026</span></div>
         </figure>
         <div class="project-tile__body">
-          <div class="project-tile__meta"><span>FRONTEND</span><span>HTML · TAILWIND · JAVASCRIPT</span></div>
+          <div class="project-tile__meta"><span>FRONTEND</span><span>REACT · TAILWIND · JAVASCRIPT</span></div>
           <h3>Portfolio cá nhân Khanhht</h3>
-          <p>Portfolio responsive thể hiện dự án, hành trình học tập và định hướng phát triển Fullstack.</p>
+          <p>Website cá nhân xây dựng bằng React và Tailwind CSS, giới thiệu dự án, kinh nghiệm, học vấn và hồ sơ CV.</p>
           <div class="project-tile__footer">
             <span>Designer &amp; Developer</span>
             <a class="project-tile__current" href="#hero">Đang xem <span aria-hidden="true">↑</span></a>

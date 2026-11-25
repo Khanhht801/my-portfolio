@@ -10,7 +10,7 @@
   <div class="max-w-site mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <header class="journey-heading reveal-on-scroll is-visible">
       <h2 class="journey-heading__title section-heading-title animate-booted" data-anim="animate__fadeInUp">
-        <span>Kinh nghiệm làm việc.</span>
+        <span>Kinh nghiệm &amp; học tập.</span>
       </h2>
     </header>
 

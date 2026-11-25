@@ -14,7 +14,7 @@ export default function Experience() {
   <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <header className="journey-heading reveal-on-scroll is-visible">
       <h2 className="journey-heading__title section-heading-title animate-booted" data-anim="animate__fadeInUp">
-        <span>Kinh nghiệm làm việc.</span>
+        <span>Kinh nghiệm &amp; học tập.</span>
       </h2>
     </header>
     <div className="journey-layout">

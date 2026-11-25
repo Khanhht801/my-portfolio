@@ -81,10 +81,10 @@ export default function About() {
         </blockquote>
         <div className="about-story__copy">
           <p>
-            Tôi là sinh viên năm 3 ngành Tin học ứng dụng, định hướng phát triển Fullstack. Tôi yêu thích việc biến ý tưởng thành những sản phẩm web có giao diện rõ ràng, dễ sử dụng và vận hành ổn định.
+            Tôi học ngành Tin học ứng dụng tại Trường Cao đẳng Lạng Sơn, tập trung vào phát triển web và cơ sở dữ liệu. Qua các dự án như FutureLearn và hệ thống quản lý sinh viên, tôi thực hành xây dựng ứng dụng web.
           </p>
           <p>
-            Bên cạnh lập trình, tôi có kinh nghiệm quản lý website, xây dựng nội dung số. Điều đó giúp tôi chú ý hơn đến trải nghiệm người dùng, tính thực tế và sự chỉn chu của sản phẩm.
+            Công việc tại Xứ Lạng Education cho tôi kinh nghiệm cập nhật nội dung website, thiết kế ấn phẩm và hỗ trợ khách hàng. Bạn có thể xem chi tiết ở phần <a className="underline underline-offset-4" href="#experience">kinh nghiệm và học tập</a>.
           </p>
         </div>
         <ul className="about-values" aria-label="Ba giá trị trong cách tôi làm việc">

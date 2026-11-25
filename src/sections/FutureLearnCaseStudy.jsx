@@ -19,13 +19,6 @@ function Icon({ name }) {
   return <svg className="case-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>;
 }
 
-// Sample technologies are kept together so the real project stack can replace them.
-const technologies = [
-  { label: 'Frontend', icon: 'screen', items: ['React', 'TypeScript', 'Tailwind CSS'] },
-  { label: 'Backend', icon: 'server', items: ['Node.js', 'Express'] },
-  { label: 'Database & Tools', icon: 'database', items: ['PostgreSQL', 'Git'] },
-];
-
 function SectionTitle({ number, children, id }) {
   return <h3 className="case-dialog__section-title" id={id}><span>{number} /</span> {children}</h3>;
 }
@@ -76,7 +69,7 @@ export default function FutureLearnCaseStudy({ onClose }) {
             <img src={futurelearnImage} width="1881" height="1160" alt="Toàn cảnh giao diện FutureLearn với Hành tinh Toán, Đảo tiếng Anh và mục tiêu học tập" />
           </figure>
           <div className="case-dialog__details">
-            <section aria-labelledby="case-problem"><SectionTitle number="01" id="case-problem">Bài toán</SectionTitle><p>Xây dựng không gian học tiếng Anh và Toán cho trẻ, với giao diện dễ tiếp cận và nội dung trực quan. Phụ huynh có thể đồng hành, theo dõi tiến độ học tập của con.</p></section>
+            <section aria-labelledby="case-problem"><SectionTitle number="01" id="case-problem">Bài toán</SectionTitle><p>Dự án hướng đến hai nhu cầu: giúp trẻ tiếp cận bài học tiếng Anh và Toán qua giao diện trực quan, đồng thời giúp phụ huynh theo dõi tiến độ học tập của con.</p></section>
             <section aria-labelledby="case-role"><SectionTitle number="02" id="case-role">Đóng góp</SectionTitle><ul className="case-dialog__list"><li>Tham gia phát triển ứng dụng với vai trò Fullstack Developer.</li><li>Tập trung vào trải nghiệm học tập và cách tổ chức thông tin cho trẻ.</li><li>Kết nối nhu cầu học của trẻ với việc theo dõi tiến độ của phụ huynh.</li></ul></section>
           </div>
           <section className="case-dialog__section" aria-labelledby="case-features">
@@ -90,13 +83,8 @@ export default function FutureLearnCaseStudy({ onClose }) {
               <div><h4><Icon name="book" />Đảo tiếng Anh</h4><p>Chủ đề hòn đảo đầy màu sắc giúp việc tiếp cận tiếng Anh trở nên gần gũi. Nội dung và tiến độ được trình bày rõ ràng ngay trên góc học tập.</p></div>
             </div>
           </section>
-          <section className="case-dialog__section" aria-labelledby="case-technologies">
-            <SectionTitle number="04" id="case-technologies">Công nghệ sử dụng</SectionTitle>
-            <p className="case-dialog__sample-note">Stack mẫu · sẽ cập nhật theo công nghệ thực tế của dự án.</p>
-            <div className="case-dialog__tech-grid">{technologies.map(({ label, icon, items }) => <div className="case-dialog__tech" key={label}><h4><Icon name={icon} />{label}</h4><ul>{items.map(item => <li key={item}>{item}</li>)}</ul></div>)}</div>
-          </section>
           <section className="case-dialog__section" aria-labelledby="case-lessons">
-            <SectionTitle number="05" id="case-lessons">Kết quả &amp; bài học</SectionTitle>
+            <SectionTitle number="04" id="case-lessons">Hướng phát triển</SectionTitle>
             <div className="case-dialog__lesson"><Icon name="bulb" /><p>FutureLearn là dự án thực hành xây dựng sản phẩm web dành cho trẻ em. Hướng phát triển tiếp theo là hoàn thiện trải nghiệm học và cách thể hiện tiến độ, để sản phẩm dễ sử dụng hơn với cả trẻ và phụ huynh.</p></div>
           </section>
           <footer className="case-dialog__bottom"><a href="https://future-learn.khanhht.tech" target="_blank" rel="noopener noreferrer"><Icon name="external" />Xem demo</a><button type="button" onClick={() => dialogRef.current.close()}>Quay lại dự án</button></footer>

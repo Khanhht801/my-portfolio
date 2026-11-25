@@ -21,10 +21,10 @@ export default function Contact() {
         <span className="w-2 h-0.5 bg-[#292524] rounded-full" />
       </div>
       <h2 className="section-heading-title font-display font-black text-4xl sm:text-5xl md:text-6xl text-[#007BFF] tracking-tight leading-[1.08] mb-4 animate-booted" data-anim="animate__zoomIn" data-delay="0.1">
-        Bạn đang có ý tưởng, dự án hay cơ hội hợp tác mới?
+        Cùng trao đổi về cơ hội Fullstack.
       </h2>
       <p className="text-justify text-xl sm:text-2xl text-[#44403C] font-normal mb-10 animate-booted" data-anim="animate__fadeInUp" data-delay="0.2">
-        Hãy cùng tạo nên những sản phẩm số giá trị.
+        Bạn đang tuyển thực tập sinh, Junior Fullstack hoặc muốn trao đổi về dự án web? Hãy gửi email cho tôi.
       </p>
       <div className="flex flex-wrap items-center justify-center gap-4 mb-14" data-stagger="">
         {/* Email */}
