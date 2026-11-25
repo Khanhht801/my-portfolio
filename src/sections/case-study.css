@@ -1,83 +1,79 @@
-.project-tile__actions { flex-wrap: wrap; justify-content: flex-end; }
-.project-tile__actions button {
-  min-height: 2.75rem;
-  padding: .65rem .85rem;
-  border: 1px solid #a7cfff;
-  border-radius: 999px;
-  background: #eff7ff;
-  color: #0056cc;
-  font: 700 .72rem "Be Vietnam Pro", sans-serif;
-  cursor: pointer;
+.project-tile__actions{flex-wrap:wrap;justify-content:flex-end}
+.project-tile__actions button{min-height:44px;padding:.65rem .85rem;border:1px solid #a7cfff;border-radius:999px;background:#eff7ff;color:#0056cc;font:700 .72rem "Be Vietnam Pro",sans-serif;cursor:pointer}
+.project-tile__actions button:hover{background:#dceeff}
+.project-tile__actions button:focus-visible,.case-dialog :focus-visible{outline:3px solid #007bff;outline-offset:3px}
+.case-dialog{
+  --case-paper:#fffbf5;--case-ink:#292524;--case-muted:#57534e;--case-blue:#007bff;--case-blue-text:#0056cc;--case-line:#e7e5e4;
+  width:min(960px,calc(100% - 3rem));max-width:none;max-height:90dvh;padding:0;overflow:auto;
+  border:1px solid var(--case-line);border-radius:24px;background:var(--case-paper);color:var(--case-ink);
+  box-shadow:0 30px 90px rgb(28 44 67 / 25%);overscroll-behavior:contain;scrollbar-gutter:stable;scroll-padding-block:6rem 2rem;
 }
-.project-tile__actions button:hover { background: #dceeff; }
-.project-tile__actions button:focus-visible, .case-dialog :focus-visible { outline: 3px solid #007bff; outline-offset: 3px; }
-
-.case-dialog {
-  width: min(920px, calc(100% - 2rem));
-  max-width: none;
-  max-height: min(90dvh, 850px);
-  padding: 0;
-  border: 1px solid #e7e5e4;
-  border-radius: 1.5rem;
-  background: #fffbf5;
-  color: #292524;
-  box-shadow: 0 30px 90px rgba(28, 44, 67, .25);
-  overscroll-behavior: contain;
-}
-.case-dialog::backdrop { background: rgba(20, 35, 52, .65); }
-.case-dialog__content { padding: clamp(1.25rem, 4vw, 2.5rem); }
-.case-dialog__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
-.case-dialog__eyebrow, .case-dialog__details section > span, .case-dialog__facts span { color: #007bff; font: 700 .68rem "JetBrains Mono", monospace; letter-spacing: .08em; }
-.case-dialog__eyebrow { display: flex; align-items: center; gap: .5rem; }
-.case-dialog__eyebrow i { width: .5rem; height: .5rem; border-radius: 50%; background: #007bff; }
-.case-dialog__close { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 1px solid #e7e5e4; border-radius: 50%; background: white; color: #292524; font-size: 1.65rem; line-height: 1; cursor: pointer; }
-.case-dialog__close:hover { border-color: #007bff; color: #007bff; }
-.case-dialog__intro { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
-.case-dialog__tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
-.case-dialog__tags span { padding: .35rem .6rem; border-radius: .5rem; background: #e7f2ff; color: #0056cc; font: 700 .62rem "JetBrains Mono", monospace; }
-.case-dialog h2 { margin: 0 0 1rem; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.08; letter-spacing: -.04em; }
-.case-dialog h2 span { color: #007bff; }
-.case-dialog p { margin: 0; color: #57534e; font-size: .9rem; line-height: 1.75; }
-.case-dialog__image { margin: 0; overflow: hidden; border: 1px solid #cfe2f8; border-radius: 1rem; background: #fff; box-shadow: 0 16px 38px rgba(0, 86, 204, .1); }
-.case-dialog__browser { display: flex; align-items: center; gap: .3rem; padding: .65rem .8rem; background: #f2f7fc; }
-.case-dialog__browser i { width: .38rem; height: .38rem; border-radius: 50%; background: #b5cce1; }
-.case-dialog__browser i:first-child { background: #f4a47f; }
-.case-dialog__browser span { overflow: hidden; margin-left: .55rem; color: #71849a; font: 500 .58rem "JetBrains Mono", monospace; text-overflow: ellipsis; white-space: nowrap; }
-.case-dialog__image img { display: block; width: 100%; height: auto; }
-.case-dialog__image figcaption { display: flex; align-items: center; gap: .45rem; padding: .7rem .85rem; color: #527398; font: 700 .57rem "JetBrains Mono", monospace; letter-spacing: .04em; }
-.case-icon { width: 1.2rem; height: 1.2rem; flex: none; }
-.case-dialog__image figcaption .case-icon { width: .95rem; height: .95rem; color: #007bff; }
-.case-dialog__facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; padding: 1.25rem; border: 1px solid #e7e5e4; border-radius: 1rem; background: #fff; }
-.case-dialog__facts div { display: flex; align-items: center; gap: .75rem; }
-.case-dialog__facts div > i { display: grid; flex: none; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: .75rem; background: #eaf4ff; color: #007bff; }
-.case-dialog__facts strong { display: block; margin-top: .4rem; color: #292524; font: 700 .83rem "Be Vietnam Pro", sans-serif; letter-spacing: normal; }
-.case-dialog__details { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.case-dialog__details h3 { margin: .65rem 0 .5rem; font-size: 1.2rem; font-weight: 800; line-height: 1.25; }
-.case-dialog__gallery { margin-top: 2.5rem; padding: 1.5rem; border: 1px solid #dceaff; border-radius: 1.25rem; background: linear-gradient(140deg, #eef7ff, #fff 70%); }
-.case-dialog__gallery-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.case-dialog__gallery-heading > .case-icon { width: 2rem; height: 2rem; color: #f1a41b; }
-.case-dialog__gallery-heading span, .case-dialog__bottom > div > span { color: #007bff; font: 700 .68rem "JetBrains Mono", monospace; letter-spacing: .08em; }
-.case-dialog__gallery h3 { margin: .55rem 0 .3rem; font-size: clamp(1.3rem, 2.5vw, 1.7rem); font-weight: 800; }
-.case-dialog__gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; margin-top: 1.2rem; }
-.case-dialog__gallery-grid figure { overflow: hidden; margin: 0; border: 1px solid #e1eaf3; border-radius: .8rem; background: white; }
-.case-dialog__crop { height: 130px; background-image: url('../../image/futurelearn.png'); background-repeat: no-repeat; background-size: 365% auto; }
-.case-dialog__crop--math { background-position: 25% 49%; }
-.case-dialog__crop--english { background-position: 70% 49%; }
-.case-dialog__crop--progress { background-position: 100% 51%; }
-.case-dialog__gallery-grid figcaption { display: flex; align-items: center; gap: .5rem; padding: .8rem; }
-.case-dialog__gallery-grid figcaption span { color: #007bff; font: 700 .6rem "JetBrains Mono", monospace; }
-.case-dialog__gallery-grid figcaption strong { flex: 1; font-size: .75rem; }
-.case-dialog__gallery-grid figcaption .case-icon { width: 1rem; height: 1rem; color: #007bff; }
-.case-dialog__bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e7e5e4; }
-.case-dialog__bottom a { display: inline-flex; align-items: center; justify-content: center; gap: .75rem; min-height: 2.75rem; padding: .7rem 1.1rem; border-radius: .75rem; background: #007bff; color: #fff; font-size: .8rem; font-weight: 700; }
-.case-dialog__bottom a:hover { background: #0056cc; }
-.case-dialog__bottom a .case-icon { width: 1rem; height: 1rem; }
-@media (max-width: 640px) {
-  .case-dialog { width: calc(100% - 1rem); max-height: 92dvh; border-radius: 1.1rem; }
-  .case-dialog__intro, .case-dialog__details { grid-template-columns: 1fr; gap: 1.25rem; }
-  .case-dialog__facts { grid-template-columns: 1fr; gap: .85rem; margin: 1.5rem 0; }
-  .case-dialog__gallery { padding: 1.1rem; }
-  .case-dialog__gallery-grid { grid-template-columns: 1fr; }
-  .case-dialog__crop { height: 160px; }
-  .case-dialog__bottom { align-items: stretch; flex-direction: column; }
+.case-dialog::backdrop{background:rgb(20 35 52 / 68%);backdrop-filter:blur(4px)}
+.case-dialog__surface{min-width:0}
+.case-dialog__top{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:12px clamp(20px,4vw,40px);border-bottom:1px solid var(--case-line);background:var(--case-paper)}
+.case-dialog__top>span{font:600 .75rem "JetBrains Mono",monospace;letter-spacing:.025em}
+.case-dialog__close{display:grid;place-items:center;flex:none;width:44px;height:44px;margin-right:-10px;border:0;border-radius:50%;background:transparent;color:var(--case-ink);cursor:pointer}
+.case-dialog__close:hover{background:#e7f2ff;color:var(--case-blue-text)}
+.case-icon{width:22px;height:22px;flex:none}
+.case-dialog__content{padding:28px clamp(20px,4vw,40px) 32px}
+.case-dialog h2{margin:0 0 16px;font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.12;letter-spacing:-.04em;text-wrap:balance}
+.case-dialog h2 span{color:var(--case-blue)}
+.case-dialog p,.case-dialog__list{margin:0;color:var(--case-muted);font-size:.95rem;line-height:1.75}
+.case-dialog__meta{display:flex;flex-wrap:wrap;gap:16px 24px;margin:22px 0 28px;padding:0;list-style:none}
+.case-dialog__meta li{display:flex;align-items:center;gap:10px;font-size:.8rem}
+.case-dialog__meta li+li{border-left:1px solid #d6d3d1;padding-left:24px}
+.case-dialog__overview{margin:0 0 32px;overflow:hidden;border:1px solid #cbd5e1;border-radius:16px;background:#fff;box-shadow:0 4px 12px rgb(28 44 67 / 7%)}
+.case-dialog__browser{display:flex;align-items:center;gap:6px;padding:12px 16px;border-bottom:1px solid #dce2eb;background:#f0f3f8}
+.case-dialog__browser i{width:8px;height:8px;border-radius:50%;background:#f3bd4e}
+.case-dialog__browser i:first-child{background:#f47c70}
+.case-dialog__browser i:nth-child(3){background:#4dc389}
+.case-dialog__browser span{flex:1;min-width:0;overflow:hidden;padding-inline:10px;color:#475569;font:500 .65rem "JetBrains Mono",monospace;text-overflow:ellipsis;white-space:nowrap}
+.case-dialog__browser .case-icon{width:14px;height:14px;color:#64748b}
+.case-dialog__overview img{display:block;width:100%;height:auto}
+.case-dialog__details{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.case-dialog__details>section{min-width:0}
+.case-dialog__details>section+section{padding-left:28px;border-left:1px solid var(--case-line)}
+.case-dialog__section-title{display:table;margin:0 0 18px;padding:5px 9px;border:1px solid #d6d3d1;border-radius:6px;font:700 .78rem "JetBrains Mono",monospace!important;line-height:1.5;text-transform:uppercase;letter-spacing:-.01em}
+.case-dialog__section-title span{color:var(--case-muted)}
+.case-dialog__list{padding-left:18px}
+.case-dialog__list li{padding-left:3px;margin-bottom:6px}
+.case-dialog__list li::marker{color:var(--case-blue)}
+.case-dialog__section{margin-top:28px;padding-top:22px;border-top:1px solid var(--case-line)}
+.case-dialog__feature{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:28px}
+.case-dialog__feature+.case-dialog__feature{margin-top:24px;padding-top:24px;border-top:1px solid var(--case-line)}
+.case-dialog__feature-image{overflow:hidden;margin:0;border:1px solid #d8deea;border-radius:14px;background:#fff;box-shadow:0 3px 10px rgb(28 44 67 / 6%)}
+.case-dialog__feature-image svg{display:block;width:100%;height:auto}
+.case-dialog__feature h4{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:var(--case-blue-text);font-size:1.4rem;font-weight:800;line-height:1.25}
+.case-dialog__sample-note{margin-bottom:14px!important;font-size:.8rem!important}
+.case-dialog__tech-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.case-dialog__tech{padding:16px;border:1px solid #dce2eb;border-radius:12px;background:#fff}
+.case-dialog__tech h4{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:.85rem;font-weight:700}
+.case-dialog__tech h4 .case-icon{color:var(--case-blue)}
+.case-dialog__tech ul{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.case-dialog__tech li{padding:5px 8px;border:1px solid var(--case-line);border-radius:6px;background:#fafaf9;color:var(--case-muted);font-size:.75rem}
+.case-dialog__lesson{display:flex;gap:16px;align-items:flex-start;padding:20px;border-radius:12px;background:#e7f2ff}
+.case-dialog__lesson>.case-icon{width:28px;height:28px;color:var(--case-blue-text)}
+.case-dialog__lesson p{color:#24456c}
+.case-dialog__bottom{display:flex;justify-content:center;gap:12px;margin-top:28px}
+.case-dialog__bottom a,.case-dialog__bottom button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:10px 24px;border:1px solid var(--case-blue);border-radius:9px;background:var(--case-blue);color:#fff;font:700 .85rem "Be Vietnam Pro",sans-serif;cursor:pointer}
+.case-dialog__bottom a:hover{background:#0056cc;border-color:#0056cc}
+.case-dialog__bottom button{border-color:#d6d3d1;background:#fff;color:var(--case-ink)}
+.case-dialog__bottom button:hover{border-color:var(--case-blue);color:var(--case-blue-text)}
+.case-dialog__bottom .case-icon{width:18px;height:18px}
+@media(max-width:640px){
+  .case-dialog{width:calc(100% - 16px);max-height:94dvh;border-radius:18px}
+  .case-dialog__top{padding:8px 16px}
+  .case-dialog__top>span{font-size:.65rem}
+  .case-dialog__content{padding:22px 16px 24px}
+  .case-dialog h2{font-size:clamp(1.8rem,7.5vw,2.5rem)}
+  .case-dialog__meta{align-items:flex-start;flex-direction:column;gap:12px}
+  .case-dialog__meta li+li{padding-left:0;border:0}
+  .case-dialog__details,.case-dialog__feature,.case-dialog__tech-grid{grid-template-columns:1fr;gap:20px}
+  .case-dialog__details>section+section{padding:0;border:0}
+  .case-dialog__overview{border-radius:10px}
+  .case-dialog__feature h4{font-size:1.25rem}
+  .case-dialog__tech-grid{gap:10px}
+  .case-dialog__lesson{padding:16px;gap:12px}
+  .case-dialog__bottom{flex-wrap:wrap}
+  .case-dialog__bottom>*{flex:1 1 160px}
 }
