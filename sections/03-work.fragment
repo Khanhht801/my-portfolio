@@ -36,6 +36,7 @@
           <div class="project-tile__footer">
             <span>Fullstack Developer</span>
             <div class="project-tile__actions">
+              <button type="button" data-open-futurelearn="" aria-label="Xem case study FutureLearn">Case study</button>
               <a href="https://future-learn.khanhht.tech" target="_blank" rel="noopener noreferrer" aria-label="Xem dự án FutureLearn">
                 Xem dự án <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
               </a>

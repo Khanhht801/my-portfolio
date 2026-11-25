@@ -14,6 +14,8 @@ globalThis.cancelAnimationFrame = window.cancelAnimationFrame.bind(window);
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 window.matchMedia = () => ({ matches: false, addEventListener() {}, removeEventListener() {} });
 window.HTMLElement.prototype.getAnimations = () => [];
+window.HTMLDialogElement.prototype.showModal = function () { this.setAttribute('open', ''); this.querySelector('button')?.focus(); };
+window.HTMLDialogElement.prototype.close = function () { this.removeAttribute('open'); this.dispatchEvent(new window.Event('close')); };
 const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
 try {
   const { default: App } = await server.ssrLoadModule('/src/App.jsx');
@@ -30,7 +32,22 @@ try {
   const before = slides.map(slide => slide.className);
   await act(async () => slider.querySelector('[data-slide-next]').click());
   assert.notDeepEqual(slides.map(slide => slide.className), before);
-  console.log('React mount, mobile menu and portrait slider checks passed.');
+  const caseButton = document.querySelector('[data-open-futurelearn]');
+  caseButton.focus();
+  await act(async () => caseButton.click());
+  assert.equal(document.querySelector('dialog[open] #case-title').textContent, 'Học tập vui hơn cùng FutureLearn.');
+  assert.equal(document.body.style.overflow, 'hidden');
+  await act(async () => document.querySelector('.case-dialog__close').click());
+  assert.equal(document.querySelector('dialog'), null);
+  assert.equal(document.activeElement, caseButton);
+  assert.equal(document.body.style.overflow, '');
+  const clonedButton = document.querySelector('[data-project-marquee-clone] [data-open-futurelearn]');
+  assert.ok(clonedButton);
+  await act(async () => clonedButton.click());
+  assert.ok(document.querySelector('dialog[open]'));
+  await act(async () => document.querySelector('dialog').click());
+  assert.equal(document.querySelector('dialog'), null);
+  console.log('React interactions, case study dialog and cloned project card checks passed.');
   await act(async () => root.unmount());
 } finally {
   dom.window.close();

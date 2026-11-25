@@ -1,6 +1,68 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import './case-study.css';
+
+function FutureLearnCaseStudy({ onClose }) {
+  const dialogRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const dialog = dialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    dialog.showModal();
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, []);
+
+  return createPortal(
+    <dialog ref={dialogRef} className="case-dialog" aria-labelledby="case-title" onClose={onClose} onClick={(event) => { if (event.target === event.currentTarget) event.currentTarget.close(); }}>
+      <div className="case-dialog__content">
+        <div className="case-dialog__top">
+          <span className="case-dialog__eyebrow"><i /> CASE STUDY / 01</span>
+          <button className="case-dialog__close" type="button" aria-label="Đóng case study" onClick={() => dialogRef.current.close()}>×</button>
+        </div>
+        <div className="case-dialog__intro">
+          <div>
+            <div className="case-dialog__tags"><span>ACADEMIC PROJECT</span><span>2026</span></div>
+            <h2 id="case-title">Học tập vui hơn cùng <span>FutureLearn.</span></h2>
+            <p>Nền tảng học tiếng Anh và Toán dành cho trẻ mầm non, tiểu học, đồng hành cùng phụ huynh trong quá trình theo dõi việc học của con.</p>
+          </div>
+          <figure className="case-dialog__image"><img src="image/futurelearn.png" alt="Ảnh minh họa dự án FutureLearn" /></figure>
+        </div>
+        <div className="case-dialog__facts">
+          <div><span>VAI TRÒ</span><strong>Fullstack Developer</strong></div>
+          <div><span>LOẠI DỰ ÁN</span><strong>Ứng dụng web học tập</strong></div>
+          <div><span>ĐỐI TƯỢNG</span><strong>Trẻ em &amp; phụ huynh</strong></div>
+        </div>
+        <div className="case-dialog__details">
+          <section><span>01 / BỐI CẢNH</span><h3>Một không gian để học và đồng hành.</h3><p>FutureLearn hướng đến việc hỗ trợ trẻ tiếp cận tiếng Anh và Toán, đồng thời giúp phụ huynh theo dõi tiến độ học tập của con trên cùng một nền tảng.</p></section>
+          <section><span>02 / SẢN PHẨM</span><h3>Trải nghiệm dành cho gia đình.</h3><p>Dự án tập trung vào hai nhu cầu chính: tạo môi trường học tập cho trẻ và cung cấp khả năng theo dõi tiến độ cho phụ huynh.</p></section>
+        </div>
+        <div className="case-dialog__bottom"><p>Khám phá sản phẩm trực tiếp</p><a href="https://future-learn.khanhht.tech" target="_blank" rel="noopener noreferrer">Xem FutureLearn <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </dialog>, document.body
+  );
+}
 
 export default function Work() {
+  const [caseOpen, setCaseOpen] = useState(false);
+  const triggerRef = useRef(null);
+
+  useEffect(() => {
+    const openCase = (event) => {
+      const trigger = event.target.closest('[data-open-futurelearn]');
+      if (!trigger) return;
+      triggerRef.current = trigger.closest('[data-project-marquee-clone]')
+        ? document.querySelector('[data-open-futurelearn]:not([tabindex="-1"])') : trigger;
+      setCaseOpen(true);
+    };
+    document.addEventListener('click', openCase);
+    return () => document.removeEventListener('click', openCase);
+  }, []);
+
+  const closeCase = () => {
+    setCaseOpen(false);
+    triggerRef.current?.focus();
+  };
   return (
     <>
 {/* ============================================================
@@ -36,6 +98,7 @@ export default function Work() {
               <div className="project-tile__footer">
                 <span>Fullstack Developer</span>
                 <div className="project-tile__actions">
+                  <button type="button" data-open-futurelearn="" aria-label="Xem case study FutureLearn">Case study</button>
                   <a href="https://future-learn.khanhht.tech" target="_blank" rel="noopener noreferrer" aria-label="Xem dự án FutureLearn">
                     Xem dự án <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg>
                   </a>
@@ -122,6 +185,7 @@ export default function Work() {
     </div>
   </div>
 </section>
+{caseOpen && <FutureLearnCaseStudy onClose={closeCase} />}
     </>
   );
 }
