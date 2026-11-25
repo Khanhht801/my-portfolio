@@ -2,6 +2,17 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import './case-study.css';
 
+function CaseIcon({ name }) {
+  const paths = {
+    code: <><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16" /></>,
+    screen: <><rect x="3" y="4" width="18" height="13" rx="2" /><path d="M8 21h8M12 17v4" /></>,
+    users: <><circle cx="9" cy="8" r="3" /><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6M17 14a5 5 0 0 1 4 5v1" /></>,
+    spark: <path d="m12 3 1.8 5.7L19.5 10l-5.7 1.8L12 17.5l-1.8-5.7L4.5 10l5.7-1.3L12 3ZM19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z" />,
+    arrow: <path d="M5 12h14m-6-6 6 6-6 6" />,
+  };
+  return <svg className="case-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>;
+}
+
 function FutureLearnCaseStudy({ onClose }) {
   const dialogRef = useRef(null);
 
@@ -26,18 +37,27 @@ function FutureLearnCaseStudy({ onClose }) {
             <h2 id="case-title">Học tập vui hơn cùng <span>FutureLearn.</span></h2>
             <p>Nền tảng học tiếng Anh và Toán dành cho trẻ mầm non, tiểu học, đồng hành cùng phụ huynh trong quá trình theo dõi việc học của con.</p>
           </div>
-          <figure className="case-dialog__image"><img src="image/futurelearn.png" alt="Ảnh minh họa dự án FutureLearn" /></figure>
+          <figure className="case-dialog__image"><div className="case-dialog__browser" aria-hidden="true"><i /><i /><i /><span>future-learn.khanhht.tech</span></div><img src="image/futurelearn.png" alt="Giao diện trang học tập FutureLearn" /><figcaption><CaseIcon name="spark" /> MỘT KHÔNG GIAN HỌC TẬP ĐẦY MÀU SẮC</figcaption></figure>
         </div>
         <div className="case-dialog__facts">
-          <div><span>VAI TRÒ</span><strong>Fullstack Developer</strong></div>
-          <div><span>LOẠI DỰ ÁN</span><strong>Ứng dụng web học tập</strong></div>
-          <div><span>ĐỐI TƯỢNG</span><strong>Trẻ em &amp; phụ huynh</strong></div>
+          <div><i><CaseIcon name="code" /></i><span>VAI TRÒ<strong>Fullstack Developer</strong></span></div>
+          <div><i><CaseIcon name="screen" /></i><span>LOẠI DỰ ÁN<strong>Ứng dụng web học tập</strong></span></div>
+          <div><i><CaseIcon name="users" /></i><span>ĐỐI TƯỢNG<strong>Trẻ em &amp; phụ huynh</strong></span></div>
         </div>
         <div className="case-dialog__details">
           <section><span>01 / BỐI CẢNH</span><h3>Một không gian để học và đồng hành.</h3><p>FutureLearn hướng đến việc hỗ trợ trẻ tiếp cận tiếng Anh và Toán, đồng thời giúp phụ huynh theo dõi tiến độ học tập của con trên cùng một nền tảng.</p></section>
           <section><span>02 / SẢN PHẨM</span><h3>Trải nghiệm dành cho gia đình.</h3><p>Dự án tập trung vào hai nhu cầu chính: tạo môi trường học tập cho trẻ và cung cấp khả năng theo dõi tiến độ cho phụ huynh.</p></section>
         </div>
-        <div className="case-dialog__bottom"><p>Khám phá sản phẩm trực tiếp</p><a href="https://future-learn.khanhht.tech" target="_blank" rel="noopener noreferrer">Xem FutureLearn <span aria-hidden="true">↗</span></a></div>
+        <section className="case-dialog__gallery" aria-labelledby="case-gallery-title">
+          <div className="case-dialog__gallery-heading"><div><span>03 / GÓC NHÌN SẢN PHẨM</span><h3 id="case-gallery-title">Một thế giới, nhiều khám phá.</h3></div><CaseIcon name="spark" /></div>
+          <p>Những góc nhìn từ giao diện FutureLearn.</p>
+          <div className="case-dialog__gallery-grid">
+            <figure><div className="case-dialog__crop case-dialog__crop--math" aria-hidden="true" /><figcaption><span>01</span><strong>Hành tinh Toán</strong><CaseIcon name="arrow" /></figcaption></figure>
+            <figure><div className="case-dialog__crop case-dialog__crop--english" aria-hidden="true" /><figcaption><span>02</span><strong>Đảo tiếng Anh</strong><CaseIcon name="arrow" /></figcaption></figure>
+            <figure><div className="case-dialog__crop case-dialog__crop--progress" aria-hidden="true" /><figcaption><span>03</span><strong>Góc học tập</strong><CaseIcon name="arrow" /></figcaption></figure>
+          </div>
+        </section>
+        <div className="case-dialog__bottom"><div><span>TIẾP TỤC KHÁM PHÁ</span><p>Xem FutureLearn trực tiếp</p></div><a href="https://future-learn.khanhht.tech" target="_blank" rel="noopener noreferrer">Xem FutureLearn <CaseIcon name="arrow" /></a></div>
       </div>
     </dialog>, document.body
   );
