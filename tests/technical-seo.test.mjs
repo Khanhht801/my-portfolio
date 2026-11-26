@@ -58,6 +58,14 @@ try {
   // npm run build copies this legacy asset directory after Vite (copy-static.mjs).
   await cp(resolve(root, 'image'), join(productionDir, 'image'), { recursive: true });
   const production = parse(await readFile(join(productionDir, 'index.html'), 'utf8'));
+  const moduleEntries = [...production.querySelectorAll('script[type="module"][src]')];
+  assert.ok(moduleEntries.length > 0, 'Production must load a compiled JavaScript entry');
+  for (const entry of moduleEntries) {
+    const path = new URL(entry.getAttribute('src'), 'https://build.local/').pathname;
+    assert.match(path, /^\/assets\/.+\.js$/, 'Deploy compiled JavaScript, not the source JSX entry');
+    await access(join(productionDir, path.slice(1)));
+  }
+  assert.equal(production.querySelector('script[src$=".jsx"]'), null, 'Raw JSX cannot run on static hosting');
   const domain = (await readFile(resolve(root, 'CNAME'), 'utf8')).trim();
   const canonical = `https://${domain}/`;
   assert.equal(production.querySelectorAll('link[rel="canonical"]').length, 1);

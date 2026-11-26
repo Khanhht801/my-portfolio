@@ -10,7 +10,9 @@ Cài Node.js và chạy `npm ci` để cài phụ thuộc.
 
 Các component nằm trong `src/sections/`, dùng lại CSS hiện có. Tệp `script.js` giữ các tương tác cũ và được khởi tạo sau khi React render. Các fragment trong `sections/` được giữ làm bản đối chiếu cho kiểm thử.
 
-Khi xuất bản, máy chủ tĩnh cần phục vụ nội dung thư mục `dist/` sau bước build. Nếu GitHub Pages đang phục vụ trực tiếp thư mục gốc của nhánh, cần cấu hình quy trình build và xuất bản `dist/` trước khi cập nhật trang; mã nguồn JSX không chạy trực tiếp trên hosting tĩnh. Không có thay đổi cấu hình triển khai tự động trong dự án này.
+Khi xuất bản, máy chủ tĩnh cần phục vụ nội dung thư mục `dist/` sau bước build. Không phục vụ thư mục gốc của nhánh: `index.html` nguồn gọi `src/main.jsx`, trình duyệt không chạy trực tiếp JSX nên trang sẽ trắng.
+
+Workflow `.github/workflows/deploy-pages.yml` dùng Node.js 24, chạy `npm ci`, `npm test`, `npm run build`, rồi chỉ upload và deploy `dist/` bằng GitHub Pages Actions. Trong repository trên GitHub, chọn **Settings → Pages → Build and deployment → Source → GitHub Actions** để dùng workflow này; giữ nguyên custom domain `khanhht.tech`. Workflow chạy khi push lên `main` hoặc chọn **Actions → Build and deploy portfolio to GitHub Pages → Run workflow**. Nếu build/test thất bại, job deploy không chạy. Việc thêm file workflow cục bộ không tự thay đổi thiết lập Pages hay xác nhận website đã được triển khai.
 
 Technical SEO được tạo qua plugin Vite trong `scripts/technical-seo.mjs`, sử dụng domain đã xác nhận trong `CNAME`. Chỉ bản build ở mode `production` với CNAME hợp lệ mới giữ `index, follow`, tạo canonical và đưa trang chủ vào sitemap. Các mục `#work`, `#about` và hộp thoại case study không phải trang riêng. Khi bổ sung trang HTML mới, cần khai báo URL đại diện trong danh sách `pages` của plugin; không tự canonical tất cả trang về trang chủ.
 
