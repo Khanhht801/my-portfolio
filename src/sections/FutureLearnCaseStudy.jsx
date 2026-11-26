@@ -78,7 +78,7 @@ export default function FutureLearnCaseStudy({ onClose }) {
               <FeatureImage viewBox="335 410 515 450" label="Chi tiết thẻ Hành tinh Toán trong giao diện FutureLearn" />
               <div><h4><Icon name="math" />Hành tinh Toán</h4><p>Không gian khám phá Toán với hình ảnh vũ trụ sinh động. Thẻ nội dung hiển thị tiến độ để trẻ dễ nhận biết hành trình học của mình.</p></div>
             </div>
-            <div className="case-dialog__feature">
+            <div className="case-dialog__feature case-dialog__feature--reverse">
               <FeatureImage viewBox="875 410 515 450" label="Chi tiết thẻ Đảo tiếng Anh trong giao diện FutureLearn" />
               <div><h4><Icon name="book" />Đảo tiếng Anh</h4><p>Chủ đề hòn đảo đầy màu sắc giúp việc tiếp cận tiếng Anh trở nên gần gũi. Nội dung và tiến độ được trình bày rõ ràng ngay trên góc học tập.</p></div>
             </div>
