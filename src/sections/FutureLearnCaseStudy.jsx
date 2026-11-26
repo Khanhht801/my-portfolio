@@ -1,6 +1,8 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import futurelearnImage from '../../image/futurelearn.png';
+import mathDashboard from '../../image/case-study/futurelearn-math-dashboard.webp';
+import englishDashboard from '../../image/case-study/futurelearn-english-dashboard.webp';
 
 function Icon({ name }) {
   const paths = {
@@ -23,11 +25,9 @@ function SectionTitle({ number, children, id }) {
   return <h3 className="case-dialog__section-title" id={id}><span>{number} /</span> {children}</h3>;
 }
 
-function FeatureImage({ viewBox, label }) {
+function FeatureImage({ src, label }) {
   return <figure className="case-dialog__feature-image">
-    <svg viewBox={viewBox} role="img" aria-label={label}>
-      <image href={futurelearnImage} width="1881" height="1160" />
-    </svg>
+    <img src={src} width="1920" height="1410" loading="lazy" decoding="async" alt={label} />
   </figure>;
 }
 
@@ -75,12 +75,12 @@ export default function FutureLearnCaseStudy({ onClose }) {
           <section className="case-dialog__section" aria-labelledby="case-features">
             <SectionTitle number="03" id="case-features">Điểm nổi bật</SectionTitle>
             <div className="case-dialog__feature">
-              <FeatureImage viewBox="335 410 515 450" label="Chi tiết thẻ Hành tinh Toán trong giao diện FutureLearn" />
-              <div><h4><Icon name="math" />Hành tinh Toán</h4><p>Không gian khám phá Toán với hình ảnh vũ trụ sinh động. Thẻ nội dung hiển thị tiến độ để trẻ dễ nhận biết hành trình học của mình.</p></div>
+              <FeatureImage src={mathDashboard} label="Dashboard Hành tinh Toán với lộ trình học theo chặng, chủ đề Cộng và trừ, Hình học và thử thách nhanh" />
+              <div><h4><Icon name="math" />Hành tinh Toán</h4><p>Dashboard hiển thị lộ trình học theo từng chặng, các chủ đề Cộng và trừ, Hình học cùng thử thách nhanh. Trẻ có thể tiếp tục bài đang học và theo dõi mục tiêu hôm nay.</p></div>
             </div>
             <div className="case-dialog__feature case-dialog__feature--reverse">
-              <FeatureImage viewBox="875 410 515 450" label="Chi tiết thẻ Đảo tiếng Anh trong giao diện FutureLearn" />
-              <div><h4><Icon name="book" />Đảo tiếng Anh</h4><p>Chủ đề hòn đảo đầy màu sắc giúp việc tiếp cận tiếng Anh trở nên gần gũi. Nội dung và tiến độ được trình bày rõ ràng ngay trên góc học tập.</p></div>
+              <FeatureImage src={englishDashboard} label="Dashboard Đảo tiếng Anh với các chủ đề Động vật, Trái cây, Màu sắc, mục tiêu hôm nay và từ vựng đã học" />
+              <div><h4><Icon name="book" />Đảo tiếng Anh</h4><p>Khám phá từ vựng qua các chủ đề Động vật, Trái cây và Màu sắc. Dashboard tập hợp tiến độ từng chủ đề, từ vựng đã học và mục tiêu hôm nay để trẻ dễ theo dõi việc học.</p></div>
             </div>
           </section>
           <section className="case-dialog__section" aria-labelledby="case-lessons">

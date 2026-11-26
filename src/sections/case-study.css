@@ -42,7 +42,7 @@
 .case-dialog__feature{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:28px}
 .case-dialog__feature+.case-dialog__feature{margin-top:24px;padding-top:24px;border-top:1px solid var(--case-line)}
 .case-dialog__feature-image{overflow:hidden;margin:0;border:1px solid #d8deea;border-radius:14px;background:#fff;box-shadow:0 3px 10px rgb(28 44 67 / 6%)}
-.case-dialog__feature-image svg{display:block;width:100%;height:auto}
+.case-dialog__feature-image img{display:block;width:100%;height:auto}
 .case-dialog__feature h4{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:var(--case-blue-text);font-size:1.4rem;font-weight:800;line-height:1.25}
 .case-dialog__sample-note{margin-bottom:14px!important;font-size:.8rem!important}
 .case-dialog__tech-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
