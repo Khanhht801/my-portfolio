@@ -9,10 +9,16 @@ const defaultShareImage = {
   alt: 'Hoàng Thanh Khánh — Lập trình viên Fullstack, với chân dung trên nền kem và xanh của Khanhht Portfolio.',
 };
 const siteName = 'Khanhht Portfolio';
+// Public identity already shown in Navbar, Hero and Contact.
+const portfolioProfile = {
+  alternateName: 'Khanhht',
+  image: '/image/optimized/hero-840.webp',
+  sameAs: ['https://github.com/Khanhht801'],
+};
 
 // The only document is the portfolio home page; its cover is also the fallback.
 // Add a real page's own image here when that document exists.
-const pages = [{ entry: 'index.html', path: '/', image: defaultShareImage }];
+const pages = [{ entry: 'index.html', path: '/', image: defaultShareImage, profile: portfolioProfile }];
 
 function readDomain(root) {
   let domain;
@@ -30,13 +36,14 @@ function readDomain(root) {
   return domain;
 }
 
-function pageHtml(html, canonical, image = defaultShareImage) {
+function pageHtml(html, canonical, image = defaultShareImage, profile) {
   const title = html.match(/<title\b[^>]*>([^<]*)<\/title>/i)?.[1].trim();
   const descriptionTag = html.match(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*>/i)?.[0];
   const description = descriptionTag?.match(/\bcontent=(["'])(.*?)\1/i)?.[2];
   if (!title || !description) throw new Error('Sharing metadata requires a page title and meta description.');
   // Replace the existing tags rather than adding a second indexing policy.
   const clean = html
+    .replace(/<script\b(?=[^>]*\bid=["']portfolio-profile-schema["'])[^>]*>[\s\S]*?<\/script\s*>/gi, '')
     .replace(/<meta\b(?=[^>]*\bname=["']robots["'])[^>]*>/gi, '')
     .replace(/<meta\b(?=[^>]*\b(?:name|property)=["'](?:og|twitter):[^"']+["'])[^>]*>/gi, '')
     .replace(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/gi, '');
@@ -65,6 +72,32 @@ function pageHtml(html, canonical, image = defaultShareImage) {
     // Title/description come from already HTML-encoded source attributes/text.
     const content = String(value).replace(/"/g, '&quot;');
     tags.push(`<meta ${key.startsWith('og:') ? 'property' : 'name'}="${key}" content="${content}" />`);
+  }
+  if (canonical && profile) {
+    const authorTag = html.match(/<meta\b(?=[^>]*\bname=["']author["'])[^>]*>/i)?.[0];
+    const name = authorTag?.match(/\bcontent=(["'])(.*?)\1/i)?.[2];
+    if (!name) throw new Error('ProfilePage requires the verified author name.');
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'ProfilePage',
+      '@id': `${canonical}#profile-page`,
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: 'vi-VN',
+      mainEntity: {
+        '@type': 'Person',
+        '@id': `${canonical}#person`,
+        name,
+        alternateName: profile.alternateName,
+        url: canonical,
+        image: new URL(profile.image, canonical).href,
+        sameAs: profile.sameAs,
+      },
+    };
+    // Escape '<' so source text cannot terminate the JSON-LD script element.
+    const json = JSON.stringify(schema).replace(/</g, '\\u003c');
+    tags.push(`<script id="portfolio-profile-schema" type="application/ld+json">${json}</script>`);
   }
   return clean.replace('</head>', `${tags.join('\n    ')}\n  </head>`);
 }
@@ -98,7 +131,7 @@ export function technicalSeo({ command, mode }) {
       handler(html, context) {
         const page = pages.find(item => resolve(root, item.entry) === resolve(context.filename));
         if (!page) throw new Error(`Configure canonical/indexability for HTML entry: ${context.filename}`);
-        return pageHtml(html, origin ? new URL(page.path, origin).href : null, page.image);
+        return pageHtml(html, origin ? new URL(page.path, origin).href : null, page.image, page.profile);
       },
     },
     generateBundle() {

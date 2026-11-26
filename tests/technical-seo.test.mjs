@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, rm, access } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, access, cp } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { build, createServer, preview } from 'vite';
 import { JSDOM } from 'jsdom';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { technicalSeo } from '../scripts/technical-seo.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -53,6 +55,8 @@ let devServer;
 
 try {
   await build({ root, configFile, logLevel: 'silent', build: { outDir: productionDir, emptyOutDir: true } });
+  // npm run build copies this legacy asset directory after Vite (copy-static.mjs).
+  await cp(resolve(root, 'image'), join(productionDir, 'image'), { recursive: true });
   const production = parse(await readFile(join(productionDir, 'index.html'), 'utf8'));
   const domain = (await readFile(resolve(root, 'CNAME'), 'utf8')).trim();
   const canonical = `https://${domain}/`;
@@ -62,6 +66,26 @@ try {
   assert.equal(production.querySelector('meta[name="robots"]').content, 'index, follow');
   checkSharing(production, canonical);
   checkImage(await readFile(join(productionDir, 'og/portfolio.png')));
+  const jsonLd = production.querySelectorAll('script[type="application/ld+json"]');
+  assert.equal(jsonLd.length, 1, 'One managed schema for the single profile page');
+  const schema = JSON.parse(jsonLd[0].textContent);
+  assert.equal(schema['@context'], 'https://schema.org');
+  assert.equal(schema['@type'], 'ProfilePage');
+  assert.equal(schema.url, canonical);
+  assert.equal(schema.name, production.title);
+  assert.equal(schema.description, production.querySelector('meta[name="description"]').content);
+  assert.equal(schema.mainEntity['@type'], 'Person');
+  assert.equal(schema.mainEntity.url, canonical);
+  assert.notEqual(schema['@id'], schema.mainEntity['@id']);
+  const forbidden = ['review', 'aggregateRating', 'offers', 'price', 'availability', 'address', 'openingHours', 'hasCredential', 'hasCertification', 'interactionStatistic', 'dateCreated', 'dateModified'];
+  const checkProperties = value => {
+    if (!value || typeof value !== 'object') return;
+    for (const [key, child] of Object.entries(value)) {
+      assert.ok(!forbidden.includes(key), `Unverified property must not appear: ${key}`);
+      checkProperties(child);
+    }
+  };
+  checkProperties(schema);
   assert.deepEqual(locs(await readFile(join(productionDir, 'sitemap.xml'), 'utf8')), [canonical]);
   const robots = await readFile(join(productionDir, 'robots.txt'), 'utf8');
   assert.ok(robots.includes(`Sitemap: ${canonical}sitemap.xml`));
@@ -75,6 +99,7 @@ try {
     assert.equal(document.querySelector('meta[name="robots"]').content, 'noindex, follow');
     assert.equal(document.querySelector('link[rel="canonical"]'), null);
     checkSharing(document, null);
+    assert.equal(document.querySelector('script[type="application/ld+json"]'), null, 'No production schema on noindex builds');
     await assert.rejects(access(join(outDir, 'sitemap.xml')), { code: 'ENOENT' });
     assert.doesNotMatch(await readFile(join(outDir, 'robots.txt'), 'utf8'), /Sitemap:|noindex/i);
     await assert.rejects(access(join(outDir, 'CNAME')), { code: 'ENOENT' });
@@ -87,11 +112,26 @@ try {
   assert.equal(pendingDocument.querySelector('meta[name="robots"]').content, 'noindex, follow');
   assert.equal(pendingDocument.querySelector('link[rel="canonical"]'), null);
   checkSharing(pendingDocument, null);
+  assert.equal(pendingDocument.querySelector('script[type="application/ld+json"]'), null);
+
+  const repeated = technicalSeo({ command: 'build', mode: 'production' });
+  repeated.configResolved({ root, build: { outDir: productionDir }, logger: { warn() {} } });
+  const repeatedDocument = parse(repeated.transformIndexHtml.handler(production.documentElement.outerHTML, { filename: resolve(root, 'index.html') }));
+  assert.equal(repeatedDocument.querySelectorAll('script[type="application/ld+json"]').length, 1, 'Transforming built HTML must replace the existing managed block');
 
   // Verify real local HTTP responses, including previewing production output.
   previewServer = await preview({ root, configFile, logLevel: 'silent', build: { outDir: productionDir }, preview: { host: '127.0.0.1', port: 0, open: false } });
   devServer = await createServer({ root, configFile, logLevel: 'silent', server: { host: '127.0.0.1', port: 0, open: false } });
   await devServer.listen();
+  const { default: App } = await devServer.ssrLoadModule('/src/App.jsx');
+  const rendered = parse(renderToStaticMarkup(createElement(App)));
+  assert.ok(rendered.querySelector('h1').textContent.includes(schema.mainEntity.name), 'Schema name matches the visible heading');
+  assert.ok(rendered.body.textContent.includes(schema.mainEntity.alternateName), 'Schema alias is visible');
+  for (const url of schema.mainEntity.sameAs) {
+    assert.ok([...rendered.querySelectorAll('a[href]')].some(link => link.getAttribute('href') === url), 'sameAs must use an actual public profile link shown on the page');
+  }
+  const portrait = rendered.querySelector('#hero img').getAttribute('src');
+  assert.equal(schema.mainEntity.image, new URL(portrait, canonical).href, 'Use the visible profile portrait, not the default OG card or an invented image');
   for (const [name, server] of [['preview', previewServer], ['dev', devServer]]) {
     const origin = `http://127.0.0.1:${server.httpServer.address().port}`;
     for (const path of ['/', '/index.html']) {
@@ -102,6 +142,7 @@ try {
       assert.equal(document.querySelector('meta[name="robots"]').content, 'noindex, follow');
       assert.equal(document.querySelector('link[rel="canonical"]'), null);
       checkSharing(document, null);
+      assert.equal(document.querySelector('script[type="application/ld+json"]'), null, 'Preview must remove production JSON-LD from its HTTP response');
     }
     for (const userAgent of ['facebookexternalhit/1.1', 'Twitterbot/1.0']) {
       const pageResponse = await fetch(`${origin}/`, { headers: { 'User-Agent': userAgent } });
@@ -120,8 +161,11 @@ try {
     assert.doesNotMatch(await robotsResponse.text(), /Sitemap:|noindex/i);
     const missing = await fetch(`${origin}/technical-seo-not-found-check`, { redirect: 'manual' });
     assert.equal(missing.status, 404, `${name}: nonexistent documents must not return the home page`);
+    const portraitResponse = await fetch(new URL(portrait, origin));
+    assert.equal(portraitResponse.status, 200);
+    assert.match(portraitResponse.headers.get('content-type'), /^image\/webp/);
   }
-  console.log('Technical SEO and sharing passed: production canonical/OG, no duplicate tags, PNG 1200x630, bot user-agent HTTP 200/image/png, nonproduction noindex and HTTP 404.');
+  console.log('Technical SEO, sharing and JSON-LD passed: ProfilePage/Person matches rendered content, one valid JSON block, no schema on noindex responses, image HTTP access, canonical/OG and HTTP 404.');
 } finally {
   if (previewServer) await new Promise((resolve, reject) => previewServer.httpServer.close(error => error ? reject(error) : resolve()));
   if (devServer) await devServer.close();
