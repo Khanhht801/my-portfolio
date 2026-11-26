@@ -65,24 +65,24 @@ export default function Experience() {
               <span className="journey-card__number">02 / 03</span>
             </div>
             <div className="journey-card__heading">
-              <h3>Hệ thống quản lý sinh viên</h3>
+              <h3>FutureLearn</h3>
               <p>Khoa Điện &amp; Công nghệ thông tin · Trường Cao đẳng Lạng Sơn</p>
             </div>
             <div className="journey-card__content">
               <div className="journey-card__details">
                 <ul className="journey-card__bullets">
-                  <li>Quản lý sinh viên, lớp học, điểm và dữ liệu học tập quy mô khoa.</li>
-                  <li>Phát triển các chức năng thêm, sửa, xóa, tìm kiếm và quản lý thông tin.</li>
-                  <li>Tích hợp chat trực tiếp Giảng viên ↔ Sinh viên và Sinh viên ↔ Sinh viên.</li>
-                  <li>Kết nối cơ sở dữ liệu và xây dựng luồng xử lý giữa frontend – backend – database.</li>
+                  <li>Xây dựng nền tảng học tiếng Anh và Toán cho trẻ mầm non, tiểu học.</li>
+                  <li>Thiết kế trải nghiệm học tập trực quan và lộ trình học theo từng chặng.</li>
+                  <li>Giúp phụ huynh theo dõi tiến độ học tập của con.</li>
+                  <li>Tham gia phát triển ứng dụng với vai trò Fullstack Developer.</li>
                 </ul>
-                <ul className="journey-card__tags" aria-label="Công nghệ sử dụng">
-                  <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li><li>MySQL</li><li>PHP</li>
+                <ul className="journey-card__tags" aria-label="Lĩnh vực dự án">
+                  <li>Fullstack</li><li>Web Application</li><li>Giáo dục</li>
                 </ul>
               </div>
               <figure className="journey-card__media">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=85" alt="Màn hình dashboard đại diện cho dự án quản lý sinh viên" width={1000} height={750} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
-                <figcaption><span />REAL-TIME CHAT</figcaption>
+                <img src="image/futurelearn.png" alt="Giao diện nền tảng học tập FutureLearn" width={1000} height={750} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
+                <figcaption><span />FUTURELEARN</figcaption>
               </figure>
             </div>
           </article>
