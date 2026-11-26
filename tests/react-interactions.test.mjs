@@ -77,6 +77,21 @@ try {
   assert.ok(document.querySelector('dialog[open]'));
   await act(async () => document.querySelector('dialog').click());
   assert.equal(document.querySelector('dialog'), null);
+  const learnButton = document.querySelector('[data-open-learnspace]');
+  learnButton.focus();
+  await act(async () => learnButton.click());
+  assert.match(document.querySelector('dialog[open] #learn-case-title').textContent, /LearnSpace/);
+  assert.equal(document.body.style.overflow, 'hidden');
+  assert.equal(document.querySelector('dialog a[href="https://learn-space.khanhht.tech"]').textContent.trim(), 'Xem dự án ↗');
+  await act(async () => document.querySelector('.case-dialog__close').click());
+  assert.equal(document.activeElement, learnButton);
+  assert.equal(document.body.style.overflow, '');
+  const clonedLearnButton = document.querySelector('[data-project-marquee-clone] [data-open-learnspace]');
+  assert.ok(clonedLearnButton);
+  await act(async () => clonedLearnButton.click());
+  assert.ok(document.querySelector('dialog[open] #learn-case-title'));
+  await act(async () => document.querySelector('dialog').click());
+  assert.equal(document.activeElement, learnButton);
   console.log('React interactions, case study dialog and cloned project card checks passed.');
   await act(async () => root.unmount());
 } finally {

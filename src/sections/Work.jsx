@@ -1,25 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
 import FutureLearnCaseStudy from './FutureLearnCaseStudy.jsx';
+import LearnSpaceCaseStudy from './LearnSpaceCaseStudy.jsx';
 import './case-study.css';
 
 export default function Work() {
-  const [caseOpen, setCaseOpen] = useState(false);
+  const [caseOpen, setCaseOpen] = useState(null);
   const triggerRef = useRef(null);
 
   useEffect(() => {
     const openCase = (event) => {
-      const trigger = event.target.closest('[data-open-futurelearn]');
+      const trigger = event.target.closest('[data-open-futurelearn], [data-open-learnspace]');
       if (!trigger) return;
+      const type = trigger.hasAttribute('data-open-learnspace') ? 'learnspace' : 'futurelearn';
       triggerRef.current = trigger.closest('[data-project-marquee-clone]')
-        ? document.querySelector('[data-open-futurelearn]:not([tabindex="-1"])') : trigger;
-      setCaseOpen(true);
+        ? document.querySelector(`[data-open-${type}]:not([tabindex="-1"])`) : trigger;
+      setCaseOpen(type);
     };
     document.addEventListener('click', openCase);
     return () => document.removeEventListener('click', openCase);
   }, []);
 
   const closeCase = () => {
-    setCaseOpen(false);
+    setCaseOpen(null);
     triggerRef.current?.focus();
   };
   return (
@@ -39,7 +41,7 @@ export default function Work() {
           <span className="project-gallery__eyebrow"><i aria-hidden="true" />SELECTED WORK / 05</span>
           <h2 className="section-heading-title">Dự án <span>tiêu biểu.</span></h2>
         </div>
-        <p>Các dự án học tập, ý tưởng sản phẩm và công việc vận hành website của tôi. FutureLearn có case study và bản demo để bạn khám phá.</p>
+        <p>Các dự án học tập, ý tưởng sản phẩm và công việc vận hành website của tôi. Khám phá case study và bản demo của FutureLearn và LearnSpace.</p>
       </header>
       <div className="project-gallery__viewport" data-project-viewport="">
         <ul className="project-gallery__track" data-project-track="" aria-label="Danh sách dự án tiêu biểu">
@@ -79,6 +81,7 @@ export default function Work() {
               <div className="project-tile__footer">
                 <span>Fullstack Developer</span>
                 <div className="project-tile__actions">
+                  <button type="button" data-open-learnspace="" aria-label="Xem case study LearnSpace">Case study</button>
                   <a href="https://learn-space.khanhht.tech" target="_blank" rel="noopener noreferrer" aria-label="Xem dự án LearnSpace">
                     Xem dự án <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg>
                   </a>
@@ -148,7 +151,8 @@ export default function Work() {
     </div>
   </div>
 </section>
-{caseOpen && <FutureLearnCaseStudy onClose={closeCase} />}
+{caseOpen === 'futurelearn' && <FutureLearnCaseStudy onClose={closeCase} />}
+{caseOpen === 'learnspace' && <LearnSpaceCaseStudy onClose={closeCase} />}
     </>
   );
 }

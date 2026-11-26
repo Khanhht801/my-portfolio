@@ -13,7 +13,7 @@
         <span class="project-gallery__eyebrow"><i aria-hidden="true"></i>SELECTED WORK / 05</span>
         <h2 class="section-heading-title">Dự án <span>tiêu biểu.</span></h2>
       </div>
-      <p>Các dự án học tập, ý tưởng sản phẩm và công việc vận hành website của tôi. FutureLearn có case study và bản demo để bạn khám phá.</p>
+      <p>Các dự án học tập, ý tưởng sản phẩm và công việc vận hành website của tôi. Khám phá case study và bản demo của FutureLearn và LearnSpace.</p>
     </header>
 
     <div class="project-gallery__viewport" data-project-viewport>
@@ -63,6 +63,7 @@
           <div class="project-tile__footer">
             <span>Fullstack Developer</span>
             <div class="project-tile__actions">
+              <button type="button" data-open-learnspace="" aria-label="Xem case study LearnSpace">Case study</button>
               <a href="https://learn-space.khanhht.tech" target="_blank" rel="noopener noreferrer" aria-label="Xem dự án LearnSpace">
                 Xem dự án <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
               </a>
