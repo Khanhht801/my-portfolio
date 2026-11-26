@@ -34,6 +34,17 @@ try {
   assert.equal(document.querySelectorAll('[data-project-track] > li:not([data-project-marquee-clone])').length, 5);
   assert.equal(document.querySelector('[data-project-track]').tagName, 'UL');
   for (const image of document.querySelectorAll('img')) assert.ok(image.hasAttribute('alt'), 'Every image needs explicit alternative text');
+  const heroPortrait = document.querySelector('#hero img');
+  assert.equal(heroPortrait.getAttribute('loading'), 'eager', 'The above-the-fold portrait must not be lazy loaded');
+  assert.equal(heroPortrait.getAttribute('fetchpriority'), 'high');
+  for (const image of document.querySelectorAll('#hero img, #about [data-slide] img')) {
+    assert.ok(image.getAttribute('srcset')?.includes('w'), 'Portraits provide width-based responsive sources');
+    assert.ok(image.getAttribute('sizes'), 'Responsive sources declare their layout slots');
+    assert.ok(Number(image.getAttribute('width')) > 0 && Number(image.getAttribute('height')) > 0);
+  }
+  heroPortrait.dispatchEvent(new window.Event('error'));
+  assert.equal(heroPortrait.getAttribute('srcset'), null, 'An unavailable responsive source must not override the original-image fallback');
+  assert.equal(heroPortrait.getAttribute('src'), 'image/chandung2remove.png');
   for (const link of document.querySelectorAll('a[href^="#"]')) assert.ok(document.getElementById(link.getAttribute('href').slice(1)), 'Internal links need a real target');
   const slider = document.querySelector('[data-autoplay-slider]');
   const next = slider.querySelector('[data-slide-next]');

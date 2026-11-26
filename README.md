@@ -21,3 +21,16 @@ Vite dùng `appType: 'mpa'` để URL không tồn tại trả HTTP 404 thay vì
 Ảnh chia sẻ mặc định cho trang portfolio nằm tại `public/og/portfolio.png` (PNG, 1200×630), được Vite sao chép thành `/og/portfolio.png` khi build. Ảnh dùng chân dung sẵn có trong dự án, nhận diện nền kem/xanh và chữ tiếng Việt; prompt ImageGen được lưu tại `scripts/og-image-prompt.txt`. Trang chủ là trang nội dung duy nhất và dùng ảnh này; nếu có trang thực sự mới, khai báo ảnh phù hợp ở thuộc tính `image` của trang trong plugin, dùng ảnh mặc định khi chưa có ảnh riêng.
 
 Open Graph và Twitter Card được tạo trong cùng helper technical SEO từ title/description của từng trang; không khai báo thêm một bộ thẻ ở component React. Production dùng og:url khớp canonical và URL ảnh HTTPS theo CNAME. Dev/preview không tự tạo domain: bỏ og:url và dùng đường dẫn ảnh cục bộ, giữ chính sách noindex. Ảnh có alt, MIME type và kích thước trong metadata; Twitter dùng summary_large_image. Sau triển khai cần kiểm tra URL ảnh bằng bot và trình kiểm tra chia sẻ của nền tảng; việc test HTTP với user-agent của bot cục bộ không xác nhận preview Facebook, LinkedIn hoặc X đã được cập nhật.
+
+Hai tối ưu performance cho ảnh chân dung (26/11/2026): hero dùng WebP 420/840/1086px, slider About dùng WebP 480/768/1024px kèm srcset/sizes theo breakpoint CSS. Giữ eager/high priority cho hero, lazy-loading cho About, aspect ratio và cách crop hiện có. Ảnh gốc được giữ làm nguồn và fallback; khi lỗi ảnh responsive, bỏ srcset trước khi chuyển sang ảnh gốc. Chạy `python scripts/optimize-portraits.py` để tạo lại các biến thể bằng Pillow đã có trong môi trường; không cần thêm dependency vào ứng dụng.
+
+Đo trước/sau trên bản production tại `http://127.0.0.1:5187/` bằng Node v24.22.1 fetch: GET từng tài nguyên, Accept-Encoding identity, không throttling, không có HTTP cache bền vững của trình duyệt. Đây là phép đo dung lượng HTTP, không có viewport hay renderer; không phải waterfall tải trang. Có thể lặp lại với `node scripts/measure-portrait-payload.mjs http://127.0.0.1:5187/` sau khi build và chạy preview ở port đó. Tất cả tài nguyên đo được trả 200 với MIME type đúng.
+
+| Nhóm tài nguyên | Trước (byte) | Sau, biến thể lớn nhất (byte) | Giảm |
+| --- | ---: | ---: | ---: |
+| Hero | 1.558.185 | 130.786 (1086px) | 91,6% |
+| Tổng năm ảnh About | 4.512.534 | 1.190.270 (1024px/ảnh) | 73,6% |
+
+Biến thể hero 840px có 98.636 byte; tổng năm ảnh About 768px có 718.626 byte, 480px có 308.702 byte. Lựa chọn thực tế phụ thuộc viewport/DPR của trình duyệt, chưa được đo. Đã xem đối chiếu ảnh thu nhỏ và xác minh giữ alpha trong suốt của hero. Bundle JavaScript sau sửa khoảng 315,81 kB (88,51 kB gzip); nguồn vẫn dùng ba họ Google Fonts với display=swap. Chưa có phép đo rendering đủ để xác định font/JavaScript gây chậm, nên không đổi chúng trong hai tối ưu này.
+
+Giới hạn kiểm chứng: Browser Use không có host kết nối; Computer Use dừng vì không xác định được URL trình duyệt đủ chắc chắn. Chưa xác định phần tử/thời gian LCP, CLS, độ trễ tương tác hoặc kiểm tra trực quan responsive trong trình duyệt thật. Kiểm thử tự động xác nhận cấu trúc, responsive attributes, chuyển ảnh, menu, hộp thoại, focus và fallback; chúng không thay thế số đo trình duyệt. Không có kết luận đạt Core Web Vitals hoặc INP người dùng thực tế.

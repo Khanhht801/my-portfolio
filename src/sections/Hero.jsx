@@ -76,7 +76,7 @@ export default function Hero() {
               <span className="hero-floating-badge hero-badge-status" aria-hidden="true">
                 <span className="hero-badge-dot" /> OPEN TO INTERNSHIP
               </span>
-              <img alt="Hoàng Thanh Khánh - Lập Trình Viên Fullstack" className="absolute z-10 inset-0 w-full h-full object-contain transition-transform duration-700 hover:scale-[1.03] drop-shadow-[0_24px_32px_rgba(0,65,150,0.16)]" loading="eager" decoding="async" fetchPriority="high" src="image/chandung2remove.png" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/2.jpg') event.currentTarget.src = 'image/2.jpg'; }} />
+              <img alt="Hoàng Thanh Khánh - Lập Trình Viên Fullstack" className="absolute z-10 inset-0 w-full h-full object-contain transition-transform duration-700 hover:scale-[1.03] drop-shadow-[0_24px_32px_rgba(0,65,150,0.16)]" loading="eager" decoding="async" fetchPriority="high" src="image/optimized/hero-840.webp" srcSet="image/optimized/hero-420.webp 420w, image/optimized/hero-840.webp 840w, image/optimized/hero-1086.webp 1086w" sizes="(min-width: 1024px) 420px, (min-width: 640px) 360px, 300px" width="840" height="1120" onError={(event) => { event.currentTarget.removeAttribute('srcset'); if (event.currentTarget.getAttribute('src') !== 'image/chandung2remove.png') event.currentTarget.src = 'image/chandung2remove.png'; }} />
             </div>
             {/* Subtle accent: chấm nhỏ trang trí, không che ảnh */}
             <div aria-hidden="true" className="orb-drift-slow absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-gradient-to-br from-[#F59E0B]/20 to-transparent blur-xl pointer-events-none">

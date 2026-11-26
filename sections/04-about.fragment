@@ -36,34 +36,34 @@
           <div class="about-slider__frame">
             <ul class="about-slider__slides" data-slides>
               <li class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100" data-slide>
-                <img alt="Hoàng Thanh Khánh - chân dung 01" loading="lazy" width="1200" height="1800"
+                <img alt="Hoàng Thanh Khánh - chân dung 01" loading="lazy" width="768" height="1152"
                   class="w-full h-full object-cover object-top block"
-                  src="image/about/a1.jpg"
-                  onerror="this.onerror=null;this.src='image/about/a1.jpg';">
+                  src="image/optimized/about-a1-768.webp" srcset="image/optimized/about-a1-480.webp 480w, image/optimized/about-a1-768.webp 768w, image/optimized/about-a1-1024.webp 1024w" sizes="(min-width: 1024px) 480px, (min-width: 768px) 40vw, (min-width: 480px) 448px, calc(100vw - 32px)"
+                  onerror="this.removeAttribute('srcset');this.onerror=null;this.src='image/about/a1.jpg';">
               </li>
               <li class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0" data-slide>
-                <img alt="Hoàng Thanh Khánh - chân dung 02" loading="lazy" width="1200" height="1800"
+                <img alt="Hoàng Thanh Khánh - chân dung 02" loading="lazy" width="768" height="1152"
                   class="w-full h-full object-cover object-center block"
-                  src="image/about/a2.jpg"
-                  onerror="this.onerror=null;this.src='image/about/a1.jpg';">
+                  src="image/optimized/about-a2-768.webp" srcset="image/optimized/about-a2-480.webp 480w, image/optimized/about-a2-768.webp 768w, image/optimized/about-a2-1024.webp 1024w" sizes="(min-width: 1024px) 480px, (min-width: 768px) 40vw, (min-width: 480px) 448px, calc(100vw - 32px)"
+                  onerror="this.removeAttribute('srcset');this.onerror=null;this.src='image/about/a1.jpg';">
               </li>
               <li class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0" data-slide>
-                <img alt="Hoàng Thanh Khánh - chân dung 03" loading="lazy" width="1200" height="1800"
+                <img alt="Hoàng Thanh Khánh - chân dung 03" loading="lazy" width="768" height="1024"
                   class="w-full h-full object-cover object-top block"
-                  src="image/about/a3.jpg"
-                  onerror="this.onerror=null;this.src='image/about/a1.jpg';">
+                  src="image/optimized/about-a3-768.webp" srcset="image/optimized/about-a3-480.webp 480w, image/optimized/about-a3-768.webp 768w, image/optimized/about-a3-1024.webp 1024w" sizes="(min-width: 1024px) 480px, (min-width: 768px) 40vw, (min-width: 480px) 448px, calc(100vw - 32px)"
+                  onerror="this.removeAttribute('srcset');this.onerror=null;this.src='image/about/a1.jpg';">
               </li>
               <li class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0" data-slide>
-                <img alt="Hoàng Thanh Khánh - chân dung 04" loading="lazy" width="1200" height="1800"
+                <img alt="Hoàng Thanh Khánh - chân dung 04" loading="lazy" width="768" height="1024"
                   class="w-full h-full object-cover object-top block"
-                  src="image/about/a4.jpg"
-                  onerror="this.onerror=null;this.src='image/about/a1.jpg';">
+                  src="image/optimized/about-a4-768.webp" srcset="image/optimized/about-a4-480.webp 480w, image/optimized/about-a4-768.webp 768w, image/optimized/about-a4-1024.webp 1024w" sizes="(min-width: 1024px) 480px, (min-width: 768px) 40vw, (min-width: 480px) 448px, calc(100vw - 32px)"
+                  onerror="this.removeAttribute('srcset');this.onerror=null;this.src='image/about/a1.jpg';">
               </li>
               <li class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0" data-slide>
-                <img alt="Hoàng Thanh Khánh - chân dung 05" loading="lazy" width="1200" height="1800"
+                <img alt="Hoàng Thanh Khánh - chân dung 05" loading="lazy" width="768" height="1152"
                   class="w-full h-full object-cover object-top block"
-                  src="image/about/a5.jpg"
-                  onerror="this.onerror=null;this.src='image/about/a1.jpg';">
+                  src="image/optimized/about-a5-768.webp" srcset="image/optimized/about-a5-480.webp 480w, image/optimized/about-a5-768.webp 768w, image/optimized/about-a5-1024.webp 1024w" sizes="(min-width: 1024px) 480px, (min-width: 768px) 40vw, (min-width: 480px) 448px, calc(100vw - 32px)"
+                  onerror="this.removeAttribute('srcset');this.onerror=null;this.src='image/about/a1.jpg';">
               </li>
             </ul>
 
