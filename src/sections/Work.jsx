@@ -66,19 +66,23 @@ export default function Work() {
             </div>
           </li>
           {/* PROJECT 02 */}
-          <li className="project-tile project-tile--blue">
+          <li className="project-tile">
             <figure className="project-tile__media">
-              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85" alt="Khu vận chuyển container đại diện cho dự án logistics" width={1200} height={675} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
+              <img src="image/learnspace.webp" alt="Giao diện trang chủ LearnSpace với thư viện học tập và linh vật chú gà" width={1200} height={675} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
               <span className="project-tile__number" aria-hidden="true">02</span>
-              <div className="project-tile__badges"><span>CONCEPT</span><span>2026</span></div>
+              <div className="project-tile__badges"><span>EDUCATION</span><span>2026</span></div>
             </figure>
             <div className="project-tile__body">
-              <div className="project-tile__meta"><span>REAL-TIME</span><span>NEXT.JS · WEBSOCKET · SQL</span></div>
-              <h3>Giám sát vận tải &amp; chuỗi cung ứng</h3>
-              <p>Ý tưởng ứng dụng theo dõi vị trí, trạng thái đội xe và hỗ trợ phát hiện chậm trễ trong quá trình vận hành.</p>
+              <div className="project-tile__meta"><span>WEB APPLICATION</span><span>REACT · SUPABASE</span></div>
+              <h3>LearnSpace</h3>
+              <p>Không gian khám phá, lưu lại và chia sẻ tài liệu học tập, bắt đầu với kiến thức lập trình.</p>
               <div className="project-tile__footer">
-                <span>Product &amp; Fullstack</span>
-                <span className="project-tile__soon" aria-label="Demo đang cập nhật">Demo · Soon</span>
+                <span>Fullstack Developer</span>
+                <div className="project-tile__actions">
+                  <a href="https://learn-space.khanhht.tech" target="_blank" rel="noopener noreferrer" aria-label="Xem dự án LearnSpace">
+                    Xem dự án <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg>
+                  </a>
+                </div>
               </div>
             </div>
           </li>

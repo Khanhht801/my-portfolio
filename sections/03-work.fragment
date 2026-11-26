@@ -46,23 +46,27 @@
       </li>
 
       <!-- PROJECT 02 -->
-      <li class="project-tile project-tile--blue">
+      <li class="project-tile">
         <figure class="project-tile__media">
           <img
-            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
-            alt="Khu vận chuyển container đại diện cho dự án logistics"
+            src="image/learnspace.webp"
+            alt="Giao diện trang chủ LearnSpace với thư viện học tập và linh vật chú gà"
             width="1200" height="675" loading="lazy"
             onerror="this.onerror=null;this.src='image/logo.jpg';">
           <span class="project-tile__number" aria-hidden="true">02</span>
-          <div class="project-tile__badges"><span>CONCEPT</span><span>2026</span></div>
+          <div class="project-tile__badges"><span>EDUCATION</span><span>2026</span></div>
         </figure>
         <div class="project-tile__body">
-          <div class="project-tile__meta"><span>REAL-TIME</span><span>NEXT.JS · WEBSOCKET · SQL</span></div>
-          <h3>Giám sát vận tải &amp; chuỗi cung ứng</h3>
-          <p>Ý tưởng ứng dụng theo dõi vị trí, trạng thái đội xe và hỗ trợ phát hiện chậm trễ trong quá trình vận hành.</p>
+          <div class="project-tile__meta"><span>WEB APPLICATION</span><span>REACT · SUPABASE</span></div>
+          <h3>LearnSpace</h3>
+          <p>Không gian khám phá, lưu lại và chia sẻ tài liệu học tập, bắt đầu với kiến thức lập trình.</p>
           <div class="project-tile__footer">
-            <span>Product &amp; Fullstack</span>
-            <span class="project-tile__soon" aria-label="Demo đang cập nhật">Demo · Soon</span>
+            <span>Fullstack Developer</span>
+            <div class="project-tile__actions">
+              <a href="https://learn-space.khanhht.tech" target="_blank" rel="noopener noreferrer" aria-label="Xem dự án LearnSpace">
+                Xem dự án <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
+              </a>
+            </div>
           </div>
         </div>
       </li>
