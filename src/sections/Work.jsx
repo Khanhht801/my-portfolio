@@ -126,7 +126,7 @@ export default function Work() {
           {/* PROJECT 05 */}
           <li className="project-tile project-tile--blue">
             <figure className="project-tile__media">
-              <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1200&q=85" alt="Màn hình lập trình đại diện cho portfolio cá nhân" width={1200} height={675} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
+              <img src="image/optimized/portfolio-current.webp" alt="Giao diện trang portfolio cá nhân Khanhht" width={1200} height={675} loading="lazy" onError={(event) => { if (event.currentTarget.getAttribute('src') !== 'image/logo.jpg') event.currentTarget.src = 'image/logo.jpg'; }} />
               <span className="project-tile__number" aria-hidden="true">05</span>
               <div className="project-tile__badges"><span>PERSONAL</span><span>2026</span></div>
             </figure>

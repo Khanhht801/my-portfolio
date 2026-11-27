@@ -120,8 +120,8 @@
       <li class="project-tile project-tile--blue">
         <figure class="project-tile__media">
           <img
-            src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
-            alt="Màn hình lập trình đại diện cho portfolio cá nhân"
+            src="image/optimized/portfolio-current.webp"
+            alt="Giao diện trang portfolio cá nhân Khanhht"
             width="1200" height="675" loading="lazy"
             onerror="this.onerror=null;this.src='image/logo.jpg';">
           <span class="project-tile__number" aria-hidden="true">05</span>
