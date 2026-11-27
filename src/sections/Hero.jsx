@@ -35,7 +35,7 @@ export default function Hero() {
         </div>
         {/* Headline */}
         <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-[52px] leading-[1.08] tracking-tight text-[#292524] mb-4">
-          <span className="text-2xl sm:text-3xl lg:text-[32px] font-bold block mb-1">Mình là
+          <span className="text-2xl sm:text-3xl lg:text-[32px] font-bold block mb-1">Mình là{' '}
             <span className="hero-name-accent">Hoàng Thanh Khánh</span>
           </span>
           <span className="block animate-hero-line">Fullstack <span className="animated-text-gradient">Developer</span></span>
